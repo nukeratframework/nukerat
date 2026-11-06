@@ -1,0 +1,19 @@
+ABOUT
+    (linux) Recursive directory tree listing.
+
+USAGE:
+    bof-lin-tree --- [path] [options] [depth]
+
+ARGUMENTS:
+    path                Root path (default: .)
+    options             Flags: a (all), d (dirs only), F (full paths) (choices: a|d|F|ad|aF|dF|adF)
+    depth               Max depth
+
+EXAMPLES:
+    bof-lin-tree
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-tree -w 60 --- [path] [options] [depth]

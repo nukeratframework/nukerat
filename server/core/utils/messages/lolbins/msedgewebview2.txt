@@ -1,0 +1,23 @@
+ABOUT
+    msedgewebview2.exe is the executable file for Microsoft Edge
+    WebView2, which is a web browser control used by applications to
+    display web content. LOLBAS documents proxy execution of binary.
+
+USAGE:
+    msedgewebview2.exe --no-sandbox --browser-subprocess-path="{PATH_ABSOLUTE:.exe}"
+    msedgewebview2.exe --utility-cmd-prefix="{CMD}"
+    msedgewebview2.exe --disable-gpu-sandbox --gpu-launcher="{CMD}"
+    msedgewebview2.exe --no-sandbox --renderer-cmd-prefix="{CMD}"
+
+EXAMPLES:
+    msedgewebview2.exe --no-sandbox --browser-subprocess-path="{PATH_ABSOLUTE:.exe}"
+    msedgewebview2.exe --utility-cmd-prefix="{CMD}"
+    msedgewebview2.exe --disable-gpu-sandbox --gpu-launcher="{CMD}"
+    msedgewebview2.exe --no-sandbox --renderer-cmd-prefix="{CMD}"
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    msedgewebview2.exe --no-sandbox --browser-subprocess-path="{PATH_ABSOLUTE:.exe}"

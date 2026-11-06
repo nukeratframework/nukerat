@@ -1,0 +1,19 @@
+ABOUT
+    Collects credentials using CredUIPromptForWindowsCredentialsName. Runs
+    in a thread and waits up to 60 seconds for user input. Beacon is
+    unresponsive during the wait.
+USAGE:
+    bof-askcreds --- [reason]
+
+ARGUMENTS:
+    reason              Optional. Custom prompt text (default: Restore Network Connection)
+
+EXAMPLES:
+    bof-askcreds    bof-askcreds --- Gimme Your Password!
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-askcreds -w 60 --- Gimme Your Password!

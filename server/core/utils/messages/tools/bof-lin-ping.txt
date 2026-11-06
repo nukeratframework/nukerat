@@ -1,0 +1,19 @@
+ABOUT
+    (linux) Test host reachability.
+
+USAGE:
+    bof-lin-ping --- <host> [count]
+
+ARGUMENTS:
+    host                Host to ping
+    count               Number of pings (default: 3)
+
+EXAMPLES:
+    bof-lin-ping --- <host>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-ping -w 60 --- <host>

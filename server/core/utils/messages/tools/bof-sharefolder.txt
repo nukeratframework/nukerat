@@ -1,0 +1,21 @@
+ABOUT
+    Creates a world readable and writable shared folder, or deletes an empty
+    folder.
+USAGE:
+    bof-sharefolder --- <path> <share_name> <mode>
+
+ARGUMENTS:
+    path                Directory path on the target
+    share_name          Share name (use empty for delete mode)
+    mode                0 to create and share, 1 to delete folder
+
+EXAMPLES:
+    bof-sharefolder --- C:\james SHARE 0
+    bof-sharefolder --- C:\james  1
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-sharefolder -w 60 --- C:\james SHARE 0

@@ -1,0 +1,22 @@
+ABOUT
+    Console Window Host.
+    Runs commands with conhost as parent, optionally --headless to hide
+    child console windows.
+
+USAGE:
+    conhost.exe {CMD}
+    conhost.exe --headless {CMD}
+
+ARGUMENTS:
+    --headless                   Hide child console window when applicable
+
+EXAMPLES:
+    conhost.exe {CMD}
+    conhost.exe --headless {CMD}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    conhost.exe {CMD}

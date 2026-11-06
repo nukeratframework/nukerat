@@ -1,0 +1,27 @@
+------------------------------------------------------------------------------------
+UAC
+------------------------------------------------------------------------------------
+
+lol-computerdefaults                    Default-apps utility abused via
+                                        ms-settings hijack for silent
+                                        high-integrity execution.
+
+lol-eudcedit                            Private Character Editor abused to run
+                                        high-integrity binaries or scripts
+                                        without a UAC prompt.
+
+lol-eventvwr                            Event Viewer GUI abused to elevate and
+                                        execute binaries, scripts, or .NET
+                                        objects without UAC.
+
+lol-iscsicpl                            iSCSI control panel GUI abused for
+                                        high-integrity DLL loads or command
+                                        execution without UAC.
+
+lol-odbcad32                            ODBC administrator GUI abused to
+                                        execute high-integrity processes without
+                                        UAC prompts.
+
+lol-wsreset                             Store reset utility abused for silent
+                                        high-integrity execution via fodhelper
+                                        chain.

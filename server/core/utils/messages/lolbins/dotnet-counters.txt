@@ -1,0 +1,19 @@
+ABOUT
+    .NET diagnostic tool for monitoring performance counters of .NET
+    applications in real-time. Installed via 'dotnet tool install
+    --global dotnet-counters' (.NET SDK required). LOLBAS documents
+    executing a child process under the guise of a legitimate .NET
+    diagnostic tool.
+
+USAGE:
+    dotnet-counters.exe collect --duration 1 -- {PATH:.exe}
+
+EXAMPLES:
+    dotnet-counters.exe collect --duration 1 -- {PATH:.exe}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    dotnet-counters.exe collect --duration 1 -- {PATH:.exe}

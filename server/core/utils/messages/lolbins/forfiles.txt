@@ -1,0 +1,19 @@
+ABOUT
+    Batch file selector that runs a command for each match.
+    LOLBAS launches arbitrary commands or binaries hidden in alternate
+    data streams when a decoy file name matches under /p.
+
+USAGE:
+    forfiles /p c:\windows\system32 /m notepad.exe /c "{CMD}"
+    forfiles /p c:\windows\system32 /m notepad.exe /c "{PATH_ABSOLUTE}:evil.exe"
+
+EXAMPLES:
+    forfiles /p c:\windows\system32 /m notepad.exe /c "{CMD}"
+    forfiles /p c:\windows\system32 /m notepad.exe /c "{PATH_ABSOLUTE}:evil.exe"
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    forfiles /p c:\windows\system32 /m notepad.exe /c "{CMD}"

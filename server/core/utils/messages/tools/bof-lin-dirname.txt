@@ -1,0 +1,20 @@
+ABOUT
+    (linux) Strip filename from path.
+
+USAGE:
+    bof-lin-dirname --- <path>
+
+ARGUMENTS:
+    path                File path
+
+Supports pipe chaining with other BusyBOF tools.
+
+EXAMPLES:
+    bof-lin-dirname --- <path>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-dirname -w 60 --- <path>

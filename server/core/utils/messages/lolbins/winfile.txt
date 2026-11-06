@@ -1,0 +1,16 @@
+ABOUT
+    Windows File Manager executable. LOLBAS documents execution of
+    specified file, can be used as a defense evasion.
+
+USAGE:
+    winfile.exe {PATH:.exe}
+
+EXAMPLES:
+    winfile.exe {PATH:.exe}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    winfile.exe {PATH:.exe}

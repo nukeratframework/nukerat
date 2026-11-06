@@ -1,0 +1,17 @@
+ABOUT
+    C# utility that searches user profiles for cloud credential files related to
+    Amazon Web Services, Microsoft Azure, and Google Compute.
+
+USAGE:
+    net-sharp-cloud --- <provider>
+
+PROVIDERS:
+    all       Search all user profiles for AWS, Azure, and GCloud credentials
+    aws       Search for Amazon Web Services credentials
+    azure     Search for Microsoft Azure credentials
+    gcloud    Search for Google Compute credentials
+
+EXAMPLES:
+    net-sharp-cloud --- all
+    net-sharp-cloud --- aws
+    net-sharp-cloud --- azure

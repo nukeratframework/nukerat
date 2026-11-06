@@ -1,0 +1,14 @@
+ABOUT
+    (linux) Display memory usage.
+
+USAGE:
+    bof-lin-free
+EXAMPLES:
+    bof-lin-free
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-free -w 60
+    bof-lin-free -bg

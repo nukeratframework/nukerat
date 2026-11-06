@@ -1,0 +1,23 @@
+ABOUT
+    (linux) Translate/delete characters.
+
+USAGE:
+    bof-lin-tr --- <set1> [set2] [file] [options]
+
+ARGUMENTS:
+    set1                Source character set
+    set2                Replacement character set
+    file                Input file
+    options             Flags: d (delete set1 chars) (choices: d)
+
+Supports pipe chaining with other BusyBOF tools.
+
+EXAMPLES:
+    bof-lin-tr --- <set1>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-tr -w 60 --- <set1>

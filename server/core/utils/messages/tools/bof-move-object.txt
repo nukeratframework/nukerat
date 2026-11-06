@@ -1,0 +1,26 @@
+ABOUT
+    Move object to different OU. Supports standard LDAP (389) with
+    signing/sealing and LDAPS (636).
+USAGE:
+    bof-move-object --- <source> <isSourceDN> <targetOU> <newName> <searchOU> <dc> <useLdaps>
+
+ARGUMENTS:
+    source        sAMAccountName or full DN of the object to move
+    isSourceDN    1 if source is a DN, 0 to search by sAMAccountName
+    targetOU      Destination OU DN (empty/- to keep current OU)
+    newName       New CN value or RDN (empty/- to keep current name)
+    searchOU      Base DN for sAMAccountName search (empty/- for default NC)
+    dc            DC hostname or IP (empty/- for auto-discovery)
+    useLdaps      1 for LDAPS (636), 0 for LDAP (389)
+
+EXAMPLES:
+    bof-move-object --- Guest 0 OU=Vale,DC=sevenkingdoms,DC=local - - kingslanding.sevenkingdoms.local 0
+    bof-move-object --- CN=Guest,CN=Users,DC=sevenkingdoms,DC=local 1 OU=Vale,DC=sevenkingdoms,DC=local - - kingslanding.sevenkingdoms.local 0
+    bof-move-object --- vagrant 0 - BenchRenamed - kingslanding.sevenkingdoms.local 0
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-move-object -w 60 --- Guest 0 OU=Vale,DC=sevenkingdoms,DC=local - - kingslanding.sevenkingdoms.local 0

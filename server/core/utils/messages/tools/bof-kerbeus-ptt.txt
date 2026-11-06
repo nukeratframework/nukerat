@@ -1,0 +1,14 @@
+ABOUT
+    Submit a ticket to the current or specified logon session.
+USAGE:
+    bof-kerbeus-ptt --- /ticket:BASE64 [/luid:LOGONID]
+
+EXAMPLES:
+    bof-kerbeus-ptt --- /ticket:BASE64
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-kerbeus-ptt -w 60 --- /ticket:BASE64

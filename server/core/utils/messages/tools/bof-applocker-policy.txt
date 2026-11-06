@@ -1,0 +1,17 @@
+ABOUT
+    Enumerates AppLocker policy configurations, rule collections, and enforcement modes by
+    scanning the relevant registry keys.
+
+USAGE:
+    bof-applocker-policy
+
+EXAMPLES:
+    bof-applocker-policy
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-applocker-policy -w 60
+    bof-applocker-policy -bg

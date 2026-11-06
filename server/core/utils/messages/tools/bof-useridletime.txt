@@ -1,0 +1,14 @@
+ABOUT
+    Shows how long the user as been idle, displayed in seconds, minutes, hours and days.
+
+USAGE:
+    bof-useridletime
+EXAMPLES:
+    bof-useridletime
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-useridletime -w 60
+    bof-useridletime -bg

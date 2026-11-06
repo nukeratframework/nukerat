@@ -1,0 +1,14 @@
+ABOUT
+    Enumerate filter drivers
+
+USAGE:
+    bof-enum-filter-driver --- [opt:computer]
+
+EXAMPLES:
+    bof-enum-filter-driver
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-enum-filter-driver -w 60 --- [opt:computer]

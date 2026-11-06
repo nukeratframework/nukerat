@@ -1,0 +1,17 @@
+ABOUT
+    Command line utility for taking and analyzing PIX GPU captures.
+    LOLBAS documents executing an executable under a trusted,
+    Microsoft-signed binary.
+
+USAGE:
+    pixtool.exe launch {PATH_ABSOLUTE:.exe}
+
+EXAMPLES:
+    pixtool.exe launch {PATH_ABSOLUTE:.exe}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    pixtool.exe launch {PATH_ABSOLUTE:.exe}

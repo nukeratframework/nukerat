@@ -1,0 +1,12 @@
+ABOUT
+    This tool is capable of instantiating a DCOM/COM class based on a provided CLSID on a designated host, which launches the associated out-of-process EXE server, creating a separate process. By focusing on EXE's susceptible to DLL or COM hijacking and utilizing a gained position that allows writing to the directories from which these processes load their modules, (remote) code execution can be achieved. Consequently, this technique can be effectively employed for lateral movement.
+
+USAGE:
+    bof-dcom-local-server32 --- <clsid> <target>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-dcom-local-server32 -w 60 --- <clsid> <target>

@@ -1,0 +1,17 @@
+ABOUT
+    Used to verify a COM object before it is instantiated by Windows
+    Explorer. LOLBAS documents run a COM object created in registry
+    to evade defensive counter measures.
+
+USAGE:
+    verclsid.exe /S /C {CLSID}
+
+EXAMPLES:
+    verclsid.exe /S /C {CLSID}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    verclsid.exe /S /C {CLSID}

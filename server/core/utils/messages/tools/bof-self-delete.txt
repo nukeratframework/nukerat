@@ -1,0 +1,24 @@
+ABOUT
+    Deletes a locked or running executable from disk using NTFS alternate
+    data stream rename technique.
+USAGE:
+    bof-self-delete --- <mode> <path> <pid>
+
+    mode 1 = delete current process image (path and pid ignored)
+    mode 2 = delete by wide path (path = C:\path\file.exe, pid ignored)
+    mode 3 = delete image of running process (path = "", pid = target PID)
+
+EXAMPLES:
+    bof-self-delete -w 40 --- 3 "" 7956
+    bof-self-delete -w 40 --- 2 C:\path\file.exe 0
+    bof-self-delete -w 40 --- 1 "" 0
+
+NOTES:
+    Matches armory packing (i, Z, i). Help examples use mode 3 for PID and mode 2 for path.
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-self-delete -w 60 --- 3 "" 7956

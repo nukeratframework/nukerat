@@ -1,0 +1,21 @@
+ABOUT
+    sftp.exe is a Windows command-line utility that uses the Secure
+    File Transfer Protocol (SFTP) to securely transfer files between
+    a local machine and a remote server. LOLBAS documents proxy
+    execution of specified command, can be used as a defensive
+    evasion.
+
+USAGE:
+    sftp -o ProxyCommand="{CMD}" .
+    sftp -D "{CMD}"
+
+EXAMPLES:
+    sftp -o ProxyCommand="{CMD}" .
+    sftp -D "{CMD}"
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    sftp -o ProxyCommand="{CMD}" .

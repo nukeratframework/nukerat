@@ -1,0 +1,17 @@
+ABOUT
+    Maps AI tooling on Windows developer endpoints and highlights triage ready AI agent
+    and MCP artifacts that may expose workflow data, local state, and credentials.
+
+USAGE:
+    bof-ai-surface
+
+EXAMPLES:
+    bof-ai-surface
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-ai-surface -w 60
+    bof-ai-surface -bg

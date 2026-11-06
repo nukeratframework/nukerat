@@ -1,0 +1,74 @@
+------------------------------------------------------------------------------------
+DLL
+------------------------------------------------------------------------------------
+
+lol-acccheckconsole                     UI accessibility checker that loads
+                                        managed DLLs to run .NET code and bypass
+                                        AppLocker.
+
+lol-certoc                              Certificate OCSP helper that loads DLLs
+                                        or downloads remote scripts via
+                                        -GetCACAPS.
+
+lol-cl-loadassembly                     Diagnostic PS script that loads and
+                                        runs managed assemblies from a path.
+
+lol-control                             Control Panel launcher that runs
+                                        CPL/DLL payloads including from
+                                        alternate data streams.
+
+lol-coregen                             Silverlight CoreCLR image generator
+                                        that loads attacker DLLs and can bypass
+                                        AWL.
+
+lol-desk                                Desktop CPL used with rundll32
+                                        InstallScreenSaver to launch .scr
+                                        executables locally or via SMB.
+
+lol-dnscmd                              DNS Server admin tool to load a
+                                        malicious server-level plugin DLL on a
+                                        domain controller.
+
+lol-extexport                           Internet Explorer export helper that
+                                        loads a named DLL from a chosen folder.
+
+lol-odbcconf                            ODBC configuration tool that loads
+                                        attacker DLLs while evading command-line
+                                        detections.
+
+lol-offlinescannershell                 Defender Offline shell that loads DLLs
+                                        for evasion or persistence.
+
+lol-rasautou                            RAS auto-dialer that loads attacker
+                                        DLLs when invoked with malicious
+                                        parameters.
+
+lol-regasm                              .NET assembly registration utility that
+                                        loads and runs malicious managed DLLs.
+
+lol-register-cimprovider                WMI provider registration binary that
+                                        loads arbitrary DLLs into WMI.
+
+lol-regsvcs                             .NET COM+ registration utility that
+                                        executes malicious managed assemblies.
+
+lol-regsvr32                            COM scriptlet host that runs local or
+                                        remote SCT/DLL payloads and bypasses
+                                        AWL.
+
+lol-rundll32                            Windows DLL loader for local/remote
+                                        DLL, script, and JScript execution
+                                        chains.
+
+lol-utilityfunctions                    Networking diagnostic PowerShell script
+                                        that loads and runs .NET assemblies.
+
+lol-vsls-agent                          Visual Studio Live Share agent that
+                                        loads DLLs for proxy execution.
+
+lol-wab                                 Windows Address Book that loads DLLs or
+                                        runs executables via COM and rundll32.
+
+lol-wuauclt                             Windows Update client that loads DLLs
+                                        or runs commands via update-related
+                                        paths.

@@ -1,0 +1,15 @@
+ABOUT
+    Search process memory for a string.
+
+USAGE:
+    bof-mem-search --- <pid> <string>
+
+EXAMPLES:
+    bof-mem-search --- 8112 "cookie="
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-mem-search -w 60 --- 8112 "cookie="

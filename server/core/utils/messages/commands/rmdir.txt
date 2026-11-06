@@ -1,0 +1,19 @@
+ABOUT
+    Remove an empty directory.
+
+USAGE:
+    rmdir <path>
+
+ARGUMENTS:
+    <path>              Directory to remove.
+
+EXAMPLES:
+    rmdir /tmp/newfolder
+    rmdir C:\Temp\newfolder
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    rmdir -w 15 C:\Temp\newfolder

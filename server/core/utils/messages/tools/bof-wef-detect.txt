@@ -1,0 +1,17 @@
+ABOUT
+    Detects Windows Event Forwarding (WEF) configuration, which indicates centralized logging.
+    If found, indicates security events are being forwarded to a central server.
+
+USAGE:
+    bof-wef-detect
+
+EXAMPLES:
+    bof-wef-detect
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-wef-detect -w 60
+    bof-wef-detect -bg

@@ -1,0 +1,7 @@
+------------------------------------------------------------------------------------
+Upload
+------------------------------------------------------------------------------------
+
+lol-datasvcutil                         WCF Data Services client generator
+                                        abused to upload or exfiltrate data to
+                                        remote URIs.

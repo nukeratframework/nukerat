@@ -1,0 +1,13 @@
+ABOUT
+    Prints out information related to the current users logon session
+USAGE:
+    bof-get-session-info
+EXAMPLES:
+    bof-get-session-info
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-get-session-info -w 60
+    bof-get-session-info -bg

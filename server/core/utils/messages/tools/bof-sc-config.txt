@@ -1,0 +1,28 @@
+ABOUT
+    Configures an existing Windows service on the local or remote system.
+
+USAGE:
+    bof-sc-config --- <SVCNAME> <BINPATH> <ERRORMODE> <STARTMODE> [HOSTNAME]
+
+ARGUMENTS:
+
+    SVCNAME     Service name
+
+    BINPATH     Service binary path
+
+    ERRORMODE   0=ignore, 1=normal, 2=severe, 3=critical
+
+    STARTMODE   2=auto, 3=demand, 4=disabled
+
+    HOSTNAME    Optional remote host
+
+EXAMPLES:
+
+    bof-sc-config --- MySvc C:\svc.exe 0 2
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-sc-config -w 60 --- MySvc C:\svc.exe 0 2

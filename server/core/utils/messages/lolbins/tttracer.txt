@@ -1,0 +1,19 @@
+ABOUT
+    Used by Windows 1809 and newer to Debug Time Travel. LOLBAS
+    documents spawn process using other binary and dump process by
+    PID.
+
+USAGE:
+    tttracer.exe {PATH_ABSOLUTE:.exe}
+    TTTracer.exe -dumpFull -attach {PID}
+
+EXAMPLES:
+    tttracer.exe {PATH_ABSOLUTE:.exe}
+    TTTracer.exe -dumpFull -attach {PID}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    tttracer.exe {PATH_ABSOLUTE:.exe}

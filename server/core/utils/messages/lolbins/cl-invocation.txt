@@ -1,0 +1,19 @@
+ABOUT
+    Aero diagnostics PowerShell helper. Dot-source the script, then call
+    SyncInvoke to launch a program (proxy execution).
+
+USAGE:
+    . C:\Windows\diagnostics\system\AERO\CL_Invocation.ps1
+    SyncInvoke {CMD}
+
+EXAMPLES:
+    . C:\Windows\diagnostics\system\AERO\CL_Invocation.ps1
+    SyncInvoke {CMD}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    . C:\Windows\diagnostics\system\AERO\CL_Invocation.ps1
+    SyncInvoke {CMD}

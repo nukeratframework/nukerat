@@ -1,0 +1,17 @@
+ABOUT
+    Windows color management control panel.
+    Copies a chosen file into System32\spool\drivers\color for blending
+    into trusted paths.
+
+USAGE:
+    colorcpl {PATH}
+
+EXAMPLES:
+    colorcpl {PATH}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    colorcpl {PATH}

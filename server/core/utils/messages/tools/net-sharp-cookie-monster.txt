@@ -1,0 +1,16 @@
+ABOUT
+    Dumps browser cookies for all sites including httpOnly, secure, and
+    session flags via Chrome/Edge remote debugging protocol.
+
+USAGE:
+    net-sharp-cookie-monster --- [url] [browser] [debugging-port] [user-data-dir]
+
+ARGUMENTS:
+    url              Initial URL when launching browser (default: https://www.google.com)
+    browser          chrome or edge (default: chrome)
+    debugging-port   Remote debugging port (default: 9142)
+    user-data-dir    Path to browser user data directory (default: %LOCALAPPDATA%\Google\Chrome\User Data)
+
+EXAMPLES:
+    net-sharp-cookie-monster    net-sharp-cookie-monster --- https://www.google.com chrome 9142
+    net-sharp-cookie-monster --- https://www.google.com edge 9142

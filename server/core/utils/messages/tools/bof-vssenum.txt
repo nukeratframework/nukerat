@@ -1,0 +1,15 @@
+ABOUT
+    Enumerate Shadow Copies on some Server 2012+ servers
+
+USAGE:
+    bof-vssenum --- <hostname> [opt:sharename]
+
+EXAMPLES:
+    bof-vssenum --- dc01.corp.local
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-vssenum -w 60 --- dc01.corp.local

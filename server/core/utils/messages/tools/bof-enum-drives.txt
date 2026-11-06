@@ -1,0 +1,12 @@
+ABOUT
+    Enumerate drive letters and type.
+
+USAGE:
+    bof-enum-drives --- (no arguments)
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-enum-drives -w 60 --- (no arguments)

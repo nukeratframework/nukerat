@@ -1,0 +1,16 @@
+ABOUT
+    Execute LDAP searches without paging.
+
+USAGE:
+    bof-nonpagedldapsearch --- <query> [--attributes] [--count] [--scope] [--hostname] [--dn] [--ldaps]
+
+EXAMPLES:
+    bof-nonpagedldapsearch --- (objectClass=user)
+    bof-nonpagedldapsearch --- (objectClass=computer) *,ntsecuritydescriptor
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-nonpagedldapsearch -w 60 --- (objectClass=user)

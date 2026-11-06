@@ -1,0 +1,54 @@
+ABOUT
+    Dumps credentials from LSASS providers, performs DCSync, pass the hash,
+    Zerologon, PrintNightmare, and HiveNightmare.
+
+USAGE:
+    net-sharp-katz --- --Command <command> [options]
+
+CREDENTIAL DUMPING:
+    logonpasswords    Dump credentials from all providers
+    msv               Msv provider credentials
+    kerberos          Kerberos provider credentials
+    wdigest           WDigest provider credentials
+    tspkg             Tspkg provider credentials
+    credman           Credman provider credentials
+    ekeys             List Kerberos encryption keys
+
+LSA / SAM:
+    dumpsam           Dump SAM from provided SYSTEM and SAM hive paths
+    listshadows       Enumerate shadow copies
+
+PASS THE HASH:
+    pth               Create process or replace logon session credentials
+      --User          Username
+      --Domain        Domain
+      --NtlmHash      NTLM hash
+      --Rc4           RC4 key
+      --Luid          Existing logon session LUID
+      --aes256        AES256 key
+
+DCSYNC:
+    dcsync            Replicate credentials from domain controller
+      --User          Target username
+      --Guid          Target object GUID
+      --Domain        Target domain
+      --DomainController  DC hostname
+      --AuthUser      Alternative credentials username
+      --AuthDomain    Alternative credentials domain
+      --AuthPassword  Alternative credentials password
+
+EXPLOITS:
+    zerologon         CVE-2020-1472 (check, exploit, auto modes)
+      --Mode          check, exploit, or auto
+      --Target        Target hostname
+      --MachineAccount Machine account name
+    printnightmare    CVE-2021-1675 / CVE-2021-34527
+      --Target        Target host
+      --Library       UNC path to DLL
+    hiveghtmare       CVE-2021-36934 (HiveNightmare)
+
+EXAMPLES:
+    net-sharp-katz --- --Command logonpasswords
+    net-sharp-katz --- --Command dcsync --User krbtgt --Domain corp.local --DomainController dc01.corp.local
+    net-sharp-katz --- --Command pth --User admin --Domain corp --NtlmHash HASH
+    net-sharp-katz --- --Command zerologon --Mode check --Target dc.corp.local --MachineAccount DC$

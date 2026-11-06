@@ -1,0 +1,14 @@
+ABOUT
+    Manage running background work. Each command runs on its own background
+    thread, list them or kill by task ID. Keylogger and screenshot use separate
+    workers and are not listed here.
+
+USAGE:
+    tasks [kill <task_id>]
+
+ARGUMENTS:
+    <id>                Task ID for tasks kill (positional).
+
+EXAMPLES:
+    tasks
+    tasks kill 3912

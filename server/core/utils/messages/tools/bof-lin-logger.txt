@@ -1,0 +1,20 @@
+ABOUT
+    (linux) Write message to syslog.
+
+USAGE:
+    bof-lin-logger --- <message> [tag] [priority]
+
+ARGUMENTS:
+    message             Log message
+    tag                 Syslog tag (default: user)
+    priority            Syslog priority number (default: 14)
+
+EXAMPLES:
+    bof-lin-logger --- <message>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-logger -w 60 --- <message>

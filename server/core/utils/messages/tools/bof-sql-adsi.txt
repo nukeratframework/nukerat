@@ -1,0 +1,15 @@
+ABOUT
+    Obtains ADSI credentials from an ADSI linked server.
+
+USAGE:
+    bof-sql-adsi --- <server> <adsi_linkedserver> [port] [database] [linkedserver] [impersonate]
+
+ARGUMENTS:
+    port    Local port opened on SQL server (default: 4444)
+
+EXAMPLES:
+    bof-sql-adsi --- SQL01 ADSI_LINK
+    bof-sql-adsi --- SQL01 ADSI_LINK 4444 master
+
+NOTES:
+    Port opens on the SQL Server with the ADSI link, not the beaconing host.

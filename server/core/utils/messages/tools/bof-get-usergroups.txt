@@ -1,0 +1,15 @@
+ABOUT
+    List groups a user belongs to. Supports standard LDAP (389) with
+    signing/sealing and LDAPS (636).
+USAGE:
+    bof-get-usergroups --- {user} [-ou {path}] [-dc {ip}] [--ldaps]
+
+EXAMPLES:
+    bof-get-usergroups --- jane.doe
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-get-usergroups -w 60 --- jane.doe

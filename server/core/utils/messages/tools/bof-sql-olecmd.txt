@@ -1,0 +1,12 @@
+ABOUT
+    Executes a system command using OLE automation procedures on a SQL server.
+
+USAGE:
+    bof-sql-olecmd --- <server> <command> [database] [linkedserver] [impersonate]
+
+EXAMPLES:
+    bof-sql-olecmd --- SQL01 whoami
+    bof-sql-olecmd --- SQL01 cmd.exe /c whoami master
+
+NOTES:
+    Output is not returned.

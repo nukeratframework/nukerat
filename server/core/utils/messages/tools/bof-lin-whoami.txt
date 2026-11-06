@@ -1,0 +1,14 @@
+ABOUT
+    (linux) Print effective user name (getpwuid/geteuid).
+
+USAGE:
+    bof-lin-whoami
+EXAMPLES:
+    bof-lin-whoami
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-whoami -w 60
+    bof-lin-whoami -bg

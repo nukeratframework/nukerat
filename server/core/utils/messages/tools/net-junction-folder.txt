@@ -1,0 +1,8 @@
+ABOUT
+    Creates a junction folder in Windows Accessories Startup folder (Vault 7 technique). DLL executed by verclsid.exe.
+
+USAGE:
+    net-junction-folder --- <full_path_to_dll>
+
+EXAMPLES:
+    net-junction-folder --- C:\Windows\Temp\payload.dll

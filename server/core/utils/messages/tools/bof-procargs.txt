@@ -1,0 +1,15 @@
+ABOUT
+    Extract command line arguments for the specified process.
+
+USAGE:
+    bof-procargs --- <pid>
+
+EXAMPLES:
+    bof-procargs --- 1234
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-procargs -w 60 --- 1234

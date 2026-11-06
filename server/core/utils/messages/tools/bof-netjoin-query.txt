@@ -1,0 +1,17 @@
+ABOUT
+    Queries Windows domain join information and workstation details, identifying if the
+    system is domain joined or in a workgroup.
+
+USAGE:
+    bof-netjoin-query
+
+EXAMPLES:
+    bof-netjoin-query
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-netjoin-query -w 60
+    bof-netjoin-query -bg

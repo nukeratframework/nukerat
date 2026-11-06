@@ -1,0 +1,22 @@
+ABOUT
+    .NET utility to run processes under different user credentials. Improved open-source
+    alternative to runas.exe with support for logon types, UAC bypass, remote I/O, and
+    automatic CreateProcess function selection.
+
+USAGE:
+    net-runas-cs --- <username> <password> <cmd> [options]
+
+OPTIONS:
+    -d, --domain DOMAIN           User domain (default: local)
+    -f, --function N              CreateProcess function: 0=CreateProcessAsUserW, 1=CreateProcessWithTokenW, 2=CreateProcessWithLogonW
+    -l, --logon-type N            Logon type (default 2=Interactive, 8=NetworkCleartext)
+    -t, --timeout MS              Process wait timeout in ms (0=background, default 120000)
+    -r, --remote HOST:PORT        Redirect stdin/stdout/stderr to remote host
+    -p, --force-profile           Force user profile creation
+    --bypass-uac                  Bypass UAC with known admin password
+    --remote-impersonation        Main thread impersonates requested user
+
+EXAMPLES:
+    net-runas-cs --- admin P@ssw0rd cmd.exe /c whoami
+    net-runas-cs --- CORP\user P@ssw0rd powershell.exe -ep bypass -l 8
+    net-runas-cs --- admin P@ssw0rd cmd.exe -d CORP --bypass-uac

@@ -1,0 +1,24 @@
+ABOUT
+    Closes a specific handle or all handles in the specified process.
+
+USAGE:
+    bof-process-destroy --- <PID> [HANDLEID]
+
+ARGUMENTS:
+
+    PID        Target process ID
+
+    HANDLEID   Optional specific handle ID (1 to 65535). Closes all if omitted
+
+EXAMPLES:
+
+    bof-process-destroy --- 1234
+
+    bof-process-destroy --- 1234 256
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-process-destroy -w 60 --- 1234

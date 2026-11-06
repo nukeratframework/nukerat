@@ -1,0 +1,38 @@
+ABOUT
+    Windows persistence toolkit supporting registry keys, scheduled tasks, startup
+    folder LNK files, KeePass config backdoor, Windows services, Tortoise SVN hooks,
+    and scheduled task backdoors with add, remove, check, and list operations.
+
+USAGE:
+    net-sharp-persist --- -t <technique> -m <method> [options]
+
+OPTIONS:
+    -t    Persistence technique
+    -c    Command to execute
+    -a    Arguments for the command
+    -f    File to create or modify
+    -k    Registry key to create or modify
+    -v    Registry value to create or modify
+    -n    Scheduled task name or service name
+    -m    Method: add, remove, check, list
+    -o    Optional add ons: env, hourly, daily, logon
+    -h    Help page
+
+TECHNIQUES (-t):
+    keepass           Backdoor KeePass config file
+    reg               Registry key addition or modification
+    schtaskbackdoor   Backdoor scheduled task by adding an action
+    startupfolder     LNK file in startup folder
+    tortoisesvn       Tortoise SVN hook script
+    service           Create new Windows service
+    schtask           Create new scheduled task
+
+REGISTRY KEYS (-k):
+    hklmrun, hklmrunonce, hklmrunonceex, hkcurun, hkcurunonce, logonscript, stickynotes, userinit
+
+EXAMPLES:
+    net-sharp-persist --- -t reg -c "C:\Windows\System32\cmd.exe" -a "/c calc.exe" -k hkcurun -v "Test" -m add
+    net-sharp-persist --- -t schtask -c "C:\Windows\System32\cmd.exe" -a "/c whoami" -n "Some Task" -m add -o hourly
+    net-sharp-persist --- -t service -c "C:\Windows\System32\cmd.exe" -a "/c calc.exe" -n "Some Service" -m add
+    net-sharp-persist --- -t reg -k hkcurun -v "Test" -m remove
+    net-sharp-persist --- -t schtask -m list

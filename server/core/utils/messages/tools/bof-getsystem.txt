@@ -1,0 +1,15 @@
+ABOUT
+    Obtains SYSTEM by duplicating the winlogon.exe token. Requires
+    administrator privileges.
+USAGE:
+    bof-getsystem
+EXAMPLES:
+
+    bof-getsystem
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-getsystem -w 60
+    bof-getsystem -bg

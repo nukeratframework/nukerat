@@ -1,0 +1,15 @@
+ABOUT
+    Add/append attribute value. Supports standard LDAP (389) with
+    signing/sealing and LDAPS (636).
+USAGE:
+    bof-add-attribute --- {target} {attr} {value} [-ou {path}] [-dc {ip}] [--ldaps]
+
+EXAMPLES:
+    bof-add-attribute --- {target} {attr} {value} [-ou {path}] [-dc {ip}] [--ldaps]
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-add-attribute -w 60 --- {target} {attr} {value} [-ou {path}] [-dc {ip}] [--ldaps]

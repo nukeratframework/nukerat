@@ -1,0 +1,30 @@
+ABOUT
+    Queries Active Directory objects and attributes via ADSI. Supports
+    custom LDAP filters, user/computer/group queries, Kerberos encrypted
+    comms, and Global Catalog search. One binary supports four query modes.
+USAGE:
+    bof-recon-ad --- custom <ldap filter> [attributes] [max] [-usegc|-ldap] [server:port]
+    bof-recon-ad --- users <username> [attributes] [max] [-usegc|-ldap] [server:port]
+    bof-recon-ad --- computers <computername> [attributes] [max] [-usegc|-ldap] [server:port]
+    bof-recon-ad --- groups <groupname> [attributes] [max] [-usegc|-ldap] [server:port]
+
+ARGUMENTS:
+    mode                users, groups, computers or custom
+    filter              Username/computer/group filter or custom LDAP filter
+    attributes          Optional comma separated LDAP attributes, or -all
+    max                 Optional max results count, or 0 for default
+    -usegc              Optional. Use Global Catalog binding
+    server:port         Optional custom DC or GC server
+
+EXAMPLES:
+    bof-recon-ad --- custom (&(objectClass=user)(objectCategory=person)(sAMAccountName=*admin*)) displayName,sAMAccountName 10
+    bof-recon-ad --- users *lannister* displayName,sAMAccountName 5 -usegc
+    bof-recon-ad --- computers *king* name,operatingSystemVersion 20
+    bof-recon-ad --- groups "Domain Admins" -all 0 -usegc
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-recon-ad -w 60 --- users *lannister* displayName,sAMAccountName 5 -usegc

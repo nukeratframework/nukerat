@@ -1,0 +1,14 @@
+ABOUT
+    Enumerate scheduled tasks on the local or remote computer
+
+USAGE:
+    bof-schtasksenum --- [opt:server]
+
+EXAMPLES:
+    bof-schtasksenum
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-schtasksenum -w 60 --- [opt:server]

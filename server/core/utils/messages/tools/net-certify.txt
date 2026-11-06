@@ -1,0 +1,74 @@
+ABOUT
+    C# tool to enumerate and abuse misconfigurations in Active Directory Certificate
+    Services (AD CS). Supports CA enumeration, certificate template discovery,
+    vulnerability assessment, certificate requests, and downloads.
+
+USAGE:
+    net-certify --- <command> [options]
+
+EXAMPLES:
+    net-certify --- cas
+    net-certify --- cas /domain:domain.local /showAllPermissions
+    net-certify --- find
+    net-certify --- find /vulnerable
+    net-certify --- find /vulnerable /currentuser
+    net-certify --- find /enrolleeSuppliesSubject
+    net-certify --- find /clientauth
+    net-certify --- find /showAllPermissions /quiet
+    net-certify --- find /json /outfile:C:\Temp\out.json
+    net-certify --- pkiobjects /domain:domain.local
+    net-certify --- request /ca:SERVER\ca-name /template:User
+    net-certify --- request /ca:SERVER\ca-name /template:User /install
+    net-certify --- request /ca:SERVER\ca-name /machine /template:Machine
+    net-certify --- request /ca:SERVER\ca-name /template:Y /altname:USER
+    net-certify --- request /ca:SERVER\ca-name /template:Y /altname:USER /sid:S-1-5-21-...
+    net-certify --- request /ca:SERVER\ca-name /template:Y /onbehalfof:DOMAIN\USER /enrollcert:C:\Temp\enroll.pfx
+    net-certify --- download /ca:SERVER\ca-name /id:X /install
+
+COMMANDS:
+    cas                 List information about registered CAs
+    find                Find enabled certificate templates
+    pkiobjects          Enumerate access control information for PKI objects
+    request             Request a new certificate
+    download            Download an already requested certificate
+
+FIND OPTIONS:
+    /vulnerable         Find vulnerable or abusable templates (default low priv groups)
+    /currentuser        Find vulnerable templates using all groups of current user
+    /enrolleeSuppliesSubject   Templates with ENROLLEE_SUPPLIES_SUBJECT enabled
+    /clientauth         Templates capable of client authentication
+    /showAllPermissions Display all template permissions
+    /hideAdmins         Hide admin entries (cas command)
+    /skipWebServiceChecks   Skip web service checks (cas command)
+
+COMMON OPTIONS:
+    /ca:SERVER\ca-name  Target CA name
+    /domain:domain.local   Target domain
+    /path:LDAP_PATH     LDAP search base path
+    /quiet, /q          Suppress banner output
+    /json               JSON output
+    /outfile:PATH       Write output to file
+
+REQUEST OPTIONS:
+    /template:NAME      Certificate template name
+    /subject:X          Certificate subject
+    /altname:USER       Alternate name (if supported)
+    /sid:SID            Alternate SID (if supported)
+    /url:TAG            Alternate URL (if supported)
+    /machine            Use machine context
+    /install            Install certificate to store
+    /onbehalfof:USER    Request on behalf of another user
+    /enrollcert:PATH    Enrollment agent certificate path
+    /enrollcertpw:PASS  Enrollment agent certificate password
+
+DOWNLOAD OPTIONS:
+    /id:X               Request ID of certificate to download
+    /install            Install certificate to store
+    /machine            Use machine context
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    net-certify -w 60 --- cas

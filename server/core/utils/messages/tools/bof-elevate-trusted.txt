@@ -1,0 +1,23 @@
+ABOUT
+    Elevates the current beacon to SYSTEM and obtains the TrustedInstaller
+    group privilege through SetThreadToken impersonation. Optionally runs a
+    command via cmd.exe /c while impersonating SYSTEM.
+
+USAGE:
+    bof-elevate-trusted --- <command>
+
+ARGUMENTS:
+    command    Optional command to execute as SYSTEM via cmd.exe /c
+
+EXAMPLES:
+    bof-elevate-trusted
+    bof-elevate-trusted --- notepad.exe
+    bof-elevate-trusted --- whoami > C:\\Windows\\Temp\\system.txt
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-elevate-trusted -w 60 --- notepad.exe
+    bof-elevate-trusted -bg

@@ -1,0 +1,20 @@
+ABOUT
+    (linux) Remove duplicate adjacent lines.
+
+USAGE:
+    bof-lin-uniq --- [file] [options]
+
+ARGUMENTS:
+    file                Input file
+    options             Flags: c (show count) (choices: c)
+
+Supports pipe chaining with other BusyBOF tools.
+
+EXAMPLES:
+    bof-lin-uniq
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-uniq -w 60 --- [file] [options]

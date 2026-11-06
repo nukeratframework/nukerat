@@ -1,0 +1,14 @@
+ABOUT
+    List IPv4 address, hostname, and DNS server
+
+USAGE:
+    bof-ipconfig
+EXAMPLES:
+    bof-ipconfig
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-ipconfig -w 60
+    bof-ipconfig -bg

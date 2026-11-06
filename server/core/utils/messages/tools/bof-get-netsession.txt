@@ -1,0 +1,14 @@
+ABOUT
+    Enumerate sessions on the local or specified computer
+
+USAGE:
+    bof-get-netsession --- [opt:computer]
+
+EXAMPLES:
+    bof-get-netsession
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-get-netsession -w 60 --- [opt:computer]

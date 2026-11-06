@@ -1,0 +1,17 @@
+ABOUT
+    Captures a single image from the default webcam device. Supports saving to disk
+    or downloading over the beacon as file or screenshot.
+
+USAGE:
+    bof-webcam-bof --- <filename> <save_method>
+
+ARGUMENTS:
+    filename      Output filename (e.g. capture.jpeg)
+    save_method   0 = drop to disk, 1 = download over beacon, 2 = download as screenshot
+
+EXAMPLES:
+    bof-webcam-bof --- capture.jpeg 2
+    bof-webcam-bof --- photo.jpg 0
+
+NOTES:
+    ReadSample failed HRESULT 0xc00d3704 usually means webcam is in use.

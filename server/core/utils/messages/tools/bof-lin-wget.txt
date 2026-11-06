@@ -1,0 +1,19 @@
+ABOUT
+    (linux) Http get download.
+
+USAGE:
+    bof-lin-wget --- <url> [output]
+
+ARGUMENTS:
+    url                 URL to download
+    output              Output file
+
+EXAMPLES:
+    bof-lin-wget --- <url>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-wget -w 60 --- <url>

@@ -1,0 +1,21 @@
+ABOUT
+    (linux) Strip directory from path.
+
+USAGE:
+    bof-lin-basename --- <path> [suffix]
+
+ARGUMENTS:
+    path                File path
+    suffix              Suffix to remove
+
+Supports pipe chaining with other BusyBOF tools.
+
+EXAMPLES:
+    bof-lin-basename --- <path>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-basename -w 60 --- <path>

@@ -1,0 +1,17 @@
+ABOUT
+    WMI MOF compiler. LOLBAS registers malicious MOF definitions
+    into the WMI repository for persistence or execution through
+    event subscriptions.
+
+USAGE:
+    mofcomp.exe {PATH_ABSOLUTE:.mof}
+
+EXAMPLES:
+    mofcomp.exe {PATH_ABSOLUTE:.mof}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    mofcomp.exe {PATH_ABSOLUTE:.mof}

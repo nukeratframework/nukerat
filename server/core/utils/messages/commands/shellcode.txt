@@ -1,0 +1,20 @@
+ABOUT
+    Execute shellcode in the current process using inline execution. The
+    payload runs on a separate thread, not the main thread.
+
+USAGE:
+    shellcode -f <file>
+
+ARGUMENTS:
+    -f                  Local shellcode file (--file).
+
+EXAMPLES:
+    shellcode -f file.bin
+    shellcode -f beacon.bin
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    shellcode -w 60 -f payload.bin

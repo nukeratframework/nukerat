@@ -1,0 +1,13 @@
+ABOUT
+    Checks AlwaysInstallElevated in HKCU and HKLM.
+USAGE:
+    bof-privkit-elev-check --- (no arguments)
+
+EXAMPLES:
+    bof-privkit-elev-check
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-privkit-elev-check -w 60 --- (no arguments)

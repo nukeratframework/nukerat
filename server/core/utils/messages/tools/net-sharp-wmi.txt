@@ -1,0 +1,41 @@
+ABOUT
+    C# WMI toolkit for local and remote enumeration, process creation, VBS execution
+    via event subscriptions, file upload, firewall enumeration, and process management.
+
+USAGE:
+    net-sharp-wmi --- action=<action> [options]
+
+ACTIONS:
+    query       Execute WMI query (local or remote)
+    loggedon    Enumerate logged on users
+    exec        Remote process creation via win32_process
+    executevbs  Remote VBS execution via WMI event subscription
+    upload      Upload file via WMI
+    firewall    Remote firewall enumeration
+    ps          List processes
+    terminate   Terminate process by PID or name
+    getenv      Get environment variables
+    setenv      Set environment variable
+    delenv      Delete environment variable
+    install     Install MSI file remotely
+
+COMMON OPTIONS:
+    computername    Target host(s), comma separated (default: localhost)
+    username        Alternate credentials (domain\\user)
+    password        Alternate credentials password
+    query           WMI query string (for action=query)
+    command         Command to execute
+    amsi            AMSI bypass (disable)
+    result          Return command output (for action=exec)
+
+VBS EXECUTION (action=executevbs):
+    command         Execute OS command via preset VBS
+    url             Download and execute PowerShell script or binary
+    eventname       WMI event subscription name
+    time-specs      Timing for event trigger
+
+EXAMPLES:
+    net-sharp-wmi --- action=query query="select * from win32_service"
+    net-sharp-wmi --- action=exec computername=HOST command="C:\\temp\\process.exe" username=DOMAIN\\user password=Pass
+    net-sharp-wmi --- action=executevbs computername=HOST command="notepad.exe"
+    net-sharp-wmi --- action=upload computername=HOST source="C:\\local\\file.exe" dest="C:\\temp\\file.exe"

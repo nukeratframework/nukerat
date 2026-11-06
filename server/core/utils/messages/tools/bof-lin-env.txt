@@ -1,0 +1,21 @@
+ABOUT
+    (linux) Print environment variables from /proc/self/environ.
+
+USAGE:
+    bof-lin-env --- [name]
+
+ARGUMENTS:
+    name                Optional variable name
+
+EXAMPLES:
+    bof-lin-env
+    bof-lin-env --- PATH
+ERRORS:
+    env: cannot read /proc/self/environ: <reason>
+    env: '<name>' not set
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-env -w 60 --- [name]

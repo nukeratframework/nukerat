@@ -1,0 +1,20 @@
+ABOUT
+    (linux) Output last part of file.
+
+USAGE:
+    bof-lin-tail --- [file] [lines]
+
+ARGUMENTS:
+    file                Input file
+    lines               Number of lines (default: 10)
+
+Supports pipe chaining with other BusyBOF tools.
+
+EXAMPLES:
+    bof-lin-tail
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-tail -w 60 --- [file] [lines]

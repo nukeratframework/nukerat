@@ -1,0 +1,17 @@
+ABOUT
+    VShadow is a command-line tool that can be used to create and manage
+    volume shadow copies. LOLBAS documents execution of specified
+    executable file.
+
+USAGE:
+    vshadow.exe -nw -exec={PATH_ABSOLUTE:.exe} C:
+
+EXAMPLES:
+    vshadow.exe -nw -exec={PATH_ABSOLUTE:.exe} C:
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    vshadow.exe -nw -exec={PATH_ABSOLUTE:.exe} C:

@@ -1,0 +1,9 @@
+ABOUT
+    Enumerates linked servers and their RPC status.
+
+USAGE:
+    bof-sql-checkrpc --- <server> [database] [linkedserver] [impersonate]
+
+EXAMPLES:
+    bof-sql-checkrpc --- SQL01
+    bof-sql-checkrpc --- SQL01 master LINKED01

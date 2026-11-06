@@ -1,0 +1,19 @@
+ABOUT
+    Electron runtime binary which runs the Teams application. LOLBAS
+    covers executing JavaScript code and executing a process under a
+    trusted Microsoft-signed binary.
+
+USAGE:
+    teams.exe
+    teams.exe --disable-gpu-sandbox --gpu-launcher="{CMD} &&"
+
+EXAMPLES:
+    teams.exe
+    teams.exe --disable-gpu-sandbox --gpu-launcher="{CMD} &&"
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    teams.exe

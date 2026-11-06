@@ -1,0 +1,18 @@
+ABOUT
+    Performs the Internal Monologue attack to retrieve NTLM hashes without touching LSASS. Downgrades
+    NetNTLM settings, impersonates non-network logon tokens, and elicits NetNTLMv1 responses via
+    local SSPI interaction with the NTLM authentication package.
+
+USAGE:
+    net-internal-monologue --- [-Downgrade True/False] [-Restore True/False] [-Impersonate True/False] [-Threads True/False] [-Verbose True/False] [-Challenge ascii-hex]
+
+OPTIONS:
+    -Downgrade      Perform NetNTLM downgrade before eliciting responses (default: True)
+    -Restore        Restore original registry values after the attack (default: True)
+    -Impersonate    Impersonate all available non-network users (default: True)
+    -Threads        Locate tokens to impersonate from threads (default: False)
+    -Verbose        Print verbose output (default: False)
+    -Challenge      8-byte NTLM challenge in ascii-hex (default: 1122334455667788)
+
+EXAMPLES:
+    net-internal-monologue    net-internal-monologue --- -Downgrade False -Restore False -Impersonate True -Verbose False -Challenge 1122334455667788

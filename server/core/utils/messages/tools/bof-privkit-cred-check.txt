@@ -1,0 +1,52 @@
+ABOUT
+    Enumerates stored credentials in Windows Credential Manager via CredEnumerate.
+    Lists metadata (type, persistence, target, user) for each entry. Does not
+    perform a full credential dump — use bof-cred-man for that.
+
+USAGE:
+    bof-privkit-cred-check --- (no arguments)
+
+EXAMPLES:
+    bof-privkit-cred-check
+
+OUTPUT:
+    For each credential found, the BOF prints:
+
+    Type     Credential type (Generic, Domain Password, etc.)
+    Persist  Storage scope (Session, Local Machine, Enterprise)
+    Target   Credential target name (e.g. LegacyGeneric:target=...)
+    User     Associated username
+    Comment  Optional comment, when present
+    Secret   Credential blob content, when available
+
+    When no credentials exist:
+        [-] No credentials found in Credential Manager
+
+NOTES:
+    Secret field behavior:
+        - Generic credentials created with cmdkey often expose only the first
+          character of the password in the blob (e.g. pass "PsTest789!" → Secret: P).
+        - System or protected entries (MicrosoftAccount, SSO, WindowsLive) usually
+          show Secret: <empty or protected>.
+        - This is a CredEnumerate limitation, not a full password dump.
+
+    cmdkey /list may show more entries than this BOF (session-only or internal
+    targets). CredEnumerate returns the subset visible to the current user context.
+
+    To seed a test credential and validate output:
+
+        powershell cmdkey /generic:nukebench-test /user:benchuser /pass:TestPass123!
+        powershell cmdkey /list
+        bof-privkit-cred-check
+
+    Expected: target nukebench-test and user benchuser appear in BOF output.
+    Remove after testing:
+
+        powershell cmdkey /delete:LegacyGeneric:target=nukebench-test
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-privkit-cred-check -w 60 --- (no arguments)

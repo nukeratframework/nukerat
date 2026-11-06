@@ -1,0 +1,17 @@
+ABOUT
+    Remote Desktop Services change utility.
+    Invokes chgusr.exe from its directory; co-located renamed chgusr.exe
+    runs when using user, port, or logon subcommands.
+
+USAGE:
+    change.exe user
+
+EXAMPLES:
+    change.exe user
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    change.exe user

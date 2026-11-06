@@ -1,0 +1,378 @@
+------------------------------------------------------------------------------------
+Execute
+------------------------------------------------------------------------------------
+
+lol-acccheckconsole                     UI accessibility checker that loads
+                                        managed DLLs to run .NET code and bypass
+                                        AppLocker.
+
+lol-addinutil                           .NET Office add-in cache tool that
+                                        proxy-executes malicious serialized
+                                        Addins.Store payloads.
+
+lol-agentexecutor                       Intune Management Extension binary that
+                                        spawns PowerShell or a planted
+                                        powershell.exe with bypass.
+
+lol-appcert                             Windows App Certification Kit CLI that
+                                        runs EXEs or installs MSIs under a
+                                        trusted parent process.
+
+lol-applaunch                           .NET ClickOnce launcher that activates
+                                        remote apps, often bypassing
+                                        SmartScreen/AppLocker rules.
+
+lol-applauncher                         UE-V management tool that launches
+                                        executables under a signed Microsoft
+                                        binary.
+
+lol-appvlp                              Office App-V utility that runs BAT
+                                        files or spawns PowerShell to execute
+                                        binaries and bypass ASR.
+
+lol-at                                  Legacy scheduler that creates recurring
+                                        at jobs to run commands (older Windows).
+
+lol-atbroker                            Assistive Technology broker that starts
+                                        registry-defined AT handlers to run
+                                        arbitrary code.
+
+lol-bash                                WSL bash shell to run commands, shells,
+                                        or proxy execution and bypass
+                                        application whitelisting.
+
+lol-cdb                                 Windows debugger that runs shellcode
+                                        from .wds scripts or executes commands
+                                        under a signed binary.
+
+lol-change                              RDS change utility that spawns a
+                                        renamed chgusr.exe from its folder to
+                                        proxy-run binaries.
+
+lol-cmd                                 Windows command interpreter for ADS
+                                        tricks, WebDAV download/upload, and
+                                        script execution.
+
+lol-cmstp                               Connection Manager installer that runs
+                                        malicious INF/SCT content or sideloads a
+                                        registry DLL.
+
+lol-code                                VS Code binary whose tunnel feature can
+                                        open reverse PowerShell over Microsoft
+                                        tunnel infra.
+
+lol-cscript                             Windows Script Host engine to run
+                                        VBScript/JScript, including scripts
+                                        stored in ADS.
+
+lol-defaultpack                         Microsoft DefaultPack installer helper
+                                        that runs arbitrary commands via /C.
+
+lol-devicecredentialdeployment          Deployment helper that hides the
+                                        console window to run background cmd
+                                        quietly.
+
+lol-dfshim                              ClickOnce shim DLL for rundll32 to
+                                        launch remote ClickOnce apps and bypass
+                                        whitelisting.
+
+lol-dfsvc                               .NET ClickOnce host engine used to run
+                                        remote ClickOnce applications past app
+                                        control.
+
+lol-dotnet                              .NET CLI that runs managed DLLs, F#
+                                        interactive, or MSBuild projects to
+                                        bypass AWL.
+
+lol-explorer                            Windows shell that launches executables
+                                        with a trusted explorer.exe parent to
+                                        evade detections.
+
+lol-forfiles                            Batch file selector that spawns
+                                        processes from executables, including
+                                        binaries hidden in ADS.
+
+lol-fsi                                 64-bit F# interpreter to run attacker
+                                        scripts under a signed binary and bypass
+                                        WDAC.
+
+lol-fsianycpu                           F# AnyCPU interpreter to execute
+                                        payloads via a trusted Microsoft-signed
+                                        binary.
+
+lol-fsutil                              File system utility to spawn planted
+                                        binaries, wipe files, exhaust disk
+                                        space, or hide timestamps.
+
+lol-gpscript                            Group Policy script processor that can
+                                        register logon scripts to run attacker
+                                        commands quietly.
+
+lol-hh                                  HTML Help viewer that runs CHM/remote
+                                        content, downloads files, or executes
+                                        commands.
+
+lol-ie4uinit                            IE initialization utility that runs
+                                        commands from a crafted ie4uinit.inf
+                                        after copying files.
+
+lol-iediagcmd                           IE diagnostics tool that launches a
+                                        pre-planted executable from its working
+                                        directory.
+
+lol-ieexec                              Undocumented .NET IEExec utility to
+                                        download and execute remote attacker
+                                        assemblies.
+
+lol-infdefaultinstall                   INF default installer that runs
+                                        attacker code from specially crafted
+                                        installation INF files.
+
+lol-installutil                         .NET InstallUtil to execute malicious
+                                        .NET DLLs/EXEs, download payloads, or
+                                        bypass AWL.
+
+lol-intellitrace                        Visual Studio IntelliTrace collector
+                                        abused to run code under a trusted
+                                        signed binary.
+
+lol-logger                              Windows Kits logger that runs arbitrary
+                                        commands via a signed diagnostic binary.
+
+lol-mftrace                             Media Foundation trace tool that spawns
+                                        cmd.exe as a child for trusted-parent
+                                        execution.
+
+lol-microsoft-nodejstools-pressanykey   Visual Studio Node.js helper abused to
+                                        spawn arbitrary child processes.
+
+lol-mmc                                 Management Console host for COM
+                                        snap-ins, elevation tricks, COR profiler
+                                        loads, and downloads.
+
+lol-mofcomp                             WMI MOF compiler that registers
+                                        malicious MOF classes for persistence or
+                                        execution.
+
+lol-mpiexec                             MPI launcher that runs commands under
+                                        the trusted Microsoft-signed mpiexec
+                                        parent.
+
+lol-msconfig                            System configuration utility abused to
+                                        spawn arbitrary commands or scripts.
+
+lol-mscopilot                           Microsoft Copilot app used to launch
+                                        processes under a trusted signed binary.
+
+lol-msdeploy                            Web Deploy tool for batch or command
+                                        execution and trusted file copy
+                                        operations.
+
+lol-msdt                                Microsoft Support Diagnostic Tool for
+                                        running scripts/MSI and bypassing
+                                        application whitelisting.
+
+lol-mshta                               HTA host that runs local/remote
+                                        scripts, VBScript/JScript, ADS payloads,
+                                        and INetCache downloads.
+
+lol-msiexec                             Windows Installer service to run custom
+                                        or remote MSI/MST packages and load
+                                        DLLs.
+
+lol-netsh                               Network shell that proxy-executes DLLs
+                                        via helper registration.
+
+lol-ntsd                                Windows symbolic debugger abused to run
+                                        executables under a trusted signed
+                                        parent.
+
+lol-osscripts-syncappvpublishingserver  App-V sync script that invokes
+                                        PowerShell from VBScript for trusted
+                                        execution.
+
+lol-pcalua                              Program Compatibility Assistant that
+                                        launches executables or DLLs under a
+                                        trusted parent.
+
+lol-pcwrun                              Program Compatibility Wizard that
+                                        spawns executables from its directory
+                                        for proxy execution.
+
+lol-pester                              PowerShell Pester batch wrapper that
+                                        executes arbitrary binaries with a
+                                        trusted parent.
+
+lol-pixtool                             PIX GPU capture CLI that runs arbitrary
+                                        executables under a signed Microsoft
+                                        parent.
+
+lol-pnputil                             Driver installation utility that runs
+                                        attacker INF payloads for execution or
+                                        persistence.
+
+lol-powershell                          PowerShell task-based shell for
+                                        scripts, downloads, and proxy execution.
+
+lol-presentationhost                    WPF browser host for XBAP apps that
+                                        downloads and runs remote .NET payloads.
+
+lol-print                               Print spooler CLI that can copy files
+                                        or stage payloads via print workflows.
+
+lol-provlaunch                          Provisioning launcher that runs cmd.exe
+                                        or other binaries from the working
+                                        directory.
+
+lol-psr                                 Problem Steps Recorder that can run
+                                        planted executables from its application
+                                        folder.
+
+lol-pubprn                              Print publishing VBS script that
+                                        proxy-executes remote scriptlets via
+                                        PubPrn and scrobj.
+
+lol-query                               Remote Desktop Services query utility
+                                        that runs renamed binaries for proxy
+                                        execution.
+
+lol-rdrleakdiag                         Resource leak diagnostic that spawns
+                                        executables from its folder for proxy
+                                        runs.
+
+lol-reg                                 Registry CLI to add, query, delete, or
+                                        export keys for execution and
+                                        persistence.
+
+lol-regedit                             Registry editor GUI that can run
+                                        high-integrity binaries or scripts
+                                        without UAC.
+
+lol-regini                              Registry initialization tool that
+                                        applies attacker-controlled registry
+                                        scripts.
+
+lol-remote                              WinDbg remote server that executes
+                                        binaries or opens reverse debugging
+                                        channels.
+
+lol-reset                               Remote Desktop reset utility that
+                                        proxy-runs renamed executables from its
+                                        directory.
+
+lol-runexehelper                        Trusted launcher process that executes
+                                        arbitrary EXE payloads as a child.
+
+lol-runonce                             Run-once utility that executes
+                                        registry-configured commands at next
+                                        logon.
+
+lol-runscripthelper                     Telemetry helper that runs attacker
+                                        PowerShell scripts with a trusted
+                                        parent.
+
+lol-sc                                  Service control CLI to create, start,
+                                        or modify services for execution and
+                                        persistence.
+
+lol-schtasks                            Task Scheduler CLI to create jobs that
+                                        run commands on a schedule or at logon.
+
+lol-setres                              Display resolution utility that runs
+                                        executables from its directory for proxy
+                                        execution.
+
+lol-settingsynchost                     Setting sync host that spawns
+                                        executables or cmd for trusted-parent
+                                        execution.
+
+lol-setupugc                            Unattended setup command processor that
+                                        runs cmd from registry for silent
+                                        execution.
+
+lol-sigverif                            Signature verification GUI that runs
+                                        planted executables from its working
+                                        folder.
+
+lol-sqlps                               Legacy SQL PowerShell host that loads
+                                        SQL cmdlets and runs PowerShell
+                                        payloads.
+
+lol-sqltoolsps                          SQL Tools PowerShell host that executes
+                                        PowerShell under a trusted SQL parent.
+
+lol-squirrel                            Teams/Squirrel updater that runs NuGet
+                                        packages or remote update payloads.
+
+lol-ssh                                 OpenSSH client for remote shells, file
+                                        transfer, and proxy execution of
+                                        commands.
+
+lol-stordiag                            Storage diagnostic that spawns
+                                        executables from its folder for proxy
+                                        execution.
+
+lol-syncappvpublishingserver            App-V publishing sync that invokes
+                                        PowerShell for trusted script execution.
+
+lol-teams                               Microsoft Teams Electron host that runs
+                                        Node.js or cmd child processes.
+
+lol-testwindowremoteagent               Visual Studio test agent RPC host that
+                                        runs remote test payloads.
+
+lol-tttracer                            Time Travel tracer that launches
+                                        executables under a signed debugging
+                                        parent.
+
+lol-unregmp2                            Windows Media Player setup utility that
+                                        runs executables from its directory.
+
+lol-update                              Teams Squirrel update binary for NuGet
+                                        or remote package execution.
+
+lol-verclsid                            COM class verifier abused to
+                                        instantiate and run malicious COM
+                                        objects.
+
+lol-vshadow                             Volume Shadow Copy CLI to create
+                                        shadows, run scripts, or stage VSS
+                                        abuse.
+
+lol-vsiisexelauncher                    IIS Express launcher from Visual Studio
+                                        that proxy-runs arbitrary executables.
+
+lol-wbemtest                            WMI test GUI for executing WMI queries,
+                                        scripts, or arbitrary WMI providers.
+
+lol-windbg                              Windows debugger for user/kernel
+                                        sessions, proxy execution, and memory
+                                        dumps.
+
+lol-winfile                             Legacy File Manager that launches
+                                        executables with a trusted Microsoft
+                                        parent.
+
+lol-wmic                                WMI command-line for local/remote
+                                        execution, ADS staging, and script
+                                        invocation.
+
+lol-workfolders                         Work Folders client for persistence,
+                                        proxy execution, and planted binaries.
+
+lol-write                               Legacy Write accessory that runs
+                                        executables or registry-based execution
+                                        chains.
+
+lol-wsb                                 Windows Sandbox CLI to create sessions
+                                        and run commands inside an isolated
+                                        sandbox.
+
+lol-wscript                             Windows Script Host for WSH scripts,
+                                        including payloads hidden in ADS.
+
+lol-wsl                                 Windows Subsystem for Linux to run
+                                        Linux binaries and cross-OS execution.
+
+lol-xwizard                             Extensible wizard host for COM class
+                                        execution or downloading remote files.

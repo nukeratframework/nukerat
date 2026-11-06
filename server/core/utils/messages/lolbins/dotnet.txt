@@ -1,0 +1,21 @@
+ABOUT
+    Dotnet.exe comes with .NET Framework. LOLBAS covers executing code
+    bypassing AWL, running .NET DLLs, and interactive F# execution via
+    fsi.
+
+USAGE:
+    dotnet.exe {PATH:.dll}
+    dotnet.exe fsi
+    dotnet.exe msbuild {PATH:.csproj}
+
+EXAMPLES:
+    dotnet.exe {PATH:.dll}
+    dotnet.exe fsi
+    dotnet.exe msbuild {PATH:.csproj}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    dotnet.exe {PATH:.dll}

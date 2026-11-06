@@ -1,0 +1,14 @@
+ABOUT
+    Harvest Outlook Global Address List contacts via COM.
+
+USAGE:
+    bof-contact-harvester
+EXAMPLES:
+    bof-contact-harvester
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-contact-harvester -w 60
+    bof-contact-harvester -bg

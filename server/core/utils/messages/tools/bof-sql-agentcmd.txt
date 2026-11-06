@@ -1,0 +1,12 @@
+ABOUT
+    Executes a system command using SQL Server agent jobs.
+
+USAGE:
+    bof-sql-agentcmd --- <server> <command> [database] [linkedserver] [impersonate]
+
+EXAMPLES:
+    bof-sql-agentcmd --- SQL01 whoami
+    bof-sql-agentcmd --- SQL01 cmd.exe /c whoami master
+
+NOTES:
+    Output is not returned. Requires SQL agent and appropriate privileges.

@@ -1,0 +1,17 @@
+ABOUT
+    The Workflow Command-line Compiler tool is included with the Windows
+    Software Development Kit (SDK). LOLBAS documents executing proxied
+    payload with Microsoft-signed binary to bypass WDAC policies.
+
+USAGE:
+    wfc.exe {PATH_ABSOLUTE:.xoml}
+
+EXAMPLES:
+    wfc.exe {PATH_ABSOLUTE:.xoml}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    wfc.exe {PATH_ABSOLUTE:.xoml}

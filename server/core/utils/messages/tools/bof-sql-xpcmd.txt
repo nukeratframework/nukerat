@@ -1,0 +1,12 @@
+ABOUT
+    Executes a system command via xp_cmdshell on a SQL server.
+
+USAGE:
+    bof-sql-xpcmd --- <server> <command> [database] [linkedserver] [impersonate]
+
+EXAMPLES:
+    bof-sql-xpcmd --- SQL01 whoami
+    bof-sql-xpcmd --- SQL01 cmd.exe /c whoami master LINKED01 dbo
+
+NOTES:
+    Output returned unless using linked server. Persistent commands may hang beacon.

@@ -1,0 +1,12 @@
+ABOUT
+    Search for matching files based on a word, extension or keyword in the file content. Wildcards are supported.
+
+USAGE:
+    bof-enum-files --- <directory> <pattern> <keyword>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-enum-files -w 60 --- <directory> <pattern> <keyword>

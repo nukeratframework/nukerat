@@ -1,0 +1,16 @@
+ABOUT
+    Used to register new wmi providers. LOLBAS documents execute
+    code within dll file.
+
+USAGE:
+    Register-cimprovider -path {PATH_ABSOLUTE:.dll}
+
+EXAMPLES:
+    Register-cimprovider -path {PATH_ABSOLUTE:.dll}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    Register-cimprovider -path {PATH_ABSOLUTE:.dll}

@@ -1,0 +1,16 @@
+ABOUT
+    Storage diagnostic tool. LOLBAS documents possible defence
+    evasion purposes.
+
+USAGE:
+    stordiag.exe
+
+EXAMPLES:
+    stordiag.exe
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    stordiag.exe

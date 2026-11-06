@@ -1,0 +1,16 @@
+ABOUT
+    Encrypt or decrypt files in a directory.
+
+USAGE:
+    bof-cryptvortex --- encrypt <password> "<directory>" <encrypted_ext> "<ext1,ext2,...>"
+    bof-cryptvortex --- decrypt <password> "<directory>" <encrypted_ext>
+
+EXAMPLES:
+    bof-cryptvortex --- encrypt secret@123 "C:\data\" .enc ".txt,.ps1"
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-cryptvortex -w 60 --- encrypt secret@123 "C:\data\" .enc ".txt,.ps1"

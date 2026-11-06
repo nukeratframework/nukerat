@@ -1,0 +1,17 @@
+ABOUT
+    Enumerates Windows Terminal Services sessions, displaying session IDs, usernames,
+    domains, connection states, and session LUIDs.
+
+USAGE:
+    bof-session-view
+
+EXAMPLES:
+    bof-session-view
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-session-view -w 60
+    bof-session-view -bg

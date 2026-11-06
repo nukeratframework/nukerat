@@ -1,0 +1,20 @@
+ABOUT
+    Enumerate Active Directory Certificate Services CAs using Win32 CERTCLI functions.
+
+USAGE:
+    bof-adnet-enum [domain]
+
+    domain    Optional DNS domain name to scope enumeration
+
+EXAMPLES:
+    bof-adnet-enum
+    bof-adnet-enum sevenkingdoms.local
+    bof-adnet-enum --- north.sevenkingdoms.local
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-adnet-enum -w 60
+    bof-adnet-enum -bg --- sevenkingdoms.local

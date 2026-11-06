@@ -1,0 +1,22 @@
+ABOUT
+    Volume Shadow Copy Service CLI.
+    Runs script files with /s or interactive exec to dump NTDS or spawn
+    child processes.
+
+USAGE:
+    diskshadow.exe /s {PATH:.txt}
+    diskshadow> exec {PATH:.exe}
+
+ARGUMENTS:
+    /s                           Execute commands from script file
+
+EXAMPLES:
+    diskshadow.exe /s {PATH:.txt}
+    diskshadow> exec {PATH:.exe}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    diskshadow.exe /s {PATH:.txt}

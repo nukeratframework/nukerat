@@ -1,0 +1,20 @@
+ABOUT
+    Probes whether a COM object can be instantiated from a given CLSID. Tries in process
+    first, falls back to local server.
+
+USAGE:
+    bof-com-probe --- <CLSID> [IID]
+
+ARGUMENTS:
+    CLSID               GUID string (e.g. {AEB5B82E-51E7-41EA-9A0B-3D2C8BEDE7B4})
+    IID                 Optional interface ID (defaults to IID_IUnknown)
+
+EXAMPLES:
+    bof-com-probe --- {AEB5B82E-51E7-41EA-9A0B-3D2C8BEDE7B4}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-com-probe -w 60 --- {AEB5B82E-51E7-41EA-9A0B-3D2C8BEDE7B4}

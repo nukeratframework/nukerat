@@ -1,0 +1,15 @@
+ABOUT
+    Terminate a target process by PID.
+
+USAGE:
+    bof-prockill --- <pid>
+
+EXAMPLES:
+    bof-prockill --- 1234
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-prockill -w 60 --- 1234

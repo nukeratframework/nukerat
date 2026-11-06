@@ -1,0 +1,23 @@
+ABOUT
+    List, run, or check Windows LOLBins on the host. To pass binary
+    flags or values, put them after '---' (example: lol-powershell --- whoami).
+
+USAGE:
+    lolbins [<category>]
+
+ARGUMENTS:
+    <category>          execute, download, dll, proxy, dump, compile, compress,
+                        copy, credentials, upload, inject, evasion, recon,
+                        tamper, uac, ads
+    --type              Same as <category> after lolbins check.
+    --path              Override default path for lol-<name>.
+
+MODES:
+    lolbins             Full index or one category.
+    check               Check catalog paths on the host (lolbins check <category>).
+    lol-<name>          Run a catalog binary with optional arguments.
+
+EXAMPLES:
+    lolbins
+    lolbins check execute
+    lol-powershell --- whoami

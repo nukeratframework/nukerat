@@ -1,0 +1,36 @@
+------------------------------------------------------------------------------------
+Compile
+------------------------------------------------------------------------------------
+
+lol-aspnet-compiler                     ASP.NET compiler that runs C# via Build
+                                        Provider folders to proxy payloads past
+                                        app control.
+
+lol-csc                                 .NET Framework C# compiler to build
+                                        EXE/DLL payloads on-host and evade
+                                        defenses.
+
+lol-csi                                 Visual Studio C# interactive that
+                                        executes unsigned .cs code directly.
+
+lol-ilasm                               .NET IL assembler to compile C# on-box
+                                        into DLLs or EXEs while bypassing
+                                        defenses.
+
+lol-jsc                                 .NET JScript compiler that builds
+                                        attacker JS into EXE/DLL to bypass
+                                        application controls.
+
+lol-microsoft-workflow-compiler         .NET workflow compiler that builds and
+                                        runs C#/VB.NET attacker code and
+                                        bypasses AWL.
+
+lol-msbuild                             MSBuild compiler/runner for projects,
+                                        DLLs, XSL, and inline C# to bypass AWL.
+
+lol-vbc                                 Visual Basic .NET compiler to build
+                                        EXE/DLL payloads on-host and bypass AWL.
+
+lol-wfc                                 Workflow command-line compiler for
+                                        XOML/C# workflows that bypass
+                                        application control.

@@ -1,0 +1,19 @@
+ABOUT
+    Setup Unattend Generic Command Processor used during Windows
+    deployment. LOLBAS documents execute binary through legitimate
+    proxy.
+
+USAGE:
+    setupugc.exe specialize
+    setupugc.exe auditUser
+
+EXAMPLES:
+    setupugc.exe specialize
+    setupugc.exe auditUser
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    setupugc.exe specialize

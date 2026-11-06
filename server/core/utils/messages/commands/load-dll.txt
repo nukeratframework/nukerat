@@ -1,0 +1,19 @@
+ABOUT
+    Load a reflective DLL in the current process using inline execution.
+
+USAGE:
+    load-dll -f <file>
+
+ARGUMENTS:
+    -f                  Local DLL file (--file).
+
+EXAMPLES:
+    load-dll -f file.dll
+    load-dll -f reflective.dll
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    load-dll -w 90 -f plugin.dll

@@ -1,0 +1,15 @@
+ABOUT
+    Create a new computer object. Supports standard LDAP (389) with
+    signing/sealing and LDAPS (636).
+USAGE:
+    bof-add-computer --- {computer} [-p {password}] [-ou {ou_path}] [-dc {dc_address}] [--disabled] [--ldaps]
+
+EXAMPLES:
+    bof-add-computer --- {computer} [-p {password}] [-ou {ou_path}] [-dc {dc_address}] [--disabled] [--ldaps]
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-add-computer -w 60 --- {computer} [-p {password}] [-ou {ou_path}] [-dc {dc_address}] [--disabled] [--ldaps]

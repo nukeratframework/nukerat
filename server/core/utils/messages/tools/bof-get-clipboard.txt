@@ -1,0 +1,16 @@
+ABOUT
+    Prints any text on the clipboard using Win32 clipboard APIs.
+
+USAGE:
+    bof-get-clipboard
+
+EXAMPLES:
+    bof-get-clipboard
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-get-clipboard -w 60
+    bof-get-clipboard -bg

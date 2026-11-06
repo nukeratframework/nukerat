@@ -1,0 +1,25 @@
+ABOUT
+    Built-in AD DS/LDS utility for offline directory maintenance. LOLBAS
+    uses VSS snapshots of NTDS.dit: create, mount by GUID or index, then
+    copy ntds.dit from the mounted snapshot path; delete when done.
+
+USAGE:
+    dsdbutil.exe "activate instance ntds" "snapshot" "create" "quit" "quit"
+    dsdbutil.exe "activate instance ntds" "snapshot" "mount {GUID}" "quit" "quit"
+    dsdbutil.exe "activate instance ntds" "snapshot" "delete {GUID}" "quit" "quit"
+    dsdbutil.exe "activate instance ntds" "snapshot" "create" "list all" "mount 1" "quit" "quit"
+    dsdbutil.exe "activate instance ntds" "snapshot" "list all" "delete 1" "quit" "quit"
+
+EXAMPLES:
+    dsdbutil.exe "activate instance ntds" "snapshot" "create" "quit" "quit"
+    dsdbutil.exe "activate instance ntds" "snapshot" "mount {GUID}" "quit" "quit"
+    dsdbutil.exe "activate instance ntds" "snapshot" "delete {GUID}" "quit" "quit"
+    dsdbutil.exe "activate instance ntds" "snapshot" "create" "list all" "mount 1" "quit" "quit"
+    dsdbutil.exe "activate instance ntds" "snapshot" "list all" "delete 1" "quit" "quit"
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    dsdbutil.exe "activate instance ntds" "snapshot" "create" "quit" "quit"

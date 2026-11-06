@@ -1,0 +1,16 @@
+ABOUT
+    Symbolic Debugger for Windows. LOLBAS documents executing an
+    executable under a trusted Microsoft-signed binary.
+
+USAGE:
+    ntsd.exe -g {CMD}
+
+EXAMPLES:
+    ntsd.exe -g {CMD}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    ntsd.exe -g {CMD}

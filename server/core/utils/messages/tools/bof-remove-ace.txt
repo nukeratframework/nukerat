@@ -1,0 +1,15 @@
+ABOUT
+    Remove ACE from DACL. Supports standard LDAP (389) with signing/sealing
+    and LDAPS (636).
+USAGE:
+    bof-remove-ace --- {target} [-trustee {trustee}] [-index {idx}] [options]
+
+EXAMPLES:
+    bof-remove-ace --- {target} [-trustee {trustee}] [-index {idx}] [options]
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-remove-ace -w 60 --- {target} [-trustee {trustee}] [-index {idx}] [options]

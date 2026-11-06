@@ -1,0 +1,24 @@
+ABOUT
+    Attempts to elevate to NT AUTHORITY\\SYSTEM using different methods. Uses the same
+    payload as migrate (implant shellcode generated at compile time). Windows only.
+
+USAGE:
+    getsystem [--method <method>] [--sacrifice <path>]
+
+ARGUMENTS:
+    --method            inject, token, or com. Default inject.
+    --sacrifice         Executable to spawn for token or com injection hosts.
+    --path              Alias for --sacrifice on the implant.
+
+EXAMPLES:
+    getsystem
+    getsystem --method inject
+    getsystem --method token --sacrifice C:\Windows\System32\mspaint.exe
+    getsystem --method com --sacrifice C:\Windows\System32\notepad.exe
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    getsystem -w 120 --method token

@@ -1,0 +1,15 @@
+ABOUT
+    Query a service for failure conditions
+
+USAGE:
+    bof-sc-qfailure --- <service name> [opt:server]
+
+EXAMPLES:
+    bof-sc-qfailure --- Spooler
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-sc-qfailure -w 60 --- Spooler

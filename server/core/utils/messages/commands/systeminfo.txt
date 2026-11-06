@@ -1,0 +1,19 @@
+ABOUT
+    Print host name, Windows version and build, system type, processor count,
+    and physical memory totals. Windows only.
+
+USAGE:
+    systeminfo
+
+ARGUMENTS:
+    (none)
+
+EXAMPLES:
+    systeminfo
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    systeminfo -w 60

@@ -1,0 +1,18 @@
+ABOUT
+    Windows Performance Toolkit binary used for tracing and analyzing
+    system performance during sleep and resume transitions. LOLBAS
+    documents execution of specified executable, can be used as a
+    defense evasion.
+
+USAGE:
+    xbootmgrsleep.exe 1000 {PATH:.exe}
+
+EXAMPLES:
+    xbootmgrsleep.exe 1000 {PATH:.exe}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    xbootmgrsleep.exe 1000 {PATH:.exe}

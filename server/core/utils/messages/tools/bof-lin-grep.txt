@@ -1,0 +1,24 @@
+ABOUT
+    (linux) Search file contents.
+
+USAGE:
+    bof-lin-grep --- <pattern> [file] [options]
+
+ARGUMENTS:
+    pattern             Search pattern
+    file                Input file
+    options             Flags: i (ignore case), n (line numbers), v (invert) (choices: i|n|v|in|iv|nv|inv)
+
+Supports pipe chaining with other BusyBOF tools.
+
+EXAMPLES:
+    bof-lin-grep --- -in password /etc/shadow
+    bof-lin-env | bof-lin-grep SHELL
+    bof-lin-find --- /etc -name *.conf | bof-lin-grep password
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-grep -w 60 --- -in password /etc/shadow

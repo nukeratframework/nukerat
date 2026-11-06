@@ -1,0 +1,20 @@
+ABOUT
+    Compare export function prologues in memory versus on disk for selected
+    system DLLs (ntdll, kernel32, kernelbase). Reports OK or HOOKED with byte
+    dumps when the in memory prologue differs from the file image. Windows only.
+
+USAGE:
+    hooks
+
+ARGUMENTS:
+    (none)
+
+EXAMPLES:
+    hooks
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    hooks -w 120

@@ -1,0 +1,8 @@
+ABOUT
+    Show the current configuration.
+    
+USAGE:
+    config
+
+EXAMPLES:
+    config

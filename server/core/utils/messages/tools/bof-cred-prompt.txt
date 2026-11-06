@@ -1,0 +1,12 @@
+ABOUT
+    Start Windows credential prompt in an attempt to capture user credentials. Entered credentials are returned as output. The prompt is persistent so the victim can't cancel/close the prompt or enter an empty password. Any user attempt to do so is shown in the output. Finally, a timer is set on the prompt to make sure the beacon will return at some point.
+
+USAGE:
+    bof-cred-prompt --- <title> <message> <timer>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-cred-prompt -w 60 --- <title> <message> <timer>

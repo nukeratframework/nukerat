@@ -1,0 +1,18 @@
+ABOUT
+    Enumerates VS Code, Cursor, Windsurf, Zed, Insiders, OSS, and server/remote extension
+    manifests from per user profile roots and summarizes extension identity, activation
+    events, and capability signals.
+
+USAGE:
+    bof-ide-extension-surface
+
+EXAMPLES:
+    bof-ide-extension-surface
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-ide-extension-surface -w 60
+    bof-ide-extension-surface -bg

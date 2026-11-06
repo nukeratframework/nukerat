@@ -1,0 +1,42 @@
+ABOUT
+    Microsoft SQL Server offensive reconnaissance and post exploitation toolkit.
+    Supports enumeration, impersonation, linked server, and SCCM module execution.
+
+USAGE:
+    net-sql-recon --- /a:<auth> /h:<host> /m:<module> [options]
+
+AUTHENTICATION (/a):
+    WinToken     Current user token
+    WinDomain    AD credentials (/d, /u, /p)
+    Local        Local SQL credentials
+    EntraID      Azure Entra ID credentials
+    AzureLocal   Azure local SQL credentials
+
+ENUMERATION (/e):
+    Info         SQL server information (/h, /port, /timeout)
+    SqlSpns      Enumerate MSSQL SPNs in AD (/d)
+
+SQL MODULES (/m):
+    Whoami, Info, Databases, Tables, Columns, Rows, Users, Links
+    Impersonate, CheckRpc, Query, Search, Smb
+    EnableXp, DisableXp, EnableClr, DisableClr, EnableOle, DisableOle
+    EnableRpc, DisableRpc, AgentStatus, AgentCmd, Adsi, Clr, OleCmd, XpCmd
+
+COMMON FLAGS:
+    /h, /host       SQL server hostname or IP (comma separated)
+    /d, /domain     Domain name
+    /u, /username   Username
+    /p, /password   Password
+    /database       Target database (default: master)
+    /port           TCP port (default: 1433)
+    /i, /iuser      Impersonation user
+    /l, /link       Linked server(s)
+    /chain          Execute on final server in linked chain
+    /debug          Show SQL queries without executing
+    /v, /verbose    Show queries before executing
+
+EXAMPLES:
+    net-sql-recon --- /a:WinToken /h:SQL01 /m:Whoami
+    net-sql-recon --- /a:WinDomain /h:SQL01 /d:CORP /u:admin /p:Pass /m:Databases
+    net-sql-recon --- /a:WinToken /h:SQL01 /m:XpCmd /c:whoami
+    net-sql-recon --- /e:Info /h:192.168.1.10

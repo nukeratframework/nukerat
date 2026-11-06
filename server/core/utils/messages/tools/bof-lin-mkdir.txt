@@ -1,0 +1,21 @@
+ABOUT
+    (linux) Create directories.
+
+USAGE:
+    bof-lin-mkdir --- <path> [options]
+
+ARGUMENTS:
+    path                Directory to create
+    options             Flags: p (create parents) (choices: p)
+
+Supports pipe chaining with other BusyBOF tools.
+
+EXAMPLES:
+    bof-lin-mkdir --- <path>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-mkdir -w 60 --- <path>

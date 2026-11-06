@@ -1,0 +1,14 @@
+ABOUT
+    Retrieve a usable TGT via GSS API delegation abuse.
+USAGE:
+    bof-kerbeus-tgtdeleg --- [/target:SPN]
+
+EXAMPLES:
+    bof-kerbeus-tgtdeleg --- /target:CIFS/dc.corp.local
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-kerbeus-tgtdeleg -w 60 --- /target:CIFS/dc.corp.local

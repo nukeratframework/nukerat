@@ -1,0 +1,14 @@
+ABOUT
+    Privilege escalation from SeImpersonatePrivilege to NT AUTHORITY\SYSTEM using a DCOM based
+    Potato technique. Works on Windows Server 2012 through Windows Server 2022 and Windows 8
+    through Windows 11.
+
+USAGE:
+    net-god-potato-dotnet --- -cmd <command>
+
+OPTIONS:
+    -cmd    Required. Command to execute as SYSTEM (default: cmd /c whoami)
+
+EXAMPLES:
+    net-god-potato-dotnet --- -cmd "cmd /c whoami"
+    net-god-potato-dotnet --- -cmd "cmd /c whoami /priv"

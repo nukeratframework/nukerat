@@ -1,0 +1,20 @@
+ABOUT
+    Traverses the SafeDllSearchMode DLL resolution order from a given path
+    and DLL name. Optionally checks whether a matching file can be opened
+    for write access.
+USAGE:
+    bof-dll-hijack-hunter --- <folder> <dllname>
+
+ARGUMENTS:
+    folder    Path to begin DLL search resolution (folder containing the PE file)
+    dllname   DLL filename to hunt for
+
+EXAMPLES:
+    bof-dll-hijack-hunter --- C:\Users\User\Desktop superLegit.dll
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-dll-hijack-hunter -w 60 --- C:\Users\User\Desktop superLegit.dll

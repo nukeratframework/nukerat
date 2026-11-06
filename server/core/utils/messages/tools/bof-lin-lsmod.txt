@@ -1,0 +1,14 @@
+ABOUT
+    (linux) List loaded kernel modules.
+
+USAGE:
+    bof-lin-lsmod
+EXAMPLES:
+    bof-lin-lsmod
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-lsmod -w 60
+    bof-lin-lsmod -bg

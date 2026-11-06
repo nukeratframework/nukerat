@@ -1,0 +1,12 @@
+ABOUT
+    Enumerate active hosts or verify a single open port. Tool accepts list with predefined hostnames or IP addresses and is loaded from your own operator client.
+
+USAGE:
+    bof-enum-active-hosts --- <hostfile> <port> <timeout>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-enum-active-hosts -w 60 --- <hostfile> <port> <timeout>

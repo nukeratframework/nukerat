@@ -1,0 +1,20 @@
+ABOUT
+    Activates the specified token privilege on the current process.
+
+USAGE:
+    bof-get-priv --- <privilege name>
+
+ARGUMENTS:
+
+    privilege name    Windows privilege constant (see Microsoft privilege constants)
+
+EXAMPLES:
+
+    bof-get-priv --- SeDebugPrivilege
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-get-priv -w 60 --- SeDebugPrivilege

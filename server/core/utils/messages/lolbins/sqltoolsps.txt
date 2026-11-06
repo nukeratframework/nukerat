@@ -1,0 +1,17 @@
+ABOUT
+    Tool included with Microsoft SQL that loads SQL Server cmdlts. A
+    replacement for sqlps.exe. Successor to sqlps.exe in SQL Server
+    2016+. LOLBAS documents executing PowerShell command.
+
+USAGE:
+    SQLToolsPS.exe -noprofile -command Start-Process {PATH:.exe}
+
+EXAMPLES:
+    SQLToolsPS.exe -noprofile -command Start-Process {PATH:.exe}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    SQLToolsPS.exe -noprofile -command Start-Process {PATH:.exe}

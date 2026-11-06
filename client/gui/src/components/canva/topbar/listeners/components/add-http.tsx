@@ -1,0 +1,214 @@
+import { ChevronRight } from "lucide-react";
+import { sanitizeNumericInput } from "@/components/ui/lib/utils";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import type { ListenerFormBodyProps } from "./form";
+import type { ListenerFormData } from "./logic";
+import {
+  useServerDropdown,
+  useAdvancedSection,
+  getServerOptionLabel,
+  truncateServerLabel,
+} from "./logic";
+
+type Props = ListenerFormBodyProps & {
+  onServerSelect: (host: string, port: string) => void;
+};
+
+export default function AddHttpChannel({ formData, handleFormChange, onServerSelect }: Props) {
+  const { servers, selectedId, handleChange } = useServerDropdown(
+    formData.host,
+    formData.port,
+    onServerSelect
+  );
+  const {
+    expanded,
+    toggleExpanded,
+    bodyRef,
+    addImplantMarker,
+    clearImplantMarkers,
+    addHeader,
+    removeHeader,
+    updateHeader,
+  } = useAdvancedSection(formData, handleFormChange);
+
+  return (
+    <>
+      <div className="mb-3 space-y-1.5">
+        <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Server</label>
+        <Select value={selectedId || undefined} onValueChange={handleChange}>
+          <SelectTrigger className="w-full text-[13.5px] bg-[#212121] border-[#363636] text-[#cecece] rounded px-3 py-1.5 h-auto focus:border-[#555] focus-visible:ring-0">
+            <SelectValue placeholder="Select a server..." />
+          </SelectTrigger>
+          <SelectContent className="text-[13.5px]">
+            {servers.map((s) => (
+              <SelectItem
+                key={s.id}
+                value={s.id}
+                className="text-[13.5px]"
+              >
+                {truncateServerLabel(getServerOptionLabel(s))}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div className="mb-3 space-y-1.5">
+        <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Port to Open</label>
+        <input
+          aria-label="Port to open"
+          className="w-full text-[13.5px] bg-[#212121] border border-[#363636] text-[#cecece] rounded px-3 py-1.5 outline-none focus:border-[#555] placeholder:text-[#444] tabular-nums"
+          value={formData.portToOpen}
+          onChange={(e) => handleFormChange("portToOpen", sanitizeNumericInput(e.target.value))}
+          placeholder="8000"
+          inputMode="numeric"
+          autoComplete="off"
+          spellCheck={false}
+        />
+      </div>
+
+      <div className="h-px bg-[#252525] mb-4 mt-4" />
+      <button
+        type="button"
+        onClick={toggleExpanded}
+        className="button-default flex items-center gap-1.5 w-full mb-3 cursor-pointer"
+      >
+        <ChevronRight
+          size={11}
+          className={`text-[#454545] transition-transform duration-150 ${expanded ? "rotate-90" : ""}`}
+        />
+        <span className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Advanced</span>
+      </button>
+
+      {expanded && (
+        <div className="pl-3 border-l border-[#252525]">
+          <div className="mb-3 space-y-1.5">
+            <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Endpoint Path</label>
+            <input
+              className="w-full text-[13.5px] bg-[#212121] border border-[#363636] text-[#cecece] rounded px-3 py-1.5 outline-none focus:border-[#555] placeholder:text-[#444]"
+              value={formData.endpointPath}
+              onChange={(e) => handleFormChange("endpointPath", e.target.value)}
+              placeholder="/api/example"
+              autoComplete="off"
+              spellCheck={false}
+            />
+          </div>
+
+          <div className="h-px bg-[#252525] mb-4 mt-4" />
+
+          <div className="flex items-center justify-between mb-2">
+            <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Response Headers</label>
+            <button
+              type="button"
+              onClick={addHeader}
+              className="button-default cursor-pointer text-[17px] text-[#888] hover:text-[#d4d4d4] px-2 rounded border border-[#2f2f2f] hover:border-[#555]"
+            >
+              +
+            </button>
+          </div>
+          {formData.responseHeaders.length > 0 && (
+            <div className="mb-3 space-y-1.5">
+              {formData.responseHeaders.map((h, i) => (
+                <div key={i} className="flex gap-1.5 items-center">
+                  <input
+                    className="flex-1 w-full text-[13.5px] bg-[#212121] border border-[#363636] text-[#cecece] rounded px-3 py-1.5 outline-none focus:border-[#555] placeholder:text-[#444] tabular-nums"
+                    value={h.key}
+                    onChange={(e) => updateHeader(i, "key", e.target.value)}
+                    placeholder="Header-Name"
+                    autoComplete="off"
+                    spellCheck={false}
+                  />
+                  <input
+                    className="flex-1 w-full text-[13.5px] bg-[#212121] border border-[#363636] text-[#cecece] rounded px-3 py-1.5 outline-none focus:border-[#555] placeholder:text-[#444] tabular-nums"
+                    value={h.value}
+                    onChange={(e) => updateHeader(i, "value", e.target.value)}
+                    placeholder="value"
+                    autoComplete="off"
+                    spellCheck={false}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => removeHeader(i)}
+                    className="button-default cursor-pointer text-[#6b6b6b] hover:text-[#c85555] text-[17px] px-1 shrink-0"
+                  >
+                    ×
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className="h-px bg-[#252525] mb-4 mt-4" />
+
+          <div className="mb-3 space-y-1.5">
+            <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">Custom body</label>
+            <Select
+              value={formData.implantBodyType}
+              onValueChange={(v) => handleFormChange("implantBodyType", v as ListenerFormData["implantBodyType"])}
+            >
+              <SelectTrigger className="w-full bg-[#212121] border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 h-auto focus:border-[#555] focus-visible:ring-0">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent className="text-[13.5px]">
+                <SelectItem value="off" className="text-[13.5px]">off</SelectItem>
+                <SelectItem value="custom" className="text-[13.5px]">custom</SelectItem>
+                <SelectGroup>
+                  <SelectLabel className="text-[11px] text-[#6e6e6e] uppercase">Examples</SelectLabel>
+                  <SelectItem value="json" className="text-[13.5px]">json</SelectItem>
+                  <SelectItem value="xml" className="text-[13.5px]">xml</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+            {formData.implantBodyType !== "off" && (
+              <>
+                <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">
+                  Listener response
+                </label>
+                <textarea
+                  className="w-full bg-[#212121] border border-[#363636] h-[12rem] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 outline-none focus:border-[#555] transition-colors placeholder:text-[#444] resize-w leading-relaxed"
+                  value={formData.listenerResponse}
+                  onChange={(e) => handleFormChange("listenerResponse", e.target.value)}
+                  spellCheck={false}
+                />
+                <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">
+                  Implant request
+                </label>
+                <textarea
+                  ref={bodyRef}
+                  className="w-full bg-[#212121] border border-[#363636] h-[12rem] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 outline-none focus:border-[#555] transition-colors placeholder:text-[#444] resize-w leading-relaxed"
+                  value={formData.implantBody}
+                  onChange={(e) => handleFormChange("implantBody", e.target.value)}
+                  spellCheck={false}
+                />
+                <div className="flex flex-wrap gap-1.5">
+                  <button
+                    type="button"
+                    onClick={addImplantMarker}
+                    className="button-default flex items-center gap-1.5 px-3 py-1 rounded bg-[#232323] text-[#cecece] text-[13px] transition-colors border border-[#333] cursor-pointer hover:bg-[#2b2b2b] hover:text-[#d4d4d4]"
+                  >
+                    Add §
+                  </button>
+                  <button
+                    type="button"
+                    onClick={clearImplantMarkers}
+                    className="button-default flex items-center gap-1.5 px-3 py-1 rounded bg-[#232323] text-[#cecece] text-[13px] transition-colors border border-[#333] cursor-pointer hover:bg-[#2b2b2b] hover:text-[#d4d4d4]"
+                  >
+                    Clear §
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+    </>
+  );
+}

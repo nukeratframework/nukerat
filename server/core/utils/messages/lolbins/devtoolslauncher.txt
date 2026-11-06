@@ -1,0 +1,21 @@
+ABOUT
+    Binary will execute specified binary. Part of VS/VScode
+    installation. LOLBAS covers executing any binary with given
+    arguments and it will call `developertoolssvc.exe`.
+    `developertoolssvc` is actually executing the binary and executing
+    any binary with given arguments.
+
+USAGE:
+    devtoolslauncher.exe LaunchForDeploy {PATH_ABSOLUTE:.exe} "{CMD:args}" test
+    devtoolslauncher.exe LaunchForDebug {PATH_ABSOLUTE:.exe} "{CMD:args}" test
+
+EXAMPLES:
+    devtoolslauncher.exe LaunchForDeploy {PATH_ABSOLUTE:.exe} "{CMD:args}" test
+    devtoolslauncher.exe LaunchForDebug {PATH_ABSOLUTE:.exe} "{CMD:args}" test
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    devtoolslauncher.exe LaunchForDeploy {PATH_ABSOLUTE:.exe} "{CMD:args}" test

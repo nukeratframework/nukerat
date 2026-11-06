@@ -1,0 +1,29 @@
+ABOUT
+    In memory storage for stolen or duplicated Windows access tokens. Allows reusing tokens without re duplicating them and storing tokens for later use.
+
+USAGE:
+    bof-token-vault --- <command> [args]
+
+COMMANDS:
+    create                              Create a new empty token vault on the beacon heap
+    steal <pids> <vault-id>             Duplicate and store tokens (comma-separated PIDs, hex vault from create)
+    use <token-id> <vault-id>           Impersonate a stored token (token id is the source PID)
+    show <vault-id>                     List stored tokens
+    remove <token-id> <vault-id>        Remove one stored token
+    remove-all <vault-id>               Remove all stored tokens
+    set                                 CNA-only (not sent to the beacon)
+
+EXAMPLES:
+    bof-token-vault --- create
+    bof-token-vault --- steal 6600,2608 0000000000C31610
+    bof-token-vault --- show 0000000000C31610
+    bof-token-vault --- use 2608 0000000000C31610
+    bof-token-vault --- remove 6600 0000000000C31610
+    bof-token-vault --- remove-all 0000000000C31610
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-token-vault -w 60 --- create

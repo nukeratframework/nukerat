@@ -1,0 +1,15 @@
+ABOUT
+    Launcher process. LOLBAS documents executes arbitrary code.
+
+USAGE:
+    runexehelper.exe {PATH_ABSOLUTE:.exe}
+
+EXAMPLES:
+    runexehelper.exe {PATH_ABSOLUTE:.exe}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    runexehelper.exe {PATH_ABSOLUTE:.exe}

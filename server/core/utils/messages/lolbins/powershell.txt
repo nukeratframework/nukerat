@@ -1,0 +1,27 @@
+ABOUT
+    Windows PowerShell command-line host built on .NET. With execution
+    policy set to bypass, runs scripts, inline commands, or Base64-
+    encoded command blobs without interactive policy prompts.
+
+USAGE:
+    powershell.exe -ep bypass -file <script.ps1>
+    powershell.exe -ep bypass -command "<command>"
+    powershell.exe -ep bypass -ec <base64>
+
+ARGUMENTS:
+    -ep                 Execution policy (bypass in documented abuse)
+    -file               Path to a .ps1 script
+    -command            Inline PowerShell to run
+    -ec                 Encoded command (Base64)
+
+EXAMPLES:
+    powershell.exe -ep bypass -file c:\path\to\a\script.ps1
+    powershell.exe -ep bypass -command "Invoke-AllTheThings..."
+    powershell.exe -ep bypass -ec IgBXAGUAIAA8ADMAIABMAE8ATABCAEEAUwAiAA==
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    powershell -w 60 powershell.exe -ep bypass -file c:\path\to\a\script.ps1

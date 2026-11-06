@@ -1,0 +1,23 @@
+ABOUT
+    .NET file search tool for red teams. Searches directories (including network drives) for
+    files matching keywords, with optional content search, Office file parsing, VBA macro
+    detection, and regex support.
+
+USAGE:
+    net-sauron-eye --- -d <dir> [-d <dir>...] -f <ext>... -k <keyword>... [options]
+
+OPTIONS:
+    -d, --directories PATH       Directories to search (repeatable)
+    -f, --filetypes EXT          File extensions to search (e.g. .txt .docx .xls)
+    -k, --keywords WORD          Keywords to search for (supports regex)
+    -c, --contents               Search inside file contents
+    -m, --maxfilesize KB         Max file size for content search (default 1000 KB)
+    -b, --beforedate DATE        Filter files modified before yyyy-MM-dd
+    -a, --afterdate DATE         Filter files modified after yyyy-MM-dd
+    -s, --systemdirs             Search %APPDATA% and %WINDOWS%
+    -v, --vbamacrocheck          Check Office 2003 .doc/.xls for VBA macros
+    -h, --help                   Show help
+
+EXAMPLES:
+    net-sauron-eye --- -d C:\Users\user\Desktop -f .txt .docx --contents -k password pass*
+    net-sauron-eye --- -d C:\ -d \\server\share$ -f .txt .bat --keywords secret -c

@@ -1,0 +1,18 @@
+ABOUT
+    (linux) Trace route to host.
+
+USAGE:
+    bof-lin-traceroute --- <host>
+
+ARGUMENTS:
+    host                Target host
+
+EXAMPLES:
+    bof-lin-traceroute --- <host>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-traceroute -w 60 --- <host>

@@ -1,0 +1,21 @@
+ABOUT
+    (linux) Remove files/directories.
+
+USAGE:
+    bof-lin-rm --- <path> [options]
+
+ARGUMENTS:
+    path                Path to remove
+    options             Flags: r (recursive), f (force) (choices: r|f|rf)
+
+Supports pipe chaining with other BusyBOF tools.
+
+EXAMPLES:
+    bof-lin-rm --- <path>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-rm -w 60 --- <path>

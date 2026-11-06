@@ -1,0 +1,9 @@
+ABOUT
+    Executes a custom SQL query on a remote SQL server.
+
+USAGE:
+    bof-sql-query --- <server> [database] [linkedserver] [impersonate] <query>
+
+EXAMPLES:
+    bof-sql-query --- SQL01 master LINKED01 dbo SELECT name FROM sys.databases
+    bof-sql-query --- SQL01 master SELECT @@version

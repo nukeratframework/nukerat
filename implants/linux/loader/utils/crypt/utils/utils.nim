@@ -1,0 +1,583 @@
+# MIT License
+#
+# Copyright (c) 2018 Eugene Kabanov
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+#
+# Adapted from nimcrypto: https://github.com/cheatfate/nimcrypto
+
+import std/macros
+
+const
+  nimcryptoNoBzero* {.booldefine.}: bool = false
+
+func replaceNodes(node: NimNode, what: NimNode, by: NimNode): NimNode =
+  # Replaces matching nodes in an AST tree with another node
+
+  if node.kind in {nnkIdent, nnkSym}:
+    if node.eqIdent(what): by else: node
+  elif node.len == 0:
+    node
+  else:
+    let rTree = node.kind.newTree()
+    for child in node:
+      rTree.add replaceNodes(child, what, by)
+    rTree
+
+macro unroll(
+    idx: untyped{nkIdent},
+    start, stopEx: static int,
+    body: untyped
+): untyped =
+  # Unrolls a static range into repeated statement blocks
+
+  result = newStmtList()
+  for i in start ..< stopEx:
+
+    result.add nnkBlockStmt.newTree(
+      ident("unrolledIter_" & $idx & $i), body.replaceNodes(idx, newLit i)
+    )
+
+type
+  HexFlags* {.pure.} = enum
+    LowerCase,
+    PadOdd,
+    SkipSpaces,
+    SkipPrefix
+
+  bchar* = byte | char
+
+template ROL*(x: uint32, n: int): uint32 =
+  # Rotates a 32 bit value left by n bits
+  (x shl uint32(n and 0x1F)) or (x shr uint32(32 - (n and 0x1F)))
+
+template ROL*(x: uint64, n: int): uint64 =
+  # Rotates a 64 bit value left by n bits
+  (x shl uint64(n and 0x3F)) or (x shr uint64(64 - (n and 0x3F)))
+
+template ROR*(x: uint32, n: int): uint32 =
+  # Rotates a 32 bit value right by n bits
+  (x shr uint32(n and 0x1F)) or (x shl uint32(32 - (n and 0x1F)))
+
+template ROR*(x: uint64, n: int): uint64 =
+  # Rotates a 64 bit value right by n bits
+  (x shr uint64(n and 0x3F)) or (x shl uint64(64 - (n and 0x3F)))
+
+func `-`(x: uint32): uint32 {.inline.} =
+  # Returns the unsigned negation of a 32 bit value
+  result = (0xFFFF_FFFF'u32 - x) + 1'u32
+
+func LT(x, y: uint32): uint32 {.inline.} =
+  # Returns 1 when x is less than y, otherwise 0
+  let z = x - y
+  (z xor ((y xor x) and (y xor z))) shr 31
+
+func hexValue(c: char): int =
+  # Converts a hex character into its integer value
+  let x = uint32(c) - 0x30'u32
+  let y = uint32(c) - 0x41'u32
+  let z = uint32(c) - 0x61'u32
+  let r = ((x + 1'u32) and -LT(x, 10)) or
+          ((y + 11'u32) and -LT(y, 6)) or
+          ((z + 11'u32) and -LT(z, 6))
+  int(r) - 1
+
+func hexDigit(x: int, lowercase: bool = false): char =
+  # Converts a nibble into a hex digit character
+  var off = uint32(0x41 - 0x3A)
+  if lowercase:
+    off += 0x20
+  char(0x30'u32 + uint32(x) + (off and not((uint32(x) - 10) shr 8)))
+
+func bytesToHex*(
+    src: openArray[byte],
+    dst: var openArray[char],
+    flags: set[HexFlags]
+): int =
+  # Writes bytes as hex characters and returns how many were written
+  if len(dst) == 0:
+    (len(src) shl 1)
+  else:
+    var halflast = false
+    let dstlen = len(dst)
+    var srclen = len(src)
+
+    if dstlen < (srclen shl 1):
+      if (dstlen and 1) == 1:
+        srclen = (dstlen - 1) shr 1
+        halflast = true
+      else:
+        srclen = (dstlen shr 1)
+
+    let lowercase = (HexFlags.LowerCase in flags)
+
+    var k = 0
+    for i in 0 ..< srclen:
+      let x = int(src[i])
+      dst[k + 0] = hexDigit(x shr 4, lowercase)
+      dst[k + 1] = hexDigit(x and 15, lowercase)
+      inc(k, 2)
+
+    if halflast:
+      let x = int(src[srclen])
+      dst[k + 0] = hexDigit(x shr 4, lowercase)
+      inc(k)
+
+    k
+
+func hexToBytes*(
+    src: openArray[char],
+    dst: var openArray[byte],
+    flags: set[HexFlags]
+): int =
+  # Parses hex characters into bytes and returns how many were written
+  var halfbyte = false
+  var acc: byte
+  var v = 0
+  let offset =
+    if (HexFlags.SkipPrefix in flags):
+      let srclen = len(src)
+      if srclen > 1:
+        if (src[0] == '0') and (src[1] in {'x', 'X'}):
+          2
+        elif src[0] in {'x', 'X'}:
+          1
+        else:
+          0
+      else:
+        0
+    else:
+      0
+
+  for i in offset ..< len(src):
+    let c = byte(src[i])
+    let d = hexValue(src[i])
+
+    if d < 0:
+      if (HexFlags.SkipSpaces in flags) and (c <= 0x20'u8):
+        continue
+      if (HexFlags.PadOdd in flags) and halfbyte:
+        if v < len(dst):
+          dst[v] = acc
+        inc(v)
+      return v
+
+    if halfbyte:
+      if v < len(dst):
+        dst[v] = acc + byte(d)
+      inc(v)
+    else:
+      if v == len(dst):
+        return v
+      acc = byte(d) shl 4
+
+    halfbyte = not(halfbyte)
+
+  if halfbyte:
+    if (HexFlags.PadOdd in flags):
+      if v < len(dst):
+        dst[v] = acc
+      inc(v)
+    else:
+      return v
+  return v
+
+func toHex*(a: openArray[byte], flags: set[HexFlags]): string =
+  # Builds a hex string from bytes using the given flags
+  var res = newString(len(a) shl 1)
+  discard bytesToHex(a, res, flags)
+  res
+
+func toHex*(a: openArray[byte], lowercase: bool = false): string {.inline.} =
+  # Builds a hex string from bytes
+  var res = newString(len(a) shl 1)
+  if lowercase:
+    discard bytesToHex(a, res, {HexFlags.LowerCase})
+  else:
+    discard bytesToHex(a, res, {})
+  res
+
+func hexToBytes*(a: string, output: var openArray[byte]) {.inline.} =
+  # Parses a hex string into the output byte buffer
+  discard hexToBytes(a, output, {HexFlags.SkipPrefix, HexFlags.PadOdd})
+
+func fromHex*(a: string): seq[byte] =
+  # Builds a byte sequence from a hex string
+  var buf = newSeq[byte](len(a) shr 1)
+  let res = hexToBytes(a, buf, {HexFlags.SkipPrefix, HexFlags.PadOdd})
+  buf.setLen(res)
+  buf
+
+func stripSpaces*(s: string): string =
+  # Keeps only letters and digits from a string
+  result = ""
+  const allowed:set[char] = {'A'..'Z', 'a'..'z', '0'..'9'}
+  for i in s:
+    if i in allowed:
+      result &= i
+
+when (defined(freebsd) or defined(dragonflybsd) or defined(openbsd)) and
+     not(nimcryptoNoBzero):
+  func c_explicit_bzero(
+    s: pointer, n: csize_t
+  ) {.importc: "explicit_bzero", header: "strings.h".}
+
+  func burnMem*(p: pointer, size: Natural) =
+    # Wipes a memory region with explicit bzero
+    c_explicit_bzero(p, csize_t(size))
+
+elif defined(netbsd) and not(nimcryptoNoBzero):
+  func c_explicit_memset(
+    s: pointer, c: cint, n: csize_t
+  ) {.importc: "explicit_memset", header: "string.h".}
+
+  func burnMem*(p: pointer, size: Natural) =
+    # Wipes a memory region with explicit memset
+    c_explicit_memset(p, cint(0), csize_t(size))
+
+elif defined(linux) and not(defined(android)) and not(nimcryptoNoBzero):
+  func c_explicit_bzero(
+    s: pointer, n: csize_t
+  ) {.importc: "explicit_bzero", header: "string.h".}
+
+  func burnMem*(p: pointer, size: Natural) =
+    # Wipes a memory region with explicit bzero
+    c_explicit_bzero(p, csize_t(size))
+elif defined(windows) and not(nimcryptoNoBzero):
+  func cSecureZeroMemory(
+    s: pointer, n: csize_t
+  ) {.importc: "SecureZeroMemory", header: "windows.h".}
+
+  func burnMem*(p: pointer, size: Natural) =
+    # Wipes a memory region with SecureZeroMemory
+    cSecureZeroMemory(p, csize_t(size))
+else:
+
+  func c_memset(
+    s: pointer, c: cint, n: csize_t
+  ): pointer {.importc: "memset", header: "string.h".}
+
+  let memset_func = c_memset
+
+  func burnMem*(p: pointer, size: Natural) =
+    # Wipes a memory region by calling memset
+    {.noSideEffect.}:
+      discard memset_func(p, cint(0), csize_t(size))
+
+func burnArray*[T](a: var openArray[T]) {.inline.} =
+  # Wipes every element of an open array
+  if len(a) > 0:
+    burnMem(addr a[0], len(a) * sizeof(T))
+
+template burnMem*[T](a: var seq[T]) =
+  # Wipes every element of a sequence
+  burnArray(a)
+
+template burnMem*[A, B](a: var array[A, B]) =
+  # Wipes every element of an array
+  burnArray(a)
+
+func burnMem*[T](a: var T) {.inline.} =
+  # Wipes the bytes of a single value
+  burnMem(addr a, sizeof(T))
+
+func isFullZero*(p: pointer, size: Natural): bool =
+  # Checks that every byte in a memory region is zero
+  result = true
+  var counter = 0
+  var sp {.volatile.} = cast[ptr byte](p)
+  var c = size
+  if not isNil(sp):
+    while c > 0:
+      if sp[] != 0'u8:
+        counter += 1
+      sp = cast[ptr byte](cast[uint](sp) + 1)
+      dec(c)
+  result = (counter == 0)
+
+func isFullZero*[T](a: openArray[T]): bool {.inline.} =
+  # Checks that every byte in an open array is zero
+  result = true
+  if len(a) > 0:
+    result = isFullZero(unsafeAddr a[0], len(a) * sizeof(T))
+
+func isFullZero*[T](a: T): bool {.inline.} =
+  # Checks that every byte in a value is zero
+  result = isFullZero(unsafeAddr a, sizeof(T))
+
+when defined(gcc) or defined(llvm_gcc) or defined(clang):
+  func swapBytesBuiltin(x: uint8): uint8 =
+    # Returns the same byte because one byte needs no swap
+    x
+  func swapBytesBuiltin(x: uint16): uint16 {.
+      importc: "__builtin_bswap16", nodecl.}
+  func swapBytesBuiltin(x: uint32): uint32 {.
+      importc: "__builtin_bswap32", nodecl.}
+  func swapBytesBuiltin(x: uint64): uint64 {.
+      importc: "__builtin_bswap64", nodecl.}
+
+elif defined(icc):
+  func swapBytesBuiltin(x: uint8): uint8 =
+    # Returns the same byte because one byte needs no swap
+    x
+  func swapBytesBuiltin(a: uint16): uint16 {.importc: "_bswap16", nodecl.}
+  func swapBytesBuiltin(a: uint32): uint32 {.importc: "_bswap", nodec.}
+  func swapBytesBuiltin(a: uint64): uint64 {.importc: "_bswap64", nodecl.}
+
+elif defined(vcc):
+  func swapBytesBuiltin(x: uint8): uint8 =
+    # Returns the same byte because one byte needs no swap
+    x
+  func swapBytesBuiltin(a: uint16): uint16 {.
+      importc: "_byteswap_ushort", cdecl, header: "<intrin.h>".}
+  func swapBytesBuiltin(a: uint32): uint32 {.
+      importc: "_byteswap_ulong", cdecl, header: "<intrin.h>".}
+  func swapBytesBuiltin(a: uint64): uint64 {.
+      importc: "_byteswap_uint64", cdecl, header: "<intrin.h>".}
+
+template leSwap32*(a: uint32): uint32 =
+  # Swaps bytes of a 32 bit value on a little endian host
+  when system.cpuEndian == bigEndian:
+    (a)
+  else:
+    swapBytesBuiltin(a)
+
+template leSwap64*(a: uint64): uint64 =
+  # Swaps bytes of a 64 bit value on a little endian host
+  when system.cpuEndian == bigEndian:
+    (a)
+  else:
+    swapBytesBuiltin(a)
+
+template beSwap32*(a: uint32): uint32 =
+  # Swaps bytes of a 32 bit value on a big endian host
+  when system.cpuEndian == bigEndian:
+    swapBytesBuiltin(a)
+  else:
+    (a)
+
+template beSwap64*(a: uint64): uint64 =
+  # Swaps bytes of a 64 bit value on a big endian host
+  when system.cpuEndian == bigEndian:
+    swapBytesBuiltin(a)
+  else:
+    (a)
+
+template beLoad32*[T: byte|char](src: openArray[T], srco: int): uint32 =
+  # Reads a big endian 32 bit value from an array
+  when nimvm:
+    (uint32(src[srco + 0]) shl 24) or (uint32(src[srco + 1]) shl 16) or
+      (uint32(src[srco + 2]) shl 8) or uint32(src[srco + 3])
+  else:
+    var p: uint32
+    copyMem(addr p, unsafeAddr src[srco], sizeof(uint32))
+    leSwap32(p)
+
+template leLoad32*[T: byte|char](src: openArray[T], srco: int): uint32 =
+  # Reads a little endian 32 bit value from an array
+  when nimvm:
+    (uint32(src[srco + 3]) shl 24) or (uint32(src[srco + 2]) shl 16) or
+      (uint32(src[srco + 1]) shl 8) or uint32(src[srco + 0])
+  else:
+    var p: uint32
+    copyMem(addr p, unsafeAddr src[srco], sizeof(uint32))
+    beSwap32(p)
+
+template beLoad64*[T: byte|char](src: openArray[T], srco: int): uint64 =
+  # Reads a big endian 64 bit value from an array
+  when nimvm:
+    (uint64(src[srco + 0]) shl 56) or (uint64(src[srco + 1]) shl 48) or
+      (uint64(src[srco + 2]) shl 40) or (uint64(src[srco + 3]) shl 32) or
+      (uint64(src[srco + 4]) shl 24) or (uint64(src[srco + 5]) shl 16) or
+      (uint64(src[srco + 6]) shl 8) or uint64(src[srco + 7])
+  else:
+    var p: uint64
+    copyMem(addr p, unsafeAddr src[srco], sizeof(uint64))
+    leSwap64(p)
+
+template leLoad64*[T: byte|char](src: openArray[T], srco: int): uint64 =
+  # Reads a little endian 64 bit value from an array
+  when nimvm:
+    (uint64(src[srco + 7]) shl 56) or (uint64(src[srco + 6]) shl 48) or
+      (uint64(src[srco + 5]) shl 40) or (uint64(src[srco + 4]) shl 32) or
+      (uint64(src[srco + 3]) shl 24) or (uint64(src[srco + 2]) shl 16) or
+      (uint64(src[srco + 1]) shl 8) or uint64(src[srco + 0])
+  else:
+    var p: uint64
+    copyMem(addr p, unsafeAddr src[srco], sizeof(uint64))
+    beSwap64(p)
+
+template beStore32*(dst: var openArray[byte], so: int, v: uint32) =
+  # Writes a 32 bit value into an array as big endian bytes
+  when nimvm:
+    dst[so + 0] = byte((v shr 24) and 0xFF'u32)
+    dst[so + 1] = byte((v shr 16) and 0xFF'u32)
+    dst[so + 2] = byte((v shr 8) and 0xFF'u32)
+    dst[so + 3] = byte(v and 0xFF'u32)
+  else:
+    let p = leSwap32(v)
+    copyMem(addr dst[so], unsafeAddr p, sizeof(uint32))
+
+template beStore64*(dst: var openArray[byte], so: int, v: uint64) =
+  # Writes a 64 bit value into an array as big endian bytes
+  when nimvm:
+    dst[so + 0] = byte((v shr 56) and 0xFF'u64)
+    dst[so + 1] = byte((v shr 48) and 0xFF'u64)
+    dst[so + 2] = byte((v shr 40) and 0xFF'u64)
+    dst[so + 3] = byte((v shr 32) and 0xFF'u64)
+    dst[so + 4] = byte((v shr 24) and 0xFF'u64)
+    dst[so + 5] = byte((v shr 16) and 0xFF'u64)
+    dst[so + 6] = byte((v shr 8) and 0xFF'u64)
+    dst[so + 7] = byte(v and 0xFF'u64)
+  else:
+    let p = leSwap64(v)
+    copyMem(addr dst[so], unsafeAddr p, sizeof(uint64))
+
+template leStore32*(dst: var openArray[byte], so: int, v: uint32) =
+  # Writes a 32 bit value into an array as little endian bytes
+  when nimvm:
+    dst[so + 0] = byte(v and 0xFF'u32)
+    dst[so + 1] = byte((v shr 8) and 0xFF'u32)
+    dst[so + 2] = byte((v shr 16) and 0xFF'u32)
+    dst[so + 3] = byte((v shr 24) and 0xFF'u32)
+  else:
+    let p = beSwap32(v)
+    copyMem(addr dst[so], unsafeAddr p, sizeof(uint32))
+
+template leStore64*(dst: var openArray[byte], so: int, v: uint64) =
+  # Writes a 64 bit value into an array as little endian bytes
+  when nimvm:
+    dst[so + 0] = byte(v and 0xFF'u64)
+    dst[so + 1] = byte((v shr 8) and 0xFF'u64)
+    dst[so + 2] = byte((v shr 16) and 0xFF'u64)
+    dst[so + 3] = byte((v shr 24) and 0xFF'u64)
+    dst[so + 4] = byte((v shr 32) and 0xFF'u64)
+    dst[so + 5] = byte((v shr 40) and 0xFF'u64)
+    dst[so + 6] = byte((v shr 48) and 0xFF'u64)
+    dst[so + 7] = byte((v shr 56) and 0xFF'u64)
+  else:
+    let p = beSwap64(v)
+    copyMem(addr dst[so], unsafeAddr p, sizeof(uint64))
+
+template copyMem*[A, B](dst: var openArray[A], dsto: int,
+                        src: openArray[B], srco: int,
+                        length: int) =
+  # Copies a slice from one open array into another
+  when nimvm:
+    for i in 0 ..< length:
+      dst[dsto + i] = A(src[srco + i])
+  else:
+    copyMem(addr dst[dsto], unsafeAddr src[srco], length * sizeof(B))
+
+template zeroMem*[A](dst: var openArray[A], dsto: int, length: int) =
+  # Writes zeros into a slice of an open array
+  when nimvm:
+    for i in 0 ..< length:
+      dst[dsto + i] = A(0)
+  else:
+    zeroMem(addr dst[dsto], length * sizeof(A))
+
+template offset(p: pointer, n: Natural | uint): pointer =
+  # Returns a pointer moved forward by n bytes
+  cast[pointer](cast[uint](p) + uint n)
+
+template equalMemFull(
+    aParam, bParam: pointer, limbs: static Natural, Limb: type SomeUnsignedInt
+): bool =
+  # Checks that two memory regions of a static limb count match
+
+  var
+    res = Limb(0)
+    aa {.noinit.}, bb {.noinit.}: Limb
+
+  let
+    a = aParam
+    b = bParam
+
+  unroll i, 0, limbs:
+    copyMem(addr aa, a.offset((limbs - i - 1) * sizeof(Limb)), sizeof(Limb))
+    copyMem(addr bb, b.offset((limbs - i - 1) * sizeof(Limb)), sizeof(Limb))
+    res = res or (aa xor bb)
+
+  res == 0
+
+template equalMemFull(
+    aParam, bParam: pointer, limbsParam: Natural, Limb: type SomeUnsignedInt
+): bool =
+  # Checks that two memory regions of a given limb count match
+  var
+    res = Limb(0)
+    aa {.noinit.}, bb {.noinit.}: Limb
+
+  let
+    a = aParam
+    b = bParam
+    limbs = uint limbsParam
+
+  for i in uint(0)..<limbs:
+    copyMem(
+      addr aa, a.offset((limbs - i - 1) * uint sizeof(Limb)), sizeof(Limb))
+    copyMem(
+      addr bb, b.offset((limbs - i - 1) * uint sizeof(Limb)), sizeof(Limb))
+    res = res or (aa xor bb)
+
+  res == 0
+
+func equalMemFull*(a, b: pointer, len: static Natural): bool =
+  # Checks that two memory regions of a static byte length match
+  when len mod sizeof(uint64) == 0:
+    equalMemFull(a, b, len div sizeof(uint64), uint64)
+  elif len mod sizeof(uint32) == 0:
+    equalMemFull(a, b, len div sizeof(uint32), uint32)
+  elif len mod sizeof(uint16) == 0:
+    equalMemFull(a, b, len div sizeof(uint16), uint16)
+  else:
+    equalMemFull(a, b, len, uint8)
+
+func equalMemFull*[I; T](a, b: array[I, T]): bool =
+  # Checks that two arrays hold the same bytes
+  when nimvm:
+    a == b
+  else:
+    const bytes = a.len * sizeof(T)
+    equalMemFull(unsafeAddr a[0], unsafeAddr b[0], bytes)
+
+func equalMemFull*[T](a, b: openArray[T]): bool =
+  # Checks that two open arrays hold the same bytes
+  when nimvm:
+    a == b
+  else:
+    if a.len == b.len:
+      if a.len == 0:
+        true
+      else:
+        let
+          bytes = a.len * sizeof(T)
+          ap = unsafeAddr a[0]
+          bp = unsafeAddr b[0]
+        if bytes mod sizeof(uint64) == 0:
+          equalMemFull(ap, bp, bytes div sizeof(uint64), uint64)
+        elif bytes mod sizeof(uint32) == 0:
+          equalMemFull(ap, bp, bytes div sizeof(uint32), uint32)
+        elif bytes mod sizeof(uint16) == 0:
+          equalMemFull(ap, bp, bytes div sizeof(uint16), uint16)
+        else:
+          equalMemFull(ap, bp, bytes, uint8)
+    else:
+      false

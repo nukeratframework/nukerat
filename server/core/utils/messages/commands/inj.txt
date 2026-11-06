@@ -1,0 +1,38 @@
+ABOUT
+    Inject into a remote process on Windows. Most modes need pid and a file or script.
+    inj spawn creates a suspended process and injects into it. Same alloc options as migrate.
+
+USAGE:
+    inj <shellcode|dll-reflective|donut> -f <file> -p <pid> [flags] --- [<args>]
+
+ARGUMENTS:
+    -f                  Local payload file (--file).
+    -p                  Target process ID (--pid).
+    -t                  Executable for inj spawn (--target).
+    --alloc             section or stomp. Omit for vanilla (virtual alloc).
+    --stomp-dll         DLL name when alloc is stomp.
+    --encoder           sgn for shellcode and donut.
+
+MODES:
+    shellcode           Raw shellcode from file. Remote thread, no wait for completion message.
+    dll-reflective      x64 reflective DLL. Remote thread at ReflectiveLoader or KaynLoader export.
+    donut               Server turns file into shellcode via donut, then same path as inj shellcode.
+
+ALLOCATIONS:
+    section             Create a new section in the target process and write the payload to it.
+    stomp               Use the stomp technique to inject the payload.
+
+EXAMPLES:
+    inj shellcode -f payload.bin -p 2300
+    inj dll-reflective -f agent.dll -p 2300
+    inj donut -f tool.exe -p 2300
+    inj shellcode -f payload.bin -p 2300 --alloc section
+    inj shellcode -f payload.bin -p 2300 --alloc stomp --stomp-dll apphelp.dll
+    inj shellcode -f payload.bin -p 2300 --encoder sgn
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    inj -w 180 shellcode -f file.bin -p 2300 --alloc section

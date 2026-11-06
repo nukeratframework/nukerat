@@ -1,0 +1,37 @@
+ABOUT
+    Enumerates Active Directory Group Policy settings and identifies exploitable
+    misconfigurations. Queries domain controllers over LDAP, parses GPO files from SYSVOL,
+    and inspects referenced scripts, MSI packages, and other files on shares.
+
+USAGE:
+    net-group3r --- -s [options]
+    net-group3r --- -f <outfile> [options]
+
+OUTPUT:
+    -s          Send results to stdout (required unless -f is used)
+    -f          Path for output file (required unless -s is used)
+
+TARGETING:
+    -c, --dc           Target domain controller IP or hostname
+    -d, --domain       Domain to query
+    -u, --testuser     Run permission checks as domain\user or domain\group
+    -o, --offline      Offline mode. Requires -y. Disables LDAP and SMB checks against live targets
+    -y, --sysvol       Path to an offline SYSVOL directory
+
+FILTERING:
+    -w, --findingsonly     Only show settings with an associated finding
+    -a, --mintriage        Minimum finding severity (1 lowest, 4 highest)
+    -e, --enabled          Only show enabled GPOs and enabled policy settings
+    -r, --currentonly      Ignore morphed Policies_NTFRS_* replication failure folders
+
+OTHER:
+    -t, --threads      Max thread count (default: 10)
+    -v, --verobsity    Verbosity: info, debug, degub, or trace
+    -h, --help         Show help
+
+EXAMPLES:
+    net-group3r --- -s
+    net-group3r --- -f group3r.log -w
+    net-group3r --- -s -a 4
+    net-group3r --- -s -d corp.local -c 10.0.0.1
+    net-group3r --- -o -y C:\sysvol -s

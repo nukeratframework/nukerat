@@ -1,0 +1,18 @@
+ABOUT
+    (linux) Compute md5 hash.
+
+USAGE:
+    bof-lin-md5sum --- <target>
+
+ARGUMENTS:
+    target              File path(s)
+
+EXAMPLES:
+    bof-lin-md5sum --- <target>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-md5sum -w 60 --- <target>

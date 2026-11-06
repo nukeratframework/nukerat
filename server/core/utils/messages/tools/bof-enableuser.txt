@@ -1,0 +1,23 @@
+ABOUT
+    Enables and unlocks the specified user account on the target computer.
+
+USAGE:
+    bof-enableuser --- <DOMAIN> <USERNAME>
+
+ARGUMENTS:
+
+    DOMAIN      Domain for the account (. for local machine)
+
+    USERNAME    User to enable
+
+EXAMPLES:
+
+    bof-enableuser --- CORP lockeduser
+    bof-enableuser --- . localuser
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-enableuser -w 60 --- lockeduser CORP

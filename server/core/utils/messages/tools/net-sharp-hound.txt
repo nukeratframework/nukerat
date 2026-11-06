@@ -1,0 +1,51 @@
+ABOUT
+    BloodHound data collector for Active Directory. Enumerates users, groups, sessions,
+    ACLs, trusts, GPOs, certificate services, and other attack path data for import
+    into BloodHound CE.
+
+USAGE:
+    net-sharp-hound --- [options]
+
+COLLECTION METHODS (-c):
+    Default, All, Group, LocalGroup, GPOLocalGroup, Session, LoggedOn, ObjectProps,
+    ACL, ComputerOnly, Trusts, RDP, DCOM, DCOnly, UserRights, CARegistry, DCRegistry,
+    CertServices, WebClientService, NTLMRegistry, SMBInfo, LdapServices, Container
+
+ENUMERATION OPTIONS:
+    -d, --domain              Domain to enumerate
+    -s, --searchforest        Search all domains in the forest
+    --stealth                 Stealth collection (prefer DCOnly)
+    -f                        Additional LDAP filter
+    --distinguishedname       Base DN for LDAP search
+    --computerfile            File with computer names to enumerate
+    --excludedcs              Exclude domain controllers from session enumeration
+
+CONNECTION OPTIONS:
+    --ldapusername            LDAP username
+    --ldappassword            LDAP password
+    --domaincontroller        Override domain controller
+    --ldapport                LDAP port override
+    --secureldap              Connect via LDAPS
+    --disablesigning          Disable Kerberos signing/sealing
+
+OUTPUT OPTIONS:
+    --outputdirectory         Output directory (default: current)
+    --outputprefix            Prefix for output filenames
+    --nozip                   Do not zip output files
+    --zippassword             Password protect zip output
+    --prettyprint             Pretty print JSON
+    --randomfilenames         Use random output filenames
+
+PERFORMANCE OPTIONS:
+    --throttle                Delay after computer requests (ms)
+    --jitter                  Jitter percentage for throttle
+    --threads                 Enumeration thread count (default: 50)
+    --skipportcheck           Skip SMB port 445 check
+    -l, --Loop                Loop computer collection
+    --loopduration            Loop duration (hh:mm:ss)
+    --loopinterval            Delay between loops (hh:mm:ss)
+
+EXAMPLES:
+    net-sharp-hound    net-sharp-hound --- -c All -d corp.local
+    net-sharp-hound --- -c DCOnly --stealth -d corp.local
+    net-sharp-hound --- -c Session,LocalGroup -d corp.local --computerfile hosts.txt

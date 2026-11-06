@@ -1,0 +1,20 @@
+ABOUT
+    Reads a Chromium Local State file and extracts the encrypted master key
+    (encrypted_key) for offline cookie decryption.
+
+USAGE:
+    bof-chromium-key-dump --- <local_state_path>
+
+ARGUMENTS:
+    local_state_path    Full path to the browser Local State file (spaces OK)
+
+EXAMPLES:
+    bof-chromium-key-dump --- C:\Users\USER\AppData\Local\Google\Chrome\User Data\Local State
+    bof-chromium-key-dump --- C:\Users\USER\AppData\Local\Microsoft\Edge\User Data\Local State
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-chromium-key-dump -w 60 --- C:\Users\USER\AppData\Local\Google\Chrome\User Data\Local State

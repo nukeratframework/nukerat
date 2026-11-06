@@ -1,0 +1,21 @@
+ABOUT
+    Program Compatibility Assistant. LOLBAS covers proxy execution
+    of binary, proxy execution of remote dll file, and related
+    techniques.
+
+USAGE:
+    pcalua.exe -a {PATH:.exe}
+    pcalua.exe -a {PATH_SMB:.dll}
+    pcalua.exe -a {PATH_ABSOLUTE:.cpl} -c Java
+
+EXAMPLES:
+    pcalua.exe -a {PATH:.exe}
+    pcalua.exe -a {PATH_SMB:.dll}
+    pcalua.exe -a {PATH_ABSOLUTE:.cpl} -c Java
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    pcalua.exe -a {PATH:.exe}

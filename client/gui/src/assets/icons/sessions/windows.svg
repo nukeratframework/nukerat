@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="Layer_1" viewBox="173.04 172.99 165.92 165.92">
+  <defs>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="14" y1="7279" x2="14" y2="7299" id="gradient-1" gradientTransform="matrix(1, 0, 0, 1, 0.249398, 5.955233)">
+      <stop offset="0" style="stop-color: rgb(81, 208, 255); --darkreader-inline-stopcolor: var(--darkreader-text-51d0ff, #52d0ff);" data-darkreader-inline-stopcolor=""/>
+      <stop offset="1" style="stop-color: rgb(0, 123, 162); --darkreader-inline-stopcolor: var(--darkreader-text-007ba2, #5bd7ff);" data-darkreader-inline-stopcolor=""/>
+    </linearGradient>
+  </defs>
+  <g style="" transform="matrix(0.927277, -0.000285, 0, 0.843657, 17.420097, 54.274031)"/>
+  <g style="" transform="matrix(0.954502, 0, 0, 0.842991, 8.675384, 54.301371)"/>
+  <title>windows [#174]</title>
+  <desc>Created with Sketch.</desc>
+  <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="matrix(8.296048, 0, 0, 8.296048, 170.970532, 123.630567)" style="--darkreader-inline-stroke: none;" data-darkreader-inline-stroke="">
+    <g id="Dribbble-Light-Preview" transform="translate(-60.000000, -7439.000000)" fill="#000000" data-darkreader-inline-fill="" style="--darkreader-inline-fill: var(--darkreader-background-000000, #000000);">
+      <g id="icons" transform="translate(56.000000, 160.000000)">
+        <path d="M 13.395 7295.39 C 13.4 7297.39 13.406 7300.78 13.411 7303.42 C 17.025 7303.91 20.639 7304.42 24.247 7304.95 C 24.247 7301.8 24.251 7298.67 24.247 7295.67 C 20.63 7295.67 17.014 7295.39 13.395 7295.39 M 4.249 7295.39 L 4.249 7302.18 C 6.975 7302.55 9.701 7302.9 12.422 7303.3 C 12.427 7300.67 12.42 7298.05 12.42 7295.42 C 9.696 7295.43 6.973 7295.38 4.249 7295.39 M 4.249 7287.8 L 4.249 7294.57 C 6.975 7294.57 9.701 7294.53 12.427 7294.53 C 12.425 7291.91 12.425 7289.3 12.422 7286.68 C 9.694 7287.02 6.966 7287.38 4.249 7287.8 M 24.249 7294.43 C 20.637 7294.44 17.025 7294.5 13.411 7294.51 C 13.409 7291.84 13.409 7289.19 13.411 7286.52 C 17.018 7285.97 20.633 7285.46 24.247 7284.95 C 24.249 7288.11 24.247 7291.27 24.249 7294.43" id="windows-[#174]" style="fill: url(&quot;#gradient-1&quot;);"/>
+      </g>
+    </g>
+  </g>
+  <g style="" transform="matrix(1.019576, 0, 0, 0.842991, -73.924807, 93.791552)"/>
+</svg>

@@ -1,0 +1,16 @@
+ABOUT
+    C# port of Out-Minidump.ps1. Creates a compressed minidump of a process (LSASS
+    by default) using MiniDumpWriteDump, gzip-compresses it, and deletes the raw dump.
+
+USAGE:
+    net-sharp-dump --- [pid]
+
+ARGUMENTS:
+    pid    Target process ID (default: LSASS)
+
+EXAMPLES:
+    net-sharp-dump    net-sharp-dump --- 8700
+
+NOTES:
+    Output saved to C:\Windows\Temp\debug<PID>.bin (gzip). Rename to .gz to decompress.
+    Use sekurlsa::minidump and sekurlsa::logonPasswords on same OS/arch with Mimikatz.

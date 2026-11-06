@@ -1,0 +1,15 @@
+ABOUT
+    Modified version of `netLocalGroupListMembers` that supports BOFHound
+
+USAGE:
+    bof-netlocalgroup2 --- [opt:groupname] [opt:server]
+
+EXAMPLES:
+    bof-netlocalgroup2    bof-netlocalgroup2 --- Administrators
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-netlocalgroup2 -w 60 --- Administrators

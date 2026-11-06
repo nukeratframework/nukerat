@@ -1,0 +1,16 @@
+ABOUT
+    Enables WDigest credential caching and circumvents Credential Guard when
+    enabled. Patches wdigest!g_fParameter_UseLogonCredential and
+    wdigest!g_IsCredGuardEnabled in LSASS via direct syscalls. Not reboot
+    persistent. Memory offsets vary by Windows build.
+USAGE:
+    bof-wd-toggle
+EXAMPLES:
+    bof-wd-toggle
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-wd-toggle -w 60
+    bof-wd-toggle -bg

@@ -1,0 +1,20 @@
+ABOUT
+    Collects the Slack authentication cookie from the specified Slack process memory.
+
+USAGE:
+    bof-slack-cookie --- <pid>
+
+ARGUMENTS:
+
+    pid    Slack process ID
+
+EXAMPLES:
+
+    bof-slack-cookie --- 1234
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-slack-cookie -w 60 --- 1234

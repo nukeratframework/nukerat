@@ -1,0 +1,14 @@
+ABOUT
+    List reachable computers in the current domain
+
+USAGE:
+    bof-netview
+EXAMPLES:
+    bof-netview
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-netview -w 60
+    bof-netview -bg

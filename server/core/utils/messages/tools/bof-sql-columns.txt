@@ -1,0 +1,9 @@
+ABOUT
+    Enumerates columns within a table on a SQL server.
+
+USAGE:
+    bof-sql-columns --- <server> [database] <table> [linkedserver] [impersonate]
+
+EXAMPLES:
+    bof-sql-columns --- SQL01 master sysusers
+    bof-sql-columns --- SQL01 AdventureWorks Users

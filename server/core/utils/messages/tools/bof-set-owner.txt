@@ -1,0 +1,15 @@
+ABOUT
+    Change object owner. Supports standard LDAP (389) with signing/sealing
+    and LDAPS (636).
+USAGE:
+    bof-set-owner --- {target} {owner} [-ou {path}] [-dc {ip}] [--ldaps]
+
+EXAMPLES:
+    bof-set-owner --- {target} {owner} [-ou {path}] [-dc {ip}] [--ldaps]
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-set-owner -w 60 --- {target} {owner} [-ou {path}] [-dc {ip}] [--ldaps]

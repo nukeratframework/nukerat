@@ -1,0 +1,15 @@
+ABOUT
+    Initiate local or remote system shutdown.
+
+USAGE:
+    bof-shutdown --- <localhost|remote-host> <message> <timeout_sec> <reboot:true|false> <closeapps:true|false>
+
+EXAMPLES:
+    bof-shutdown --- localhost "Maintenance" 60 false true
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-shutdown -w 60 --- localhost "Maintenance" 60 false true

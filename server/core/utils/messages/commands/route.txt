@@ -1,0 +1,19 @@
+ABOUT
+    Print the IPv4 routing table: destination, netmask, gateway, and metric.
+    Windows only.
+
+USAGE:
+    route
+
+ARGUMENTS:
+    (none)
+
+EXAMPLES:
+    route
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    route -w 30

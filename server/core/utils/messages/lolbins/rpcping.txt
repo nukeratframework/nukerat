@@ -1,0 +1,19 @@
+ABOUT
+    Used to verify rpc connection. LOLBAS documents capture
+    credentials on a non-standard port and relay a NTLM
+    authentication over RPC (ncacn_ip_tcp) on a custom port.
+
+USAGE:
+    rpcping -s 127.0.0.1 -e 1234 -a privacy -u NTLM
+    rpcping /s 10.0.0.35 /e 9997 /a connect /u NTLM
+
+EXAMPLES:
+    rpcping -s 127.0.0.1 -e 1234 -a privacy -u NTLM
+    rpcping /s 10.0.0.35 /e 9997 /a connect /u NTLM
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    rpcping -s 127.0.0.1 -e 1234 -a privacy -u NTLM

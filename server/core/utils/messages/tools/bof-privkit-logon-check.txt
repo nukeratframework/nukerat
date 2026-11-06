@@ -1,0 +1,13 @@
+ABOUT
+    Checks for AutoLogon credentials in the registry.
+USAGE:
+    bof-privkit-logon-check --- (no arguments)
+
+EXAMPLES:
+    bof-privkit-logon-check
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-privkit-logon-check -w 60 --- (no arguments)

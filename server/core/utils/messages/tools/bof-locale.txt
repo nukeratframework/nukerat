@@ -1,0 +1,14 @@
+ABOUT
+    List system locale language, locale ID, date, time, and country
+
+USAGE:
+    bof-locale
+EXAMPLES:
+    bof-locale
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-locale -w 60
+    bof-locale -bg

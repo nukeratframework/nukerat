@@ -1,0 +1,17 @@
+ABOUT
+    Identifies host form factor as Laptop, Desktop, Tablet, Server, Embedded, or Unknown
+    using SMBIOS chassis data with a power status fallback.
+
+USAGE:
+    bof-power-state
+
+EXAMPLES:
+    bof-power-state
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-power-state -w 60
+    bof-power-state -bg

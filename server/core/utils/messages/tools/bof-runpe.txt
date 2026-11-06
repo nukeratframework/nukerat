@@ -1,0 +1,24 @@
+ABOUT
+    Executes an arbitrary PE inside a sacrificial process through a partial
+    implementation of process herpaderping. Creates the remote file
+    specified as the first argument, writes the PE payload, then overwrites
+    file contents with the pattern 0x82 0x7f 0x76 0x7c before execution.
+USAGE:
+    bof-runpe --- <filename> <pe> <output> <ppid> <args>
+
+ARGUMENTS:
+    filename            Remote path for the sacrificial executable file to create
+    pe                  Local PE executable file bytes to execute
+    output              1 to capture process output, 0 to disable
+    ppid                Parent process ID for PPID spoofing (0 for no spoofing)
+    args                Wide string command line arguments for the executed PE
+
+EXAMPLES:
+    bof-runpe --- <filename> <pe_bytes> 0 0
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-runpe -w 60 --- <filename> <pe_bytes> 0 0

@@ -1,0 +1,15 @@
+ABOUT
+    Hash filename using sha1
+
+USAGE:
+    bof-sha1 --- <filename>
+
+EXAMPLES:
+    bof-sha1 --- C:\Windows\System32\ntdll.dll
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-sha1 -w 60 --- C:\Windows\System32\ntdll.dll

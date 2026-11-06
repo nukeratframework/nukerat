@@ -1,0 +1,21 @@
+ABOUT
+    Enables the Chrome DevTools Protocol in a running x64 Chrome browser
+    with Windows Process Isolation. Uses query limited handles to the
+    isolated process and resolves symbols from the local chrome.dll image.
+    x64 only.
+USAGE:
+    bof-cdp-enable-iso --- [port]
+
+ARGUMENTS:
+    port                Optional. TCP port for CDP (9000 to 65535)
+
+EXAMPLES:
+    bof-cdp-enable-iso --- 9222
+    bof-cdp-enable-iso --- 9301
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-cdp-enable-iso -w 60 --- 9222

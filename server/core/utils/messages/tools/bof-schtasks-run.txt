@@ -1,0 +1,15 @@
+ABOUT
+    Run a scheduled task.
+
+USAGE:
+    bof-schtasks-run --- <hostname> <folder/taskname>
+
+EXAMPLES:
+    bof-schtasks-run --- dc.corp.local \MyFolder\MyTask
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-schtasks-run -w 60 --- dc.corp.local \MyFolder\MyTask

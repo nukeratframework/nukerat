@@ -1,0 +1,25 @@
+ABOUT
+    Search file contents under a specific path.
+
+USAGE:
+    search --path <fileordirectory> --content <text> [--recursive] [--thread <n>] [--size-limit <mb>] [--case-sensitive]
+
+ARGUMENTS:
+    --path              File or directory to scan.
+    --content           Text to find.
+    --recursive         Search subdirectories.
+    --thread            Worker thread count (default 4, max 32).
+    --size-limit        Max file size in megabytes (default 200).
+    --case-sensitive    Exact letter case match.
+
+EXAMPLES:
+    search --path C:\Users\Public --content password
+    search --path C:\Temp\logs --content error --recursive --thread 8
+    search --path C:\notes.txt --content secret
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    search -w 120 --path C:\ --content token --recursive

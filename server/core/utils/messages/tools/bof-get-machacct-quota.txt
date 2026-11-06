@@ -1,0 +1,15 @@
+ABOUT
+    Read the ms-DS-MachineAccountQuota value for the current domain.
+
+USAGE:
+    bof-get-machacct-quota --- (no arguments)
+
+EXAMPLES:
+    bof-get-machacct-quota
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-get-machacct-quota -w 60 --- (no arguments)

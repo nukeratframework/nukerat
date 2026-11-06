@@ -1,0 +1,32 @@
+ABOUT
+    Obtains Microsoft Entra access and refresh tokens by launching a browser
+    with an OAuth authorization code flow URL. Keeps token exchange on the
+    endpoint and can circumvent conditional access policies.
+    How it works:
+    1. Launches a new browser tab with an OAuth authorization URL
+    2. Monitors window titles for the redirect containing the authorization code
+    3. Exchanges the code for access and refresh tokens
+
+REQUIREMENTS:
+    User must be authenticated to Entra ID in their browser (valid ESTSAUTH cookies)
+    Client ID must have consent in the tenant
+    Client ID must accept https://login.microsoftonline.com/common/oauth2/nativeclient redirect URI
+
+USAGE:
+    bof-entra-authcode-flow --- <clientid> <scope> <browser> [email_hint]
+
+ARGUMENTS:
+    clientid            Entra application client ID
+    scope               OAuth scope string
+    browser             0 = Microsoft Edge, 1 = Google Chrome
+    email_hint          Optional email hint for the authorization request
+
+EXAMPLES:
+    bof-entra-authcode-flow --- 1fec8e78-bce4-4aaf-ab1b-5451cc387264 "openid offline_access https://graph.microsoft.com/.default" 0 bob@example.com
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-entra-authcode-flow -w 60 --- 1fec8e78-bce4-4aaf-ab1b-5451cc387264 "openid offline_access https://graph.microsoft.com/.default" 0 bob@example.com

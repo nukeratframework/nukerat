@@ -1,0 +1,14 @@
+ABOUT
+    Enumerate currently attached user sessions both local and over RDP
+
+USAGE:
+    bof-enum-local-sessions
+EXAMPLES:
+    bof-enum-local-sessions
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-enum-local-sessions -w 60
+    bof-enum-local-sessions -bg

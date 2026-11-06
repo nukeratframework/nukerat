@@ -1,0 +1,24 @@
+ABOUT
+    Run a program as another user with CreateProcessWithLogonW. Captures stdout.
+    Windows only.
+
+USAGE:
+    runas --domain <domain> -u <user> -p <password> --path <executable> --- <args>
+
+ARGUMENTS:
+    --domain            Account domain. Omit or use . for local.
+    -u                  Username.
+    --pass              Password.
+    --path              Full path to the executable.
+    ---                 Command tail appended to the command line.
+
+EXAMPLES:
+    runas --domain CORP -u jhon -p 123 --path C:\Windows\System32\cmd.exe --- /c whoami
+    runas -u admin -p secret --path C:\Windows\System32\notepad.exe
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    runas -w 90 -u user -p pass --path C:\Windows\System32\cmd.exe --- /c hostname

@@ -1,0 +1,42 @@
+ABOUT
+    Small Active Directory post exploitation toolkit. Supports LDAP queries, ACL
+    manipulation, Kerberoasting, ASREP roasting, delegation abuse, GPO abuse, ADCS
+    attacks, and machine account operations.
+
+USAGE:
+    net-stand-in --- [flags]
+
+LDAP:
+    --ldap <filter>           LDAP search with optional --domain, --user, --pass
+    --object <filter>         Query object properties
+    --access                  List object ACL permissions
+
+DELEGATION / ROASTING:
+    --spn                       List kerberoastable accounts
+    --asrep                     List ASREP roastable accounts
+    --delegation                List unconstrained/constrained delegation
+
+GPO:
+    --gpo --localadmin          Add user to local admins via GPO
+    --gpo --setuserrights       Add user rights via GPO
+    --gpo --tasktype            Add immediate scheduled task
+
+ADCS:
+    --adcs                      List CAs and templates
+    --clientauth, --ess, --pend Modify certificate template settings
+
+MACHINE:
+    --make                      Create machine account
+    --disable, --delete         Disable or delete machine account
+
+COMMON FLAGS:
+    --domain, --user, --pass    Credentials
+    --grant                     User to grant access
+    --type                      ACL type: GenericAll, GenericWrite, DCSync, etc.
+    --limit                     Result limit (default: 50)
+
+EXAMPLES:
+    net-stand-in --- --ldap "(&(samAccountType=805306368)(servicePrincipalName=*))"
+    net-stand-in --- --spn
+    net-stand-in --- --object samaccountname=DC01$ --access
+    net-stand-in --- --gpo --localadmin --user CORP\\admin --gponame "Vulnerable GPO"

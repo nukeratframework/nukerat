@@ -1,0 +1,16 @@
+ABOUT
+    Remote Desktop Services Reset Utility. LOLBAS documents execute
+    an arbitrary executable via trusted system executable.
+
+USAGE:
+    reset.exe session
+
+EXAMPLES:
+    reset.exe session
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    reset.exe session

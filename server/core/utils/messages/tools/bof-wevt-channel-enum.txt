@@ -1,0 +1,26 @@
+ABOUT
+    Enumerates local Windows Event Log channels with an optional case insensitive substring
+    filter, bounded output, and optional verbose access and publishing metadata. Do not run
+    unfiltered on hosts with hundreds of low signal channels.
+
+USAGE:
+    bof-wevt-channel-enum --- [filter] [max_channels] [flags]
+
+ARGUMENTS:
+    filter              Optional case insensitive substring match on channel path
+    max_channels        Optional maximum channels to print (default 256, cap 512)
+    flags               Optional. Bit 0x1 enables verbose output (Access SDDL, publishing level)
+
+EXAMPLES:
+    bof-wevt-channel-enum --- PowerShell
+    bof-wevt-channel-enum --- Scripting
+    bof-wevt-channel-enum --- Defend
+    bof-wevt-channel-enum --- Sysmon
+    bof-wevt-channel-enum --- WinRM
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-wevt-channel-enum -w 60 --- PowerShell

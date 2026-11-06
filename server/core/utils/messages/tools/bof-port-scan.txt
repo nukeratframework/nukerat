@@ -1,0 +1,24 @@
+ABOUT
+    Scans a single IPv4 host for open TCP and/or UDP ports via Winsock with bounded port
+    lists, configurable timeouts, and concise open port output.
+
+USAGE:
+    bof-port-scan --- <target> [ports] [protocol] [timeout_ms]
+
+ARGUMENTS:
+    target              IPv4 address or resolvable hostname (required)
+    ports               top20, top100, single port, comma list, or start-end (default top20)
+    protocol            0 TCP, 1 UDP, 2 both (default TCP)
+    timeout_ms          Per port timeout 1 to 30000 ms (default 1000)
+
+EXAMPLES:
+    bof-port-scan --- 192.168.1.100
+    bof-port-scan --- fileserver.corp.local 22,80,443,445,3389 0 1000
+    bof-port-scan --- 192.168.1.10 53,161 1 2000
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-port-scan -w 60 --- 192.168.1.100

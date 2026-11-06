@@ -1,0 +1,13 @@
+ABOUT
+    Checks for modifiable Windows services.
+USAGE:
+    bof-privkit-service-check --- (no arguments)
+
+EXAMPLES:
+    bof-privkit-service-check
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-privkit-service-check -w 60 --- (no arguments)

@@ -1,0 +1,15 @@
+ABOUT
+    Add ACE to object DACL. Supports standard LDAP (389) with
+    signing/sealing and LDAPS (636).
+USAGE:
+    bof-add-ace --- {target} {trustee} [-rights {rights}] [-type {type}] [options]
+
+EXAMPLES:
+    bof-add-ace --- {target} {trustee} [-rights {rights}] [-type {type}] [options]
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-add-ace -w 60 --- {target} {trustee} [-rights {rights}] [-type {type}] [options]

@@ -1,0 +1,17 @@
+ABOUT
+    Retrieves text data from the Windows clipboard using Win32 APIs and returns the
+    contents to the callback.
+
+USAGE:
+    bof-clipboard-grab
+
+EXAMPLES:
+    bof-clipboard-grab
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-clipboard-grab -w 60
+    bof-clipboard-grab -bg

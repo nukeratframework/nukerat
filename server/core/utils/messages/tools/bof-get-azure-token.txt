@@ -1,0 +1,28 @@
+ABOUT
+    Attempts to complete an OAuth authorization code flow against Azure using saved browser logins and prints returned tokens.
+
+USAGE:
+    bof-get-azure-token --- <CLIENT_ID> <SCOPE> <BROWSER> [HINT] [BROWSER_PATH]
+
+ARGUMENTS:
+
+    CLIENT_ID     Azure application client ID (must accept http://localhost redirect)
+
+    SCOPE         OAuth scope string for the client ID
+
+    BROWSER       0=Edge, 1=Chrome, 2=default handler, 3=other
+
+    HINT          Optional email of saved login to use
+
+    BROWSER_PATH  Optional full path to browser executable
+
+EXAMPLES:
+
+    bof-get-azure-token --- 1950a258-227b-4e31-a9cf-717495945fc2 "74658136-14ec-4630-ad9b-26e160ff0fc6/user_impersonation offline_access openid profile" 2 "user@domain.com"
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-get-azure-token -w 60 --- 1950a258-227b-4e31-a9cf-717495945fc2 "74658136-14ec-4630-ad9b-26e160ff0fc6/user_impersonation offline_access openid profile" 2 "user@domain.com"

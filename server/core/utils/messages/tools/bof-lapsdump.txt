@@ -1,0 +1,19 @@
+ABOUT
+    Dumps LAPS passwords from specified computers within Active Directory.
+    Requires elevated AD privileges.
+USAGE:
+    bof-lapsdump --- <Computername>
+
+ARGUMENTS:
+    Computername        Target IP or hostname
+
+EXAMPLES:
+    bof-lapsdump --- DC01
+    bof-lapsdump --- 192.168.1.10
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lapsdump -w 60 --- DC01

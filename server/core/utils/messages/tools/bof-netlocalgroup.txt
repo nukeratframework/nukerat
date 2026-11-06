@@ -1,0 +1,16 @@
+ABOUT
+    List local groups or local group members on the local or specified computer.
+
+USAGE:
+    bof-netlocalgroup --- [opt:server]
+        bof-netlocalgroup --- <groupname> [opt:server]
+
+EXAMPLES:
+    bof-netlocalgroup    bof-netlocalgroup --- Administrators
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-netlocalgroup -w 60 --- Administrators

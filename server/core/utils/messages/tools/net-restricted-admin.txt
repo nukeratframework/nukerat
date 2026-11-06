@@ -1,0 +1,17 @@
+ABOUT
+    .NET tool that remotely enables or disables Restricted Admin Mode for RDP pass-the-hash
+    via WMI StdRegProv. Modifies DisableRestrictedAdmin at HKLM\System\CurrentControlSet\Control\Lsa.
+
+USAGE:
+    net-restricted-admin --- <hostname> [0|1|clear]
+
+ARGUMENTS:
+    hostname    Target system FQDN or hostname
+    0           Enable Restricted Admin mode (set DisableRestrictedAdmin to 0)
+    1           Disable Restricted Admin mode (set to 1)
+    clear       Remove the registry value entirely
+
+EXAMPLES:
+    net-restricted-admin --- dc01.corp.local
+    net-restricted-admin --- workstation01.corp.local 0
+    net-restricted-admin --- workstation01.corp.local clear

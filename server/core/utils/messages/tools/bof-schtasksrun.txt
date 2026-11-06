@@ -1,0 +1,22 @@
+ABOUT
+    Starts a scheduled task immediately.
+
+USAGE:
+    bof-schtasksrun --- [HOSTNAME] <TASKNAME>
+
+ARGUMENTS:
+
+    HOSTNAME   Optional remote host
+
+    TASKNAME   Full scheduled task path
+
+EXAMPLES:
+
+    bof-schtasksrun --- \MyTask
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-schtasksrun -w 60 --- \MyTask

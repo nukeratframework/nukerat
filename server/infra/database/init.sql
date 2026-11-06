@@ -1,0 +1,193 @@
+CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user TEXT NOT NULL UNIQUE,
+    password_hash TEXT NOT NULL,
+    secret TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS terminal (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    terminal_id TEXT NOT NULL,
+    tag TEXT NOT NULL UNIQUE,
+    host TEXT NOT NULL,
+    input TEXT NOT NULL,
+    output TEXT NOT NULL,
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS hosts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tag TEXT NOT NULL UNIQUE,
+    ip TEXT NOT NULL,
+    host_server TEXT NOT NULL,
+    host_port TEXT NOT NULL,
+    external_ip TEXT NOT NULL,
+    listener TEXT NOT NULL,
+    privilege TEXT,
+    relays TEXT,
+    notes TEXT,
+    process TEXT,
+    pid INTEGER,
+    arch TEXT NOT NULL,
+    os TEXT NOT NULL,
+    user TEXT NOT NULL,
+    hostname TEXT NOT NULL,
+    info TEXT,
+    first_seen DATETIME DEFAULT CURRENT_TIMESTAMP,
+    last_seen DATETIME DEFAULT CURRENT_TIMESTAMP,
+    last_activity TEXT,
+    next_checkin DATETIME DEFAULT CURRENT_TIMESTAMP,
+    delay INTEGER NOT NULL,
+    status TEXT NOT NULL DEFAULT 'active',
+    implant_config TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS listeners (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tag TEXT NOT NULL UNIQUE,
+    type TEXT NOT NULL,
+    protocol TEXT NOT NULL,
+    config TEXT NOT NULL,
+    key_pem TEXT,
+    cert_pem TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS folders (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    host TEXT NOT NULL,
+    path TEXT NOT NULL,
+    type TEXT NOT NULL,
+    modified TEXT NOT NULL,
+    size TEXT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(host, path)
+);
+
+CREATE TABLE IF NOT EXISTS process (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tag TEXT NOT NULL,
+    host TEXT NOT NULL UNIQUE,
+    tree TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS queue (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tag TEXT NOT NULL UNIQUE,
+    host TEXT NOT NULL,
+    type TEXT NOT NULL,
+    command TEXT NOT NULL,
+    input TEXT NOT NULL,
+    parameters TEXT NOT NULL,
+    is_completed INTEGER NOT NULL,
+    error TEXT,
+    custom_response TEXT,
+    captured INTEGER DEFAULT 0,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    nukescript_trigger TEXT,
+    is_ready INTEGER DEFAULT 1
+);
+
+CREATE TABLE IF NOT EXISTS agents (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tag TEXT NOT NULL UNIQUE,
+    name TEXT NOT NULL UNIQUE,
+    type TEXT NOT NULL,
+    is_custom INTEGER NOT NULL,
+    api_key TEXT,
+    endpoint TEXT,
+    headers TEXT,
+    body_template TEXT,
+    response_field TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS agents_history (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    chat_id TEXT NOT NULL,
+    role TEXT NOT NULL,
+    content TEXT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS credentials (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tag TEXT NOT NULL UNIQUE,
+    name TEXT NOT NULL,
+    server TEXT NOT NULL,
+    host TEXT NOT NULL,
+    content TEXT NOT NULL,
+    description TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS keylogger (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tag TEXT NOT NULL UNIQUE,
+    content TEXT NOT NULL,
+    host_tag TEXT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS nukescripts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tag TEXT NOT NULL UNIQUE,
+    name TEXT NOT NULL,
+    description TEXT,
+    content TEXT NOT NULL,
+    status INTEGER NOT NULL,
+    last_run DATETIME DEFAULT CURRENT_TIMESTAMP,
+    errors_count INTEGER NOT NULL DEFAULT 0,
+    success_count INTEGER NOT NULL DEFAULT 0,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS nukescripts_output(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tag TEXT NOT NULL UNIQUE,
+    content TEXT NOT NULL,
+    consumed INTEGER NOT NULL DEFAULT 0,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS custom_notifications (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tag TEXT NOT NULL UNIQUE,
+    title TEXT,
+    type TEXT NOT NULL,
+    description TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS checkins (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tag TEXT NOT NULL UNIQUE,
+    host TEXT NOT NULL,
+    type TEXT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS iocs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tag TEXT NOT NULL UNIQUE,
+    type TEXT NOT NULL,
+    value TEXT NOT NULL,
+    host_tag TEXT,
+    level INTEGER NOT NULL DEFAULT 0,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS aes_keys (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tag TEXT NOT NULL UNIQUE,
+    key TEXT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS builds (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tag TEXT NOT NULL UNIQUE,
+    shellcode_path TEXT NOT NULL
+);

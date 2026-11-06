@@ -1,0 +1,22 @@
+ABOUT
+    (linux) Extract fields/columns.
+
+USAGE:
+    bof-lin-cut --- <field> [delimiter] [file]
+
+ARGUMENTS:
+    field               Field number to extract
+    delimiter           Delimiter character (default: tab)
+    file                Input file
+
+Supports pipe chaining with other BusyBOF tools.
+
+EXAMPLES:
+    bof-lin-cut --- <field>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-cut -w 60 --- <field>

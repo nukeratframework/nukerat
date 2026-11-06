@@ -1,0 +1,14 @@
+ABOUT
+    Extract Kerberos tickets from logon sessions.
+USAGE:
+    bof-kerbeus-dump --- [/luid:LOGINID] [/user:USER] [/service:SERVICE] [/client:CLIENT]
+
+EXAMPLES:
+    bof-kerbeus-dump --- /user:administrator
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-kerbeus-dump -w 60 --- /user:administrator

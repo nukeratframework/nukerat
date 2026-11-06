@@ -1,0 +1,21 @@
+ABOUT
+    Run a COFF object file (.o) in the current process using inline
+    execution. Pass BOF arguments after --- on the command line.
+
+USAGE:
+    bof -f <file> --- <bofargs>
+
+ARGUMENTS:
+    -f                  Local .o file (--file).
+    ---                 Optional BOF argument string.
+
+EXAMPLES:
+    bof -f whoami.x64.o
+    bof -f ldap.x64.o --- dc01.corp.local
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    bof -w 120 -f tool.x64.o --- /help

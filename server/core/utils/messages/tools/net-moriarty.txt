@@ -1,0 +1,16 @@
+ABOUT
+    .NET privilege escalation scanner that extends Watson and Sherlock. Enumerates missing KBs,
+    detects known Windows vulnerabilities, and suggests potential exploits for local privilege
+    escalation on Windows 10/11 and Server 2016/2019/2022.
+
+USAGE:
+    net-moriarty --- [options]
+
+OPTIONS:
+    -h, --help       Display help message
+    -d, --debug      Run in debug mode for additional output
+    -l, --list-vulns List all vulnerabilities that are scanned for
+
+EXAMPLES:
+    net-moriarty    net-moriarty --- -d
+    net-moriarty --- --list-vulns

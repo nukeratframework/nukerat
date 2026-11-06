@@ -1,0 +1,19 @@
+ABOUT
+    Group Policy script processor. LOLBAS triggers logon or
+    startup scripts already configured in policy after an administrator
+    plants malicious script content.
+
+USAGE:
+    Gpscript /logon
+    Gpscript /startup
+
+EXAMPLES:
+    Gpscript /logon
+    Gpscript /startup
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    Gpscript /logon

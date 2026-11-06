@@ -1,0 +1,20 @@
+ABOUT
+    Enumerates Windows Defender exclusions via WMI. Requires an elevated
+    beacon context.
+USAGE:
+    bof-c-enumerate-defender --- <type>
+
+ARGUMENTS:
+    type    1 = folder exclusions, 2 = process exclusions, 3 = extension exclusions
+
+EXAMPLES:
+    bof-c-enumerate-defender --- 1
+    bof-c-enumerate-defender --- 2
+    bof-c-enumerate-defender --- 3
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-c-enumerate-defender -w 60 --- 1

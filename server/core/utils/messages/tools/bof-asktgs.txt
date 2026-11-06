@@ -1,0 +1,14 @@
+ABOUT
+    Request a service ticket from a TGT.
+USAGE:
+    bof-asktgs --- /ticket:BASE64 /service:SPN1,SPN2,... [/domain:DOMAIN] [/dc:DC] [/tgs:BASE64] [/targetdomain:DOMAIN] [/targetuser:USER] [/enctype:{rc4|aes256}] [/ptt] [/keylist] [/u2u] [/opsec]
+
+EXAMPLES:
+    bof-asktgs --- /ticket:BASE64 /service:cifs/dc.corp.local /ptt
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-asktgs -w 60 --- /ticket:BASE64 /service:cifs/dc.corp.local /ptt

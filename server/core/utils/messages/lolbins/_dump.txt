@@ -1,0 +1,36 @@
+------------------------------------------------------------------------------------
+Dump
+------------------------------------------------------------------------------------
+
+lol-adplus                              Windows Debugging Tools utility to dump
+                                        process memory or run commands via
+                                        config/crash handlers.
+
+lol-createdump                          .NET Core crash dump generator to
+                                        minidump processes such as LSASS by PID.
+
+lol-diskshadow                          VSS CLI to run scripts, spawn
+                                        processes, or extract AD/NTDS data from
+                                        shadow copies.
+
+lol-dsdbutil                            AD LDS utility to snapshot, mount, and
+                                        copy NTDS.dit from Active Directory for
+                                        credential theft.
+
+lol-dump64                              Visual Studio memory dump tool to
+                                        capture LSASS or other process memory
+                                        offline.
+
+lol-dumpminitool                        VS 2022 minidump tool to dump process
+                                        memory such as LSASS for credential
+                                        parsing.
+
+lol-ntdsutil                            AD maintenance utility abused to export
+                                        or dump the NTDS.dit Active Directory
+                                        database.
+
+lol-sqldumper                           SQL Server dump utility to capture
+                                        process memory for offline analysis.
+
+lol-wbadmin                             Windows Backup admin for VSS snapshots
+                                        and extracting NTDS or system data.

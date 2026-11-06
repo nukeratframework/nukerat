@@ -1,0 +1,16 @@
+ABOUT
+    Microsoft .NET Runtime Crash Dump Generator (included in .NET Core).
+    LOLBAS documents dump process memory contents using PID.
+
+USAGE:
+    createdump.exe -n -f {PATH:.dmp} {PID}
+
+EXAMPLES:
+    createdump.exe -n -f {PATH:.dmp} {PID}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    createdump.exe -n -f {PATH:.dmp} {PID}

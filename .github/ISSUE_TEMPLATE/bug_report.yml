@@ -1,0 +1,46 @@
+name: Bug report
+description: Report a bug or unexpected behavior while using GitHub MCP Server
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - type: textarea
+    id: version
+    attributes:
+      label: Affected version
+      description: Please run `nukerat --version` and paste the output below
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce the behavior
+      description: |
+        1. Type this '...'
+        2. View the output '....'
+        3. See error
+      value: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected vs actual behavior
+      description: A clear and concise description of what you expected to happen and what actually happened.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Paste any available logs. Redact if needed.
+      render: shell

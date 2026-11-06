@@ -1,0 +1,24 @@
+ABOUT
+    Debugging tool included with Windows Debugging Tools. LOLBAS covers
+    local execution of assembly shellcode, running a shell command under
+    a trusted Microsoft-signed binary, and running commands under a
+    trusted Microsoft-signed binary.
+
+USAGE:
+    cdb.exe -cf {PATH:.wds} -o notepad.exe
+    cdb.exe -pd -pn {process_name}
+.shell {CMD}
+    cdb.exe -c {PATH:.txt} "{CMD}"
+
+EXAMPLES:
+    cdb.exe -cf {PATH:.wds} -o notepad.exe
+    cdb.exe -pd -pn {process_name}
+.shell {CMD}
+    cdb.exe -c {PATH:.txt} "{CMD}"
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    cdb.exe -cf {PATH:.wds} -o notepad.exe

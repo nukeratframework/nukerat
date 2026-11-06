@@ -1,0 +1,15 @@
+ABOUT
+    Set UAC flags (replace). Supports standard LDAP (389) with
+    signing/sealing and LDAPS (636).
+USAGE:
+    bof-set-uac --- {target} {flags} [-ou {path}] [-dc {ip}] [--ldaps]
+
+EXAMPLES:
+    bof-set-uac --- {target} {flags} [-ou {path}] [-dc {ip}] [--ldaps]
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-set-uac -w 60 --- {target} {flags} [-ou {path}] [-dc {ip}] [--ldaps]

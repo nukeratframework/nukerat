@@ -1,0 +1,21 @@
+ABOUT
+    Koh server that captures user credential material via token/logon session leakage. Monitors
+    logon sessions, negotiates tokens using SSPI, and stores them for later impersonation. Requires
+    SYSTEM context and SeTcbPrivilege for capture operations.
+
+USAGE:
+    net-koh --- <list | monitor | capture> [GroupSID...]
+
+ARGUMENTS:
+    list            List current non-network logon sessions
+    monitor         Monitor for new logon sessions (starts named pipe server)
+    capture         Capture one unique token per SID for new logon sessions
+    GroupSID        Optional domain group SIDs to filter monitored/captured sessions
+
+EXAMPLES:
+    net-koh --- list
+    net-koh --- monitor S-1-5-21-937929760-3187473010-80948926-512
+    net-koh --- capture
+
+NOTES:
+    Use bof-koh-client to interact with a running Koh server from Beacon.

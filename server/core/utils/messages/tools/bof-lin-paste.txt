@@ -1,0 +1,18 @@
+ABOUT
+    (linux) Merge lines of files.
+
+USAGE:
+    bof-lin-paste --- <files>
+
+ARGUMENTS:
+    files               Space-separated file paths (min 2)
+
+EXAMPLES:
+    bof-lin-paste --- <files>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-paste -w 60 --- <files>

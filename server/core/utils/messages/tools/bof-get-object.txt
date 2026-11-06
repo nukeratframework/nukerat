@@ -1,0 +1,15 @@
+ABOUT
+    Dump all attributes of an object. Supports standard LDAP (389) with
+    signing/sealing and LDAPS (636).
+USAGE:
+    bof-get-object --- {target} [-ou {path}] [-dc {ip}] [--ldaps]
+
+EXAMPLES:
+    bof-get-object --- {target} [-ou {path}] [-dc {ip}] [--ldaps]
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-get-object -w 60 --- {target} [-ou {path}] [-dc {ip}] [--ldaps]

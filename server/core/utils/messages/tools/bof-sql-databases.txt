@@ -1,0 +1,9 @@
+ABOUT
+    Enumerates databases on a SQL server.
+
+USAGE:
+    bof-sql-databases --- <server> [database] [linkedserver] [impersonate]
+
+EXAMPLES:
+    bof-sql-databases --- SQL01
+    bof-sql-databases --- SQL01 master LINKED01 dbo

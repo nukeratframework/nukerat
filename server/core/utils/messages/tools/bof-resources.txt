@@ -1,0 +1,14 @@
+ABOUT
+    List memory usage and available disk space on the primary hard drive
+
+USAGE:
+    bof-resources
+EXAMPLES:
+    bof-resources
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-resources -w 60
+    bof-resources -bg

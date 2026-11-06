@@ -1,0 +1,17 @@
+ABOUT
+    Windows Defender Offline Shell. LOLBAS documents can be used to
+    evade defensive countermeasures or to hide as a persistence
+    mechanism.
+
+USAGE:
+    OfflineScannerShell
+
+EXAMPLES:
+    OfflineScannerShell
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    OfflineScannerShell

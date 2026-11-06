@@ -1,0 +1,22 @@
+ABOUT
+    Dumps the specified process to a file using MiniDumpWriteDump. Enables SeDebugPrivilege first.
+
+USAGE:
+    bof-procdump --- <PID> <FILEOUT>
+
+ARGUMENTS:
+
+    PID      Process ID to dump
+
+    FILEOUT  Output file path on target (remember to delete)
+
+EXAMPLES:
+
+    bof-procdump --- 1234 C:\Temp\proc.dmp
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-procdump -w 60 --- 1234 C:\Temp\proc.dmp

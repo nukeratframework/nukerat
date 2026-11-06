@@ -1,0 +1,15 @@
+ABOUT
+    Add user to group. Supports standard LDAP (389) with signing/sealing and
+    LDAPS (636).
+USAGE:
+    bof-add-groupmember --- {group} {member} [-ou {path}] [-dc {ip}] [--ldaps]
+
+EXAMPLES:
+    bof-add-groupmember --- "Domain Admins" jane.doe
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-add-groupmember -w 60 --- "Domain Admins" jane.doe

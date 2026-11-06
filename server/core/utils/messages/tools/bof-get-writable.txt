@@ -1,0 +1,15 @@
+ABOUT
+    Find objects with write access. Supports standard LDAP (389) with
+    signing/sealing and LDAPS (636).
+USAGE:
+    bof-get-writable --- [-ou {path}] [-dc {ip}] [--ldaps] [--detailed]
+
+EXAMPLES:
+    bof-get-writable --- --detailed
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-get-writable -w 60 --- --detailed

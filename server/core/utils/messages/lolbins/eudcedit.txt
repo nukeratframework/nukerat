@@ -1,0 +1,17 @@
+ABOUT
+    Private Character Editor.
+    GUI Font Links workflow can launch high-integrity commands without
+    UAC after operator interaction.
+
+USAGE:
+    eudcedit
+
+EXAMPLES:
+    eudcedit
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    eudcedit

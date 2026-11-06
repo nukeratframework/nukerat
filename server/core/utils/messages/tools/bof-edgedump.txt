@@ -1,0 +1,17 @@
+ABOUT
+    Extracts Microsoft Edge saved credential artifacts from the main
+    msedge.exe process memory. Scans readable memory regions for credential
+    patterns. Does not read browser files, SQLite databases, or use DPAPI.
+    Same user context can read the current user Edge process. Elevated
+    context can read Edge processes across logged on sessions.
+USAGE:
+    bof-edgedump
+EXAMPLES:
+    bof-edgedump
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-edgedump -w 60
+    bof-edgedump -bg

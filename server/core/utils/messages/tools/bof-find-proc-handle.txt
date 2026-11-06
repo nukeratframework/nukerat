@@ -1,0 +1,19 @@
+ABOUT
+    Enumerates processes holding handles to a target process (for example
+    lsass.exe). Can identify existing LSASS handles to avoid opening new
+    ones.
+USAGE:
+    bof-find-proc-handle --- <process>
+
+ARGUMENTS:
+    process             Process name to search for (example: lsass.exe)
+
+EXAMPLES:
+    bof-find-proc-handle --- lsass.exe
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-find-proc-handle -w 60 --- lsass.exe

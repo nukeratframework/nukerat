@@ -1,0 +1,21 @@
+ABOUT
+    Compressed file expander.
+    Copies local or UNC sources to destinations or into alternate data
+    streams.
+
+USAGE:
+    expand {PATH_SMB:.bat} {PATH_ABSOLUTE:.bat}
+    expand {PATH_ABSOLUTE:.source.ext} {PATH_ABSOLUTE:.dest.ext}
+    expand {PATH_SMB:.bat} {PATH_ABSOLUTE}:file.bat
+
+EXAMPLES:
+    expand {PATH_SMB:.bat} {PATH_ABSOLUTE:.bat}
+    expand {PATH_ABSOLUTE:.source.ext} {PATH_ABSOLUTE:.dest.ext}
+    expand {PATH_SMB:.bat} {PATH_ABSOLUTE}:file.bat
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    expand {PATH_SMB:.bat} {PATH_ABSOLUTE:.bat}

@@ -1,0 +1,12 @@
+ABOUT
+    Add a new inbound or outbound firewall rule using COM.
+
+USAGE:
+    bof-add-firewall-rule --- <direction> <port> <name> <group> <description>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-add-firewall-rule -w 60 --- <direction> <port> <name> <group> <description>

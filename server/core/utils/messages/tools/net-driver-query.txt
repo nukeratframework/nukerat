@@ -1,0 +1,9 @@
+ABOUT
+    Collects details about loaded drivers and optionally filters to non-Microsoft signed drivers.
+
+USAGE:
+    net-driver-query --- [no-msft] [debug]
+
+EXAMPLES:
+    net-driver-query    net-driver-query --- no-msft
+    net-driver-query --- no-msft debug

@@ -1,0 +1,14 @@
+ABOUT
+    List ARP table.
+
+USAGE:
+    bof-arp
+EXAMPLES:
+    bof-arp
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-arp -w 60
+    bof-arp -bg

@@ -1,0 +1,20 @@
+ABOUT
+    Load a dynamic library from uploaded bytes in the current process
+    using inline execution. macOS only.
+
+USAGE:
+    load-dylib -f <file>
+
+ARGUMENTS:
+    -f                  Local .dylib file (--file).
+
+EXAMPLES:
+    load-dylib -f file.dylib
+    load-dylib -f libcustom.dylib
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    load-dylib -w 60 -f module.dylib

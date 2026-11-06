@@ -1,0 +1,17 @@
+ABOUT
+    ODBC Data Source Administrator to manage User/System DSNs and
+    ODBC drivers. LOLBAS documents execute a binary as a high-
+    integrity process without a UAC prompt.
+
+USAGE:
+    odbcad32.exe
+
+EXAMPLES:
+    odbcad32.exe
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    odbcad32.exe

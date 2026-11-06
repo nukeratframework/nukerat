@@ -1,0 +1,17 @@
+ABOUT
+    OneDrive Standalone Updater. LOLBAS documents download a file
+    from the Internet without executing any anomalous executables
+    with suspicious arguments.
+
+USAGE:
+    OneDriveStandaloneUpdater
+
+EXAMPLES:
+    OneDriveStandaloneUpdater
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    OneDriveStandaloneUpdater

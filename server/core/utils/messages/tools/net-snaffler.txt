@@ -1,0 +1,32 @@
+ABOUT
+    Active Directory file share crawler that finds credentials and sensitive files
+    across domain computers using configurable rules and regex patterns.
+
+USAGE:
+    net-snaffler --- -s -o <logfile> [options]
+
+OPTIONS:
+    -o            Output results to file
+    -s            Output results to stdout
+    -v            Verbosity: Trace, Debug, Info (default), Data
+    -m            Output directory to copy matching files (Snaffle)
+    -l            Max file size in bytes to Snaffle (default: 10000000)
+    -i            Disable computer/share discovery, file discovery on path only
+    -n            Comma separated hosts or file path for share discovery
+    -y            TSV formatted output
+    -b            Skip less interesting rules (0-3)
+    -f            Limit to DFS shares only
+    -a            Skip file enumeration, list shares only
+    -u            Use AD account names in search rules
+    -d            Domain to search
+    -c            Domain controller to query
+    -r            Max bytes to search inside files (default: 500k)
+    -j            Context bytes around matched strings
+    -z            Path to config file (-z generate for sample)
+    -t            Output type: plain or JSON
+    -x            Max thread count (minimum 4)
+
+EXAMPLES:
+    net-snaffler --- -s -o snaffler.log
+    net-snaffler --- -s -v debug -d corp.local
+    net-snaffler --- -s -f -a -n hosts.txt

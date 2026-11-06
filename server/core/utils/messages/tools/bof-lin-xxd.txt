@@ -1,0 +1,18 @@
+ABOUT
+    (linux) Hex dump.
+
+USAGE:
+    bof-lin-xxd --- [file] [length]
+
+ARGUMENTS:
+    file                Input file
+    length              Number of bytes to dump
+
+EXAMPLES:
+    bof-lin-xxd
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-xxd -w 60 --- [file] [length]

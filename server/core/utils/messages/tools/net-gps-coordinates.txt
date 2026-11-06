@@ -1,0 +1,8 @@
+ABOUT
+    Tracks system GPS coordinates (within ~1km) if Location Services are enabled. Windows 10+.
+
+USAGE:
+    net-gps-coordinates --- (no arguments)
+
+EXAMPLES:
+    net-gps-coordinates

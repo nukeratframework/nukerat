@@ -1,0 +1,25 @@
+ABOUT
+    Runs a background thread that monitors keys pressed by the user.
+
+USAGE:
+    keylogger <start|stop> [--method <method>] [--delay <ms>]
+
+ARGUMENTS:
+    --method            boardstate or keystate. Default boardstate on Windows.
+    --delay             Poll interval in milliseconds for boardstate only. Default 50.
+
+MODES:
+    start               Begin background key capture.
+    stop                Stop the worker and flush pending keys.
+
+EXAMPLES:
+    keylogger start --method boardstate --delay 100
+    keylogger start --method keystate
+    keylogger stop
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    keylogger -bg start --method boardstate

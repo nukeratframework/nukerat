@@ -1,0 +1,24 @@
+ABOUT
+    Extracts encrypted credentials from Veeam Backup and Replication or Veeam One
+    databases. Uses sqlcmd/psql to query blobs, retrieves salt from registry, and
+    decrypts via DPAPI.
+
+USAGE:
+    bof-veeam-dumper --- <db_type> [options]
+
+DB TYPE (required):
+    mssql, psql, auto
+
+OPTIONS:
+    dbname      Database name (default: from registry)
+    exepath     Path to sqlcmd.exe or psql.exe
+    debug       Enable debug output
+    veeamone    Run Veeam One mode
+
+EXAMPLES:
+    bof-veeam-dumper --- auto
+    bof-veeam-dumper --- psql dbname VeeamBackup2016 exepath "C:\\Program Files\\psql.exe" debug
+    bof-veeam-dumper --- mssql debug veeamone
+
+NOTES:
+    Requires admin beacon on Veeam Backup and Replication or Veeam One server.

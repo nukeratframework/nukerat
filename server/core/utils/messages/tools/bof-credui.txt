@@ -1,0 +1,20 @@
+ABOUT
+    Invokes the Windows credential prompt using the Windows API
+    CredUIPromptForWindowsCredentials and verifies the submitted credential with LogonUser.
+
+USAGE:
+    bof-credui --- "Caption" "Message"
+
+ARGUMENTS:
+    Caption             Text displayed in the credential prompt caption
+    Message             Text displayed in the credential prompt message body
+
+EXAMPLES:
+    bof-credui --- "Caption" "Message"
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-credui -w 60 --- "Caption" "Message"

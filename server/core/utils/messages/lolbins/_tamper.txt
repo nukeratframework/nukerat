@@ -1,0 +1,11 @@
+------------------------------------------------------------------------------------
+Tamper
+------------------------------------------------------------------------------------
+
+lol-cipher                              EFS cipher tool to securely wipe file
+                                        slack or encrypt files to impair
+                                        defenses.
+
+lol-vssadmin                            Volume Shadow Copy admin tool to delete
+                                        shadows or impair recovery and
+                                        forensics.

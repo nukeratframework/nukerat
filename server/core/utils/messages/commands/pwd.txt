@@ -1,0 +1,18 @@
+ABOUT
+    Print the current working directory.
+
+USAGE:
+    pwd
+
+ARGUMENTS:
+    (none)
+
+EXAMPLES:
+    pwd
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    pwd -w 30

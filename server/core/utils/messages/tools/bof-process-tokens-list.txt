@@ -1,0 +1,24 @@
+ABOUT
+    Enumerates accessible tokens from running processes, showing user context, token type
+    (primary/impersonation), and impersonation level. Supports optional filtering by PID or
+    process name. SeDebugPrivilege is disabled by default for OPSEC.
+
+USAGE:
+    bof-process-tokens-list --- [filter] [/debug]
+
+ARGUMENTS:
+    filter              Optional PID (numeric) or process name to filter results
+    /debug              Optional. Enable SeDebugPrivilege (also accepts /enablesebug)
+
+EXAMPLES:
+    bof-process-tokens-list
+    bof-process-tokens-list --- lsass.exe
+    bof-process-tokens-list --- 1512
+    bof-process-tokens-list --- /debug lsass.exe
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-process-tokens-list -w 60 --- lsass.exe

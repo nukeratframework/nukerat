@@ -1,0 +1,11 @@
+ABOUT
+    Retrieves decryption keys for Signal Desktop database on Windows hosts where
+    Signal Desktop is installed and has been used.
+
+USAGE:
+    bof-signal-key
+EXAMPLES:
+    bof-signal-key
+NOTES:
+    Use the Python helper script from the repo to decrypt the Signal database with
+    the extracted key.

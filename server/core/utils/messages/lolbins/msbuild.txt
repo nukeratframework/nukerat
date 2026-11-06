@@ -1,0 +1,25 @@
+ABOUT
+    Trusted MSBuild engine for .NET projects. LOLBAS builds inline
+    C# from XML or csproj, loads malicious logger DLLs, runs XSL
+    transforms, and hides options in response files.
+
+USAGE:
+    msbuild.exe {PATH:.xml}
+    msbuild.exe {PATH:.csproj}
+    msbuild.exe /logger:TargetLogger,{PATH_ABSOLUTE:.dll};MyParameters,Foo
+    msbuild.exe {PATH:.proj}
+    msbuild.exe @{PATH:.rsp}
+
+EXAMPLES:
+    msbuild.exe {PATH:.xml}
+    msbuild.exe {PATH:.csproj}
+    msbuild.exe /logger:TargetLogger,{PATH_ABSOLUTE:.dll};MyParameters,Foo
+    msbuild.exe {PATH:.proj}
+    msbuild.exe @{PATH:.rsp}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    msbuild.exe {PATH:.xml}

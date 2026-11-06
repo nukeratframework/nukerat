@@ -1,0 +1,20 @@
+ABOUT
+    Load a shared object from uploaded bytes in the current process using inline
+    execution (memfd and dlopen). Linux only.
+
+USAGE:
+    load-so -f <file>
+
+ARGUMENTS:
+    -f                  Local .so file (--file).
+
+EXAMPLES:
+    load-so -f file.so
+    load-so -f libcustom.so
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    load-so -w 60 -f module.so

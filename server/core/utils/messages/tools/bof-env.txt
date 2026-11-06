@@ -1,0 +1,14 @@
+ABOUT
+    List process environment variables.
+
+USAGE:
+    bof-env
+EXAMPLES:
+    bof-env
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-env -w 60
+    bof-env -bg

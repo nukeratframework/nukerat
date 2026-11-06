@@ -1,0 +1,17 @@
+ABOUT
+    Filter Manager control program for minifilter drivers. LOLBAS
+    unloads security product drivers such as SysmonDrv for defense
+    evasion when run with administrator rights.
+
+USAGE:
+    fltMC.exe unload SysmonDrv
+
+EXAMPLES:
+    fltMC.exe unload SysmonDrv
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    fltMC.exe unload SysmonDrv

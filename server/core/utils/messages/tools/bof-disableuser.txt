@@ -1,0 +1,23 @@
+ABOUT
+    Disables the specified user account on the target computer.
+
+USAGE:
+    bof-disableuser --- <HOSTNAME> <USERNAME>
+
+ARGUMENTS:
+
+    HOSTNAME    Target computer (empty for local machine)
+
+    USERNAME    User to disable
+
+EXAMPLES:
+
+    bof-disableuser --- "" BenchDisable
+    bof-disableuser --- "" guest
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-disableuser -w 60 --- guest ""

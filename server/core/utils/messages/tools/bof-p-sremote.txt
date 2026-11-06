@@ -1,0 +1,12 @@
+ABOUT
+    Get a list of all processes running on the remote host.
+
+USAGE:
+    bof-p-sremote --- <remotehost>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-p-sremote -w 60 --- <remotehost>

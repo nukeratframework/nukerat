@@ -1,0 +1,15 @@
+ABOUT
+    Delete a scheduled task or folder.
+
+USAGE:
+    bof-schtasks-del --- <folder|task> <hostname> <taskname_or_folder>
+
+EXAMPLES:
+    bof-schtasks-del --- task dc.corp.local \MyTask
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-schtasks-del -w 60 --- task dc.corp.local \MyTask

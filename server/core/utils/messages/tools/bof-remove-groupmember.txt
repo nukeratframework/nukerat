@@ -1,0 +1,15 @@
+ABOUT
+    Remove user from group. Supports standard LDAP (389) with
+    signing/sealing and LDAPS (636).
+USAGE:
+    bof-remove-groupmember --- {group} {member} [-ou {path}] [-dc {ip}] [--ldaps]
+
+EXAMPLES:
+    bof-remove-groupmember --- {group} {member} [-ou {path}] [-dc {ip}] [--ldaps]
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-remove-groupmember -w 60 --- {group} {member} [-ou {path}] [-dc {ip}] [--ldaps]

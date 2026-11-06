@@ -1,0 +1,20 @@
+ABOUT
+    Displays a fake Microsoft Authenticator approval dialog with the specified number. Dialog auto closes after 30 seconds.
+
+USAGE:
+    bof-ask-mfa --- <number>
+
+ARGUMENTS:
+
+    number    MFA approval number to display (0 to 99)
+
+EXAMPLES:
+
+    bof-ask-mfa --- 42
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-ask-mfa -w 60 --- 42

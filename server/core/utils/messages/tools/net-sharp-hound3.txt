@@ -1,0 +1,54 @@
+ABOUT
+    Legacy BloodHound ingestor (deprecated). C# rewrite of the original BloodHound
+    collector. Data from this version is not compatible with BloodHound 4.1+.
+
+USAGE:
+    net-sharp-hound3 --- [options]
+
+COLLECTION METHODS:
+    Default, Group, LocalAdmin, RDP, DCOM, PSRemote, GPOLocalGroup, Session,
+    ComputerOnly, LoggedOn, Trusts, ACL, Container, DcOnly, ObjectProps, All
+
+ENUMERATION OPTIONS:
+    --Domain                  Domain to search (default: current)
+    --Stealth                 Stealth collection (single threaded)
+    --ExcludeDomainControllers Exclude DCs from enumeration
+    --ComputerFile            File with computer names/IPs
+    --LdapFilter              LDAP filter to append
+    --WindowsOnly             Limit to Windows operating systems
+
+CONNECTION OPTIONS:
+    --DomainController        Target domain controller
+    --LdapPort                LDAP port (default: 0)
+    --SecureLdap              Use LDAPS (port 636)
+    --LdapUsername            LDAP bind username
+    --LdapPassword            LDAP bind password
+    --DisableKerberosSigning  Disable LDAP encryption
+
+OUTPUT OPTIONS:
+    --OutputDirectory         Output folder (default: .)
+    --OutputPrefix            Prefix for JSON files
+    --NoZip                   Leave JSON files uncompressed
+    --EncryptZip              Add random password to zip
+    --ZipFileName             Zip filename
+    --RandomizeFilenames      Randomize output filenames
+    --PrettyJson              Indented JSON output
+
+PERFORMANCE OPTIONS:
+    --PortScanTimeout         Ping timeout in ms (default: 2000)
+    --SkipPortScan            Skip ping/port scan
+    --Throttle                Delay after each computer request (ms)
+    --Jitter                  Throttle jitter percentage
+
+LOOP OPTIONS:
+    --Loop                    Loop computer collections
+    --LoopDuration            How long to loop
+    --LoopInterval            Wait between loops
+
+EXAMPLES:
+    net-sharp-hound3 --- -c Default
+    net-sharp-hound3 --- -c DcOnly --Stealth
+    net-sharp-hound3 --- -c Session,LocalAdmin --Domain corp.local
+
+NOTES:
+    Deprecated in favor of net-sharp-hound. Use only for legacy BloodHound versions.

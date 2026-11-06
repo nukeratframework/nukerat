@@ -1,0 +1,19 @@
+ABOUT
+    Scans a Domain Controller to check if LdapEnforceChannelBinding or
+    LdapServerIntegrity have been modified to mitigate LDAP relay attacks.
+    Tests both LDAP (389) and LDAPS (636) binding.
+USAGE:
+    bof-ldap-sign-check --- <dc>
+
+ARGUMENTS:
+    dc    Target domain controller hostname or FQDN
+
+EXAMPLES:
+    bof-ldap-sign-check --- dc01.corp.local
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-ldap-sign-check -w 60 --- dc01.corp.local

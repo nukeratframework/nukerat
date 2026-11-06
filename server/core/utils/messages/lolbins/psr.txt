@@ -1,0 +1,17 @@
+ABOUT
+    Windows Problem Steps Recorder, used to record screen and
+    clicks. LOLBAS documents can be used to take screenshots of the
+    user environment.
+
+USAGE:
+    psr.exe /start /output {PATH_ABSOLUTE:.zip} /sc 1 /gui 0
+
+EXAMPLES:
+    psr.exe /start /output {PATH_ABSOLUTE:.zip} /sc 1 /gui 0
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    psr.exe /start /output {PATH_ABSOLUTE:.zip} /sc 1 /gui 0

@@ -1,0 +1,15 @@
+ABOUT
+    List user permissions for the specified file, wildcards supported
+
+USAGE:
+    bof-cacls --- <filepath>
+
+EXAMPLES:
+    bof-cacls --- C:\Windows\System32\config\SAM
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-cacls -w 60 --- C:\Windows\System32\config\SAM

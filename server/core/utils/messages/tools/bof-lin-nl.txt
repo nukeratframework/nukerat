@@ -1,0 +1,20 @@
+ABOUT
+    (linux) Number lines of a file.
+
+USAGE:
+    bof-lin-nl --- <file>
+
+ARGUMENTS:
+    file                Input file
+
+Supports pipe chaining with other BusyBOF tools.
+
+EXAMPLES:
+    bof-lin-nl --- <file>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-nl -w 60 --- <file>

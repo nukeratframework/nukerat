@@ -1,0 +1,24 @@
+ABOUT
+    Suspends or resumes a process by PID. Use 1 to suspend, 0 to resume.
+
+USAGE:
+    bof-suspendresume --- <0|1> <PID>
+
+ARGUMENTS:
+
+    0|1    1=suspend, 0=resume
+
+    PID    Target process ID
+
+EXAMPLES:
+
+    bof-suspendresume --- 1 1234
+
+    bof-suspendresume --- 0 1234
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-suspendresume -w 60 --- 1 1234

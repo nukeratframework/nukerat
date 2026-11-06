@@ -1,0 +1,15 @@
+ABOUT
+    List shares on the local or remote computer
+
+USAGE:
+    bof-netshares --- [hostname]
+
+EXAMPLES:
+    bof-netshares    bof-netshares --- dc01
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-netshares -w 60 --- dc01

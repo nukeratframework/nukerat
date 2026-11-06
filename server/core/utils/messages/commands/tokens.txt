@@ -1,0 +1,38 @@
+ABOUT
+    Token vault and impersonation. Windows only.
+
+USAGE:
+    tokens [grab|list|impersonate|remove|forge|revert] [flags]
+
+ARGUMENTS:
+    --pid               Process to copy token from (grab).
+    --id                Vault entry index (list shows ids).
+    --domain            Domain for forge. Use . for local.
+    --user              Username for forge.
+    --pass              Password for forge.
+    --all               Remove every vault token (remove).
+
+MODES:
+    tokens              Report on the current effective token.
+    grab                Duplicate a process token into the vault.
+    list                Show saved vault tokens.
+    impersonate         Apply a vault token to the implant thread.
+    remove              Delete one vault entry or all with --all.
+    forge               Logon with user and pass, store token in vault.
+    revert              RevertToSelf. End impersonation.
+
+EXAMPLES:
+    tokens
+    tokens grab --pid 1000
+    tokens list
+    tokens impersonate --id 0
+    tokens remove --id 0
+    tokens forge --domain CORP --user jhon --pass 123456
+    tokens revert
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    tokens -w 30 list

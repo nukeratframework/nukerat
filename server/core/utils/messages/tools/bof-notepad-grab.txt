@@ -1,0 +1,17 @@
+ABOUT
+    Extracts and returns plain text directly from open Notepad windows by reading memory,
+    allowing operators to recover unsaved or in memory notes.
+
+USAGE:
+    bof-notepad-grab
+
+EXAMPLES:
+    bof-notepad-grab
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-notepad-grab -w 60
+    bof-notepad-grab -bg

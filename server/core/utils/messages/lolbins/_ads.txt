@@ -1,0 +1,7 @@
+------------------------------------------------------------------------------------
+ADS
+------------------------------------------------------------------------------------
+
+lol-makecab                             Cabinet builder that compresses data
+                                        into CABs or hides payloads in alternate
+                                        data streams.

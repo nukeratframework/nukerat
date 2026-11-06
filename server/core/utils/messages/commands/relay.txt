@@ -1,0 +1,33 @@
+ABOUT
+    Creates a traffic redirect through a host. Use it together with relay
+    to help pivot traffic.
+
+USAGE:
+    relay [create|delete] [flags]
+
+ARGUMENTS:
+    -c                  Transport tcp or smb (--channel).
+    -l                  Local listen port (--listen). Also used as default relay id.
+    -t                  Downstream endpoint (--target). Use implant:// or server://
+                        with host and port, for example implant://10.1.1.5:9090.
+    --pipe              Named pipe for smb. Use \\pipe\\name form on Windows.
+    --id                Relay id for delete or to override the default listen port id.
+    --tls               For server:// targets, POST to the team server over HTTPS (default HTTP).
+
+MODES:
+    relay               Show active relays (listen, target, mode, status).
+    create              Start a relay worker on the implant.
+    delete              Stop and remove a relay by id.
+
+EXAMPLES:
+    relay
+    relay create -c tcp -l 8888 -t implant://10.1.1.5:9090
+    relay create -c smb -l 445 -t server://10.1.1.5:9090 --pipe test --tls
+    relay delete --id 8888
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    relay -w 30 create -c tcp -l 8888 -t implant://10.1.1.5:9090

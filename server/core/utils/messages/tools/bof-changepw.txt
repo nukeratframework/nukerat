@@ -1,0 +1,14 @@
+ABOUT
+    Change a user password via kpasswd.
+USAGE:
+    bof-changepw --- /ticket:BASE64 /new:PASSWORD [/dc:DC] [/targetuser:USER] [/targetdomain:DOMAIN]
+
+EXAMPLES:
+    bof-changepw --- /ticket:BASE64 /new:NewP@ss123
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-changepw -w 60 --- /ticket:BASE64 /new:NewP@ss123

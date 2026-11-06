@@ -1,0 +1,14 @@
+ABOUT
+    Enumerate services for qc, query, qfailure, and qtriggers info
+
+USAGE:
+    bof-sc-enum --- [opt:server]
+
+EXAMPLES:
+    bof-sc-enum
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-sc-enum -w 60 --- [opt:server]

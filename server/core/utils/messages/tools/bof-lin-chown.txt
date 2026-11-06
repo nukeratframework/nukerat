@@ -1,0 +1,21 @@
+ABOUT
+    (linux) Change file ownership.
+
+USAGE:
+    bof-lin-chown --- <owner> <target>
+
+ARGUMENTS:
+    owner               user[:group]
+    target              File path(s)
+
+Supports pipe chaining with other BusyBOF tools.
+
+EXAMPLES:
+    bof-lin-chown --- <owner> <target>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-chown -w 60 --- <owner> <target>

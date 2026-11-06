@@ -1,0 +1,16 @@
+ABOUT
+    Used to manipulate the registry. LOLBAS documents write to
+    registry.
+
+USAGE:
+    regini.exe {PATH}:hidden.ini
+
+EXAMPLES:
+    regini.exe {PATH}:hidden.ini
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    regini.exe {PATH}:hidden.ini

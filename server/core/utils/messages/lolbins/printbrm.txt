@@ -1,0 +1,20 @@
+ABOUT
+    Printer Migration Command-Line Tool. LOLBAS documents exfiltrate
+    the contents of a remote folder on a UNC share into a zip file
+    and decompress and extract a ZIP file stored on an alternate
+    data stream to a new folder.
+
+USAGE:
+    PrintBrm -b -d {PATH_SMB:folder} -f {PATH_ABSOLUTE:.zip}
+    PrintBrm -r -f {PATH_ABSOLUTE}:hidden.zip -d {PATH_ABSOLUTE:folder}
+
+EXAMPLES:
+    PrintBrm -b -d {PATH_SMB:folder} -f {PATH_ABSOLUTE:.zip}
+    PrintBrm -r -f {PATH_ABSOLUTE}:hidden.zip -d {PATH_ABSOLUTE:folder}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    PrintBrm -b -d {PATH_SMB:folder} -f {PATH_ABSOLUTE:.zip}

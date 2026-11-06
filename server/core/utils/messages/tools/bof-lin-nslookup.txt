@@ -1,0 +1,20 @@
+ABOUT
+    (linux) DNS lookup via getaddrinfo.
+
+USAGE:
+    bof-lin-nslookup --- <host>
+
+ARGUMENTS:
+    host                Hostname to resolve
+
+EXAMPLES:
+    bof-lin-nslookup --- example.com
+ERRORS:
+    Usage: nslookup <hostname>
+    nslookup: <host>: <gai error>
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-nslookup -w 60 --- <host>

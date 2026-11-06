@@ -1,0 +1,18 @@
+ABOUT
+    Program Compatibility Wizard. LOLBAS documents proxy execution
+    of binary.
+
+USAGE:
+    Pcwrun.exe {PATH_ABSOLUTE:.exe}
+    Pcwrun.exe /../../$(calc).exe
+
+EXAMPLES:
+    Pcwrun.exe {PATH_ABSOLUTE:.exe}
+    Pcwrun.exe /../../$(calc).exe
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    Pcwrun.exe {PATH_ABSOLUTE:.exe}

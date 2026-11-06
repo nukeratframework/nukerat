@@ -1,0 +1,17 @@
+ABOUT
+    (linux) Print system information.
+
+USAGE:
+    bof-lin-uname --- [flags]
+
+ARGUMENTS:
+    flags               [-a]
+
+EXAMPLES:
+    bof-lin-uname
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-uname -w 60 --- [flags]

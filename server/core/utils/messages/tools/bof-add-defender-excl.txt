@@ -1,0 +1,24 @@
+ABOUT
+    Adds Windows Defender exclusions via the MSFT_MpPreference WMI class
+    using COM.
+USAGE:
+    bof-add-defender-excl --- <option> <value>
+
+ARGUMENTS:
+    option              Exclusion type, must be 1, 2, or 3
+    value               Folder path, process name, or file extension to exclude
+
+EXCLUSION TYPES:
+    1                   Folder exclusions
+    2                   Process exclusions
+    3                   Extension exclusions
+
+EXAMPLES:
+    bof-add-defender-excl --- 1 C:\
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-add-defender-excl -w 60 --- 1 C:\

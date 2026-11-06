@@ -1,0 +1,19 @@
+ABOUT
+    List logical drive letters on the host with drive type (fixed, removable,
+    remote, CD ROM, and others). Windows only.
+
+USAGE:
+    enumdrives
+
+ARGUMENTS:
+    (none)
+
+EXAMPLES:
+    enumdrives
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    enumdrives -w 30

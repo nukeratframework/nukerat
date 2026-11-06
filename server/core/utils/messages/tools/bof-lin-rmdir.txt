@@ -1,0 +1,20 @@
+ABOUT
+    (linux) Remove empty directories.
+
+USAGE:
+    bof-lin-rmdir --- <target>
+
+ARGUMENTS:
+    target              Directory path(s)
+
+Supports pipe chaining with other BusyBOF tools.
+
+EXAMPLES:
+    bof-lin-rmdir --- <target>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-rmdir -w 60 --- <target>

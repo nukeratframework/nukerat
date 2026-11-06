@@ -1,0 +1,15 @@
+ABOUT
+    List visible windows in the current user session.
+
+USAGE:
+    bof-windowlist --- [opt:all]
+
+EXAMPLES:
+    bof-windowlist    bof-windowlist --- all
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-windowlist -w 60 --- all

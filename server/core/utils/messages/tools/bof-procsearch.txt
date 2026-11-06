@@ -1,0 +1,16 @@
+ABOUT
+    Search readable process memory for a string and display surrounding ASCII context.
+
+USAGE:
+    bof-procsearch --- <pid> <search_string>
+
+EXAMPLES:
+    bof-procsearch --- 7592 password
+    bof-procsearch --- 1234 email
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-procsearch -w 60 --- 7592 password

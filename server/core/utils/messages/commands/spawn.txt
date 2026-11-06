@@ -1,0 +1,22 @@
+ABOUT
+    Spawns a process from a path. On Windows, use spawn suspend to create
+    the process in a suspended state.
+
+USAGE:
+    spawn [-t <target> --- <args> | suspend -t <target>]
+
+ARGUMENTS:
+    -t                  Executable path or command line (--target).
+    ---                 Optional text after separator
+
+EXAMPLES:
+    spawn -t cmd.exe --- /c whoami
+    spawn -t C:\Windows\System32\cmd.exe --- /c ipconfig
+    spawn suspend -t C:\Windows\System32\notepad.exe
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    spawn -w 90 -t cmd.exe --- /c hostname

@@ -1,0 +1,14 @@
+ABOUT
+    List Windows firewall rules
+
+USAGE:
+    bof-list-firewall-rules
+EXAMPLES:
+    bof-list-firewall-rules
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-list-firewall-rules -w 60
+    bof-list-firewall-rules -bg

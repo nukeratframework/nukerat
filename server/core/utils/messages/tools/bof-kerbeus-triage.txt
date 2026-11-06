@@ -1,0 +1,13 @@
+ABOUT
+    List Kerberos tickets in table format.
+USAGE:
+    bof-kerbeus-triage --- [/luid:LOGINID] [/user:USER] [/service:SERVICE] [/client:CLIENT]
+
+EXAMPLES:
+    bof-kerbeus-triage
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-kerbeus-triage -w 60 --- [/luid:LOGINID] [/user:USER] [/service:SERVICE] [/client:CLIENT]

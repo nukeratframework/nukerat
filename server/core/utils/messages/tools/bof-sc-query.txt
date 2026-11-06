@@ -1,0 +1,14 @@
+ABOUT
+    Sc query implementation in BOF
+USAGE:
+    bof-sc-query --- [opt:service name] [opt:server]
+
+EXAMPLES:
+    bof-sc-query    bof-sc-query --- Spooler
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-sc-query -w 60 --- Spooler

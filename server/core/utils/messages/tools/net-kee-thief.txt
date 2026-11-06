@@ -1,0 +1,12 @@
+ABOUT
+    Extracts KeePass 2.x key material from memory. Attaches to a running KeePass.exe process using
+    CLR MD, locates KeePassLib.PwDatabase and CompositeKey objects on the heap, and decrypts
+    RtlEncryptMemory-protected key blobs via injected shellcode.
+
+USAGE:
+    net-kee-thief
+EXAMPLES:
+    net-kee-thief
+NOTES:
+    Requires a running KeePass.exe process with an open database. Enumerates all KeePass processes
+    and outputs key type, database path, encrypted blobs, and decrypted plaintext key material.

@@ -1,0 +1,22 @@
+ABOUT
+    Adds a user to a local group by SAMR. Requires administrator privileges.
+    Do not use on Active Directory.
+USAGE:
+    bof-add-user-by-samr --- <username> <password> [groupName]
+
+ARGUMENTS:
+    username            Name of the user to create
+    password            Password for the new user
+    groupName           Local group to add the user to (default: Administrators)
+
+EXAMPLES:
+    bof-add-user-by-samr --- sysadmin p@ssw0rd
+    bof-add-user-by-samr --- sysadmin p@ssw0rd Administrators
+    bof-add-user-by-samr --- sysadmin p@ssw0rd "Remote Desktop Users"
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-add-user-by-samr -w 60 --- sysadmin p@ssw0rd

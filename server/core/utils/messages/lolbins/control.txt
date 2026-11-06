@@ -1,0 +1,19 @@
+ABOUT
+    Control Panel item launcher.
+    Loads DLLs from ADS paths or executes .cpl (DLL) applets for AWL
+    bypass.
+
+USAGE:
+    control.exe {PATH_ABSOLUTE}:evil.dll
+    control.exe {PATH_ABSOLUTE:.cpl}
+
+EXAMPLES:
+    control.exe {PATH_ABSOLUTE}:evil.dll
+    control.exe {PATH_ABSOLUTE:.cpl}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    control.exe {PATH_ABSOLUTE}:evil.dll

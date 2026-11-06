@@ -1,0 +1,28 @@
+ABOUT
+    Injects shellcode into a process by PID. The payload is the shellcode
+    build of the implant (produced at compile time). Windows only.
+
+USAGE:
+    migrate <pid> [--alloc <mode>] [--encoder <name>] [--stomp-dll <dllname>]
+
+ARGUMENTS:
+    <pid>               Target process ID (positional).
+    --alloc             section or stomp. Omit for vanilla.
+    --encoder           sgn or supernova on the server.
+    --stomp-dll         DLL name when alloc is stomp.
+
+ALLOC:
+    section             Shared section mapped RX in the target.
+    stomp               Payload in a module code cave. --stomp-dll picks the DLL if scan fails.
+
+EXAMPLES:
+    migrate 4919
+    migrate 4919 --alloc section
+    migrate 4919 --alloc stomp --stomp-dll amsi.dll
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    migrate -w 120 4919 --alloc section

@@ -1,0 +1,17 @@
+ABOUT
+    Queries Windows Security Center health status, including Anti Virus, Firewall, Anti Spyware,
+    WSC Service, Auto Update, Internet Settings, and User Account Control.
+
+USAGE:
+    bof-wsc-status
+
+EXAMPLES:
+    bof-wsc-status
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-wsc-status -w 60
+    bof-wsc-status -bg

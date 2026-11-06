@@ -1,0 +1,14 @@
+ABOUT
+    (linux) List mount points.
+
+USAGE:
+    bof-lin-mount
+EXAMPLES:
+    bof-lin-mount
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-mount -w 60
+    bof-lin-mount -bg

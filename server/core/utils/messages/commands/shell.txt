@@ -1,0 +1,20 @@
+ABOUT
+    Run a command through the system shell and return stdout.
+
+USAGE:
+    shell <commandline>
+
+ARGUMENTS:
+    <command>           Command line passed to the shell.
+
+EXAMPLES:
+    shell whoami
+    shell dir C:\Users
+    shell ps aux
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    shell -w 60 ping 127.0.0.1 -n 4

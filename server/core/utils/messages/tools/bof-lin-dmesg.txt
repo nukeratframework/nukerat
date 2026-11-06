@@ -1,0 +1,17 @@
+ABOUT
+    (linux) Print kernel ring buffer.
+
+USAGE:
+    bof-lin-dmesg --- [lines]
+
+ARGUMENTS:
+    lines               Number of lines to show (default: all)
+
+EXAMPLES:
+    bof-lin-dmesg
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-dmesg -w 60 --- [lines]

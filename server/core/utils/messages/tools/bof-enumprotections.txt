@@ -1,0 +1,16 @@
+ABOUT
+    Enumerates system processes and reports protection level, service
+    relation, user, session ID, and file path. Useful for identifying
+    unprotected third party service processes that may be candidates for DLL
+    hijacking.
+USAGE:
+    bof-enumprotections
+EXAMPLES:
+    bof-enumprotections
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-enumprotections -w 60
+    bof-enumprotections -bg

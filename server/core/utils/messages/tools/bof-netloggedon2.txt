@@ -1,0 +1,14 @@
+ABOUT
+    Modified version of `netloggedon` that supports BOFHound
+
+USAGE:
+    bof-netloggedon2 --- [opt:hostname]
+
+EXAMPLES:
+    bof-netloggedon2
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-netloggedon2 -w 60 --- [opt:hostname]

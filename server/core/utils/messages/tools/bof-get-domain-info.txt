@@ -1,0 +1,18 @@
+ABOUT
+    Returns information on the current domain and domain controller, including domain
+    forest name, domain name, domain controller name, domain controller address, and
+    DC site name.
+
+USAGE:
+    bof-get-domain-info
+
+EXAMPLES:
+    bof-get-domain-info
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-get-domain-info -w 60
+    bof-get-domain-info -bg

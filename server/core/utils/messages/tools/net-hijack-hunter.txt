@@ -1,0 +1,9 @@
+ABOUT
+    Parses a PE header to find linked DLLs vulnerable to hijacking with abuse techniques for each.
+
+USAGE:
+    net-hijack-hunter --- <pe_path> [-quiet]
+
+EXAMPLES:
+    net-hijack-hunter --- C:\Program Files\App\app.exe
+    net-hijack-hunter --- app.exe -quiet

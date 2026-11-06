@@ -1,0 +1,12 @@
+ABOUT
+    Check current user activity based on the user's last input. Returns the time in format HH:MM:SS.
+
+USAGE:
+    bof-idle-time --- (no arguments)
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-idle-time -w 60 --- (no arguments)

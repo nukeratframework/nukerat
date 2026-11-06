@@ -1,0 +1,106 @@
+------------------------------------------------------------------------------------
+Proxy
+------------------------------------------------------------------------------------
+
+lol-cl-invocation                       PowerShell Aero diagnostic script whose
+                                        SyncInvoke proxies execution of
+                                        commands.
+
+lol-cl-mutexverifiers                   Diagnostic script that runs PowerShell
+                                        or other payloads via
+                                        runAfterCancelProcess.
+
+lol-conhost                             Console host used as parent to
+                                        proxy-run command lines, optionally
+                                        headless.
+
+lol-customshellhost                     Kiosk shell host that runs explorer.exe
+                                        from the current folder for proxy
+                                        execution.
+
+lol-dbgsrv                              Remote debugging process server that
+                                        runs commands or opens reverse debug
+                                        channels.
+
+lol-devtoolslauncher                    VS/VS Code launcher that runs arbitrary
+                                        binaries through DeveloperToolsSvc.
+
+lol-devtunnels                          Port-forwarding CLI to expose local
+                                        services for download, upload, or data
+                                        exfiltration.
+
+lol-dotnet-counters                     .NET diagnostics tool that launches a
+                                        child EXE while collecting performance
+                                        counters.
+
+lol-dotnet-trace                        .NET trace collector that spawns a
+                                        target process under a legitimate
+                                        diagnostic parent.
+
+lol-dxcap                               DirectX capture/debugger that spawns
+                                        EXEs or a renamed xperf.exe for trusted
+                                        proxy execution.
+
+lol-launch-vsdevshell                   VS Dev Shell launcher that proxies
+                                        execution through Developer PowerShell
+                                        Enter-VsDevShell.
+
+lol-manage-bde                          BitLocker management script abused for
+                                        proxy execution of planted binaries.
+
+lol-mscopilot-proxy                     Copilot proxy launcher for
+                                        trusted-parent execution of arbitrary
+                                        processes.
+
+lol-msedge-proxy                        Edge proxy binary to download files or
+                                        proxy-launch commands with a trusted
+                                        parent.
+
+lol-msedgewebview2                      Edge WebView2 host abused as a proxy to
+                                        execute arbitrary binaries.
+
+lol-openconsole                         Windows Terminal console host used as a
+                                        proxy binary to launch other
+                                        executables.
+
+lol-scriptrunner                        Proxy runner that launches executables
+                                        or scripts under a signed Microsoft
+                                        binary.
+
+lol-visualuiaverifynative               Windows SDK UI Automation tester for
+                                        proxy execution under a signed binary.
+
+lol-vsdiagnostics                       Visual Studio diagnostics collector
+                                        that spawns processes as a trusted
+                                        parent.
+
+lol-vsjitdebugger                       Visual Studio JIT debugger that
+                                        launches binaries under a trusted
+                                        parent.
+
+lol-vstest-console                      VSTest runner that loads test DLLs and
+                                        proxy-executes payloads past AWL.
+
+lol-wfmformat                           Message analyzer formatter that
+                                        proxy-runs executables from its working
+                                        directory.
+
+lol-winrm                               WinRM VBS script for remote management,
+                                        XSL transforms, and proxy script
+                                        execution.
+
+lol-wlrmdr                              Logon reminder executable used as a
+                                        proxy parent to run arbitrary binaries.
+
+lol-wt                                  Windows Terminal host that
+                                        proxy-launches executables under a
+                                        trusted parent.
+
+lol-xbootmgr                            Windows Performance Toolkit tool that
+                                        starts traces and proxy-spawns
+                                        executables.
+
+lol-xbootmgrsleep                       WPT sleep/resume tracing binary for
+                                        proxy execution during performance
+                                        capture.
+

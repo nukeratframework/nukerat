@@ -1,0 +1,9 @@
+ABOUT
+    Searches for a column name across tables in a database.
+
+USAGE:
+    bof-sql-search --- <server> [database] [linkedserver] [impersonate] <keyword>
+
+EXAMPLES:
+    bof-sql-search --- SQL01 master password
+    bof-sql-search --- SQL01 AdventureWorks LINKED01 dbo cred

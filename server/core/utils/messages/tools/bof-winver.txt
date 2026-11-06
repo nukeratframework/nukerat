@@ -1,0 +1,14 @@
+ABOUT
+    Displays the version of Windows running, the build number, and patch
+    release (Update Build Revision).
+USAGE:
+    bof-winver
+EXAMPLES:
+    bof-winver
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-winver -w 60
+    bof-winver -bg

@@ -1,0 +1,55 @@
+ABOUT
+    Windows native CrackMapExec alternative. Network penetration testing swiss army
+    knife supporting Kerberos and NTLM authentication over CIM, Reg32, SMB, WinRM,
+    LDAP, and domain spraying.
+
+USAGE:
+    net-sharp-map-exec --- <auth> <protocol> [options]
+
+AUTHENTICATION:
+    ntlm              NTLM hash or password authentication
+    kerberos          Kerberos ticket or password authentication
+    kerbspray         Kerberos password spraying
+    tgtdeleg          Create TGT for current user context
+
+PROTOCOLS:
+    cim               CIM/WMI remote management (plaintext password or /impersonate)
+    reg32             Remote registry (32 bit)
+    smb               SMB share enumeration and access checks
+    winrm             WinRM remote execution and data exfiltration
+    ldap              LDAP domain queries
+    domain            Domain level operations
+
+COMMON OPTIONS:
+    /user:USER        Username
+    /password:PASS    Password
+    /ntlm:HASH        NTLM hash
+    /domain:DOMAIN    Domain name
+    /dc:DC            Domain controller
+    /computername:TARGET  Target hostname or IP
+    /ticket:FILE      Kerberos ticket (.kirbi)
+    /impersonate      Use current token impersonation
+
+CIM MODULES:
+    /m:enable_winrm, /m:disable_winrm, /m:disable_pslockdown, /m:disable_pslogging
+    /m:check_pslockdown, /m:check_pslogging
+
+SMB MODULES:
+    /m:shares         Scan for accessible SMB shares
+
+WINRM MODULES:
+    /m:exec /a:COMMAND          Remote command execution
+    /m:exec /a:FILE /system      Execute as SYSTEM
+    /m:comsvcs                    Dump and parse LSASS
+    /m:secrets                    Dump SAM, LSA, and DPAPI blobs
+    /m:assembly /p:FILE /a:ARGS   Execute local C# assembly in memory
+    /m:download /path:SRC /destination:DST
+    /m:upload /path:SRC /destination:DST
+
+LDAP MODULES:
+    /m:spraydata      Download user and password policy for spraying
+
+EXAMPLES:
+    net-sharp-map-exec --- ntlm smb /user:admin /ntlm:HASH /domain:CORP /computername:192.168.1.10 /m:shares
+    net-sharp-map-exec --- kerberos winrm /user:admin /password:Pass /domain:CORP /dc:dc01 /computername:host /m:exec /a:whoami
+    net-sharp-map-exec --- kerbspray /users:users.txt /passwords:pass.txt /domain:CORP /dc:dc01

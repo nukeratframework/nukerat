@@ -1,0 +1,21 @@
+ABOUT
+    Recursively enumerate a registry key starting at path. Supports remote computers.
+
+USAGE:
+    bof-reg-query-recursive --- [opt:hostname] <hive> <path>
+
+ARGUMENTS:
+    hostname    Optional remote computer name
+    hive        Registry hive: HKLM, HKCU, HKU, or HKCR
+    path        Registry key path to enumerate recursively
+
+EXAMPLES:
+    bof-reg-query-recursive --- HKLM Software\\Microsoft\\Windows\\CurrentVersion
+    bof-reg-query-recursive --- dc01 HKLM System\\CurrentControlSet\\Services
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-reg-query-recursive -w 60 --- HKLM Software\\Microsoft\\Windows\\CurrentVersion

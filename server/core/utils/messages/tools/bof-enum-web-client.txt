@@ -1,0 +1,12 @@
+ABOUT
+    Enumerate hosts that have the WebClient service running using a list with predefined hostnames or IP addresses. The list is loaded from your own attacker system.
+
+USAGE:
+    bof-enum-web-client --- <hostfile> [debug]
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-enum-web-client -w 60 --- <hostfile> [debug]

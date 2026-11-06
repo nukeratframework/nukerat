@@ -1,0 +1,17 @@
+ABOUT
+    Command-line packet capture utility from Microsoft Network Monitor
+    3.x. LOLBAS documents capture network traffic on windows to collect
+    sensitive data.
+
+USAGE:
+    nmcap.exe /network * /capture /file {PATH_ABSOLUTE:.cap}
+
+EXAMPLES:
+    nmcap.exe /network * /capture /file {PATH_ABSOLUTE:.cap}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    nmcap.exe /network * /capture /file {PATH_ABSOLUTE:.cap}

@@ -1,0 +1,12 @@
+ABOUT
+    Delete a local computer certificate from a specified store based on its unique thumbprint.
+
+USAGE:
+    bof-del-local-cert --- <store> <thumbprint>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-del-local-cert -w 60 --- <store> <thumbprint>

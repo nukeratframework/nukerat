@@ -1,0 +1,12 @@
+ABOUT
+    Decrypts AES encrypted Farmer log files written when Farmer output encryption is enabled.
+
+USAGE:
+    net-harvest-crop --- <encryptedfile> <key>
+
+ARGUMENTS:
+    encryptedfile    Path to the encrypted Farmer log file
+    key              Decryption key (default Farmer key is farmer)
+
+EXAMPLES:
+    net-harvest-crop --- C:\Windows\Temp\test.tmp farmer

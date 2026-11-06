@@ -1,0 +1,21 @@
+ABOUT
+    Abuses default Active Directory machine account quota (ms-DS-
+    MachineAccountQuota) to add rogue machine accounts for follow on
+    attacks.
+USAGE:
+    bof-add-machine-account --- <Computername> [Password]
+
+ARGUMENTS:
+    Computername        Computer account name (does not have to end with $)
+    Password            Optional. Random password generated if omitted
+
+EXAMPLES:
+    bof-add-machine-account --- DCPWN
+    bof-add-machine-account --- DCPWN Welcome123
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-add-machine-account -w 60 --- DCPWN

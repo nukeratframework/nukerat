@@ -1,0 +1,16 @@
+ABOUT
+    Windows Logon Reminder executable. LOLBAS documents use wlrmdr
+    as a proxy binary to evade defensive countermeasures.
+
+USAGE:
+    wlrmdr.exe -s 3600 -f 0 -t _ -m _ -a 11 -u {PATH:.exe}
+
+EXAMPLES:
+    wlrmdr.exe -s 3600 -f 0 -t _ -m _ -a 11 -u {PATH:.exe}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    wlrmdr.exe -s 3600 -f 0 -t _ -m _ -a 11 -u {PATH:.exe}

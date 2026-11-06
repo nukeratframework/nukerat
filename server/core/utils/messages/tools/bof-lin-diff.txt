@@ -1,0 +1,19 @@
+ABOUT
+    (linux) Compare two files.
+
+USAGE:
+    bof-lin-diff --- <file1> <file2>
+
+ARGUMENTS:
+    file1               First file
+    file2               Second file
+
+EXAMPLES:
+    bof-lin-diff --- <file1> <file2>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-diff -w 60 --- <file1> <file2>

@@ -1,0 +1,25 @@
+ABOUT
+    Create or set a registry value on local or remote host.
+
+USAGE:
+    bof-reg-set --- <Hive> <Path> <ValueName> <Type> <Data>
+    bof-reg-set --host <Hostname> --- <Hive> <Path> <ValueName> <Type> <Data>
+
+ARGUMENTS:
+
+    Hive        Registry hive as integer: HKCR=0 HKCU=1 HKLM=2 HKU=3 HKCC=5
+    Path        Registry subkey path (e.g. Software\MyApp)
+    ValueName   Value name to create or set
+    Type        Registry value type as integer (REG_SZ=1 REG_DWORD=4 REG_QWORD=11)
+    Data        Value data (string for REG_SZ, number for REG_DWORD)
+
+EXAMPLES:
+    bof-reg-set --- 1 Software\NukeratRecTest SetVal 1 benchtest
+    bof-reg-set --- 1 Software\NukeratRecTest DwordVal 4 42
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-reg-set -w 60 --- 1 Software\MyApp TestVal 1 hello

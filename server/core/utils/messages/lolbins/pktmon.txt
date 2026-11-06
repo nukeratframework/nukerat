@@ -1,0 +1,20 @@
+ABOUT
+    Capture Network Packets on the windows 10 with October 2018
+    Update or later. LOLBAS documents use this a built in network
+    sniffer on windows 10 to capture senstive traffic and look for
+    interesting traffic such as telent or FTP.
+
+USAGE:
+    pktmon.exe start --etw
+    pktmon.exe filter add -p 445
+
+EXAMPLES:
+    pktmon.exe start --etw
+    pktmon.exe filter add -p 445
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    pktmon.exe start --etw

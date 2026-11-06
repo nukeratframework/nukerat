@@ -1,0 +1,14 @@
+ABOUT
+    List all domain users. Supports standard LDAP (389) with signing/sealing
+    and LDAPS (636).
+USAGE:
+    bof-get-users --- [-ou {path}] [-dc {ip}] [--ldaps]
+
+EXAMPLES:
+    bof-get-users
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-get-users -w 60 --- [-ou {path}] [-dc {ip}] [--ldaps]

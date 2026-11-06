@@ -1,0 +1,15 @@
+ABOUT
+    Add a user to a group.
+
+USAGE:
+    bof-adduser-to-group --- <domain|remote|local> <user> <group> [host]
+
+EXAMPLES:
+    bof-adduser-to-group --- domain vendetta "Domain Admins" dc.corp.local
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-adduser-to-group -w 60 --- domain vendetta "Domain Admins" dc.corp.local

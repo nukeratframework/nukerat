@@ -1,0 +1,16 @@
+ABOUT
+    (linux) Show ARP table from /proc/net/arp with hostname resolution.
+
+USAGE:
+    bof-lin-arp
+EXAMPLES:
+    bof-lin-arp
+ERRORS:
+    arp: cannot read /proc/net/arp
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-arp -w 60
+    bof-lin-arp -bg

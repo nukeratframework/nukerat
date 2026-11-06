@@ -1,0 +1,18 @@
+ABOUT
+    A Windows SDK binary for manual and automated testing of Microsoft
+    UI Automation implementation and controls. LOLBAS documents
+    executing proxied payload with Microsoft-signed binary to bypass
+    WDAC policies.
+
+USAGE:
+    VisualUiaVerifyNative.exe
+
+EXAMPLES:
+    VisualUiaVerifyNative.exe
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    VisualUiaVerifyNative.exe

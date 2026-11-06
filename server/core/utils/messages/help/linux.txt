@@ -1,0 +1,92 @@
+-------------------------------------------------------------------------------------------------------------------------
+GENERAL
+-------------------------------------------------------------------------------------------------------------------------
+
+    (Command)     (Usage)                                                  (Description)
+
+    help          help                                                     Show this help message
+                  help arp                                                 Show command details and examples
+                  help -os [linux|mac]                                     Show OS compatible commands
+
+    config        config                                                   View implant configuration
+    delay         delay 4                                                  Set implant delay in seconds
+
+    kill          kill                                                     Kill implant process
+
+    tasks         tasks                                                    Show running tasks IDs
+                  tasks kill 3912                                          Kill a running task by ID
+
+-------------------------------------------------------------------------------------------------------------------------
+FILESYSTEM
+-------------------------------------------------------------------------------------------------------------------------
+
+    pwd           pwd                                                      Show current directory
+    cd            cd /home/user                                            Change directory
+    ls            ls /etc                                                  List files and directories
+    cat           cat /etc/hosts                                           Display file contents
+    preview       preview /etc/hosts --size-limit 4096                       Read first bytes of a file
+    fileinfo      fileinfo /etc/hosts                                        File metadata (size, times, attributes)
+    acl           acl /etc/hosts                                           Owner, group, and ACL entries for path
+
+    echo          echo hello world                                         Print text to output
+
+    cp            cp /tmp/a.txt /tmp/b.txt                                 Copy file
+    mv            mv /tmp/a /tmp/b                                         Move file
+    rm            rm /tmp/a.txt                                             Delete file
+    ren           ren /tmp/a /tmp/b                                        Rename file
+    mkdir         mkdir /tmp/newfolder                                     Create directory
+    rmdir         rmdir /tmp/newfolder                                     Remove directory
+    attrib        attrib /tmp/a.txt                                        View or change file attributes
+    set           set                                                      View or set environment variables
+    download      download -f C:/file.exe -o file.exe                      Download a file from the target
+    search        search --path /home --content password                   Search file contents
+
+-------------------------------------------------------------------------------------------------------------------------
+RECOGNITION
+-------------------------------------------------------------------------------------------------------------------------
+
+    whoami        whoami                                                   Current user info
+    env           env                                                      List all environment variables
+    tasklist      tasklist ROOT\CIMV2                                      Running processes via WMI
+    ifconfig      ifconfig                                                 Network adapter configuration
+    netstat       netstat TCP                                              Active connections
+    portscan      portscan --target 192.168.1.100                          Port scan on the implant
+
+-------------------------------------------------------------------------------------------------------------------------
+EXECUTION
+-------------------------------------------------------------------------------------------------------------------------
+
+    shell         shell whoami                                             Execute shell command
+    spawn         spawn -t /bin/sh --- -c whoami                           Spawn new process
+    shellcode     shellcode -f file.bin                                    Execute raw shellcode
+    bof           bof -f file.o --- <args>                                 Execute built-in BOF
+    load-so       load-so -f file.so                                       Load shared object into memory
+
+-------------------------------------------------------------------------------------------------------------------------
+PIVOTING
+-------------------------------------------------------------------------------------------------------------------------
+
+    relay         relay                                                                         Show relays
+                  relay create -c tcp -l 8888 -t [implant|server]://10.1.1.5:9090  [--tls]      Create TCP relay
+                  relay delete --id 445                                                         Remove relay by id
+
+    [!] The SOCKS5 and port forwarding options are available in the menu option: NukeRat > Network.
+
+-------------------------------------------------------------------------------------------------------------------------
+UTILITIES
+-------------------------------------------------------------------------------------------------------------------------
+
+    keylogger     keylogger [start|stop] --method [keystate|boardstate]    Start/Stop keylogger in background
+
+    screenshot    screenshot                                               Take a single screenshot
+                  screenshot [start|stop] --delay 15 (seconds)             Start/Stop screenshot loop
+
+-------------------------------------------------------------------------------------------------------------------------
+MODIFIERS
+-------------------------------------------------------------------------------------------------------------------------
+
+    -bg           shell -bg dir                                            Run in background without waiting for output
+    -w / --wait   shell -w 30 ping 127.0.0.1 -n 10                         Set a custom maximum wait time (seconds)
+    prefix        prefix                                                   Show current command prefix
+                  prefix powershell                                        Set a sticky prefix prepended to every command
+                  prefix clear                                             Clear active prefix

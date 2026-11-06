@@ -1,0 +1,20 @@
+ABOUT
+    Lists all open handles in the specified process.
+
+USAGE:
+    bof-process-list-handles --- <PID>
+
+ARGUMENTS:
+
+    PID    Target process ID
+
+EXAMPLES:
+
+    bof-process-list-handles --- 1234
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-process-list-handles -w 60 --- 1234

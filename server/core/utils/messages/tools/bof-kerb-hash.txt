@@ -1,0 +1,21 @@
+ABOUT
+    Hashes passwords to Kerberos keys: rc4_hmac, aes128_cts_hmac_sha1,
+    aes256_cts_hmac_sha1, des_cbc_md5.
+USAGE:
+    bof-kerb-hash --- <password> <username> <domain.fqdn>
+
+ARGUMENTS:
+    password            Password to hash
+    username            User or computer account (example: SERVER$)
+    domain.fqdn         Domain FQDN
+
+EXAMPLES:
+    bof-kerb-hash --- Welcome123 adminuser domain.local
+    bof-kerb-hash --- Welcome123 SERVER$ domain.local
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-kerb-hash -w 60 --- Welcome123 adminuser domain.local

@@ -1,0 +1,18 @@
+ABOUT
+    .NET diagnostic tool for collecting runtime traces from .NET
+    applications. Installed via 'dotnet tool install --global
+    dotnet-trace' (.NET SDK required). LOLBAS documents executing a
+    child process under the guise of a legitimate .NET diagnostic tool.
+
+USAGE:
+    dotnet-trace.exe collect --duration 00:00:01 -- {PATH:.exe}
+
+EXAMPLES:
+    dotnet-trace.exe collect --duration 00:00:01 -- {PATH:.exe}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    dotnet-trace.exe collect --duration 00:00:01 -- {PATH:.exe}

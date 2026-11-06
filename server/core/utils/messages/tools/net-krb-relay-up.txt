@@ -1,0 +1,55 @@
+ABOUT
+    Wrapper around KrbRelay and Rubeus that automates local privilege escalation in domain
+    environments where LDAP signing is not enforced. Coerces machine account Kerberos auth,
+    relays to LDAP (or ADCS), establishes a control primitive (RBCD, Shadow Credentials, or
+    ADCS), and spawns a SYSTEM service.
+
+USAGE:
+    net-krb-relay-up --- <full | relay | spawn | krbscm> [options]
+
+PHASES:
+    full     Perform the full attack chain (relay + spawn). Tool must be on disk.
+    relay    Phase 1: coerce auth, relay to LDAP/ADCS, create control primitive
+    spawn    Phase 2: obtain service ticket and create a SYSTEM service
+    krbscm   Create a SYSTEM service using the currently loaded Kerberos service ticket
+
+RELAY OPTIONS:
+    -m <rbcd|shadowcred>              Abuse method after relay (default: rbcd)
+    -p <port>                         COM server port (default: 12345)
+    -cls <clsid>                      CLSID for auth coercion (default: 90f18417-f0f1-484e-9d3c-59dceee5dbd8)
+    -c                                Create new computer account for RBCD
+    -cn <name>                        Attacker-owned computer account (default: KRBRELAYUP$)
+    -cp <password>                    Computer account password
+    -ch <nthash>                      Computer account NT hash
+    -f                                Force clear msDS-KeyCredentialLink (ShadowCred)
+    -ca <endpoint>                    CA endpoint FQDN (ADCS method)
+    -https                            Use HTTPS for CA endpoint
+    -cet <template>                   Certificate template (default: Machine)
+
+SPAWN OPTIONS:
+    -m <rbcd|shadowcred>              Method used in relay phase (default: rbcd)
+    -i <user>                         User to impersonate (default: Administrator)
+    -s <name>                         Service name (default: KrbSCM)
+    -sc <command>                     Service binPath (default: spawn cmd.exe as SYSTEM)
+    -cn <name>                        RBCD computer account name
+    -cp <password>                    RBCD computer account password
+    -ch <nthash>                      RBCD computer account NT hash
+    -ce <cert>                        Base64 certificate or path (ShadowCred/ADCS)
+    -cep <password>                   Certificate password
+
+KRBSCM OPTIONS:
+    -s <name>                         Service name (default: KrbSCM)
+    -sc <command>                     Service binPath
+
+GENERAL OPTIONS:
+    -d <domain>                       Domain FQDN
+    -dc <dc>                          Domain controller FQDN
+    -ssl                              Use LDAP over SSL
+    -n                                Use CreateNetOnly instead of PTT
+    -v                                Verbose output
+
+EXAMPLES:
+    net-krb-relay-up --- full -d corp.local -c -cn KRBRELAYUP$
+    net-krb-relay-up --- relay -d corp.local -m shadowcred
+    net-krb-relay-up --- spawn -d corp.local -cn KRBRELAYUP$ -cp Password123! -i Administrator
+    net-krb-relay-up --- krbscm -s KrbSCM -sc "cmd.exe /c whoami"

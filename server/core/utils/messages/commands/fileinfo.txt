@@ -1,0 +1,20 @@
+ABOUT
+    Show metadata for a file or directory: type, size, attribute flags, and created,
+    accessed, and modified times.
+
+USAGE:
+    fileinfo <path>
+
+ARGUMENTS:
+    <path>              File or folder.
+
+EXAMPLES:
+    fileinfo file.exe
+    fileinfo C:\ProgramData
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    fileinfo -w 30 C:\Windows\notepad.exe

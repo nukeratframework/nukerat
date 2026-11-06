@@ -1,0 +1,11 @@
+ABOUT
+    Set the callback interval in seconds.
+
+USAGE:
+    delay <seconds>
+
+ARGUMENTS:
+    <seconds>           Callback interval.
+
+EXAMPLES:
+    delay 4

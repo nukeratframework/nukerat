@@ -1,0 +1,9 @@
+ABOUT
+    Compresses a file/directory and encrypts the ZIP with AES256 CFB. Clears key from memory with RtlZeroMemory.
+
+USAGE:
+    net-encrypted-zip --- encrypt <path> <key> | decrypt <path> <key>
+
+EXAMPLES:
+    net-encrypted-zip --- encrypt C:\data mykey
+    net-encrypted-zip --- decrypt C:\out.zip.enc mykey

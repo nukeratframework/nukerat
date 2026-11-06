@@ -1,0 +1,13 @@
+ABOUT
+    Checks for hijackable PATH entries.
+USAGE:
+    bof-privkit-hijack-check --- (no arguments)
+
+EXAMPLES:
+    bof-privkit-hijack-check
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-privkit-hijack-check -w 60 --- (no arguments)

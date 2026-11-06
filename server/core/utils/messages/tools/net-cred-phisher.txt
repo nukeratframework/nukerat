@@ -1,0 +1,8 @@
+ABOUT
+    Prompts the current user for credentials using CredUIPromptForWindowsCredentials.
+
+USAGE:
+    net-cred-phisher --- <message>
+
+EXAMPLES:
+    net-cred-phisher --- "Windows has lost connection to Outlook"

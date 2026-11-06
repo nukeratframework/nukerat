@@ -1,0 +1,17 @@
+ABOUT
+    Just-In-Time (JIT) debugger included with Visual Studio. LOLBAS
+    documents execution of local PE file as a subprocess of
+    Vsjitdebugger.exe.
+
+USAGE:
+    Vsjitdebugger.exe {PATH:.exe}
+
+EXAMPLES:
+    Vsjitdebugger.exe {PATH:.exe}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    Vsjitdebugger.exe {PATH:.exe}

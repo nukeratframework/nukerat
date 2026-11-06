@@ -1,0 +1,14 @@
+ABOUT
+    Get the DPAPI_SYSTEM key and bootkey
+
+USAGE:
+    bof-get-dpapi-system
+EXAMPLES:
+    bof-get-dpapi-system
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-get-dpapi-system -w 60
+    bof-get-dpapi-system -bg

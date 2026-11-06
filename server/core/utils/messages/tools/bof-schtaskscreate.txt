@@ -1,0 +1,22 @@
+ABOUT
+    Creates or updates a scheduled task from an XML task definition file.
+
+USAGE:
+    bof-schtaskscreate --- [HOSTNAME] <USERNAME> <PASSWORD> <TASKPATH> <TASKXML> <USERMODE> <FORCEMODE>
+
+    TASKXML is a path on the Nukerat server to the .xml file (read and sent as a blob).
+    USERMODE: 0=USER, 1=SYSTEM, 2=XML, 3=PASSWORD
+    FORCEMODE: 0=CREATE, 1=UPDATE
+
+EXAMPLES:
+
+    bof-schtaskscreate -w 40 --- "" "" "" \NukeratBenchXmlCreate /home/gusta/Documents/nr/nukerat/bench/payloads/nukerat_schtask_create.xml 0 0
+
+    bof-schtasks-run -w 40 --- localhost \NukeratBenchXmlCreate
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-schtaskscreate -w 60 --- "" "" "" \MyTask /path/on/server/task.xml 0 0

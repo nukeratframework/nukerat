@@ -1,0 +1,17 @@
+ABOUT
+    Verifies UI accessibility requirements. LOLBAS covers local
+    execution of managed code from assembly DLL and local execution of
+    managed code to bypass AppLocker.
+
+USAGE:
+    AccCheckConsole.exe -window "Untitled - Notepad" {PATH_ABSOLUTE:.dll}
+
+EXAMPLES:
+    AccCheckConsole.exe -window "Untitled - Notepad" {PATH_ABSOLUTE:.dll}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    AccCheckConsole.exe -window "Untitled - Notepad" {PATH_ABSOLUTE:.dll}

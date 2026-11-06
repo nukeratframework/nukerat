@@ -1,0 +1,15 @@
+ABOUT
+    Remove specific SPN. Supports standard LDAP (389) with signing/sealing
+    and LDAPS (636).
+USAGE:
+    bof-remove-spn --- {target} {spn} [-ou {path}] [-dc {ip}] [--ldaps]
+
+EXAMPLES:
+    bof-remove-spn --- {target} {spn} [-ou {path}] [-dc {ip}] [--ldaps]
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-remove-spn -w 60 --- {target} {spn} [-ou {path}] [-dc {ip}] [--ldaps]

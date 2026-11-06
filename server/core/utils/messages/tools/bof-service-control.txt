@@ -1,0 +1,30 @@
+ABOUT
+    Manages local Windows services via SCM: query (capped list or single service), create,
+    start, stop, delete, and configure failure actions. Elevated rights usually required
+    for changes.
+
+USAGE:
+    bof-service-control --- <subcommand> [arguments]
+
+SUBCOMMANDS:
+    query [service_name]                        List services or query one service
+    create <service_name> <bin_path> [display_name] [start_type] [service_type] [error_control]
+    start <service_name>
+    stop <service_name>
+    delete <service_name>
+    failure <service_name> <reset_seconds> [reboot_msg] [command] [actions]
+
+FAILURE ACTIONS:
+    Comma separated type:delay_ms pairs. Types: restart, reboot, run, none
+
+EXAMPLES:
+    bof-service-control --- query Spooler
+    bof-service-control --- create DemoSvc C:\Windows\Temp\demo.exe "Demo Service"
+    bof-service-control --- failure DemoSvc 86400 "" C:\Windows\Temp\recover.exe restart:5000,run:1000
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-service-control -w 60 --- query Spooler

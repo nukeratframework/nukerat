@@ -1,0 +1,20 @@
+ABOUT
+    Checks remote systems for a running Web Client (WebDAV) service by probing the DAV RPC
+    SERVICE named pipe. Does not require admin rights on the target but requires valid
+    credentials (no anonymous access).
+
+USAGE:
+    bof-get-webdav-status --- <hosts>
+
+ARGUMENTS:
+    hosts    Comma separated list of hostnames or IPs to scan
+
+EXAMPLES:
+    bof-get-webdav-status --- server01,server02
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-get-webdav-status -w 60 --- server01,server02

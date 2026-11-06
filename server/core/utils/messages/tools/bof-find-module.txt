@@ -1,0 +1,20 @@
+ABOUT
+    Enumerates processes for specific loaded modules (for example clr.dll,
+    winhttp.dll, amsi.dll) using direct system calls. Useful for selecting
+    opsec safe spawnto candidates.
+USAGE:
+    bof-find-module --- <module>
+
+ARGUMENTS:
+    module              Module name to search for (example: clr.dll)
+
+EXAMPLES:
+    bof-find-module --- clr.dll
+    bof-find-module --- winhttp.dll
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-find-module -w 60 --- clr.dll

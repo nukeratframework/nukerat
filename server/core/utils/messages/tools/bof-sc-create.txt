@@ -1,0 +1,16 @@
+ABOUT
+    Creates a new Windows service on the local or remote system.
+
+USAGE:
+    bof-sc-create --- <SVCNAME> <DISPLAYNAME> <BINPATH> <DESCRIPTION> <ERRORMODE> <STARTMODE> [TYPE] [HOSTNAME]
+
+EXAMPLES:
+
+    bof-sc-create --- MySvc "My Service" C:\svc.exe "desc" 0 2
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-sc-create -w 60 --- MySvc "My Service" C:\svc.exe "desc" 0 2

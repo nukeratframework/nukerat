@@ -1,0 +1,18 @@
+ABOUT
+    Counts the number of installed applications via the registry, de duplicates, and prints.
+    Applied to a large number of beacons, allows inference about a device based on app count
+    differences.
+
+USAGE:
+    bof-app-count
+
+EXAMPLES:
+    bof-app-count
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-app-count -w 60
+    bof-app-count -bg

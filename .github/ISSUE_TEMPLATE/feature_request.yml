@@ -1,0 +1,23 @@
+name: Submit a feature request
+description: Surface a feature or problem that you think should be solved
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the feature or problem you'd like to solve
+      description: A clear and concise description of what the feature or problem is.
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: How will it benefit NukeRat and its users?
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add any other context like screenshots or mockups are helpful, if applicable.

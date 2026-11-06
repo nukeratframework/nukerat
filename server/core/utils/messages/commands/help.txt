@@ -1,0 +1,14 @@
+ABOUT
+    Shows help for the available commands.
+
+USAGE:
+    help [<command>] [-os windows|linux|mac]
+
+ARGUMENTS:
+    -os                 linux or mac to filter command list.
+
+EXAMPLES:
+    help
+    help portscan
+    help -os linux
+    help -os mac

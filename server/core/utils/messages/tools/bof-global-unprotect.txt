@@ -1,0 +1,15 @@
+ABOUT
+    Locates, decrypts, and downloads GlobalProtect VPN configuration and HIP settings.
+
+USAGE:
+    bof-global-unprotect
+EXAMPLES:
+
+    bof-global-unprotect
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-global-unprotect -w 60
+    bof-global-unprotect -bg

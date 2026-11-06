@@ -1,0 +1,20 @@
+ABOUT
+    Change the working directory.
+    
+USAGE:
+    cd [<path>]
+
+ARGUMENTS:
+    <path>              Directory to enter. Omit to print cwd.
+
+EXAMPLES:
+    cd /home/user
+    cd C:\Users\Public
+    cd
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    cd -w 30 C:\Users\Public

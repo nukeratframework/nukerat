@@ -1,0 +1,15 @@
+ABOUT
+    Set a user password on local or remote host.
+
+USAGE:
+    bof-change-pass --- <hostname> <username> <password>
+
+EXAMPLES:
+    bof-change-pass --- dc.corp.local user NewP@ss
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-change-pass -w 60 --- dc.corp.local user NewP@ss

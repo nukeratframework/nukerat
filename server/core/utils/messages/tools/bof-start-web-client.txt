@@ -1,0 +1,15 @@
+ABOUT
+    Starts the WebClient service programmatically from user context using a
+    service trigger. Required for WebDAV based PetitPotam coercion on
+    systems where the service is not running.
+USAGE:
+    bof-start-web-client
+EXAMPLES:
+    bof-start-web-client
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-start-web-client -w 60
+    bof-start-web-client -bg

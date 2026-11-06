@@ -1,0 +1,14 @@
+ABOUT
+    Display Azure AD or Entra ID join information for the device.
+
+USAGE:
+    bof-aadjoininfo
+EXAMPLES:
+    bof-aadjoininfo
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-aadjoininfo -w 60
+    bof-aadjoininfo -bg

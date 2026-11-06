@@ -1,0 +1,9 @@
+ABOUT
+    Enumerates SQL agent status and jobs on a server.
+
+USAGE:
+    bof-sql-agentstatus --- <server> [database] [linkedserver] [impersonate]
+
+EXAMPLES:
+    bof-sql-agentstatus --- SQL01
+    bof-sql-agentstatus --- SQL01 master LINKED01 dbo

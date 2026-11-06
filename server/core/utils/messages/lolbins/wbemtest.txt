@@ -1,0 +1,16 @@
+ABOUT
+    WMI/WBEM Test Binary. LOLBAS documents execute arbitrary
+    commands through WMI classes.
+
+USAGE:
+    wbemtest.exe
+
+EXAMPLES:
+    wbemtest.exe
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    wbemtest.exe

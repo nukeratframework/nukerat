@@ -1,0 +1,15 @@
+ABOUT
+    Create a new user object. Supports standard LDAP (389) with
+    signing/sealing and LDAPS (636).
+USAGE:
+    bof-add-user --- {username} {password} [-ou {path}] [-dc {ip}] [--ldaps]
+
+EXAMPLES:
+    bof-add-user --- jane.doe Password123!
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-add-user -w 60 --- jane.doe Password123!

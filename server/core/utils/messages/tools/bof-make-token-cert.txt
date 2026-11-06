@@ -1,0 +1,15 @@
+ABOUT
+    Impersonate using a PFX certificate.
+
+USAGE:
+    bof-make-token-cert --- <cert_password> <pfx_bytes>
+
+EXAMPLES:
+    bof-make-token-cert --- MyCertPass <pfx_bytes>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-make-token-cert -w 60 --- MyCertPass <pfx_bytes>

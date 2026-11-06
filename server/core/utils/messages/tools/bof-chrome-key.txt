@@ -1,0 +1,15 @@
+ABOUT
+    Decrypts the legacy Chrome encrypted_key from Local State via DPAPI. Modern Chrome may fail.
+
+USAGE:
+    bof-chrome-key
+EXAMPLES:
+
+    bof-chrome-key
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-chrome-key -w 60
+    bof-chrome-key -bg

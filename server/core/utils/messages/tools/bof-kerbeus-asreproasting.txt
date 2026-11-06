@@ -1,0 +1,14 @@
+ABOUT
+    Request AS REP for users without Kerberos preauthentication.
+USAGE:
+    bof-kerbeus-asreproasting --- /user:USER [/dc:DC] [/domain:DOMAIN]
+
+EXAMPLES:
+    bof-kerbeus-asreproasting --- /user:svc_no_preauth /domain:corp.local
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-kerbeus-asreproasting -w 60 --- /user:svc_no_preauth /domain:corp.local

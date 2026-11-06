@@ -1,0 +1,27 @@
+ABOUT
+    Adds the specified user to the specified domain group.
+
+USAGE:
+    bof-addusertogroup --- <DOMAIN> <SERVER> <USERNAME> <GROUPNAME>
+
+ARGUMENTS:
+
+    DOMAIN      Domain for the account (empty for local)
+
+    SERVER      Target computer (empty for local)
+
+    USERNAME    User to add
+
+    GROUPNAME   Target group (domain groups only)
+
+EXAMPLES:
+
+    bof-addusertogroup --- sevenkingdoms "" benchuser01 BENCHGRP01
+    bof-addusertogroup --- CORP "" newuser "Domain Admins"
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-addusertogroup -w 60 --- sevenkingdoms "" benchuser01 BENCHGRP01

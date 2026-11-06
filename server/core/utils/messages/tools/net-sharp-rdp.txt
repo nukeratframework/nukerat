@@ -1,0 +1,26 @@
+ABOUT
+    RDP console application for authenticated remote command execution. Connects via
+    Remote Desktop Protocol and runs commands through the Windows Run dialog (Win+R).
+
+USAGE:
+    net-sharp-rdp --- computername=<target> command=<cmd> [options]
+
+OPTIONS:
+    computername    Target hostname or domain
+    command         Command or executable to run on target
+    username        Authentication username (domain\\user)
+    password        Authentication password
+    exec            Run as child of cmd or powershell
+    connectdrive    Map local drives for tsclient access
+    elevated        Elevated execution via winr or taskmgr
+    nla             Enable Network Level Authentication
+    takeover        Ask to take over existing logon session
+
+EXAMPLES:
+    net-sharp-rdp --- computername=target.domain command="C:\\Temp\\file.exe" username=domain\\user password=password
+    net-sharp-rdp --- computername=target.domain command="\\\\tsclient\\C\\Temp\\file.exe" username=domain\\user password=password connectdrive=true
+    net-sharp-rdp --- computername=target.domain command="C:\\Temp\\file.exe"
+
+NOTES:
+    If restricted admin mode is enabled, omit credentials to use current context.
+    Creates RunMRU registry artifact at HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\RunMRU.

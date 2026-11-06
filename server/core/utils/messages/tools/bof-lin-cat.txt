@@ -1,0 +1,18 @@
+ABOUT
+    (linux) Concatenate and print files.
+
+USAGE:
+    bof-lin-cat --- <target>
+
+ARGUMENTS:
+    target              File path(s)
+
+EXAMPLES:
+    bof-lin-cat --- <target>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-cat -w 60 --- <target>

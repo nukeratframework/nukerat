@@ -1,0 +1,18 @@
+ABOUT
+    Sends Windows toast notifications using borrowed Application User Model IDs.
+    Supports standard toasts and custom XML payloads with actions and protocol links.
+
+USAGE:
+    bof-toastnotify --- getaumid
+    bof-toastnotify --- sendtoast <aumid> <title> <body>
+    bof-toastnotify --- custom <aumid> <base64_xml>
+
+SUBCOMMANDS:
+    getaumid      Enumerate registered AUMIDs on the system
+    sendtoast     Send toast with title and body via ToastGeneric template
+    custom        Send toast from base64 encoded XML payload
+
+EXAMPLES:
+    bof-toastnotify --- getaumid
+    bof-toastnotify --- sendtoast MSEdge "Title" "Notification body"
+    bof-toastnotify --- custom MSEdge <base64_encoded_xml>

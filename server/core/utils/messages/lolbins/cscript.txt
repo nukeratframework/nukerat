@@ -1,0 +1,20 @@
+ABOUT
+    Windows Script Host for command-line scripts.
+    Executes VBScript stored in an alternate data stream via
+    //e:vbscript.
+
+USAGE:
+    cscript //e:vbscript {PATH_ABSOLUTE}:script.vbs
+
+ARGUMENTS:
+    //e:vbscript                 Select VBScript engine for script file
+
+EXAMPLES:
+    cscript //e:vbscript {PATH_ABSOLUTE}:script.vbs
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    cscript //e:vbscript {PATH_ABSOLUTE}:script.vbs

@@ -1,0 +1,13 @@
+ABOUT
+    Checks UAC configuration status.
+USAGE:
+    bof-privkit-uac-check --- (no arguments)
+
+EXAMPLES:
+    bof-privkit-uac-check
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-privkit-uac-check -w 60 --- (no arguments)

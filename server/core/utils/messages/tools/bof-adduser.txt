@@ -1,0 +1,15 @@
+ABOUT
+    Add a local or remote user.
+
+USAGE:
+    bof-adduser --- <user> <password> <hostname>
+
+EXAMPLES:
+    bof-adduser --- newuser P@ss123 localhost
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-adduser -w 60 --- newuser P@ss123 localhost

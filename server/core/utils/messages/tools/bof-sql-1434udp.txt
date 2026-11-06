@@ -1,0 +1,11 @@
+ABOUT
+    Enumerates SQL Server connection information via SQL Server Browser service on UDP 1434.
+
+USAGE:
+    bof-sql-1434udp --- <server_ip>
+
+ARGUMENTS:
+    server_ip    Target IP address (hostnames not accepted)
+
+EXAMPLES:
+    bof-sql-1434udp --- 192.168.1.10

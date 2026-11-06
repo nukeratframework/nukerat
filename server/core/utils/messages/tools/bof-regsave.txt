@@ -1,0 +1,24 @@
+ABOUT
+    Acquires the necessary privileges and dumps SAM, SYSTEM, and SECURITY
+    registry keys for offline parsing and hash extraction. Requires
+    administrator privileges.
+USAGE:
+    bof-regsave --- <output_directory>
+
+ARGUMENTS:
+    output_directory    Directory path where registry hives will be saved
+
+OUTPUT FILES:
+    samantha.txt        SAM hive
+    systemic.txt        SYSTEM hive
+    security.txt        SECURITY hive
+
+EXAMPLES:
+    bof-regsave --- c:\temp\
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-regsave -w 60 --- c:\temp\

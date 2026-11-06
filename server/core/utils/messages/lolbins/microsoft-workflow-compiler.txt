@@ -1,0 +1,17 @@
+ABOUT
+    .NET workflow compiler shipped with the Framework.
+    LOLBAS compiles and runs C#, VB.NET, or XOML workflow definitions
+    referenced from attacker-controlled input files.
+
+USAGE:
+    Microsoft.Workflow.Compiler.exe {PATH} {PATH:.log}
+
+EXAMPLES:
+    Microsoft.Workflow.Compiler.exe {PATH} {PATH:.log}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    Microsoft.Workflow.Compiler.exe {PATH} {PATH:.log}

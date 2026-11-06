@@ -1,0 +1,15 @@
+ABOUT
+    Display file version information for a process executable (name, version, company, etc.).
+
+USAGE:
+    bof-procinfo --- <pid>
+
+EXAMPLES:
+    bof-procinfo --- 1234
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-procinfo -w 60 --- 1234

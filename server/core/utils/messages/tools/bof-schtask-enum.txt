@@ -1,0 +1,18 @@
+ABOUT
+    Enumerates scheduled tasks on Windows systems using the Task Scheduler COM interface.
+    Provides a summary of tasks including their state, schedule, and configuration without
+    overwhelming the beacon with XML data.
+
+USAGE:
+    bof-schtask-enum
+
+EXAMPLES:
+    bof-schtask-enum
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-schtask-enum -w 60
+    bof-schtask-enum -bg

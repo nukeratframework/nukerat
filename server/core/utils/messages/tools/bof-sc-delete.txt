@@ -1,0 +1,22 @@
+ABOUT
+    Deletes an existing Windows service.
+
+USAGE:
+    bof-sc-delete --- <SVCNAME> [HOSTNAME]
+
+ARGUMENTS:
+
+    SVCNAME    Service name
+
+    HOSTNAME   Optional remote host
+
+EXAMPLES:
+
+    bof-sc-delete --- MySvc
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-sc-delete -w 60 --- MySvc

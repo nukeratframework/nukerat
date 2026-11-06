@@ -1,0 +1,12 @@
+ABOUT
+    Enumerate a single .EXE, a folder or all folders recursively to identify DLL sideloading vulnerabilities in executables.
+
+USAGE:
+    bof-enum-dll-sideloading --- <path> <mode>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-enum-dll-sideloading -w 60 --- <path> <mode>

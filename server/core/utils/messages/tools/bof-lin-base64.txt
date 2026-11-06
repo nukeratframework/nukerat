@@ -1,0 +1,19 @@
+ABOUT
+    (linux) Base64 encode/decode.
+
+USAGE:
+    bof-lin-base64 --- [file] [mode]
+
+ARGUMENTS:
+    file                File to encode/decode
+    mode                encode or decode (choices: encode|decode) (default: encode)
+
+EXAMPLES:
+    bof-lin-base64 --- --file /etc/hostname --mode decode
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-base64 -w 60 --- --file /etc/hostname --mode decode

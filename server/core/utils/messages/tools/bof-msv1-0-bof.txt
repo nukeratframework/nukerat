@@ -1,0 +1,27 @@
+ABOUT
+    Recovers DPAPI credential keys and generates NTLMv1 responses via
+    LsaCallAuthenticationPackage without opening a handle to LSASS. Works
+    through PPL and Credential Guard for credential key recovery.
+USAGE:
+    bof-msv1-0-bof --- <command> [LUID] [challenge]
+
+COMMANDS:
+    credkey [LUID]              Recover DPAPI credential key (works with Credential Guard)
+    strongcredkey [LUID]        Recover strong DPAPI credential key (Win10+)
+    ntlmv1 [LUID] [challenge]   Generate NTLMv1 response (default challenge: 1122334455667788)
+
+ARGUMENTS:
+    LUID        Logon session ID (0 or omit for current session, hex e.g. 0x3e7 for SYSTEM)
+    challenge   8-byte NTLM challenge in ascii-hex (ntlmv1 only, crack.sh compatible)
+
+EXAMPLES:
+    bof-msv1-0-bof --- credkey
+    bof-msv1-0-bof --- credkey 0x21d57
+    bof-msv1-0-bof --- ntlmv1 0x21d57 1122334455667788
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-msv1-0-bof -w 60 --- credkey

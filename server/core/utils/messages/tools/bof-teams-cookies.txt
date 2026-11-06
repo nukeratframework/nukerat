@@ -1,0 +1,11 @@
+ABOUT
+    Steals Microsoft Teams cookies by running inside the ms-teams.exe process.
+    Extracts encryption key and filelessly downloads the Cookies database.
+
+USAGE:
+    bof-teams-cookies
+EXAMPLES:
+    bof-teams-cookies
+NOTES:
+    Must be executed within the ms-teams.exe process context. Takes no arguments.
+    Use the repo decrypt.py script to extract secrets from the downloaded database.

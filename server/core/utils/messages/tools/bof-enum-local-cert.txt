@@ -1,0 +1,12 @@
+ABOUT
+    List all local computer certificates from a specific store. Common store names are: ROOT, MY, TRUST, CA, USERDS, AuthRoot, Disallowed.
+
+USAGE:
+    bof-enum-local-cert --- <store>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-enum-local-cert -w 60 --- <store>

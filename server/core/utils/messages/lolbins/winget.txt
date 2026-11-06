@@ -1,0 +1,20 @@
+ABOUT
+    Windows Package Manager tool. LOLBAS covers download and execute
+    an arbitrary file from the internet, download and install
+    software from Microsoft Store, even if Microsoft Store App is
+    blocked, and related techniques.
+
+USAGE:
+    winget.exe install --manifest {PATH:.yml}
+    winget.exe install --accept-package-agreements -s msstore {name or ID}
+
+EXAMPLES:
+    winget.exe install --manifest {PATH:.yml}
+    winget.exe install --accept-package-agreements -s msstore {name or ID}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    winget.exe install --manifest {PATH:.yml}

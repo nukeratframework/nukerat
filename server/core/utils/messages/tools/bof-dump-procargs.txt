@@ -1,0 +1,15 @@
+ABOUT
+    Dump process command line arguments from PEB.
+
+USAGE:
+    bof-dump-procargs --- <pid>
+
+EXAMPLES:
+    bof-dump-procargs --- 2920
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-dump-procargs -w 60 --- 2920

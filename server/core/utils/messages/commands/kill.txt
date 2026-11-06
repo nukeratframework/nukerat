@@ -1,0 +1,11 @@
+ABOUT
+    End this process (Windows TerminateProcess, Linux/macOS exit).
+
+USAGE:
+    kill
+
+ARGUMENTS:
+    (none)
+
+EXAMPLES:
+    kill

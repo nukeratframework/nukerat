@@ -1,0 +1,18 @@
+ABOUT
+    Used to replace file with another file. LOLBAS documents copy
+    files and download file.
+
+USAGE:
+    replace.exe {PATH_ABSOLUTE:.cab} {PATH_ABSOLUTE:folder} /A
+    replace.exe {PATH_SMB:.exe} {PATH_ABSOLUTE:folder} /A
+
+EXAMPLES:
+    replace.exe {PATH_ABSOLUTE:.cab} {PATH_ABSOLUTE:folder} /A
+    replace.exe {PATH_SMB:.exe} {PATH_ABSOLUTE:folder} /A
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    replace.exe {PATH_ABSOLUTE:.cab} {PATH_ABSOLUTE:folder} /A

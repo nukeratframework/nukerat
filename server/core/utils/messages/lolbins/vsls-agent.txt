@@ -1,0 +1,16 @@
+ABOUT
+    Agent for Visual Studio Live Share (Code Collaboration). LOLBAS
+    documents executing proxied payload with Microsoft-signed binary.
+
+USAGE:
+    vsls-agent.exe --agentExtensionPath {PATH_ABSOLUTE:.dll}
+
+EXAMPLES:
+    vsls-agent.exe --agentExtensionPath {PATH_ABSOLUTE:.dll}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    vsls-agent.exe --agentExtensionPath {PATH_ABSOLUTE:.dll}

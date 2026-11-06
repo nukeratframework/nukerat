@@ -1,0 +1,9 @@
+ABOUT
+    Enumerates linked SQL servers.
+
+USAGE:
+    bof-sql-links --- <server> [database] [linkedserver] [impersonate]
+
+EXAMPLES:
+    bof-sql-links --- SQL01
+    bof-sql-links --- SQL01 master LINKED01

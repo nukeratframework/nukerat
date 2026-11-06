@@ -1,0 +1,14 @@
+ABOUT
+    (linux) Print hostname.
+
+USAGE:
+    bof-lin-hostname
+EXAMPLES:
+    bof-lin-hostname
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-hostname -w 60
+    bof-lin-hostname -bg

@@ -1,0 +1,15 @@
+ABOUT
+    Delete a registry key or value.
+
+USAGE:
+    bof-reg-del --- <hostname> <Hive> <Path> [ValueName]
+
+EXAMPLES:
+    bof-reg-del --- localhost HKCU "Software\Test" MyVal
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-reg-del -w 60 --- localhost HKCU "Software\Test" MyVal

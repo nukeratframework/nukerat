@@ -1,0 +1,17 @@
+ABOUT
+    Enumerates Windows proxy configuration state across WinINET, WinHTTP, policy keys,
+    environment variables, WPAD indicators, Chrome settings, and .NET defaultProxy values.
+
+USAGE:
+    bof-proxy-enum
+
+EXAMPLES:
+    bof-proxy-enum
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-proxy-enum -w 60
+    bof-proxy-enum -bg

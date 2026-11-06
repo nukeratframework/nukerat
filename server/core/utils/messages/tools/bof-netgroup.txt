@@ -1,0 +1,16 @@
+ABOUT
+    List domain groups or group members from the default or specified domain.
+
+USAGE:
+    bof-netgroup --- [opt:domain]
+        bof-netgroup --- <groupname> [opt:domain]
+
+EXAMPLES:
+    bof-netgroup    bof-netgroup --- "Domain Admins" corp.local
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-netgroup -w 60 --- "Domain Admins" corp.local

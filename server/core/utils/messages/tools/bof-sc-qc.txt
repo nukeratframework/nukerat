@@ -1,0 +1,14 @@
+ABOUT
+    Sc qc impelmentation in BOF
+USAGE:
+    bof-sc-qc --- <service name> [opt:server]
+
+EXAMPLES:
+    bof-sc-qc --- Spooler
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-sc-qc -w 60 --- Spooler

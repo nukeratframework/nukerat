@@ -1,0 +1,18 @@
+ABOUT
+    Show the identity of the current user.
+
+USAGE:
+    whoami [<args>]
+
+ARGUMENTS:
+    <args>              Optional on Linux and macOS. Ignored on Windows.
+
+EXAMPLES:
+    whoami
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    whoami -w 30

@@ -1,0 +1,13 @@
+ABOUT
+    Checks for modifiable autorun registry keys.
+USAGE:
+    bof-privkit-autorun-check --- (no arguments)
+
+EXAMPLES:
+    bof-privkit-autorun-check
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-privkit-autorun-check -w 60 --- (no arguments)

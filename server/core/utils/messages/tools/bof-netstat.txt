@@ -1,0 +1,14 @@
+ABOUT
+    TCP and UDP IPv4 listing ports.
+
+USAGE:
+    bof-netstat
+EXAMPLES:
+    bof-netstat
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-netstat -w 60
+    bof-netstat -bg

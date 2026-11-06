@@ -1,0 +1,19 @@
+ABOUT
+    32/64-bit FSharp (F#) Interpreter included with Visual Studio.
+    LOLBAS documents executing payload with Microsoft-signed binary to
+    bypass WDAC policies.
+
+USAGE:
+    fsianycpu.exe {PATH:.fsscript}
+    fsianycpu.exe
+
+EXAMPLES:
+    fsianycpu.exe {PATH:.fsscript}
+    fsianycpu.exe
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    fsianycpu.exe {PATH:.fsscript}

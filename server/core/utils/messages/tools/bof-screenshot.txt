@@ -1,0 +1,22 @@
+ABOUT
+    Captures screenshots via WinAPI without fork-and-run. Supports JPEG
+    compression, grayscale, quality, scaling, and minimized window capture.
+USAGE:
+    bof-screenshot --- <filename> <save_method> <pid> <grayscale> <quality> <scale>
+
+EXAMPLES:
+    bof-screenshot --- screen.jpg 2 0 0 90 100
+    bof-screenshot --- window.jpg 2 1234 0 90 100
+    bof-screenshot --- local.jpg 0 0 0 90 100
+
+NOTES:
+    save_method: 0=drop to disk, 1=download as file, 2=download as screenshot
+    pid: 0 for full screen, or target process PID
+    grayscale: 0 or 1; quality: 0-100; scale: 1-1000 percent
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-screenshot -w 60 --- screen.jpg 2 0 0 90 100

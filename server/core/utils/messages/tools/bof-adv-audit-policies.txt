@@ -1,0 +1,21 @@
+ABOUT
+    Retrieve advanced security audit policies from Group Policy audit.csv files.
+
+USAGE:
+    bof-adv-audit-policies --- <iswow64>
+
+ARGUMENTS:
+    iswow64    0 = search %SYSTEMROOT%\system32\GroupPolicy
+               1 = search %SYSTEMROOT%\sysnative\GroupPolicy (WOW64)
+
+EXAMPLES:
+    bof-adv-audit-policies --- 0
+    bof-adv-audit-policies --- 1
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-adv-audit-policies -w 60 --- 0
+    bof-adv-audit-policies -bg --- 0

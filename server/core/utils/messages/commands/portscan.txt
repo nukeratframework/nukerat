@@ -1,0 +1,26 @@
+ABOUT
+    Port scan against one host (IPv4 or name) for TCP and UDP services.
+
+USAGE:
+    portscan --target <host> [--ports <spec>] [--protocol <0|1|2>] [--timeout <ms>]
+
+ARGUMENTS:
+    --target            Host IPv4 or name (-t).
+    --ports             Port spec (-P). Default top20.
+    --protocol          0 TCP, 1 UDP, 2 both (--method alias).
+    --timeout           Per port timeout ms (-d alias).
+    Positional form: portscan <host> [<ports>] [<protocol>] [<timeoutms>].
+
+EXAMPLES:
+    portscan --target 192.168.1.100
+    portscan --target fileserver.corp.local --ports 22,80,443,445,3389 --protocol 0 --timeout 1000
+    portscan --target 192.168.1.10 --ports 53,161 --protocol 1 --timeout 2000
+    portscan 192.168.1.100 top20
+    portscan 192.168.1.100 1-1024 0 1500
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    portscan -w 60 --target 192.168.1.100 --ports top100

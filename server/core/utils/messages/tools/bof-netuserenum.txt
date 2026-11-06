@@ -1,0 +1,24 @@
+ABOUT
+    Enumerate user accounts on the local computer or current domain.
+
+USAGE:
+    bof-netuserenum --- [all|active|locked|disabled]
+        bof-netuserenum --- domain [all|active|locked|disabled]
+
+ARGUMENTS:
+    all             List all accounts (default)
+    active          List active accounts only
+    locked          List locked accounts only
+    disabled        List disabled accounts only
+    domain          Enumerate domain accounts instead of local computer accounts
+
+EXAMPLES:
+    bof-netuserenum    bof-netuserenum --- active
+    bof-netuserenum --- domain locked
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-netuserenum -w 60 --- active

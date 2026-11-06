@@ -1,0 +1,15 @@
+ABOUT
+    Get the machine account quota. Supports standard LDAP (389) with
+    signing/sealing and LDAPS (636).
+USAGE:
+    bof-get-maq --- [-dc {ip}] [--ldaps]
+
+EXAMPLES:
+    bof-get-maq --- [-dc {ip}] [--ldaps]
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-get-maq -w 60 --- [-dc {ip}] [--ldaps]

@@ -1,0 +1,17 @@
+ABOUT
+    Enumerates window handles across all system processes and uses a legitimate window
+    handle to access the clipboard.
+
+USAGE:
+    bof-window-handles-enum
+
+EXAMPLES:
+    bof-window-handles-enum
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-window-handles-enum -w 60
+    bof-window-handles-enum -bg

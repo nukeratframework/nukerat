@@ -1,0 +1,17 @@
+ABOUT
+    Memory dump tool that comes with Microsoft Visual Studio. LOLBAS
+    documents create memory dump and parse it offline to retrieve
+    credentials.
+
+USAGE:
+    dump64.exe {PID} out.dmp
+
+EXAMPLES:
+    dump64.exe {PID} out.dmp
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    dump64.exe {PID} out.dmp

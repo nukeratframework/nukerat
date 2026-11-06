@@ -1,0 +1,18 @@
+ABOUT
+    Show active network connections on the target machine.
+
+USAGE:
+    netstat
+
+ARGUMENTS:
+    (none)
+
+EXAMPLES:
+    netstat
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    netstat -w 60 TCP

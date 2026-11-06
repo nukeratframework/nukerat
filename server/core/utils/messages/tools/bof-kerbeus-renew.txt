@@ -1,0 +1,14 @@
+ABOUT
+    Renew a TGT.
+USAGE:
+    bof-kerbeus-renew --- /ticket:BASE64 [/dc:DC] [/ptt]
+
+EXAMPLES:
+    bof-kerbeus-renew --- /ticket:BASE64 /ptt
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-kerbeus-renew -w 60 --- /ticket:BASE64 /ptt

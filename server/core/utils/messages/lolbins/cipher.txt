@@ -1,0 +1,23 @@
+ABOUT
+    EFS cipher maintenance tool.
+    Secure-delete with /w or encrypt files with /e to wipe evidence or
+    tamper with defenses.
+
+USAGE:
+    cipher /w:{PATH_ABSOLUTE:folder}
+    cipher.exe /e {PATH_ABSOLUTE}
+
+ARGUMENTS:
+    /w:                          Wipe free space / deleted content in folder
+    /e                           Encrypt files at path
+
+EXAMPLES:
+    cipher /w:{PATH_ABSOLUTE:folder}
+    cipher.exe /e {PATH_ABSOLUTE}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    cipher /w:{PATH_ABSOLUTE:folder}

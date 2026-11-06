@@ -1,0 +1,19 @@
+ABOUT
+    Run a PowerShell script or command with no profile and non interactive mode.
+
+USAGE:
+    powershell <scriptorcommand>
+
+ARGUMENTS:
+    <script>            PowerShell script or command.
+
+EXAMPLES:
+    powershell Get-Process
+    powershell whoami
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    powershell -w 120 Get-ChildItem C:\Users

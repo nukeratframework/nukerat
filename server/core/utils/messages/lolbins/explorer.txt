@@ -1,0 +1,22 @@
+ABOUT
+    Windows shell and file manager.
+    Starts executables under a fresh explorer parent via /root or direct
+    path to break process-tree analytics.
+
+USAGE:
+    explorer.exe /root,"{PATH_ABSOLUTE:.exe}"
+    explorer.exe {PATH_ABSOLUTE:.exe}
+
+ARGUMENTS:
+    /root,                       Launch binary under new explorer instance
+
+EXAMPLES:
+    explorer.exe /root,"{PATH_ABSOLUTE:.exe}"
+    explorer.exe {PATH_ABSOLUTE:.exe}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    explorer.exe /root,"{PATH_ABSOLUTE:.exe}"

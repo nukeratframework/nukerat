@@ -1,0 +1,21 @@
+ABOUT
+    A logging configuration tool from the Windows Kits used to start and
+    manage process logging. LOLBAS documents executing an abitrary
+    command via a signed binary to evade detection.
+
+USAGE:
+    logger.exe RUN "{CMD}"
+    logger.exe RUNW "{CMD}"
+    logger.exe "{CMD}"
+
+EXAMPLES:
+    logger.exe RUN "{CMD}"
+    logger.exe RUNW "{CMD}"
+    logger.exe "{CMD}"
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    logger.exe RUN "{CMD}"

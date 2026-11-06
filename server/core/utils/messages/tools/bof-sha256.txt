@@ -1,0 +1,15 @@
+ABOUT
+    Hash filename using sha256
+
+USAGE:
+    bof-sha256 --- <filename>
+
+EXAMPLES:
+    bof-sha256 --- C:\Windows\System32\ntdll.dll
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-sha256 -w 60 --- C:\Windows\System32\ntdll.dll

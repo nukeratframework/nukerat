@@ -1,0 +1,19 @@
+ABOUT
+    (linux) List directory contents.
+
+USAGE:
+    bof-lin-ls --- [path] [options]
+
+ARGUMENTS:
+    path                Directory path (default: .)
+    options             Flags: l (long), a (all), F (full paths) (choices: l|a|F|la|lF|aF|laF)
+
+EXAMPLES:
+    bof-lin-ls --- -laF /etc
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-ls -w 60 --- -laF /etc

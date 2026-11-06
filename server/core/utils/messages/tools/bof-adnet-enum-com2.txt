@@ -1,0 +1,14 @@
+ABOUT
+    Enumerate CAs and templates in AD using IX509PolicyServerListManager COM object.
+
+USAGE:
+    bof-adnet-enum-com2
+EXAMPLES:
+    bof-adnet-enum-com2
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-adnet-enum-com2 -w 60
+    bof-adnet-enum-com2 -bg

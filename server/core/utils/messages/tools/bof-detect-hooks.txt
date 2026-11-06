@@ -1,0 +1,17 @@
+ABOUT
+    Detects inline hooks in the current process by scanning ntdll exported Nt and Zw
+    functions for unexpected instruction patterns.
+
+USAGE:
+    bof-detect-hooks
+
+EXAMPLES:
+    bof-detect-hooks
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-detect-hooks -w 60
+    bof-detect-hooks -bg

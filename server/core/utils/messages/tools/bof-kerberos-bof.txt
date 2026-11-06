@@ -1,0 +1,26 @@
+ABOUT
+    Lists, dumps, and purges cached Kerberos tickets via
+    LsaCallAuthenticationPackage without touching LSASS memory.
+USAGE:
+    bof-kerberos-bof --- <command> [LUID] [server]
+
+COMMANDS:
+    klist [LUID]                List cached Kerberos tickets
+    dump [LUID]                 Dump all tickets as base64 .kirbi blobs with session keys
+    purge [LUID] [server]       Purge tickets (optionally filter by server name)
+
+ARGUMENTS:
+    LUID        Logon session ID (0 or omit for current session)
+    server      Server name for selective purge (purge command only)
+
+EXAMPLES:
+    bof-kerberos-bof --- klist
+    bof-kerberos-bof --- dump 0x21d57
+    bof-kerberos-bof --- purge 0x21d57 cifs/dc01.corp.local
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-kerberos-bof -w 60 --- klist

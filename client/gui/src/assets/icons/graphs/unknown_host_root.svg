@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="254.866" y1="65.812" x2="254.866" y2="346.68" id="gradient-0">
+      <stop offset="0" style="stop-color: rgb(64, 8, 8)"/>
+      <stop offset="1" style="stop-color: rgb(19.739% 1.2488% 0%)"/>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="13.888" y1="0" x2="13.888" y2="27.775" id="gradient-1">
+      <stop offset="0" style="stop-color: rgb(224, 68, 68)"/>
+      <stop offset="1" style="stop-color: rgb(62.019% 0% 8.8241%)"/>
+    </linearGradient>
+  </defs>
+  <path d="M 17.581 346.68 L 17.581 74.589 C 17.581 69.814 21.956 65.812 27.295 65.812 L 482.511 65.812 C 487.776 65.812 492.151 69.814 492.151 74.589 L 492.151 346.68 L 17.581 346.68 Z" style="stroke: rgba(186, 218, 85, 0); fill: url(&quot;#gradient-0&quot;);"/>
+  <g style="" transform="matrix(0.927277, -0.000285, 0, 0.843657, 17.420097, 54.274031)">
+    <path style="fill:#999999;" d="M512,346.68v42.64c0,5.92-4.72,10.72-10.48,10.72H10.48C4.72,400.04,0,395.24,0,389.4v-42.64h512 V346.68z"/>
+    <polygon style="fill:#999999;" points="330.64,474.68 181.36,474.68 192,400.04 320,400.04 &#9;"/>
+  </g>
+  <g style="" transform="matrix(0.954502, 0, 0, 0.842991, 8.675384, 54.301371)">
+    <polygon style="fill:#666666;" points="195.658 400.198 320 400.04 326.633 447.211 192.905 420.055"/>
+  </g>
+  <title>windows [#174]</title>
+  <desc>Created with Sketch.</desc>
+  <g style="" transform="matrix(1.019576, 0, 0, 0.842991, -73.924807, 93.791552)">
+    <rect x="208.514" y="426.562" style="fill:#666666;" width="224" height="10.64"/>
+  </g>
+  <g id="Capa_1" style="transform-origin: 350.798px 191.776px;" transform="matrix(5.921257, 0, 0, 5.921257, -90.646048, 15.628086)">
+    <g transform="matrix(1, 0, 0, 1, 336.910913, 177.888806)">
+      <path d="M10.398,22.811h4.618v4.964h-4.618V22.811z M21.058,1.594C19.854,0.532,17.612,0,14.33,0c-3.711,0-6.205,0.514-7.482,1.543 c-1.277,1.027-1.916,3.027-1.916,6L4.911,8.551h4.577l-0.02-1.049c0-1.424,0.303-2.377,0.907-2.854 c0.604-0.477,1.814-0.717,3.632-0.717c1.936,0,3.184,0.228,3.74,0.676c0.559,0.451,0.837,1.457,0.837,3.017 c0,1.883-0.745,3.133-2.237,3.752l-1.797,0.766c-1.882,0.781-3.044,1.538-3.489,2.27c-0.442,0.732-0.665,2.242-0.665,4.529h4.68 v-0.646c0-1.41,0.987-2.533,2.965-3.365c2.03-0.861,3.343-1.746,3.935-2.651c0.592-0.908,0.888-2.498,0.888-4.771 C22.863,4.625,22.261,2.655,21.058,1.594z" style="fill: url(&quot;#gradient-1&quot;);"/>
+    </g>
+  </g>
+  <g id="svg-1" transform="matrix(1, 0, 0, 1, 76.041388, 20.993002)">
+    <g style="" transform="matrix(0.927277, -0.000285, 0, 0.843657, 231.282573, 4.420765)"/>
+    <g style="" transform="matrix(0.954502, 0, 0, 0.842991, 222.537853, 4.448105)"/>
+    <title>windows [#174]</title>
+    <desc>Created with Sketch.</desc>
+    <g style="" transform="matrix(1.019576, 0, 0, 0.842991, 139.937665, 43.938281)"/>
+  </g>
+</svg>

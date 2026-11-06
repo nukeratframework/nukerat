@@ -1,0 +1,12 @@
+ABOUT
+    Hide a directory or file from plain sight by modifying the attributes and set them to systemfile + hidden.
+
+USAGE:
+    bof-hide-file --- <option> <path>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-hide-file -w 60 --- <option> <path>

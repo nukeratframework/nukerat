@@ -1,0 +1,17 @@
+ABOUT
+    Checks for AMSI and ETW presence in the current process by detecting loaded DLLs and
+    ETW related exports. Useful for picking targets with less security activity.
+
+USAGE:
+    bof-amsi-etw-detect
+
+EXAMPLES:
+    bof-amsi-etw-detect
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-amsi-etw-detect -w 60
+    bof-amsi-etw-detect -bg

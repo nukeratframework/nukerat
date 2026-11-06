@@ -1,0 +1,19 @@
+ABOUT
+    IL assembler for the .NET Framework. LOLBAS compiles attacker
+    C# or IL source from a text file into a local EXE or DLL on
+    the endpoint.
+
+USAGE:
+    ilasm.exe {PATH_ABSOLUTE:.txt} /exe
+    ilasm.exe {PATH_ABSOLUTE:.txt} /dll
+
+EXAMPLES:
+    ilasm.exe {PATH_ABSOLUTE:.txt} /exe
+    ilasm.exe {PATH_ABSOLUTE:.txt} /dll
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    ilasm.exe {PATH_ABSOLUTE:.txt} /exe

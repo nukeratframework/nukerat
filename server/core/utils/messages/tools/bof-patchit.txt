@@ -1,0 +1,31 @@
+ABOUT
+    Patch, check, and revert AMSI and ETW for x64 processes. Compares the
+    first 10+ bytes of AmsiScanBuffer and EtwEventWrite. Does not load
+    amsi.dll if it is not already present in the current process. x64 only.
+USAGE:
+    bof-patchit --- <command_id>
+
+COMMANDS:
+    1    check       Check if AMSI and ETW are patched
+    2    all         Patch both AMSI and ETW
+    3    amsi        Patch AMSI (AmsiScanBuffer)
+    4    etw         Patch ETW (EtwEventWrite)
+    5    revertAll   Revert patched AMSI and ETW
+    6    revertAmsi  Revert patched AMSI
+    7    revertEtw   Revert patched ETW
+
+EXAMPLES:
+    bof-patchit --- 1
+    bof-patchit --- 2
+    bof-patchit --- 3
+    bof-patchit --- 4
+    bof-patchit --- 5
+    bof-patchit --- 6
+    bof-patchit --- 7
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-patchit -w 60 --- 1

@@ -1,0 +1,12 @@
+ABOUT
+    Sets a fixed prefix for all commands sent in the terminal. To
+    close, click "x" on the blue bar.
+
+USAGE:
+    prefix <prefix>
+
+ARGUMENTS:
+    <command>           Prefix to prepend (for example powershell).
+
+EXAMPLES:
+    prefix powershell

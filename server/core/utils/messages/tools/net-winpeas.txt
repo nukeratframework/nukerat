@@ -1,0 +1,26 @@
+ABOUT
+    Windows Privilege Escalation Awesome Script. Enumerates misconfigurations, vulnerable
+    services, credentials, AV/EDR, network, AD, and privilege escalation vectors on Windows.
+
+USAGE:
+    net-winpeas --- [options] [modules]
+
+OPTIONS:
+    -h                            Show help
+    notcolor                      Disable colored output
+    domain                        Enumerate domain information
+    wait                          Wait for user input between tests
+    debug                         Display additional debug information
+    log                           Log output to out.txt
+    -vulnpackages                 Flag vulnerable packages via HackTricks lookup
+    -linpeas=<url>                Run linpeas.sh in WSL (optional custom URL)
+    -lolbas                       Run LOLBAS search check
+
+MODULES:
+    systeminfo userinfo ...       Run only specified check modules (default: all)
+
+EXAMPLES:
+    net-winpeas    net-winpeas --- systeminfo userinfo
+    net-winpeas --- domain
+    net-winpeas --- notcolor log
+    net-winpeas --- -lolbas -vulnpackages

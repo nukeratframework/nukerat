@@ -1,0 +1,19 @@
+ABOUT
+    (linux) Move/rename files.
+
+USAGE:
+    bof-lin-mv --- <source> <dest>
+
+ARGUMENTS:
+    source              Source file
+    dest                Destination
+
+EXAMPLES:
+    bof-lin-mv --- <source> <dest>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-mv -w 60 --- <source> <dest>

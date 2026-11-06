@@ -1,0 +1,7 @@
+------------------------------------------------------------------------------------
+Evasion
+------------------------------------------------------------------------------------
+
+lol-fltmc                               Filter Manager control binary abused
+                                        for defense evasion against security
+                                        products.

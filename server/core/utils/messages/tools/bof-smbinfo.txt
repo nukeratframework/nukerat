@@ -1,0 +1,20 @@
+ABOUT
+    Gathers remote system version info using the NetWkstaGetInfo API.
+    Collects Windows version, domain, and related information without
+    running a port scanner.
+USAGE:
+    bof-smbinfo --- <Computername>
+
+ARGUMENTS:
+    Computername        Target IP or hostname
+
+EXAMPLES:
+    bof-smbinfo --- DC01
+    bof-smbinfo --- 192.168.1.10
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-smbinfo -w 60 --- DC01

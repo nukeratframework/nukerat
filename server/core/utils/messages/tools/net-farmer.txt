@@ -1,0 +1,20 @@
+ABOUT
+    Local WebDAV server for collecting NetNTLM hashes in a Windows domain. Clients that
+    connect to the server authenticate via the WebDAV Mini Redirector. Use with Crop or
+    Fertiliser to lure victims to the listener.
+
+USAGE:
+    net-farmer --- <port> [seconds] [output]
+
+ARGUMENTS:
+    port        TCP port to listen on
+    seconds     Runtime in seconds. Use 0 to run until stopped manually
+    output      Optional path to write captured hashes to a log file
+
+EXAMPLES:
+    net-farmer --- 8888 60
+    net-farmer --- 8888 0 C:\Windows\Temp\test.tmp
+
+NOTES:
+    Clients must be able to reach the WebDAV server. Check network segmentation and
+    host firewall before use. Encrypted log output can be decrypted with net-harvest-crop.

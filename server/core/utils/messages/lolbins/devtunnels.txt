@@ -1,0 +1,17 @@
+ABOUT
+    Binary to enable forwarded ports on Windows operating systems.
+    LOLBAS documents exposing local services through dev tunnels for
+    download, upload, and data exfiltration.
+
+USAGE:
+    devtunnel.exe host -p 8080
+
+EXAMPLES:
+    devtunnel.exe host -p 8080
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    devtunnel.exe host -p 8080

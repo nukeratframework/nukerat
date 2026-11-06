@@ -1,0 +1,24 @@
+ABOUT
+    Read, compare, and patch loaded module API functions against on disk DLL
+    copies. Used to detect EPP or EDR hooking and unhook functions.
+USAGE:
+    bof-functionutil --- read <dll> <function>[,function2,...]
+    bof-functionutil --- check <dll> <function>[,function2,...]
+    bof-functionutil --- patch <dll> <function>[,function2,...]
+
+COMMANDS:
+    read                Read bytes of in memory function(s)
+    check               Compare in memory vs on disk function(s)
+    patch               Patch in memory function(s) with on disk copy
+
+EXAMPLES:
+    bof-functionutil --- read ntdll.dll NtCreateProcess
+    bof-functionutil --- check ntdll.dll EtwEventWrite
+    bof-functionutil --- patch ntdll.dll EtwEventWrite
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-functionutil -w 60 --- read ntdll.dll NtCreateProcess

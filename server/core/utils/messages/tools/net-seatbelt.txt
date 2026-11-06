@@ -1,0 +1,28 @@
+ABOUT
+    C# host enumeration tool that performs security-oriented safety checks from offensive and
+    defensive perspectives. Collects system, user, network, and credential artifacts.
+
+USAGE:
+    net-seatbelt --- <command> [arguments]
+    net-seatbelt --- -group=<group>
+    net-seatbelt --- -group=all -full
+
+COMMAND GROUPS:
+    system    OS info, hotfixes, AV, AppLocker, audit policy, PowerShell settings
+    user      User artifacts, browser history, creds, cloud creds, recent files
+    misc      Interesting processes/files, TCP connections, firewall rules
+    all       Run all checks
+    remote    Remote WMI enumeration (specify computername as argument)
+
+COMMON COMMANDS:
+    AntiVirus, AutoRuns, CredGuard, ChromiumHistory, CloudCredentials, DpapiMasterKeys,
+    InterestingProcesses, LocalUsers, LogonSessions, LAPS, PowerShellEvents, ProcessOwners,
+    RDPSessions, SlackDownloads, SlackPresence, Sysmon, TokenGroups, UAC, WindowsAutoLogon,
+    WindowsCredentialFiles, WindowsVault
+
+EXAMPLES:
+    net-seatbelt --- -group=all
+    net-seatbelt --- AntiVirus
+    net-seatbelt --- ChromiumHistory
+    net-seatbelt --- LocalUsers dc01.corp.local
+    net-seatbelt --- -group=system -full

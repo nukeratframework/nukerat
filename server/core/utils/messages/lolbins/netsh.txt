@@ -1,0 +1,16 @@
+ABOUT
+    Netsh is a Windows tool used to manipulate network interface
+    settings. LOLBAS documents proxy execution of .dll.
+
+USAGE:
+    netsh.exe add helper {PATH_ABSOLUTE:.dll}
+
+EXAMPLES:
+    netsh.exe add helper {PATH_ABSOLUTE:.dll}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    netsh.exe add helper {PATH_ABSOLUTE:.dll}

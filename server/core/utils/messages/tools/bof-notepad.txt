@@ -1,0 +1,14 @@
+ABOUT
+    Search for open Notepad and Notepad++ windows and grab text from the editor control.
+
+USAGE:
+    bof-notepad
+EXAMPLES:
+    bof-notepad
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-notepad -w 60
+    bof-notepad -bg

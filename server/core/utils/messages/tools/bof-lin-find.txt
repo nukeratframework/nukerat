@@ -1,0 +1,21 @@
+ABOUT
+    (linux) Search for files.
+
+USAGE:
+    bof-lin-find --- [path] [options]
+
+ARGUMENTS:
+    path                Search path (default: .)
+    options             -name pattern, -iname pattern, or -type f|d|l
+
+EXAMPLES:
+    bof-lin-find
+    bof-lin-find --- /etc -name hostname
+    bof-lin-find --- /tmp -type f
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-find -w 60 --- /etc -name hostname

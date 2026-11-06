@@ -1,0 +1,14 @@
+ABOUT
+    List Kerberos tickets with detailed information.
+USAGE:
+    bof-kerbeus-klist --- [/luid:LOGINID] [/user:USER] [/service:SERVICE] [/client:CLIENT]
+
+EXAMPLES:
+    bof-kerbeus-klist --- /service:krbtgt
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-kerbeus-klist -w 60 --- /service:krbtgt

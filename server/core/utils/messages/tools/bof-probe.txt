@@ -1,0 +1,34 @@
+ABOUT
+    Check if a specific TCP port is open on a local or remote host.
+
+USAGE:
+    bof-probe --- <host> <port> [timeout_seconds]
+
+ARGUMENTS:
+
+    host              Target IP or hostname (local or remote)
+
+    port              TCP port number
+
+    timeout_seconds   Connect timeout in seconds (default: 5)
+
+EXAMPLES:
+    bof-probe --- 127.0.0.1 445
+    bof-probe --- 192.168.15.10 9090
+    bof-probe --- 10.10.10.5 445 10
+
+OUTPUT:
+    host:port OPEN     Port is reachable
+    host:port FAILED   Port is closed or unreachable (not a BOF error)
+
+NOTES:
+    Works against remote hosts, not just localhost.
+    Remote probes need a reasonable timeout (default 5s). Without timeout the
+    BOF may report FAILED on reachable ports.
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-probe -w 60 --- 192.168.15.10 9090 10

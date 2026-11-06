@@ -1,0 +1,20 @@
+ABOUT
+    Enumerates open file handles and copies locked files by duplicating handles from locking
+    processes. Uses NtQuerySystemInformation, DuplicateHandle, CreateFileMapping, and
+    MapViewOfFile to read locked file contents without terminating the locking process.
+
+USAGE:
+    net-lock-less --- <file | all> [/process:NAME1,NAME2,...] [/copy | /copy:path]
+
+ARGUMENTS:
+    file              Filename to search for among open handles
+    all               Enumerate all open file handles (CSV output)
+    /process:names    Filter to specific process names (comma-separated)
+    /copy             Copy locked file to a temporary location
+    /copy:path        Copy locked file to the specified output path
+
+EXAMPLES:
+    net-lock-less --- WebCacheV01.dat
+    net-lock-less --- WebCacheV01.dat /copy
+    net-lock-less --- WebCacheV01.dat /process:taskhostw /copy:C:\Temp\out.tmp
+    net-lock-less --- all

@@ -1,0 +1,17 @@
+ABOUT
+    Enumerates BitLocker encryption status, policy configurations, and recovery key backup
+    locations by scanning registry keys.
+
+USAGE:
+    bof-bitlocker-status
+
+EXAMPLES:
+    bof-bitlocker-status
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-bitlocker-status -w 60
+    bof-bitlocker-status -bg

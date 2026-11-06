@@ -1,0 +1,32 @@
+ABOUT
+    .NET port of PowerView Active Directory reconnaissance toolkit. Provides domain
+    enumeration, ACL analysis, share discovery, session enumeration, and Kerberoasting.
+
+USAGE:
+    net-sharp-view --- <Method> [parameters]
+
+COMMON METHODS:
+    Get-Domain, Get-DomainUser, Get-DomainComputer, Get-DomainGroup
+    Get-DomainController, Get-DomainTrust, Get-DomainPolicy
+    Find-LocalAdminAccess, Find-DomainShare, Find-InterestingFile
+    Get-NetSession, Get-NetLoggedon, Get-NetShare, Get-NetLocalGroup
+    Get-ObjectAcl, Find-InterestingDomainAcl, Invoke-Kerberoast
+    Get-DomainGPO, Get-DomainOU, Get-DomainSite
+
+COMMON PARAMETERS:
+    -Domain              Target domain
+    -Server              Domain controller or LDAP server
+    -Credential          user@domain/password
+    -LDAPFilter          LDAP filter string
+    -Properties          Properties to return
+    -Help                Show method specific help
+
+EXAMPLES:
+    net-sharp-view --- Get-DomainController -Domain corp.local
+    net-sharp-view --- Get-DomainUser -Domain corp.local -Server dc01.corp.local
+    net-sharp-view --- Find-LocalAdminAccess
+    net-sharp-view --- Invoke-Kerberoast -Domain corp.local
+    net-sharp-view --- Get-NetShare -ComputerName fileserver.corp.local
+
+NOTES:
+    Run any method with -Help for full parameter list.

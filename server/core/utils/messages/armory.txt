@@ -1,0 +1,2095 @@
+Armory utilities:
+=================
+
+bof-aadjoininfo                 Display Azure AD or Entra ID join information
+                                for the device.
+
+bof-adnet-enum                  Enumerate Active Directory Certificate
+                                Services.
+
+bof-adnet-enum-com2             Enumerate CAs and templates in AD using
+                                IX509PolicyServerListManager COM object.
+
+bof-adnet-on-behalf             Requests an AD CS enrollment certificate on
+                                behalf of another user using an enrollment
+                                agent certificate with
+                                XCN_OID_ENROLLMENT_AGENT extension.
+
+bof-add-ace                     Add ACE to object DACL. Supports standard LDAP
+                                (389) with signing/sealing and LDAPS (636).
+
+bof-add-attribute               Add/append attribute value. Supports standard
+                                LDAP (389) with signing/sealing and LDAPS
+                                (636).
+
+bof-add-computer                Create a new computer object. Supports
+                                standard LDAP (389) with signing/sealing and
+                                LDAPS (636).
+
+bof-add-defender-excl           Adds Windows Defender exclusions via the
+                                MSFT_MpPreference WMI class using COM.
+
+bof-add-delegation              Set/replace delegation SPNs. Supports standard
+                                LDAP (389) with signing/sealing and LDAPS
+                                (636).
+
+bof-add-exclusion               Add a new exclusion to Windows Defender for a
+                                folder, file, process or extension.
+
+bof-add-firewall-rule           Add a new inbound or outbound firewall rule
+                                using COM.
+
+bof-add-group                   Create a new group. Supports standard LDAP
+                                (389) with signing/sealing and LDAPS (636).
+
+bof-add-groupmember             Add user to group. Supports standard LDAP
+                                (389) with signing/sealing and LDAPS (636).
+
+bof-add-local-cert              Add a (self signed) certificate to a specific
+                                local computer certificate store. For example,
+                                add a self signed certificate -that you also
+                                used to sign your malicious binary with- to
+                                the \"Trusted Root Certification Authorities\"
+                                (ROOT) folder on the target local computer.
+
+bof-add-machine-account         Abuses default Active Directory machine
+                                account quota (ms-DS- MachineAccountQuota) to
+                                add rogue machine accounts for follow on
+                                attacks.
+
+bof-add-ou                      Create organizational unit. Supports standard
+                                LDAP (389) with signing/sealing and LDAPS
+                                (636).
+
+bof-add-rbcd                    Configure RBCD delegation. Supports standard
+                                LDAP (389) with signing/sealing and LDAPS
+                                (636).
+
+bof-add-sidhistory              Add SID to sidHistory. Supports standard LDAP
+                                (389) with signing/sealing and LDAPS (636).
+
+bof-add-spn                     Add ServicePrincipalName. Supports standard
+                                LDAP (389) with signing/sealing and LDAPS
+                                (636).
+
+bof-add-uac                     Add UserAccountControl flag. Supports standard
+                                LDAP (389) with signing/sealing and LDAPS
+                                (636).
+
+bof-add-user                    Create a new user object. Supports standard
+                                LDAP (389) with signing/sealing and LDAPS
+                                (636).
+
+bof-add-user-by-samr            Adds a user to a local group by SAMR. Requires
+                                administrator privileges. Do not use on Active
+                                Directory.
+
+bof-adduser                     Add a local or remote user.
+
+bof-adduser-to-group            Add a user to a group.
+
+bof-addusertogroup              Adds the specified user to the specified
+                                domain group.
+
+bof-adv-audit-policies          Retrieve advanced security audit policies.
+
+bof-ai-surface                  Maps AI tooling on Windows developer endpoints
+                                and highlights triage ready AI agent and MCP
+                                artifacts that may expose workflow data, local
+                                state, and credentials.
+
+bof-allow-firewall-rule         Add inbound or outbound firewall allow rule.
+
+bof-amsi-etw-detect             Checks for AMSI and ETW presence in the
+                                current process by detecting loaded DLLs and
+                                ETW related exports. Useful for picking
+                                targets with less security activity.
+
+bof-app-count                   Counts the number of installed applications
+                                via the registry, de duplicates, and prints.
+                                Applied to a large number of beacons, allows
+                                inference about a device based on app count
+                                differences.
+
+bof-applocker-policy            Enumerates AppLocker policy configurations,
+                                rule collections, and enforcement modes by
+                                scanning the relevant registry keys.
+
+bof-arp                         List ARP table.
+
+bof-ask-mfa                     Displays a fake Microsoft Authenticator
+                                approval dialog with the specified number.
+                                Dialog auto closes after 30 seconds.
+
+bof-askcreds                    Collects credentials using
+                                CredUIPromptForWindowsCredentialsName. Runs in
+                                a thread and waits up to 60 seconds for user
+                                input. Beacon is unresponsive during the wait.
+
+bof-asktgs                      Request a service ticket from a TGT.
+
+bof-asktgt                      Request a TGT using password, hash, or no
+                                preauth.
+
+bof-asr-status                  Enumerates Windows Defender Attack Surface
+                                Reduction (ASR) rules from registry locations
+                                to identify which ASR rules are configured,
+                                their enforcement state (Block/Audit/Warn/
+                                Disabled), and the policy source (Intune/MDM
+                                vs Group Policy).
+
+bof-asrenum                     Identifies Attack Surface Reduction (ASR)
+                                rules, actions, and exclusion locations by
+                                querying MSFT_MpPreference via WMI. Requires
+                                an elevated context.
+
+bof-asreproasting               Request AS REP for users without Kerberos
+                                preauthentication.
+
+bof-authenticate-http           This tool can be used to force a Windows-
+                                authenticated HTTP request from the current
+                                user context to a (ntlmrelayx) server for an
+                                authenticated (LDAP) relay attack.
+
+bof-backup-priv-sam             Abuses SeBackupPrivilege via remote registry
+                                to dump SAM, SYSTEM, and SECURITY hives from a
+                                remote system.
+
+bof-bitlocker-status            Enumerates BitLocker encryption status, policy
+                                configurations, and recovery key backup
+                                locations by scanning registry keys.
+
+bof-c-enumerate-defender        Enumerates Windows Defender exclusions via
+                                WMI. Requires an elevated beacon context.
+
+bof-cacls                       List user permissions for the specified file,
+                                wildcards supported
+
+bof-capture-net-ntlm            Capture the NetNTLMv2 hash of the current
+                                user. This is done by simulating a NTLM
+                                authentication exchange between a client and
+                                server to capture the NetNTLMv2 hash.
+
+bof-cdp-enable                  Enables the Chrome DevTools Protocol in a
+                                running x64 Chrome or Edge browser. Resolves
+                                internal browser symbols at runtime and starts
+                                the remote debugging server on the browser UI
+                                thread. x64 only.
+
+bof-cdp-enable-iso              Enables the Chrome DevTools Protocol in a
+                                running x64 Chrome browser with Windows
+                                Process Isolation. Uses query limited handles
+                                to the isolated process and resolves symbols
+                                from the local chrome.dll image. x64 only.
+
+bof-certstore-loot              Enumerates local certificate stores to find
+                                certificates with exportable private keys and
+                                provides the path to export them.
+
+bof-change-pass                 Set a user password on local or remote host.
+
+bof-changepw                    Change a user password via kpasswd.
+
+bof-chrome-key                  Decrypts the base64 encoded Chrome key from
+                                Local State for use decrypting browser cookies
+                                offline.
+
+bof-chromium-key-dump           Dump Chrome/Edge masterkey and download
+                                Cookie/Login Data files from the browser
+                                profile.
+
+bof-cicd-credential-hunt        Finds common CI/CD, cloud, and developer
+                                credential artifacts in the current Windows
+                                user profile. Reports path and size by
+                                default. .gitconfig and .ssh/config are
+                                classified as configuration, not credential
+                                artifacts.
+
+bof-clipboard-grab              Retrieves text data from the Windows clipboard
+                                using Win32 APIs and returns the contents to
+                                the callback.
+
+bof-clipboard-monitor           Async BOF that monitors clipboard changes
+                                using GetClipboardSequenceNumber and prints
+                                clipboard contents when a change is detected.
+                                Supports text and image capture (images as
+                                base64 BMP in sync mode). Image retrieval
+                                works in sync mode only.
+
+bof-clipboard-steal             Enable, disable, check, and dump capabilities
+                                for Windows clipboard history.
+
+bof-cloud-metadata-check        Probes cloud local metadata services for AWS,
+                                Azure, and GCP from the current process,
+                                reporting provider identity, instance context,
+                                and bounded credential snippets when
+                                reachable.
+
+bof-cloudap-bof                 Extracts Entra ID SSO cookies, device SSO
+                                cookies, AD FS enterprise SSO cookies, and
+                                cloud provider status via
+                                LsaCallAuthenticationPackage. Requires Entra
+                                ID/Azure AD joined device with active cloud
+                                logon session.
+
+bof-com-probe                   Probes whether a COM object can be
+                                instantiated from a given CLSID. Tries in
+                                process first, falls back to local server.
+
+bof-contact-harvester           Harvest Outlook Global Address List contacts
+                                via COM.
+
+bof-cookie-graber               Extracts WebKit master encryption keys from
+                                Chrome and Edge Local State files via DPAPI.
+                                Dumps Edge key first, then Chrome key. Use the
+                                master key with CookieProcessor.exe offline to
+                                decrypt cookies from the on disk database.
+
+bof-cookie-monster              Steals browser cookies and logins for Chrome,
+                                Edge, and Firefox. Extracts WebKit master key
+                                and App Bound encryption key, duplicates
+                                handles to Cookies and Login Data files for
+                                fileless download. Supports SYSTEM mode key
+                                decryption without browser injection. Use
+                                decrypt.py offline to decrypt downloaded
+                                databases.
+
+bof-cred-man                    Dumps Windows Credential Manager by abusing
+                                SeTrustedCredManAccess privilege. Steals a
+                                token from winlogon.exe to enable the
+                                privilege. Requires administrator privileges.
+
+bof-cred-prompt                 Start Windows credential prompt in an attempt
+                                to capture user credentials. Entered
+                                credentials are returned as output. The prompt
+                                is persistent so the victim can't cancel/close
+                                the prompt or enter an empty password. Any
+                                user attempt to do so is shown in the output.
+                                Finally, a timer is set on the prompt to make
+                                sure the beacon will return at some point.
+
+bof-credui                      Invokes the Windows credential prompt using
+                                the Windows API
+                                CredUIPromptForWindowsCredentials and verifies
+                                the submitted credential with LogonUser.
+
+bof-cross-s4u                   Perform cross domain S4U constrained
+                                delegation abuse.
+
+bof-cryptvortex                 Encrypt or decrypt files in a directory.
+
+bof-curl                        Making HTTP requests without establishing a
+                                SOCKS proxy.
+
+bof-cve-2022-26923              AD CS domain privilege escalation exploit
+                                CVE-2022-26923. Based on AddMachineAccount
+                                with changes to dNSHostName and
+                                servicePrincipalName attributes.
+
+bof-dcom-local-server32         This tool is capable of instantiating a
+                                DCOM/COM class based on a provided CLSID on a
+                                designated host, which launches the associated
+                                out-of-process EXE server, creating a separate
+                                process. By focusing on EXE's susceptible to
+                                DLL or COM hijacking and utilizing a gained
+                                position that allows writing to the
+                                directories from which these processes load
+                                their modules, (remote) code execution can be
+                                achieved. Consequently, this technique can be
+                                effectively employed for lateral movement.
+
+bof-dcompotato-notify           Obtains SYSTEM privilege with SeImpersonate by
+                                passing a malicious IUnknown object to the
+                                PrintNotify DCOM call.
+
+bof-defender-exclusions         Lists Windows Defender exclusion paths,
+                                processes, and extensions from the registry.
+
+bof-del-exclusion               Delete an exclusion from Windows Defender for
+                                a folder, file, process or extension.
+
+bof-del-firewall-rule           Delete a firewall rule using COM..
+
+bof-del-local-cert              Delete a local computer certificate from a
+                                specified store based on its unique
+                                thumbprint.
+
+bof-del-machine-account         Delete a rogue machine account created in
+                                Active Directory.
+
+bof-del-task-scheduler          Delete a scheduled task on the current system
+                                or a remote host.
+
+bof-describe                    Parse and describe a Kerberos ticket.
+
+bof-detect-hooks                Detects inline hooks in the current process by
+                                scanning ntdll exported Nt and Zw functions
+                                for unexpected instruction patterns.
+
+bof-dir                         List files in a directory. Supports wildcards
+                                (e.g. "C:\Windows\S*") unlike the CobaltStrike
+                                `ls` command
+
+bof-disableuser                 Disables the specified user account on the
+                                target computer.
+
+bof-dll-env-hijacking           This tool will: setup a hidden file structure,
+                                move an already on disk present malicious
+                                proxy DLL to the new system32 folder, hide the
+                                proxy DLL, modify the SYSTEMROOT environment
+                                variable, run the vulnerable binary as a
+                                spoofed process to execute the malicious DLL,
+                                and reset the original SYSTEMROOT environment
+                                variable so the beacon keeps working as
+                                intended.
+
+bof-dll-hijack-hunter           Traverses the SafeDllSearchMode DLL resolution
+                                order from a given path and DLL name.
+                                Optionally checks whether a matching file can
+                                be opened for write access.
+
+bof-domaininfo                  Enumerates domain information using Active
+                                Directory Domain Services.
+
+bof-draugr                      Draugr stack spoofing with indirect syscalls.
+                                Allocates memory via NtAllocateVirtualMemory,
+                                loads User32.dll, and calls MessageBoxA using
+                                synthetic stack frames.
+
+bof-driversigs                  Enumerate installed services Imagepaths to
+                                check the signing cert against known AV/EDR
+                                vendors
+
+bof-dropspawn                   Spawns a new process by dropping a proxy DLL
+                                to disk and spoofing the application directory
+                                used for DLL search order. Supports x86, x64,
+                                and cross architecture spawning. The dropped
+                                DLL should delete itself after the new process
+                                loads it.
+
+bof-dump                        Extract Kerberos tickets from logon sessions.
+
+bof-dump-procargs               Dump process command line arguments from PEB.
+
+bof-edgedump                    Extracts Microsoft Edge saved credential
+                                artifacts from the main msedge.exe process
+                                memory. Scans readable memory regions for
+                                credential patterns. Does not read browser
+                                files, SQLite databases, or use DPAPI. Same
+                                user context can read the current user Edge
+                                process. Elevated context can read Edge
+                                processes across logged on sessions.
+
+bof-elevate-trusted             Elevates the current beacon to SYSTEM and
+                                obtains the TrustedInstaller group privilege
+                                through SetThreadToken impersonation.
+
+bof-enableuser                  Enables and unlocks the specified user account
+                                on the target computer.
+
+bof-entra-authcode-flow         Obtains Microsoft Entra access and refresh
+                                tokens by launching a browser with an OAuth
+                                authorization code flow URL. Keeps token
+                                exchange on the endpoint and can circumvent
+                                conditional access policies. How it works: 1.
+                                Launches a new browser tab with an OAuth
+                                authorization URL 2. Monitors window titles
+                                for the redirect containing the authorization
+                                code 3. Exchanges the code for access and
+                                refresh tokens
+
+bof-enum-active-hosts           Enumerate active hosts or verify a single open
+                                port. Tool accepts list with predefined
+                                hostnames or IP addresses and is loaded from
+                                your own operator client.
+
+bof-enum-dll-sideloading        Enumerate a single .EXE, a folder or all
+                                folders recursively to identify DLL
+                                sideloading vulnerabilities in executables.
+
+bof-enum-drives                 Enumerate drive letters and type.
+
+bof-enum-exclusions             Enumerate Windows Defender for excluded files,
+                                folders, extentions and processes.
+
+bof-enum-files                  Search for matching files based on a word,
+                                extension or keyword in the file content.
+                                Wildcards are supported.
+
+bof-enum-filter-driver          Enumerate filter drivers
+
+bof-enum-handles                Enumerate `process` and `thread` handle types
+                                between processes.
+
+bof-enum-lib                    Find a specific loaded module in all processes
+                                or list all loaded modules in a specific
+                                process.
+
+bof-enum-local-cert             List all local computer certificates from a
+                                specific store. Common store names are: ROOT,
+                                MY, TRUST, CA, USERDS, AuthRoot, Disallowed.
+
+bof-enum-local-sessions         Enumerate currently attached user sessions
+                                both local and over RDP
+
+bof-enum-sec-products           Get a list of security products like AV/EDR
+                                that are running on the current- or remote
+                                host. This is done by comparing running
+                                processes against a hardcoded list of 130
+                                security products.
+
+bof-enum-shares                 List shares published across systems in the
+                                domain and there access level using a list
+                                with predefined hostnames/IP addresses. This
+                                tool performs a quick TCP/445 check to skip
+                                offline hosts and uses stealthy attribute
+                                checks to verify access.
+
+bof-enum-task-scheduler         Enumerate and list basic informaton about all
+                                scheduled tasks in the root folder.
+
+bof-enum-web-client             Enumerate hosts that have the WebClient
+                                service running using a list with predefined
+                                hostnames or IP addresses. The list is loaded
+                                from your own attacker system.
+
+bof-enumprotections             Enumerates system processes and reports
+                                protection level, service relation, user,
+                                session ID, and file path. Useful for
+                                identifying unprotected third party service
+                                processes that may be candidates for DLL
+                                hijacking.
+
+bof-env                         List process environment variables.
+
+bof-esc1-unpac                  Performs a complete ADCS ESC1 attack chain.
+                                Requests a certificate with arbitrary Subject
+                                Alternative Name (and SID for KB5014754
+                                bypass), authenticates via PKINIT, and
+                                extracts the NT hash via UnPAC the hash.
+
+bof-etw                         Patch and revert the EtwEventWrite function in
+                                ntdll.dll to degrade ETW based logging.
+
+bof-event-log-manage            Inspects Event Log channels, manages BOF owned
+                                classic logs and sources, writes text or
+                                binary events through registered sources, and
+                                clears channels with optional backup. create,
+                                clear, and destroy require elevated
+                                Administrator or SYSTEM context.
+
+bof-execute-cross-session       Execute a binary on disk in the context of
+                                another user. It achieves this through cross-
+                                session interaction using the
+                                IStandardActivator, ISpecialSystemProperties,
+                                and IHxHelpPaneServer COM interfaces.
+                                Consequently, process injection is not
+                                necessary to run code on behalf of another
+                                logged-on user.
+
+bof-find-loaded-module          Find what processes *modulepart* are loaded
+                                into, optionally searching just *procnamepart*
+
+bof-find-module                 Enumerates processes for specific loaded
+                                modules (for example clr.dll, winhttp.dll,
+                                amsi.dll) using direct system calls. Useful
+                                for selecting opsec safe spawnto candidates.
+
+bof-find-proc-handle            Enumerates processes holding handles to a
+                                target process (for example lsass.exe). Can
+                                identify existing LSASS handles to avoid
+                                opening new ones.
+
+bof-firewall-rule               Add, remove, or query Windows Firewall rules
+                                via the COM API (INetFwPolicy2) without
+                                spawning netsh.exe or cmd.exe. Useful for
+                                pivoting inside networks.
+
+bof-force-lock-screen           Force the lock screen of the current user
+                                session.
+
+bof-functionutil                Read, compare, and patch loaded module API
+                                functions against on disk DLL copies. Used to
+                                detect EPP or EDR hooking and unhook
+                                functions.
+
+bof-get-acl                     View object DACL/ACEs. Supports standard LDAP
+                                (389) with signing/sealing and LDAPS (636).
+
+bof-get-attribute               Read specific LDAP attribute. Supports
+                                standard LDAP (389) with signing/sealing and
+                                LDAPS (636).
+
+bof-get-azure-token             Attempts to complete an OAuth authorization
+                                code flow against Azure using saved browser
+                                logins and prints returned tokens.
+
+bof-get-clipboard               Prints any text on the clipboard using Win32
+                                clipboard APIs.
+
+bof-get-computers               List all domain computers. Supports standard
+                                LDAP (389) with signing/sealing and LDAPS
+                                (636).
+
+bof-get-delegation              View delegation configuration. Supports
+                                standard LDAP (389) with signing/sealing and
+                                LDAPS (636).
+
+bof-get-domain-info             Returns information on the current domain and
+                                domain controller, including domain forest
+                                name, domain name, domain controller name,
+                                domain controller address, and DC site name.
+
+bof-get-domaininfo              Query domain information from rootDSE.
+                                Supports standard LDAP (389) with
+                                signing/sealing and LDAPS (636).
+
+bof-get-dpapi-system            Get the DPAPI_SYSTEM key and bootkey
+
+bof-get-groupmembers            List members of a group. Supports standard
+                                LDAP (389) with signing/sealing and LDAPS
+                                (636).
+
+bof-get-groups                  List all domain groups. Supports standard LDAP
+                                (389) with signing/sealing and LDAPS (636).
+
+bof-get-machacct-quota          Read the ms-DS-MachineAccountQuota value for
+                                the current domain.
+
+bof-get-maq                     Get the machine account quota. Supports
+                                standard LDAP (389) with signing/sealing and
+                                LDAPS (636).
+
+bof-get-netntlm                 Capture NetNTLMv2 hash via SSPI.
+
+bof-get-netsession              Enumerate sessions on the local or specified
+                                computer
+
+bof-get-netsession2             Modified version of `netsession` that supports
+                                BOFHound
+
+bof-get-object                  Dump all attributes of an object. Supports
+                                standard LDAP (389) with signing/sealing and
+                                LDAPS (636).
+
+bof-get-password-policy         Get target server or domain's configured
+                                password policy and lockouts
+
+bof-get-priv                    Activates the specified token privilege on the
+                                current process.
+
+bof-get-rbcd                    View Resource-Based Constrained Delegation.
+                                Supports standard LDAP (389) with
+                                signing/sealing and LDAPS (636).
+
+bof-get-session-info            Prints out information related to the current
+                                users logon session
+
+bof-get-spn                     List ServicePrincipalNames. Supports standard
+                                LDAP (389) with signing/sealing and LDAPS
+                                (636).
+
+bof-get-uac                     View UserAccountControl flags. Supports
+                                standard LDAP (389) with signing/sealing and
+                                LDAPS (636).
+
+bof-get-usergroups              List groups a user belongs to. Supports
+                                standard LDAP (389) with signing/sealing and
+                                LDAPS (636).
+
+bof-get-users                   List all domain users. Supports standard LDAP
+                                (389) with signing/sealing and LDAPS (636).
+
+bof-get-webdav-status           Checks remote systems for a running Web Client
+                                (WebDAV) service by probing the DAV RPC
+                                SERVICE named pipe. Does not require admin
+                                rights on the target but requires valid
+                                credentials (no anonymous access).
+
+bof-get-writable                Find objects with write access. Supports
+                                standard LDAP (389) with signing/sealing and
+                                LDAPS (636).
+
+bof-getsystem                   Obtains SYSTEM by duplicating the winlogon.exe
+                                token. Requires administrator privileges.
+
+bof-ghost-task                  Creates or deletes a scheduled task via
+                                registry only, without triggering Windows
+                                events 4698 and 106. Requires NT
+                                AUTHORITY\SYSTEM.
+
+bof-ghostkatz                   Dumps LSASS credentials by reading physical
+                                memory through signed vulnerable kernel
+                                drivers with MmMapIoSpace primitives. Supports
+                                MSV1 (logonpasswords) and WDigest credential
+                                extraction. Requires administrator privileges.
+                                May cause a BSOD if a driver fails during
+                                operation.
+
+bof-global-unprotect            Locates, decrypts, and downloads GlobalProtect
+                                VPN configuration and HIP settings.
+
+bof-handle-finder               Enumerate open handles in a target process.
+
+bof-handle-stealer              Finds Chrome or Edge NetworkService processes,
+                                duplicates an open handle to the Cookies
+                                SQLite database, and saves a copy to
+                                %LOCALAPPDATA%\<pid>.db. Scans chrome.exe and
+                                msedge.exe processes automatically.
+
+bof-hash                        Generate Kerberos key hashes from a password.
+
+bof-hide-file                   Hide a directory or file from plain sight by
+                                modifying the attributes and set them to
+                                systemfile + hidden.
+
+bof-ide-extension-surface       Enumerates VS Code, Cursor, Windsurf, Zed,
+                                Insiders, OSS, and server/remote extension
+                                manifests from per user profile roots and
+                                summarizes extension identity, activation
+                                events, and capability signals.
+
+bof-idle-time                   Check current user activity based on the
+                                user's last input. Returns the time in format
+                                HH:MM:SS.
+
+bof-ipconfig                    List IPv4 address, hostname, and DNS server
+
+bof-kerb-hash                   Hashes passwords to Kerberos keys: rc4_hmac,
+                                aes128_cts_hmac_sha1, aes256_cts_hmac_sha1,
+                                des_cbc_md5.
+
+bof-kerberoast                  Requests a Kerberos service ticket (AP REQ)
+                                for a given Service Principal Name and outputs
+                                a base64 encoded ticket for offline cracking.
+                                Convert output with apreq2hashcat.py.
+
+bof-kerberoasting               Lists SPN enabled user or service accounts or
+                                requests service tickets (TGS REP) for offline
+                                cracking with Hashcat. Output tickets appear
+                                between TICKET tags. Convert with
+                                TicketToHashcat.py.
+
+bof-kerberos-bof                Lists, dumps, and purges cached Kerberos
+                                tickets via LsaCallAuthenticationPackage
+                                without touching LSASS memory.
+
+bof-kerbeus-asktgs              Request a service ticket from a TGT.
+
+bof-kerbeus-asktgt              Request a TGT using password, hash, or no
+                                preauth.
+
+bof-kerbeus-asreproasting       Request AS REP for users without Kerberos
+                                preauthentication.
+
+bof-kerbeus-changepw            Change a user password via kpasswd.
+
+bof-kerbeus-cross_s4u           Perform cross domain S4U constrained
+                                delegation abuse.
+
+bof-kerbeus-describe            Parse and describe a Kerberos ticket.
+
+bof-kerbeus-dump                Extract Kerberos tickets from logon sessions.
+
+bof-kerbeus-hash                Generate Kerberos key hashes from a password.
+
+bof-kerbeus-kerberoasting       Request a Kerberos service ticket for offline
+                                cracking.
+
+bof-kerbeus-klist               List Kerberos tickets with detailed
+                                information.
+
+bof-kerbeus-ptt                 Submit a ticket to the current or specified
+                                logon session.
+
+bof-kerbeus-purge               Purge Kerberos tickets from the current or
+                                specified logon session.
+
+bof-kerbeus-renew               Renew a TGT.
+
+bof-kerbeus-s4u                 Perform S4U2self and S4U2proxy constrained
+                                delegation abuse.
+
+bof-kerbeus-tgtdeleg            Retrieve a usable TGT via GSS API delegation
+                                abuse.
+
+bof-kerbeus-triage              List Kerberos tickets in table format.
+
+bof-klist                       Displays currently cached Kerberos tickets.
+                                Supports listing, purging, and requesting
+                                service tickets for a given SPN.
+
+bof-koh-client                  Communicates over the Koh named pipe to list,
+                                filter, impersonate, and release captured
+                                tokens. Requires SeImpersonatePrivilege to
+                                impersonate captured tokens.
+
+bof-ksl-lsa                     Extracts credentials from LSASS memory using
+                                the KslD.sys BYOVD physical memory read
+                                primitive. Does not call OpenProcess,
+                                NtReadVirtualMemory, or MiniDumpWriteDump on
+                                lsass. Extracts MSV1_0 NT hashes, WDigest
+                                cleartext (when enabled), and LSA encryption
+                                keys. Requires administrative privileges.
+
+bof-lapsdump                    Dumps LAPS passwords from specified computers
+                                within Active Directory. Requires elevated AD
+                                privileges.
+
+bof-lastpass                    Searches Chrome or Brave process memory for
+                                LastPass passwords and data.
+
+bof-ldap-sign-check             Scans a Domain Controller to check if
+                                LdapEnforceChannelBinding or
+                                LdapServerIntegrity have been modified to
+                                mitigate LDAP relay attacks. Tests both LDAP
+                                (389) and LDAPS (636) binding.
+
+bof-ldapsearch                  Execute LDAP searches (NOTE: specify
+                                *,ntsecuritydescriptor as attribute parameter
+                                if you want all attributes + base64 encoded
+                                ACL of the objects, this can then be resolved
+                                using BOFHound. Could possibly break
+                                pagination, although everything seemed fine
+                                during testing.)
+
+bof-ldapsecuritycheck           Check LDAP signing and channel binding
+                                requirements on a domain controller.
+
+bof-lin-arp                     (linux) Show ARP table from /proc/net/arp
+                                with hostname resolution.
+
+bof-lin-awk                     (linux) Minimal awk (print columns only).
+
+bof-lin-base64                  (linux) Base64 encode/decode.
+
+bof-lin-basename                (linux) Strip directory from path.
+
+bof-lin-cat                     (linux) Concatenate and print files.
+
+bof-lin-chmod                   (linux) Change file permissions.
+
+bof-lin-chown                   (linux) Change file ownership.
+
+bof-lin-cp                      (linux) Copy files.
+
+bof-lin-cut                     (linux) Extract fields/columns.
+
+bof-lin-date                    (linux) Print current date/time.
+
+bof-lin-df                      (linux) Disk space usage.
+
+bof-lin-diff                    (linux) Compare two files.
+
+bof-lin-dirname                 (linux) Strip filename from path.
+
+bof-lin-dmesg                   (linux) Print kernel ring buffer.
+
+bof-lin-du                      (linux) Estimate disk usage.
+
+bof-lin-env                     (linux) Print environment variables from
+                                /proc/self/environ.
+
+bof-lin-find                    (linux) Search for files.
+
+bof-lin-free                    (linux) Display memory usage.
+
+bof-lin-grep                    (linux) Search file contents.
+
+bof-lin-groups                  (linux) Print group memberships.
+
+bof-lin-head                    (linux) Output first part of file.
+
+bof-lin-hostname                (linux) Print hostname.
+
+bof-lin-id                      (linux) Print user/group ids.
+
+bof-lin-ifconfig                (linux) Show network interfaces.
+
+bof-lin-kill                    (linux) Send signal to process.
+
+bof-lin-ln                      (linux) Create links.
+
+bof-lin-logger                  (linux) Write message to syslog.
+
+bof-lin-ls                      (linux) List directory contents.
+
+bof-lin-lsmod                   (linux) List loaded kernel modules.
+
+bof-lin-md5sum                  (linux) Compute md5 hash.
+
+bof-lin-mkdir                   (linux) Create directories.
+
+bof-lin-mount                   (linux) List mount points.
+
+bof-lin-mv                      (linux) Move/rename files.
+
+bof-lin-netstat                 (linux) Show TCP/UDP connections from
+                                /proc/net (flags: -tlnpu).
+
+bof-lin-nl                      (linux) Number lines of a file.
+
+bof-lin-nslookup                (linux) DNS lookup via getaddrinfo.
+
+bof-lin-od                      (linux) Octal dump.
+
+bof-lin-paste                   (linux) Merge lines of files.
+
+bof-lin-ping                    (linux) Test host reachability.
+
+bof-lin-ps                      (linux) List processes.
+
+bof-lin-pwd                     (linux) Print working directory.
+
+bof-lin-rev                     (linux) Reverse lines of a file.
+
+bof-lin-rm                      (linux) Remove files/directories.
+
+bof-lin-rmdir                   (linux) Remove empty directories.
+
+bof-lin-route                   (linux) Show routing table.
+
+bof-lin-sed                     (linux) Stream editor (s/old/new/g).
+
+bof-lin-sha256sum               (linux) Compute sha-256 hash.
+
+bof-lin-sort                    (linux) Sort lines of a file.
+
+bof-lin-stat                    (linux) Display file status.
+
+bof-lin-strings                 (linux) Find printable strings.
+
+bof-lin-sysctl                  (linux) Read/write kernel parameters.
+
+bof-lin-tail                    (linux) Output last part of file.
+
+bof-lin-tar                     (linux) Create, list, and extract tar
+                                archives.
+
+bof-lin-touch                   (linux) Create file or update timestamps.
+
+bof-lin-tr                      (linux) Translate/delete characters.
+
+bof-lin-traceroute              (linux) Trace route to host.
+
+bof-lin-tree                    (linux) Recursive directory tree listing.
+
+bof-lin-uname                   (linux) Print system information.
+
+bof-lin-uniq                    (linux) Remove duplicate adjacent lines.
+
+bof-lin-uptime                  (linux) Print system uptime, load averages,
+                                and current time.
+
+bof-lin-wc                      (linux) Word, line, byte count.
+
+bof-lin-wget                    (linux) Http get download.
+
+bof-lin-whoami                  (linux) Print effective user name.
+
+bof-lin-xxd                     (linux) Hex dump.
+
+bof-list-chrome-cookies         Lists targetable browser subprocesses for
+                                cookie dumping. Use the returned PID with bof-
+                                cookie-katz. x64 only.
+
+bof-list-firewall-rules         List Windows firewall rules
+
+bof-list-process-handles        List open handles in a process.
+
+bof-listdns                     List DNS cache entries. Attempt to query and
+                                resolve each
+
+bof-listmods                    List process modules (DLL). Target current
+                                process if PID is empty. Complement to
+                                driversigs to determine if our process was
+                                injected by AV/EDR
+
+bof-locale                      List system locale language, locale ID, date,
+                                time, and country
+
+bof-make-token-cert             Impersonate using a PFX certificate.
+
+bof-md5                         Hash filename using md5
+
+bof-mdm-policy-artifacts        Uses a scoring model to assess MDM enrollment
+                                posture on Windows systems by evaluating
+                                indicators including join state, scheduled
+                                tasks, policy configuration, and enrollment
+                                artifacts.
+
+bof-mem-read                    Read first bytes of exported functions from a
+                                loaded DLL.
+
+bof-mem-search                  Search process memory for a string.
+
+bof-memreader                   Searches a target process memory for a
+                                specific string pattern and returns all
+                                matching occurrences to the Beacon output.
+
+bof-move-object                 Move object to different OU. Supports standard
+                                LDAP (389) with signing/sealing and LDAPS
+                                (636).
+
+bof-msi-lateral-mv              Uses the MSI Server over DCOM to install and
+                                configure an ODBC driver via the Custom Action
+                                Server for lateral movement. All arguments are
+                                wide strings.
+
+bof-msi-search                  Scans C:\Windows\Installer\ for cached MSI
+                                files and lists them with their associated
+                                software names. Helps identify MSI installers
+                                for local privilege escalation research via
+                                MSI repair vulnerabilities.
+
+bof-msv1-0-bof                  Recovers DPAPI credential keys and generates
+                                NTLMv1 responses via
+                                LsaCallAuthenticationPackage without opening a
+                                handle to LSASS. Works through PPL and
+                                Credential Guard for credential key recovery.
+
+bof-nanorobeus                  Kerberos ticket management. Supports listing
+                                LUIDs, sessions, tickets, dumping, importing
+                                (ptt), purging, TGT delegation, and
+                                Kerberoasting.
+
+bof-netgroup                    List domain groups or group members from the
+                                default or specified domain.
+
+bof-netjoin-query               Queries Windows domain join information and
+                                workstation details, identifying if the system
+                                is domain joined or in a workgroup.
+
+bof-netlocalgroup               List local groups or local group members on
+                                the local or specified computer.
+
+bof-netlocalgroup2              Modified version of `netLocalGroupListMembers`
+                                that supports BOFHound
+
+bof-netloggedon                 Return users logged on the local or remote
+                                computer
+
+bof-netloggedon2                Modified version of `netloggedon` that
+                                supports BOFHound
+
+bof-netshares                   List shares on the local or remote computer
+
+bof-netstat                     TCP and UDP IPv4 listing ports.
+
+bof-nettime                     Display time on remote computer
+
+bof-netuptime                   Return information about the boot time on the
+                                local or remote computer
+
+bof-netuser                     Get info about specific user. Pull from domain
+                                if a domainname is specified
+
+bof-netuserenum                 Enumerate user accounts on the local computer
+                                or current domain.
+
+bof-netview                     List reachable computers in the current domain
+
+bof-nonpagedldapsearch          Execute LDAP searches without paging.
+
+bof-notepad                     Search for open Notepad and Notepad++ windows
+                                and grab text from the editor control.
+
+bof-notepad-grab                Extracts and returns plain text directly from
+                                open Notepad windows by reading memory,
+                                allowing operators to recover unsaved or in
+                                memory notes.
+
+bof-notethief                   Steals the contents of an open Notepad window
+                                by finding the Notepad Edit control and
+                                reading its text via WM_GETTEXT.
+
+bof-nslookup                    Make a DNS query. DNS server is the server you
+                                want to query (do not specify or 0 for
+                                default). Record type is something like A,
+                                AAAA, or ANY. Some situations are limited due
+                                to observed crashes.
+
+bof-office-tokens               Collects Office JWT access tokens from memory
+                                of the specified Office process.
+
+bof-p-sremote                   Get a list of all processes running on the
+                                remote host.
+
+bof-password-spray-a-d          Validate single password against multiple
+                                accounts using LDAP, LDAPS, GC, or GCS simple
+                                bind authentication.
+
+bof-password-spray-local        Validate a single local username and password
+                                against a list of target hostnames using SMB
+                                authentication (IPC$).
+
+bof-patchit                     Patch, check, and revert AMSI and ETW for x64
+                                processes. Compares the first 10+ bytes of
+                                AmsiScanBuffer and EtwEventWrite. Does not
+                                load amsi.dll if it is not already present in
+                                the current process. x64 only.
+
+bof-port-scan                   Scans a single IPv4 host for open TCP and/or
+                                UDP ports via Winsock with bounded port lists,
+                                configurable timeouts, and concise open port
+                                output.
+
+bof-power-state                 Identifies host form factor as Laptop,
+                                Desktop, Tablet, Server, Embedded, or Unknown
+                                using SMBIOS chassis data with a power status
+                                fallback.
+
+bof-powershell-history          Collects PowerShell history artifacts from
+                                default PSReadLine and transcript locations.
+                                Useful for locating credentials or
+                                infrastructure.
+
+bof-privkit-autorun-check       Checks for modifiable autorun registry keys.
+
+bof-privkit-cred-check          Checks Windows Credential Manager for stored
+                                credentials.
+
+bof-privkit-elev-check          Checks AlwaysInstallElevated in HKCU and HKLM.
+
+bof-privkit-hijack-check        Checks for hijackable PATH entries.
+
+bof-privkit-logon-check         Checks for AutoLogon credentials in the
+                                registry.
+
+bof-privkit-pshist-check        Checks for PowerShell command history files.
+
+bof-privkit-service-check       Checks for modifiable Windows services.
+
+bof-privkit-token-check         Checks current token privileges for abuse
+                                potential.
+
+bof-privkit-uac-check           Checks UAC configuration status.
+
+bof-privkit-unquoted-svc        Checks for unquoted service paths.
+
+bof-probe                       Check if a specific port is open
+
+bof-proc-version                Get main module file version of a process.
+
+bof-procargs                    Extract command line arguments for the
+                                specified process.
+
+bof-procdump                    Dumps the specified process to a file using
+                                MiniDumpWriteDump. Enables SeDebugPrivilege
+                                first.
+
+bof-process-destroy             Closes a specific handle or all handles in the
+                                specified process.
+
+bof-process-list-handles        Lists all open handles in the specified
+                                process.
+
+bof-process-tokens-list         Enumerates accessible tokens from running
+                                processes, showing user context, token type
+                                (primary/impersonation), and impersonation
+                                level. Supports optional filtering by PID or
+                                process name. SeDebugPrivilege is disabled by
+                                default for OPSEC.
+
+bof-procinfo                    Display file version information for a process
+                                executable (name, version, company, etc.).
+
+bof-prockill                    Terminate a target process by PID.
+
+bof-procsearch                  Search readable process memory for a string
+                                and display surrounding ASCII context.
+
+bof-proxy-enum                  Enumerates Windows proxy configuration state
+                                across WinINET, WinHTTP, policy keys,
+                                environment variables, WPAD indicators, Chrome
+                                settings, and .NET defaultProxy values.
+
+bof-psw                         Shows window titles from processes with active
+                                Windows.
+
+bof-ptt                         Submit a ticket to the current or specified
+                                logon session.
+
+bof-purge                       Purge Kerberos tickets from the current or
+                                specified logon session.
+
+bof-recon-ad                    Queries Active Directory objects and
+                                attributes via ADSI. Supports custom LDAP
+                                filters, user/computer/group queries, Kerberos
+                                encrypted comms, and Global Catalog search.
+                                One binary supports four query modes.
+
+bof-reg-del                     Delete a registry key or value.
+
+bof-reg-delete                  Deletes a registry key or value on the local
+                                or remote system.
+
+bof-reg-query                   Query a registry value or enumerate a single
+                                key. Supports remote computers.
+
+bof-reg-query-recursive         Recursively enumerate a registry key starting
+                                at path. Supports remote computers.
+
+bof-reg-save                    Export a registry key to a file.
+
+bof-reg-set                     Create or set a registry value on local or
+                                remote host.
+
+bof-regsave                     Acquires the necessary privileges and dumps
+                                SAM, SYSTEM, and SECURITY registry keys for
+                                offline parsing and hash extraction. Requires
+                                administrator privileges.
+
+bof-regsession                  Return logged on user SIDs by enumerating
+                                HKEY_USERS. BOFHound compatible
+
+bof-remotereg                   Queries logged on users on remote servers,
+                                VDI, or domain controllers using the remote
+                                registry API.
+
+bof-remove-ace                  Remove ACE from DACL. Supports standard LDAP
+                                (389) with signing/sealing and LDAPS (636).
+
+bof-remove-attribute            Remove attribute value. Supports standard LDAP
+                                (389) with signing/sealing and LDAPS (636).
+
+bof-remove-delegation           Clear delegation SPNs. Supports standard LDAP
+                                (389) with signing/sealing and LDAPS (636).
+
+bof-remove-groupmember          Remove user from group. Supports standard LDAP
+                                (389) with signing/sealing and LDAPS (636).
+
+bof-remove-object               Delete AD object. Supports standard LDAP (389)
+                                with signing/sealing and LDAPS (636).
+
+bof-remove-rbcd                 Clear RBCD configuration. Supports standard
+                                LDAP (389) with signing/sealing and LDAPS
+                                (636).
+
+bof-remove-spn                  Remove specific SPN. Supports standard LDAP
+                                (389) with signing/sealing and LDAPS (636).
+
+bof-remove-uac                  Remove UAC flag. Supports standard LDAP (389)
+                                with signing/sealing and LDAPS (636).
+
+bof-renew                       Renew a TGT.
+
+bof-resources                   List memory usage and available disk space on
+                                the primary hard drive
+
+bof-routeprint                  List IPv4 routes
+
+bof-runpe                       Executes an arbitrary PE inside a sacrificial
+                                process through a partial implementation of
+                                process herpaderping. Creates the remote file
+                                specified as the first argument, writes the PE
+                                payload, then overwrites file contents with
+                                the pattern 0x82 0x7f 0x76 0x7c before
+                                execution.
+
+bof-s4u                         Perform S4U2self and S4U2proxy constrained
+                                delegation abuse.
+
+bof-sc-config                   Configures an existing Windows service on the
+                                local or remote system.
+
+bof-sc-create                   Creates a new Windows service on the local or
+                                remote system.
+
+bof-sc-delete                   Deletes an existing Windows service.
+
+bof-sc-description              Sets the description of an existing Windows
+                                service.
+
+bof-sc-enum                     Enumerate services for qc, query, qfailure,
+                                and qtriggers info
+
+bof-sc-failure                  Configures failure actions for an existing
+                                Windows service.
+
+bof-sc-qc                       Sc qc impelmentation in BOF
+
+bof-sc-qdescription             Sc qdescription implementation in BOF
+
+bof-sc-qfailure                 Query a service for failure conditions
+
+bof-sc-qtriggerinfo             Query a service for trigger conditions
+
+bof-sc-query                    Sc query implementation in BOF
+
+bof-sc-start                    Starts an existing Windows service.
+
+bof-sc-stop                     Stops an existing Windows service.
+
+bof-schtask-enum                Enumerates scheduled tasks on Windows systems
+                                using the Task Scheduler COM interface.
+                                Provides a summary of tasks including their
+                                state, schedule, and configuration without
+                                overwhelming the beacon with XML data.
+
+bof-schtasks-del                Delete a scheduled task or folder.
+
+bof-schtasks-run                Run a scheduled task.
+
+bof-schtasks-stop               Stop a running scheduled task.
+
+bof-schtaskscreate              Creates or updates a scheduled task from an
+                                XML task definition file.
+
+bof-schtasksdelete              Deletes a scheduled task or folder.
+
+bof-schtasksenum                Enumerate scheduled tasks on the local or
+                                remote computer
+
+bof-schtasksquery               Query the given task on the local or remote
+                                computer
+
+bof-schtasksrun                 Starts a scheduled task immediately.
+
+bof-schtasksstop                Stops a running scheduled task.
+
+bof-screenshot                  Captures screenshots via WinAPI without fork-
+                                and-run. Supports JPEG compression, grayscale,
+                                quality, scaling, and minimized window
+                                capture.
+
+bof-self-delete                 Deletes a locked or running executable from
+                                disk using NTFS alternate data stream rename
+                                technique.
+
+bof-service-control             Manages local Windows services via SCM: query
+                                (capped list or single service), create,
+                                start, stop, delete, and configure failure
+                                actions. Elevated rights usually required for
+                                changes.
+
+bof-session-view                Enumerates Windows Terminal Services sessions,
+                                displaying session IDs, usernames, domains,
+                                connection states, and session LUIDs.
+
+bof-set-attribute               Replace attribute value. Supports standard
+                                LDAP (389) with signing/sealing and LDAPS
+                                (636).
+
+bof-set-delegation              Replace delegation config. Supports standard
+                                LDAP (389) with signing/sealing and LDAPS
+                                (636).
+
+bof-set-owner                   Change object owner. Supports standard LDAP
+                                (389) with signing/sealing and LDAPS (636).
+
+bof-set-password                Change user password. Supports standard LDAP
+                                (389) with signing/sealing and LDAPS (636).
+
+bof-set-spn                     Replace all SPNs. Supports standard LDAP (389)
+                                with signing/sealing and LDAPS (636).
+
+bof-set-uac                     Set UAC flags (replace). Supports standard
+                                LDAP (389) with signing/sealing and LDAPS
+                                (636).
+
+bof-setuserpass                 Sets the password for the specified user
+                                account.
+
+bof-sha1                        Hash filename using sha1
+
+bof-sha256                      Hash filename using sha256
+
+bof-shadowcreds                 Writes a KeyCredential to the target msDS-
+                                KeyCredentialLink attribute, authenticates via
+                                PKINIT, extracts the NT hash via UnPAC the
+                                hash, then removes the shadow credential.
+                                Requires write access to the target msDS-
+                                KeyCredentialLink attribute.
+
+bof-sharefolder                 Creates a world readable and writable shared
+                                folder, or deletes an empty folder.
+
+bof-shutdown                    Initiate local or remote system shutdown.
+
+bof-signal-key                  Retrieves decryption keys for Signal Desktop
+                                database on Windows hosts where Signal Desktop
+                                is installed and has been used.
+
+bof-silentchrome                Silently installs or reverts a browser
+                                extension in Chrome or Edge by modifying
+                                Preferences and Secure Preferences files. Port
+                                of SharpSilentChrome.
+
+bof-silentharvest               Registry only credential dumper extracting SAM
+                                hashes and secrets from
+                                HKLM\\SECURITY\\Policy\\Secrets. Requires
+                                SeBackupPrivilege only (no SYSTEM).
+
+bof-slack-cookie                Collects the Slack authentication cookie from
+                                the specified Slack process memory.
+
+bof-slack-key                   Decrypts the base64 encoded Slack key from
+                                %APPDATA%\Slack\Local State for cookie
+                                decryption.
+
+bof-sleeper                     Calls SetThreadExecutionState to prevent the
+                                host from sleeping.
+
+bof-smbinfo                     Gathers remote system version info using the
+                                NetWkstaGetInfo API. Collects Windows version,
+                                domain, and related information without
+                                running a port scanner.
+
+bof-sprayad                     Performs LDAP based or Kerberos based password
+                                spray against Active Directory using
+                                LogonUserSSPI. Skips disabled accounts, locked
+                                accounts, and users with large BadPwdCount
+                                when specified.
+
+bof-sql-1434udp                 Enumerates SQL Server connection information
+                                via SQL Server Browser service on UDP 1434.
+
+bof-sql-adsi                    Obtains ADSI credentials from an ADSI linked
+                                server.
+
+bof-sql-agentcmd                Executes a system command using SQL Server
+                                agent jobs.
+
+bof-sql-agentstatus             Enumerates SQL agent status and jobs on a
+                                server.
+
+bof-sql-checkrpc                Enumerates linked servers and their RPC
+                                status.
+
+bof-sql-clr                     Loads and executes a .NET assembly in a SQL
+                                stored procedure via CLR integration.
+
+bof-sql-columns                 Enumerates columns within a table on a SQL
+                                server.
+
+bof-sql-databases               Enumerates databases on a SQL server.
+
+bof-sql-impersonate             Enumerates SQL logins that can be impersonated
+                                on a server.
+
+bof-sql-info                    Gathers information about a remote SQL server.
+
+bof-sql-links                   Enumerates linked SQL servers.
+
+bof-sql-olecmd                  Executes a system command using OLE automation
+                                procedures on a SQL server.
+
+bof-sql-query                   Executes a custom SQL query on a remote SQL
+                                server.
+
+bof-sql-rows                    Returns row count for a table on a SQL server.
+
+bof-sql-search                  Searches for a column name across tables in a
+                                database.
+
+bof-sql-smb                     Coerces NetNTLM authentication from SQL server
+                                via xp_dirtree to a UNC listener.
+
+bof-sql-tables                  Enumerates tables within a database on a SQL
+                                server.
+
+bof-sql-togglemodule            Enables or disables SQL server features: RPC,
+                                CLR, xp_cmdshell, or OLE automation.
+
+bof-sql-users                   Enumerates users with database access on a SQL
+                                server.
+
+bof-sql-whoami                  Gathers logged in user, mapped user, and SQL
+                                roles on a server.
+
+bof-sql-xpcmd                   Executes a system command via xp_cmdshell on a
+                                SQL server.
+
+bof-sspi-uac-bypass             UAC bypass via forged SSPI datagram context
+                                token impersonation and SYSTEM service
+                                creation using CreateSvcRpc.
+
+bof-start-web-client            Starts the WebClient service programmatically
+                                from user context using a service trigger.
+                                Required for WebDAV based PetitPotam coercion
+                                on systems where the service is not running.
+
+bof-static-syscalls-dump        Unhooks NtReadVirtualMemory and creates a
+                                process memory dump using MiniDumpWriteDump.
+                                x64 only.
+
+bof-suspendresume               Suspends or resumes a process by PID. Use 1 to
+                                suspend, 0 to resume.
+
+bof-syscallsdump                Unhooks NtReadVirtualMemory and creates a
+                                process memory dump using MiniDumpWriteDump.
+                                x64 only.
+
+bof-tasklist                    List running processes including PID, PPID,
+                                and ComandLine (uses wmi)
+
+bof-teams-cookies               Steals Microsoft Teams cookies by running
+                                inside the ms-teams.exe process. Extracts
+                                encryption key and filelessly downloads the
+                                Cookies database.
+
+bof-tgtdeleg                    Retrieve a usable TGT via GSS API delegation
+                                abuse.
+
+bof-toastnotify                 Sends Windows toast notifications using
+                                borrowed Application User Model IDs. Supports
+                                standard toasts and custom XML payloads with
+                                actions and protocol links.
+
+bof-token-vault                 In memory storage for stolen or duplicated
+                                Windows access tokens. Allows reusing tokens
+                                without re duplicating them and storing tokens
+                                for later use.
+
+bof-token2cert                  Abuses ESC1 vulnerable certificate templates
+                                through token impersonation to extract NT
+                                hashes of arbitrary domain users. Steals a
+                                token from a user with enrollment rights,
+                                requests a certificate with arbitrary SAN,
+                                performs PKINIT authentication, and extracts
+                                the target NT hash via UnPAC the hash. x64
+                                only. Requires elevated privileges.
+
+bof-tray-scout                  Reports the taskbar host executable and
+                                enumerates system tray notification icon
+                                tooltips, with optional full image paths for
+                                the host and each icon's owning process.
+
+bof-triage                      List Kerberos tickets in table format.
+
+bof-unexpire-user               Set a user account to never expire.
+
+bof-unexpireuser                Sets a user account to never expire.
+
+bof-uptime                      List system boot time and how long it has been
+                                running.
+
+bof-user-idle                   Gets user idle time since last input and GUI
+                                resource usage (GDI/USER handles) in the
+                                current process for timing intelligence.
+
+bof-useridletime                Shows how long the user as been idle,
+                                displayed in seconds, minutes, hours and days.
+
+bof-veeam-dumper                Extracts encrypted credentials from Veeam
+                                Backup and Replication or Veeam One databases.
+                                Uses sqlcmd/psql to query blobs, retrieves
+                                salt from registry, and decrypts via DPAPI.
+
+bof-vssenum                     Enumerate Shadow Copies on some Server 2012+
+                                servers
+
+bof-wallpaper-enum              Enumerates the current desktop wallpaper path
+                                for each attached monitor using the modern
+                                IDesktopWallpaper COM interface. Centralized
+                                wallpapers can reveal network paths, domain
+                                trusts, and policy enforcement.
+
+bof-wd-toggle                   Enables WDigest credential caching and
+                                circumvents Credential Guard when enabled.
+                                Patches
+                                wdigest!g_fParameter_UseLogonCredential and
+                                wdigest!g_IsCredGuardEnabled in LSASS via
+                                direct syscalls. Not reboot persistent. Memory
+                                offsets vary by Windows build.
+
+bof-webcam-bof                  Captures a single image from the default
+                                webcam device. Supports saving to disk or
+                                downloading over the beacon as file or
+                                screenshot.
+
+bof-wef-detect                  Detects Windows Event Forwarding (WEF)
+                                configuration, which indicates centralized
+                                logging. If found, indicates security events
+                                are being forwarded to a central server.
+
+bof-wer-dump                    Dumps protected LSASS using
+                                WerFaultSecure.exe. Writes WerFaultSecure to
+                                temp with random filename and saves dump as
+                                .dll in the same directory.
+
+bof-wer-resume                  Resumes suspended lsass.exe before running
+                                bof-wer-dump. Must be executed from a
+                                different beacon process than WerDump due to
+                                process protection policy.
+
+bof-wevt-channel-enum           Enumerates local Windows Event Log channels
+                                with an optional case insensitive substring
+                                filter, bounded output, and optional verbose
+                                access and publishing metadata. Do not run
+                                unfiltered on hosts with hundreds of low
+                                signal channels.
+
+bof-wevt-logon-enum             Enumerates recent Security log successful and
+                                failed logon events (Event IDs 4624, 4625,
+                                4672) via the wevtapi API and prints remote
+                                workstation name/IP plus the target username.
+                                Requires Security log read permission
+                                (typically admin or SYSTEM).
+
+bof-whoami                      List whoami /all.
+
+bof-wi-fi-passwords             Extract saved Wi-Fi passwords from the local
+                                system.
+
+bof-wifi-dump                   Enumerates WiFi interfaces and dumps clear
+                                text WiFi profile credentials. Uses
+                                WlanGetProfile with
+                                WLAN_PROFILE_GET_PLAINTEXT_KEY to retrieve
+                                profile XML including stored passwords.
+
+bof-win-version                 Queries the registry and system APIs to
+                                provide a concise but detailed overview of the
+                                Windows installation.
+
+bof-window-handles-enum         Enumerates window handles across all system
+                                processes and uses a legitimate window handle
+                                to access the clipboard.
+
+bof-window-list                 Enumerates the titles of all visible windows
+                                on the current user's desktop, optionally
+                                including Process IDs (PIDs).
+
+bof-windowlist                  List visible windows in the current user
+                                session.
+
+bof-winver                      Displays the version of Windows running, the
+                                build number, and patch release (Update Build
+                                Revision).
+
+bof-wmi-query                   Run a wmi query and display results in CSV
+                                format
+
+bof-wsc-status                  Queries Windows Security Center health status,
+                                including Anti Virus, Firewall, Anti Spyware,
+                                WSC Service, Auto Update, Internet Settings,
+                                and User Account Control.
+
+bof-xpipe                       Lists active named pipes and optionally
+                                returns owner and DACL permissions for a
+                                specific pipe.
+
+net-abandoned-com-keys          Enumerates abandoned COM InprocServer32 keys
+                                where the referenced DLL no longer exists.
+                                Useful for persistence via rundll32.exe -sta
+                                {CLSID}.
+
+net-ad-collector                ADCollector is a lightweight tool that
+                                enumerates the Active Directory environment to
+                                identify possible attack vectors. It provides
+                                a basic understanding of the configuration and
+                                deployment of the environment as a starting
+                                point for reconnaissance. It focuses on
+                                extracting useful attributes, properties, and
+                                ACLs from high value targets rather than
+                                enumerating all attributes from every user and
+                                computer object. It uses the S.DS namespace to
+                                retrieve domain and forest information from
+                                the domain controller and the S.DS.P namespace
+                                for LDAP searching.
+
+net-adcspwn                     ADCSPwn is a tool to escalate privileges in an
+                                Active Directory network by coercing
+                                authentication from machine accounts
+                                (Petitpotam) and relaying to the certificate
+                                service.
+
+net-adsearch                    A tool for efficient querying of Active
+                                Directory. Supports listing domain admins,
+                                custom LDAP search, LDAPS connections, JSON
+                                output, and retrieving custom attributes from
+                                generic queries.
+
+net-certify                     C# tool to enumerate and abuse
+                                misconfigurations in Active Directory
+                                Certificate Services (AD CS). Supports CA
+                                enumeration, certificate template discovery,
+                                vulnerability assessment, certificate
+                                requests, and downloads.
+
+net-cheese-dcom                 Command execution and lateral movement via
+                                DCOM. Must run in the context of a privileged
+                                user. Supports multiple DCOM methods including
+                                MMC20.Application, ShellWindows,
+                                ShellBrowserWindow, ExcelDDE, VisioAddonEx,
+                                OutlookShellEx, ExcelXLL, VisioExecLine, and
+                                OfficeMacro. If executed with target ., runs
+                                locally.
+
+net-cheese-exec                 PsExec like command execution and lateral
+                                movement via Windows service creation. Must
+                                run in the context of a privileged user.
+                                Supports create, start, stop, delete, and
+                                restart actions on a remote service.
+
+net-cheese-ps                   PowerShell command execution and lateral
+                                movement framework using
+                                System.Management.Automation.PowerShell.
+                                Supports local and remote execution via WS
+                                Management with built in CLM, AMSI, and WLDP
+                                bypasses, module import, encrypted payloads,
+                                and reflective PE injection. If executed
+                                without a target, runs locally. Must run as a
+                                privileged user when using PowerShell
+                                Remoting.
+
+net-cheese-rdp                  RDP credential stealer via reflective DLL
+                                injection into mstsc.exe. Must run in the
+                                context of a privileged user or a user with
+                                SeImpersonatePrivilege. Built on RdpThief and
+                                wrapped for .NET reflection loading.
+
+net-cheese-sql                  MSSQL trust abuse tool for command execution
+                                and lateral movement. Supports domain SPN
+                                discovery, linked server enumeration,
+                                impersonation, xp_cmdshell, OLE automation,
+                                CLR assembly abuse, and OPENQUERY execution.
+                                Type net-cheese-sql <command> /help for per
+                                command argument details.
+
+net-cimplant                    Supports file operations, registry, services,
+                                process management, lateral movement
+                                facilitation, and system enumeration. Requires
+                                local administrator permissions on the target
+                                system.
+
+net-com-hunter                  Enumerates COM servers registered in
+                                LocalServer32 and InProcServer32 keys using
+                                WMI.
+
+net-cred-phisher                Prompts the current user for credentials using
+                                CredUIPromptForWindowsCredentials.
+
+net-crop                        Creates LNK, URL, library-ms, or
+                                searchConnector-ms files that point to a
+                                WebDAV server. When a user browses a folder
+                                containing the file, Explorer may authenticate
+                                to the WebDAV server and leak NetNTLM hashes
+                                to Farmer.
+
+net-driver-query                Collects details about loaded drivers and
+                                optionally filters to non-Microsoft signed
+                                drivers.
+
+net-edd                         .NET domain enumeration tool similar to
+                                PowerView. Enumerates forest, domain,
+                                computer, and user data, and supports chained
+                                admin discovery and share hunting actions.
+
+net-encrypted-zip               Compresses a file/directory and encrypts the
+                                ZIP with AES256 CFB. Clears key from memory
+                                with RtlZeroMemory.
+
+net-etw-event-subscription      ETW-based event subscription similar to WMI
+                                events. Triggers on user logon or process
+                                start.
+
+net-farmer                      Local WebDAV server for collecting NetNTLM
+                                hashes in a Windows domain. Clients that
+                                connect to the server authenticate via the
+                                WebDAV Mini Redirector. Use with Crop or
+                                Fertiliser to lure victims to the listener.
+
+net-fertiliser                  Poisons an existing Office document (currently
+                                .docx) with a malicious field code that
+                                triggers a WebDAV connection when the document
+                                is opened, leaking NetNTLM hashes to a Farmer
+                                listener.
+
+net-forge-cert                  Forges Active Directory authentication
+                                certificates using a stolen CA private key
+                                (.pfx or .p12). Implements DPERSIST1 from
+                                Certified Pre-Owned. Output .pfx can be used
+                                with Rubeus for PKINIT or NT hash recovery.
+
+net-gmsa-password-reader        Reads the msDS-ManagedPassword blob from a
+                                Group Managed Service Account (gMSA) via LDAP
+                                and parses the values into NTLM hashes for
+                                reuse.
+
+net-god-potato-dotnet           Privilege escalation from
+                                SeImpersonatePrivilege to NT AUTHORITY\SYSTEM
+                                using a DCOM based Potato technique. Works on
+                                Windows Server 2012 through Windows Server
+                                2022 and Windows 8 through Windows 11.
+
+net-gopher                      Searches the local workstation for low hanging
+                                credential artifacts and useful escalation
+                                information. Runs all built in checks with no
+                                arguments.
+
+net-gps-coordinates             Tracks system GPS coordinates (within ~1km) if
+                                Location Services are enabled. Windows 10+.
+
+net-group3r                     Enumerates Active Directory Group Policy
+                                settings and identifies exploitable
+                                misconfigurations. Queries domain controllers
+                                over LDAP, parses GPO files from SYSVOL, and
+                                inspects referenced scripts, MSI packages, and
+                                other files on shares.
+
+net-harvest-crop                Decrypts AES encrypted Farmer log files
+                                written when Farmer output encryption is
+                                enabled.
+
+net-hijack-hunter               Parses a PE header to find linked DLLs
+                                vulnerable to hijacking with abuse techniques
+                                for each.
+
+net-hook-detector               Detects hooked Native API functions in the
+                                current process, indicating EDR presence. x64
+                                only.
+
+net-implant-ssp                 Installs a user-supplied SSP DLL on the system
+                                for LSA to load on boot. DLL must export
+                                SpLsaModeInitialize.
+
+net-inspect-assembly            Inspects a .NET assembly's CIL for
+                                deserializer calls and .NET remoting usage for
+                                privilege escalation triage.
+
+net-internal-monologue          Performs the Internal Monologue attack to
+                                retrieve NTLM hashes without touching LSASS.
+                                Downgrades NetNTLM settings, impersonates non-
+                                network logon tokens, and elicits NetNTLMv1
+                                responses via local SSPI interaction with the
+                                NTLM authentication package.
+
+net-junction-folder             Creates a junction folder in Windows
+                                Accessories Startup folder (Vault 7
+                                technique). DLL executed by verclsid.exe.
+
+net-kee-thief                   Extracts KeePass 2.x key material from memory.
+                                Attaches to a running KeePass.exe process
+                                using CLR MD, locates KeePassLib.PwDatabase
+                                and CompositeKey objects on the heap, and
+                                decrypts RtlEncryptMemory-protected key blobs
+                                via injected shellcode.
+
+net-koh                         Koh server that captures user credential
+                                material via token/logon session leakage.
+                                Monitors logon sessions, negotiates tokens
+                                using SSPI, and stores them for later
+                                impersonation. Requires SYSTEM context and
+                                SeTcbPrivilege for capture operations.
+
+net-krb-relay-up                Wrapper around KrbRelay and Rubeus that
+                                automates local privilege escalation in domain
+                                environments where LDAP signing is not
+                                enforced. Coerces machine account Kerberos
+                                auth, relays to LDAP (or ADCS), establishes a
+                                control primitive (RBCD, Shadow Credentials,
+                                or ADCS), and spawns a SYSTEM service.
+
+net-ldap-sign-check-dotnet      .NET tool that enumerates domain controllers
+                                and checks LDAP signing/channel binding
+                                settings to assess relay attack risk. Tests
+                                both LDAP and LDAPS on each discovered DC.
+
+net-lock-less                   Enumerates open file handles and copies locked
+                                files by duplicating handles from locking
+                                processes. Uses NtQuerySystemInformation,
+                                DuplicateHandle, CreateFileMapping, and
+                                MapViewOfFile to read locked file contents
+                                without terminating the locking process.
+
+net-mlokit                      MLOps Attack Toolkit for attacking MLOps
+                                platforms via REST APIs. Supports
+                                reconnaissance, training data theft, model
+                                theft, model poisoning, and notebook attacks
+                                across Azure ML, BigML, Google Vertex AI,
+                                MLFlow, Palantir, and AWS SageMaker.
+
+net-moriarty                    .NET privilege escalation scanner that extends
+                                Watson and Sherlock. Enumerates missing KBs,
+                                detects known Windows vulnerabilities, and
+                                suggests potential exploits for local
+                                privilege escalation on Windows 10/11 and
+                                Server 2016/2019/2022.
+
+net-nopowershell                PowerShell-like command execution in .NET
+                                without System.Management.Automation.dll. Runs
+                                in-memory via execute-assembly, avoiding
+                                PowerShell logging. Supports pipelines, AD
+                                cmdlets, WMI, registry, networking, and
+                                archive operations.
+
+net-pass-the-cert               .NET tool for authenticating to LDAP/LDAPS via
+                                Schannel using a client certificate when
+                                PKINIT is not supported. Supports privilege
+                                escalation, RBCD, SPN manipulation, and domain
+                                computer account creation over certificate-
+                                based LDAP binds.
+
+net-phantom-service             Searches for and optionally removes non-ASCII
+                                phantom services that cannot be removed by
+                                built-in tools.
+
+net-port-bender                 Redirect a local port to a remote host through
+                                the beacon.
+
+net-restricted-admin            .NET tool that remotely enables or disables
+                                Restricted Admin Mode for RDP pass-the-hash
+                                via WMI StdRegProv. Modifies
+                                DisableRestrictedAdmin at
+                                HKLM\System\CurrentControlSet\Control\Lsa.
+
+net-rubeus                      C# tool for raw Kerberos interaction and
+                                abuse. Supports ticket requests, renewals, S4U
+                                constrained delegation, golden/silver/diamond
+                                tickets, Kerberoasting, AS-REP roasting,
+                                password spraying, and ticket management.
+
+net-runas-cs                    .NET utility to run processes under different
+                                user credentials. Improved open-source
+                                alternative to runas.exe with support for
+                                logon types, UAC bypass, remote I/O, and
+                                automatic CreateProcess function selection.
+
+net-safety-katz                 .NET tool that dumps LSASS to a minidump and
+                                runs a customized in-memory Mimikatz to
+                                extract logonpasswords and ekeys from the
+                                dump, then deletes the dump file.
+
+net-sauron-eye                  .NET file search tool for red teams. Searches
+                                directories (including network drives) for
+                                files matching keywords, with optional content
+                                search, Office file parsing, VBA macro
+                                detection, and regex support.
+
+net-search-outlook              .NET tool that searches all email accounts and
+                                subfolders in a running Outlook instance for
+                                emails containing a specified keyword.
+
+net-seatbelt                    C# host enumeration tool that performs
+                                security-oriented safety checks from offensive
+                                and defensive perspectives. Collects system,
+                                user, network, and credential artifacts.
+
+net-session-searcher            Searches all connected drives for PuTTY
+                                private keys (.ppk) and RDP connection files,
+                                parsing for credentials.
+
+net-shadow-spray                .NET tool that sprays Shadow Credentials
+                                across all domain users and computers,
+                                attempting GenericWrite/GenericAll abuse to
+                                add KeyCredentials and obtain NT hashes via
+                                PKINIT and UnPACTheHash.
+
+net-sharp-chrome                Extract Chrome browser data using a .NET
+                                assembly.
+
+net-sharp-cloud                 C# utility that searches user profiles for
+                                cloud credential files related to Amazon Web
+                                Services, Microsoft Azure, and Google Compute.
+
+net-sharp-cookie-monster        Dumps browser cookies for all sites including
+                                httpOnly, secure, and session flags via
+                                Chrome/Edge remote debugging protocol.
+
+net-sharp-dpapi                 Decrypts DPAPI masterkeys, credentials,
+                                vaults, certificates, RDG, KeePass, SCCM
+                                secrets, and Chrome/Edge browser data.
+
+net-sharp-dump                  C# port of Out-Minidump.ps1. Creates a
+                                compressed minidump of a process (LSASS by
+                                default) using MiniDumpWriteDump, gzip-
+                                compresses it, and deletes the raw dump.
+
+net-sharp-edr-checker           C# EDR/AV detection tool. Checks running
+                                processes, loaded DLLs, install directories,
+                                services, and drivers for known defensive
+                                products including hidden EDR via metadata.
+
+net-sharp-exec                  Offensive C# lateral movement tool. Supports
+                                PSExec, WMI, WMIExec, and SMBExec modules for
+                                remote command execution and semi interactive
+                                shells.
+
+net-sharp-exfiltrate            Modular C# framework to exfiltrate files or
+                                directories over trusted cloud channels. Data
+                                is compressed and encrypted before upload.
+                                Supports extension and size filtering.
+
+net-sharp-gpo-abuse             .NET tool to abuse GPO edit rights. Modifies
+                                Group Policy Objects to add user rights, local
+                                admins, logon scripts, startup scripts, and
+                                immediate scheduled tasks.
+
+net-sharp-hide                  Persistence tool that creates hidden registry
+                                Run keys using NtSetValueKey with a null byte
+                                prefix in the UNICODE_STRING key value name,
+                                evading standard registry enumeration.
+
+net-sharp-hound                 BloodHound data collector for Active
+                                Directory. Enumerates users, groups, sessions,
+                                ACLs, trusts, GPOs, certificate services, and
+                                other attack path data for import into
+                                BloodHound CE.
+
+net-sharp-hound3                Legacy BloodHound ingestor (deprecated). C#
+                                rewrite of the original BloodHound collector.
+                                Data from this version is not compatible with
+                                BloodHound 4.1+.
+
+net-sharp-katz                  Dumps credentials from LSASS providers,
+                                performs DCSync, pass the hash, Zerologon,
+                                PrintNightmare, and HiveNightmare.
+
+net-sharp-laps                  Retrieves LAPS passwords from Active Directory
+                                by reading the ms-mnet-AdmPwd attribute.
+                                Requires ExtendedRight/GenericAll on the
+                                computer object or Domain Admin privileges.
+
+net-sharp-map-exec              Windows native CrackMapExec alternative.
+                                Network penetration testing swiss army knife
+                                supporting Kerberos and NTLM authentication
+                                over CIM, Reg32, SMB, WinRM, LDAP, and domain
+                                spraying.
+
+net-sharp-move                  .NET authenticated remote execution toolkit.
+                                Supports WMI, SCM, DCOM, Task Scheduler,
+                                service DLL hijack, DCOM server hijack, and
+                                modification of existing services and
+                                scheduled tasks.
+
+net-sharp-no-ps-exec            Fileless lateral movement tool. Hijacks an
+                                existing stopped LocalSystem service by
+                                temporarily replacing its binary path,
+                                executes the payload, then restores the
+                                original service configuration after 5
+                                seconds.
+
+net-sharp-persist               Windows persistence toolkit supporting
+                                registry keys, scheduled tasks, startup folder
+                                LNK files, KeePass config backdoor, Windows
+                                services, Tortoise SVN hooks, and scheduled
+                                task backdoors with add, remove, check, and
+                                list operations.
+
+net-sharp-printer               Console version of ListNetworks. Enumerates
+                                network printers accessible to the current
+                                user context.
+
+net-sharp-rdp                   RDP console application for authenticated
+                                remote command execution. Connects via Remote
+                                Desktop Protocol and runs commands through the
+                                Windows Run dialog (Win+R).
+
+net-sharp-rdp-hijack            Proof of concept RDP session hijack utility.
+                                Takes control of disconnected interactive
+                                login sessions using WTSConnectSession and
+                                WTSDisconnectSession.
+
+net-sharp-roast                 Requests service tickets and outputs crackable
+                                TGS hashes in hashcat format.
+
+net-sharp-sccm                  Post exploitation tool for Microsoft Endpoint
+                                Configuration Manager (SCCM). Supports lateral
+                                movement, credential gathering, and abuse of
+                                client push installation for NTLM coercion.
+
+net-sharp-sec-dump              .NET port of impacket secretsdump.py remote
+                                SAM and LSA Secrets dumping. Dumps local SAM
+                                and cached credentials from remote or local
+                                systems via RPC.
+
+net-sharp-shares                Multithreaded C# assembly to enumerate
+                                accessible network shares in a domain. Queries
+                                LDAP for targets and checks read/write access
+                                on discovered shares.
+
+net-sharp-smb-exec              Executes commands on a remote target via SMB
+                                using NTLM hash authentication (pass-the-hash
+                                over SMB).
+
+net-sharp-sphere                VSphere infrastructure attack tool. Interacts
+                                with guest VMs via VMware Tools and the
+                                vSphere Web Services API for execution, file
+                                transfer, and memory dumping.
+
+net-sharp-stay                  .NET persistence toolkit supporting elevated
+                                and non elevated registry keys, scheduled
+                                tasks, services, WMI event subscriptions, COM
+                                handler hijacks, and LNK backdoors.
+
+net-sharp-token-finder          Enumerates M365 Desktop Office applications
+                                for plain text authentication tokens that can
+                                be used to compromise the user's M365
+                                identity.
+
+net-sharp-up                    Audits the local system for common Windows
+                                privilege escalation misconfigurations.
+
+net-sharp-view                  .NET port of PowerView Active Directory
+                                reconnaissance toolkit. Provides domain
+                                enumeration, ACL analysis, share discovery,
+                                session enumeration, and Kerberoasting.
+
+net-sharp-wifi-grabber          Retrieves WiFi passwords in clear text from
+                                all WLAN profiles saved on the workstation.
+                                Situational awareness tool using native Win32
+                                WLAN APIs.
+
+net-sharp-wmi                   C# WMI toolkit for local and remote
+                                enumeration, process creation, VBS execution
+                                via event subscriptions, file upload, firewall
+                                enumeration, and process management.
+
+net-sharp-wsus                  C# tool for lateral movement through WSUS.
+                                Creates, approves, and deploys malicious
+                                updates to target machines via the WSUS
+                                server.
+
+net-sharpsh                     C# PowerShell execution via RunspaceFactory.
+                                Supports encoded commands, remote script
+                                loading, and clipboard script execution.
+                                Designed for inline assembly use.
+
+net-sigma-potato                Enhanced GodPotato derivative for privilege
+                                escalation from service account to SYSTEM.
+                                Supports disk execution, .NET reflection,
+                                PowerShell commands, and built in reverse
+                                shell.
+
+net-snaffler                    Active Directory file share crawler that finds
+                                credentials and sensitive files across domain
+                                computers using configurable rules and regex
+                                patterns.
+
+net-sql-recon                   Microsoft SQL Server offensive reconnaissance
+                                and post exploitation toolkit. Supports
+                                enumeration, impersonation, linked server, and
+                                SCCM module execution.
+
+net-stand-in                    Small Active Directory post exploitation
+                                toolkit. Supports LDAP queries, ACL
+                                manipulation, Kerberoasting, ASREP roasting,
+                                delegation abuse, GPO abuse, ADCS attacks, and
+                                machine account operations.
+
+net-sweet-potato                Collection of native Windows privilege
+                                escalation techniques from service accounts to
+                                SYSTEM. Combines RottenPotato, JuicyPotato,
+                                PrintSpoofer, and EfsRpc exploit methods.
+
+net-unquoted-path               Lists unquoted service paths outside
+                                System32/SysWow64 suitable for PE planting
+                                (T1034).
+
+net-webdav-status               Multi threaded C# version of WebDAV status
+                                checking. Probes remote systems for the Web
+                                Client service via the DAV RPC SERVICE named
+                                pipe. Does not require admin rights on the
+                                target but requires valid credentials.
+
+net-winpeas                     Windows Privilege Escalation Awesome Script.
+                                Enumerates misconfigurations, vulnerable
+                                services, credentials, AV/EDR, network, AD,
+                                and privilege escalation vectors on Windows.
+
+net-winrmdll                    Execute commands on remote hosts via WinRM.
+
+
+For more info, run "help <tool>".

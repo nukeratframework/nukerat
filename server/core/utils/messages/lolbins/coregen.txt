@@ -1,0 +1,22 @@
+ABOUT
+    Binary coregen.exe (Microsoft CoreCLR Native Image Generator) loads
+    exported function GetCLRRuntimeHost from coreclr.dll or from .DLL in
+    arbitrary path. Coregen is located within "C:\Program Files
+    (x86)\Microsoft Silverlight\5.1.50918.0\" or another version of
+    Silverlight. Coregen is signed by Microsoft and bundled with
+    Microsoft Silverlight. LOLBAS documents running .NET DLLs code.
+
+USAGE:
+    coregen.exe /L {PATH_ABSOLUTE:.dll} dummy_assembly_name
+    coregen.exe dummy_assembly_name
+
+EXAMPLES:
+    coregen.exe /L {PATH_ABSOLUTE:.dll} dummy_assembly_name
+    coregen.exe dummy_assembly_name
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    coregen.exe /L {PATH_ABSOLUTE:.dll} dummy_assembly_name

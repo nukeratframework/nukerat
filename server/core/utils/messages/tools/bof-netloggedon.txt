@@ -1,0 +1,15 @@
+ABOUT
+    Return users logged on the local or remote computer
+
+USAGE:
+    bof-netloggedon --- [hostname]
+
+EXAMPLES:
+    bof-netloggedon    bof-netloggedon --- workstation01
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-netloggedon -w 60 --- workstation01

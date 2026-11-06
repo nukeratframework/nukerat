@@ -1,0 +1,136 @@
+------------------------------------------------------------------------------------
+Download
+------------------------------------------------------------------------------------
+
+lol-appinstaller                        AppX/MSIX installer invoked via
+                                        ms-appinstaller URI to download packages
+                                        into INetCache.
+
+lol-bcp                                 SQL Server bulk copy tool that exports
+                                        binary payloads from a database to disk
+                                        for execution.
+
+lol-bitsadmin                           BITS client to download files, copy
+                                        data, or run binaries via job notify
+                                        commands and ADS.
+
+lol-certreq                             Certificate request tool that can HTTP
+                                        POST to download files or upload data to
+                                        a URL.
+
+lol-certutil                            Certificate utility abused to download
+                                        files, use URL cache/ADS, and encode or
+                                        decode data.
+
+lol-cmdl32                              Connection Manager auto-download that
+                                        fetches remote files per a VPN config
+                                        into %TMP%.
+
+lol-configsecuritypolicy                Defender policy tool that downloads
+                                        remote payloads to INetCache or uploads
+                                        files.
+
+lol-desktopimgdownldr                   Lock screen image downloader tricked
+                                        via SYSTEMROOT to fetch arbitrary remote
+                                        files.
+
+lol-devinit                             Visual Studio dev environment tool that
+                                        downloads and installs remote MSI
+                                        packages.
+
+lol-diantz                              Cabinet packaging tool to compress into
+                                        ADS, download remote files to CAB, or
+                                        run via DDF.
+
+lol-ecmangen                            Exchange/SDK certificate manager CLI
+                                        that downloads remote payloads into
+                                        INetCache.
+
+lol-excel                               Office Excel binary that can download
+                                        remote payloads into INetCache.
+
+lol-extrac32                            CAB extractor that can download, copy
+                                        files, or hide extracted data in
+                                        alternate data streams.
+
+lol-finger                              Finger client used to pull remote
+                                        payloads while appearing as benign user
+                                        lookup traffic.
+
+lol-ftp                                 FTP client that can spawn cmd.exe or
+                                        download and run binaries from FTP
+                                        servers.
+
+lol-gfxdownloadwrapper                  Intel graphics helper that downloads a
+                                        URL to a destination path from its
+                                        arguments.
+
+lol-imewdbld                            IME dictionary builder that downloads
+                                        files from the Internet into INetCache.
+
+lol-ldifde                              LDAP LDIF tool abused to download
+                                        arbitrary files from the Internet.
+
+lol-mpcmdrun                            Windows Defender mpcmdrun abused to
+                                        download files or stash them in
+                                        alternate data streams.
+
+lol-msaccess                            Access Office binary that downloads
+                                        remote .mdb payloads into INetCache.
+
+lol-msedge                              Microsoft Edge used to download remote
+                                        files or spawn processes as a signed
+                                        parent.
+
+lol-msohtmed                            Office HTML editor component that
+                                        downloads remote payloads into
+                                        INetCache.
+
+lol-msoxmled                            Office XML editor that downloads remote
+                                        payloads into INetCache.
+
+lol-mspub                               Publisher Office binary that downloads
+                                        remote payloads into INetCache.
+
+lol-ngen                                .NET Native Image Generator abused to
+                                        download remote payloads into INetCache.
+
+lol-onedrivestandaloneupdater           OneDrive updater abused to download
+                                        files from the Internet without
+                                        suspicious child processes.
+
+lol-outlook                             Outlook Office binary that downloads
+                                        remote payloads into INetCache.
+
+lol-powerpnt                            PowerPoint Office binary that downloads
+                                        remote payloads into INetCache.
+
+lol-protocolhandler                     Office protocol handler that downloads
+                                        remote payloads into INetCache.
+
+lol-scp                                 OpenSSH copy client for uploading or
+                                        downloading files over SSH.
+
+lol-sftp                                OpenSSH SFTP client that can spawn
+                                        shells or transfer files over SSH.
+
+lol-visio                               Visio Office binary that downloads
+                                        remote payloads into INetCache.
+
+lol-vslaunchbrowser                     Visual Studio browser launcher for
+                                        downloading or running remote debug
+                                        targets.
+
+lol-winget                              Windows Package Manager to download and
+                                        install packages, bypassing some AWL.
+
+lol-winproj                             Microsoft Project Office binary that
+                                        downloads remote payloads into
+                                        INetCache.
+
+lol-winword                             Word Office binary that downloads
+                                        remote payloads into INetCache.
+
+lol-xsd                                 XML Schema Definition SDK tool that
+                                        downloads remote payloads into
+                                        INetCache.

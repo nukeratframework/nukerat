@@ -1,0 +1,15 @@
+ABOUT
+    Read first bytes of exported functions from a loaded DLL.
+
+USAGE:
+    bof-mem-read --- <dll> <function1> [function2 ...]
+
+EXAMPLES:
+    bof-mem-read --- ntdll.dll NtCreateFile NtOpenProcess
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-mem-read -w 60 --- ntdll.dll NtCreateFile NtOpenProcess

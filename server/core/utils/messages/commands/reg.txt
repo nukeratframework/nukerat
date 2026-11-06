@@ -1,0 +1,31 @@
+ABOUT
+    Create, read, edit, delete, or search registry keys/values on Windows.
+
+USAGE:
+    reg <create|read|edit|delete|search> [flags]
+
+ARGUMENTS:
+    --path              Registry subkey path.
+    --hive              HKLM, HKCU, HKCR, HKU, or HKCC (default HKLM).
+    --name              Value name (--value alias).
+    --data              Value payload.
+    --type              REG_SZ, REG_DWORD, etc.
+    --query             Search string for reg search.
+    --delete-key        Delete entire subkey instead of one value.
+
+EXAMPLES:
+    reg create --hive HKLM --path Software\NukeratTest --name Demo --data hello
+    reg create --path Software\NukeratTest\Dword --name Count --data 42 --type REG_DWORD
+    reg read --hive HKLM --path Software\NukeratTest --name Demo
+    reg read --hive HKCU --path Environment
+    reg edit --hive HKCU --path Environment --name PATH --data C:\Windows\System32
+    reg delete --hive HKLM --path Software\NukeratTest --name Demo
+    reg delete --hive HKLM --path Software\NukeratTest --delete-key
+    reg search --hive HKLM --path Software --query Nukerat
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    reg search -w 120 --hive HKLM --query password

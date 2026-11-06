@@ -1,0 +1,22 @@
+ABOUT
+    Export a registry key to a file. Requires SeBackupPrivilege (use bof-get-priv first).
+
+USAGE:
+    bof-reg-save --- <Path> <Filename> <Hive>
+
+ARGUMENTS:
+
+    Path        Registry subkey path (e.g. Software\MyApp)
+    Filename    Output .reg file path (must not already exist)
+    Hive        Registry hive as integer: HKCR=0 HKCU=1 HKLM=2 HKU=3 HKCC=5
+
+EXAMPLES:
+    bof-get-priv --- SeBackupPrivilege
+    bof-reg-save --- Software\MyApp C:\out.reg 2
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-reg-save -w 60 --- Software\MyApp C:\out.reg 2

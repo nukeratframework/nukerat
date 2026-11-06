@@ -1,0 +1,75 @@
+ABOUT
+    .NET domain enumeration tool similar to PowerView. Enumerates forest, domain, computer, and
+    user data, and supports chained admin discovery and share hunting actions.
+
+USAGE:
+    net-edd --- -f <function> [options]
+
+EXAMPLES:
+    net-edd --- -l
+    net-edd --- -f getdomaincomputers
+    net-edd --- -f getdomainuser -u jsmith
+    net-edd --- -f getdomaincontrollers -d corp.local
+    net-edd --- -f finddomainuser -g "Domain Admins"
+    net-edd --- -f customldapquery -q "(objectClass=user)"
+    net-edd --- -f getdomainshares -o C:\temp\shares.txt
+    net-edd --- -f changeaccountpassword -u victim -w NewPassword123
+    net-edd --- -i -f getdomainuser
+
+OPTIONS:
+    -f, --function         Function to run
+    -o, --output           Path to save output file
+    -c, --computername     Target computer name
+    -n, --canonicalname    Canonical name for domain user
+    -d, --domainname       Target domain name
+    -g, --groupname        Target domain group name
+    -p, --processname      Target process name
+    -fd, --filedata        Path to file with data for the function
+    -w, --password         Password to authenticate with or set
+    -u, --username         Target domain account
+    -t, --threads          Number of threads (default: 5)
+    -q, --query            Custom LDAP filter
+    -a, --adright          Active Directory rights to return, comma separated
+    -s, --search           Search terms for FindInterestingDomainShareFile, comma separated
+    --sharepath            Specific share to search for interesting files
+    -i, --info             Show information for the specified function
+    -l, --listfunctions    List all available functions
+    -h, --help             Show help message
+
+FUNCTIONS:
+    getdomainsid           Return the domain SID
+    getforest              Return the current forest name
+    getforestdomains       Return all domains in the current forest
+    getsiddata             Convert a SID to group or domain name
+    getadcsservers         List AD CS servers in the current domain
+    getdomaincomputers     List all computers in the domain
+    getdomaincontrollers   List all domain controllers
+    getdomainshares        List all domain shares
+    getreadabledomainshares List readable domain shares
+    changeaccountpassword  Change the password for a targeted account
+    customldapquery        Run a custom LDAP filter
+    getuserdacl            Return DACL of a domain object
+    getnetlocalgroupmember List users in a local group on a remote system
+    getdomaingroupmember   List users in a domain group
+    getdomainuser          Get info about a specific user
+    getdomaindescriptions  Return domain objects with non standard descriptions
+    getnetsession          List accounts with sessions on the target system
+    getnetloggedon         List accounts logged into the target system
+    getuserswithspns       List domain accounts with SPNs
+    getdomaingroupsid       Fetch the SID of a group
+    joingroupbysid         Join an account to a group by SID
+    joingroupbyname        Join an account to a group by name
+    findadminsch           Query admin rights via Task Scheduler
+    findadminwmi           Query admin rights via WMI
+    finddomainprocess      Search for a process across domain systems
+    finddomainuser         Search for active sessions for a user or group
+    findemptysystem        Find systems with no logged on user
+    findinterestingdomainsharefile Search shares for interesting filenames
+    findwritableshares     Enumerate writable domain shares
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    net-edd -w 60 --- -l

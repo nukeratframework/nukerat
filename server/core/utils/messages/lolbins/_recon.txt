@@ -1,0 +1,15 @@
+------------------------------------------------------------------------------------
+Recon
+------------------------------------------------------------------------------------
+
+lol-nmcap                               Network Monitor capture utility to
+                                        sniff traffic and harvest sensitive
+                                        data.
+
+lol-pktmon                              Packet monitor for capturing network
+                                        traffic on Windows 10 October 2018
+                                        Update and later.
+
+lol-rpcping                             RPC connectivity tester that can leak
+                                        credentials or aid lateral movement
+                                        recon.

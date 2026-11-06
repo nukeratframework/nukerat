@@ -1,0 +1,16 @@
+ABOUT
+    Delete a scheduled task on the current system or a remote host.
+
+USAGE:
+    bof-del-task-scheduler --- <taskname> <host>
+
+EXAMPLES:
+    bof-del-task-scheduler --- NukeratBenchTask localhost
+    bof-del-task-scheduler --- NukeratBenchTask KINGSLANDING
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-del-task-scheduler -w 60 --- <taskname> <host>

@@ -1,0 +1,50 @@
+ABOUT
+    A tool for efficient querying of Active Directory. Supports listing domain admins,
+    custom LDAP search, LDAPS connections, JSON output, and retrieving custom attributes
+    from generic queries.
+
+USAGE:
+    net-adsearch --- [options]
+
+EXAMPLES:
+    net-adsearch --- --domain ldap.example.com --username admin --password AdminPass1 --users
+    net-adsearch --- --domain ldap.example.com --username admin --password AdminPass1 --groups
+    net-adsearch --- --domain ldap.example.com --username admin --password AdminPass1 --computers
+    net-adsearch --- --domain ldap.example.com --username admin --password AdminPass1 --spns
+    net-adsearch --- --domain ldap.example.com --username admin --password AdminPass1 --domain-admins
+    net-adsearch --- --domain ldap.example.com --username admin --password AdminPass1 --search "(objectClass=user)"
+    net-adsearch --- --domain ldap.example.com --hostname 10.10.10.1 --username admin --password AdminPass1 --users
+    net-adsearch --- --domain ldap.example.com --username admin --password AdminPass1 --users --json
+    net-adsearch --- --domain ldap.example.com --username admin --password AdminPass1 --users --full
+    net-adsearch --- --domain ldap.example.com --username admin --password AdminPass1 --computers --attributes cn,dNSHostName,operatingSystem
+    net-adsearch --- --domain ldap.example.com --username admin --password AdminPass1 --users --insecure
+
+CONNECTION OPTIONS:
+    -u, --username      Attempts to authenticate to AD with the given username
+    -p, --password      Attempts to authenticate to AD with the given password
+    -h, --hostname      Remote bind hostname or IP (requires --domain)
+    -p, --port          (Default: 636) Remote bind port
+    -d, --domain        Domain controller in FQDN format. If blank, lookups are done locally
+    --insecure          (Default: false) Communicate over port 389 without SSL
+
+QUERY OPTIONS:
+    -G, --groups        Enumerate and return all groups from AD
+    -U, --users         Enumerate and return all users from AD
+    -C, --computers     Enumerate and return all computers joined to AD
+    -S, --spns          Enumerate and return all SPNs from AD
+    -s, --search        Perform a custom search on the AD server
+    --domain-admins     Retrieve all Domain Admin accounts
+    --attributes        (Default: cn) Attributes to return from results in csv format
+
+OUTPUT OPTIONS:
+    -f, --full          Show all attributes for returned items
+    -o, --output        File path to output results
+    --json              (Default: false) Output results in JSON format
+    --supress-banner    Disable banner display
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    net-adsearch -w 60 --- --domain ldap.example.com --username admin --password AdminPass1 --users

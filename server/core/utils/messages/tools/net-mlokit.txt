@@ -1,0 +1,39 @@
+ABOUT
+    MLOps Attack Toolkit for attacking MLOps platforms via REST APIs. Supports reconnaissance,
+    training data theft, model theft, model poisoning, and notebook attacks across Azure ML,
+    BigML, Google Vertex AI, MLFlow, Palantir, and AWS SageMaker.
+
+USAGE:
+    net-mlokit --- <module> /platform:<platform> /credential:<cred> [options]
+
+MODULES:
+    check                  Verify credentials are valid
+    list-projects          List available projects/workspaces
+    list-models            List available ML models
+    list-datasets          List available training datasets
+    download-model         Download a given ML model
+    download-dataset       Download a given training dataset
+    upload-dataset         Upload a training dataset
+    poison-model           Poison a given ML model
+    list-notebooks          List notebook instances (SageMaker)
+    add-notebook-trigger   Add notebook trigger for code execution (SageMaker)
+
+OPTIONS:
+    /platform:             MLOps platform (azureml, bigml, vertexai, mlflow, palantir, sagemaker)
+    /credential:           API key, access token, access;secret keys, or user;password
+    /subscriptionid:       Azure subscription ID
+    /resourcegroup:        Azure resource group
+    /workspace:            Azure ML workspace name
+    /region:               AWS region
+    /project:              Project name
+    /modelid:              Model ID
+    /datasetid:            Dataset ID
+    /url:                  API endpoint URL
+    /sourcedir:            Source directory for uploads
+    /notebookname:         Notebook instance name
+    /script:               Script for notebook trigger
+
+EXAMPLES:
+    net-mlokit --- check /platform:azureml /credential:eyJ... /subscriptionid:xxx /resourcegroup:rg /workspace:ws
+    net-mlokit --- list-models /platform:sagemaker /credential:KEY;SECRET /region:us-east-1
+    net-mlokit --- download-model /platform:bigml /credential:apikey /project:proj /modelid:model

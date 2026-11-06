@@ -1,0 +1,12 @@
+ABOUT
+    Force the lock screen of the current user session.
+
+USAGE:
+    bof-force-lock-screen --- (no arguments)
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-force-lock-screen -w 60 --- (no arguments)

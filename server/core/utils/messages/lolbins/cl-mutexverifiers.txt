@@ -1,0 +1,20 @@
+ABOUT
+    PowerShell diagnostics script used for proxy execution. Dot-source
+    CL_Mutexverifiers.ps1, then call runAfterCancelProcess to run a
+    payload.
+
+USAGE:
+    . C:\Windows\diagnostics\system\AERO\CL_Mutexverifiers.ps1
+    runAfterCancelProcess {PATH:.ps1}
+
+EXAMPLES:
+    . C:\Windows\diagnostics\system\AERO\CL_Mutexverifiers.ps1
+    runAfterCancelProcess {PATH:.ps1}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    . C:\Windows\diagnostics\system\AERO\CL_Mutexverifiers.ps1
+    runAfterCancelProcess {PATH:.ps1}

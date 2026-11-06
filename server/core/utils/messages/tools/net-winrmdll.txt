@@ -1,0 +1,15 @@
+ABOUT
+    Execute commands on remote hosts via WinRM.
+
+USAGE:
+    net-winrmdll --- <arguments>
+
+EXAMPLES:
+    net-winrmdll --- --help
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    net-winrmdll -w 60 --- <arguments>

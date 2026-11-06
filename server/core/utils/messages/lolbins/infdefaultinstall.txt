@@ -1,0 +1,17 @@
+ABOUT
+    Setup API helper for default INF installation. LOLBAS
+    runs scrobj.dll scriptlets referenced from a crafted INF for
+    elevated code execution.
+
+USAGE:
+    InfDefaultInstall.exe {PATH:.inf}
+
+EXAMPLES:
+    InfDefaultInstall.exe {PATH:.inf}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    InfDefaultInstall.exe {PATH:.inf}

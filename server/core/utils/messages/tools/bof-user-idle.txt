@@ -1,0 +1,17 @@
+ABOUT
+    Gets user idle time since last input and GUI resource usage (GDI/USER handles) in the
+    current process for timing intelligence.
+
+USAGE:
+    bof-user-idle
+
+EXAMPLES:
+    bof-user-idle
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-user-idle -w 60
+    bof-user-idle -bg

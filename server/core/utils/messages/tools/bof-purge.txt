@@ -1,0 +1,13 @@
+ABOUT
+    Purge Kerberos tickets from the current or specified logon session.
+USAGE:
+    bof-purge --- [/luid:LOGONID]
+
+EXAMPLES:
+    bof-purge
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-purge -w 60 --- [/luid:LOGONID]

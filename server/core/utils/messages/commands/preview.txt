@@ -1,0 +1,20 @@
+ABOUT
+    Read the first bytes of a file without returning the full contents.
+
+USAGE:
+    preview <path> [--size-limit <bytes>]
+
+ARGUMENTS:
+    <path>              File to open.
+    --size-limit        Max bytes to read. Default 4096.
+
+EXAMPLES:
+    preview file.txt
+    preview C:\Temp\app.log --size-limit 4096
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    preview -w 30 C:\Temp\app.log

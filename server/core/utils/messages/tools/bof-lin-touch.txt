@@ -1,0 +1,20 @@
+ABOUT
+    (linux) Create file or update timestamps.
+
+USAGE:
+    bof-lin-touch --- <target>
+
+ARGUMENTS:
+    target              File path(s)
+
+Supports pipe chaining with other BusyBOF tools.
+
+EXAMPLES:
+    bof-lin-touch --- <target>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-touch -w 60 --- <target>

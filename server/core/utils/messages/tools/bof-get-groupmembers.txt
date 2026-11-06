@@ -1,0 +1,15 @@
+ABOUT
+    List members of a group. Supports standard LDAP (389) with
+    signing/sealing and LDAPS (636).
+USAGE:
+    bof-get-groupmembers --- {group} [-ou {path}] [-dc {ip}]
+
+EXAMPLES:
+    bof-get-groupmembers --- {group} [-ou {path}] [-dc {ip}]
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-get-groupmembers -w 60 --- {group} [-ou {path}] [-dc {ip}]

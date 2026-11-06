@@ -1,0 +1,18 @@
+ABOUT
+    (linux) Find printable strings.
+
+USAGE:
+    bof-lin-strings --- [file] [min_length]
+
+ARGUMENTS:
+    file                Input file
+    min_length          Minimum string length (default: 4)
+
+EXAMPLES:
+    bof-lin-strings
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-strings -w 60 --- [file] [min_length]

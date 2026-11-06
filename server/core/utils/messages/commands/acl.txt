@@ -1,0 +1,20 @@
+ABOUT
+    Show discretionary access control for a path: owner, group, and DACL entries with
+    allow or deny labels and access masks.
+
+USAGE:
+    acl <path>
+
+ARGUMENTS:
+    <path>              File or directory.
+
+EXAMPLES:
+    acl C:\Users\Public
+    acl /some/path
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    acl -w 60 C:\Users\Public

@@ -1,0 +1,23 @@
+ABOUT
+    Cabinet file builder. LOLBAS compresses payloads into ADS,
+    downloads and cabinets remote files, or drives behavior through a
+    Diamond Definition File to evade command-line detections.
+
+USAGE:
+    makecab {PATH_ABSOLUTE:.exe} {PATH_ABSOLUTE}:autoruns.cab
+    makecab {PATH_SMB:.exe} {PATH_ABSOLUTE}:file.cab
+    makecab {PATH_SMB:.exe} {PATH_ABSOLUTE:.cab}
+    makecab /F {PATH:.ddf}
+
+EXAMPLES:
+    makecab {PATH_ABSOLUTE:.exe} {PATH_ABSOLUTE}:autoruns.cab
+    makecab {PATH_SMB:.exe} {PATH_ABSOLUTE}:file.cab
+    makecab {PATH_SMB:.exe} {PATH_ABSOLUTE:.cab}
+    makecab /F {PATH:.ddf}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    makecab {PATH_ABSOLUTE:.exe} {PATH_ABSOLUTE}:autoruns.cab

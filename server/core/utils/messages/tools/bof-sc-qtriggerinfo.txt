@@ -1,0 +1,15 @@
+ABOUT
+    Query a service for trigger conditions
+
+USAGE:
+    bof-sc-qtriggerinfo --- <service name> [opt:server]
+
+EXAMPLES:
+    bof-sc-qtriggerinfo --- Spooler
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-sc-qtriggerinfo -w 60 --- Spooler

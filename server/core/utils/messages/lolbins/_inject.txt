@@ -1,0 +1,11 @@
+------------------------------------------------------------------------------------
+Inject
+------------------------------------------------------------------------------------
+
+lol-mavinject                           App-V injector that loads a DLL into a
+                                        running process, including from ADS
+                                        paths.
+
+lol-ttdinject                           Time Travel Debug injector that spawns
+                                        target processes for tracing or
+                                        execution.

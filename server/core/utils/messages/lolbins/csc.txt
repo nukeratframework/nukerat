@@ -1,0 +1,22 @@
+ABOUT
+    .NET Framework C# compiler.
+    Builds attacker .cs into EXE or DLL on-host to evade controls.
+
+USAGE:
+    csc.exe -out:{PATH:.exe} {PATH:.cs}
+    csc -target:library {PATH:.cs}
+
+ARGUMENTS:
+    -out:                        Output executable path
+    -target:library              Emit DLL instead of EXE
+
+EXAMPLES:
+    csc.exe -out:{PATH:.exe} {PATH:.cs}
+    csc -target:library {PATH:.cs}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    csc.exe -out:{PATH:.exe} {PATH:.cs}

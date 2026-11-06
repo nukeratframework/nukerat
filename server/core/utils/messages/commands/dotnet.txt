@@ -1,0 +1,22 @@
+ABOUT
+    Execute a .NET assembly from an uploaded file in the current process
+    using inline execution. Optional arguments after --- are passed to
+    the loader. Windows only.
+
+USAGE:
+    dotnet -f <file> --- <assemblyargs>
+
+ARGUMENTS:
+    -f                  Local .NET file (--file).
+    ---                 Optional assembly command line.
+
+EXAMPLES:
+    dotnet -f Seatbelt.exe --- -group=all
+    dotnet -f Rubeus.exe --- asktgt /user:admin
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    dotnet -w 180 -f tool.exe --- --help

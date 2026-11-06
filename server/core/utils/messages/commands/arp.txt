@@ -1,0 +1,18 @@
+ABOUT
+    Print the ARP cache.
+
+USAGE:
+    arp
+
+ARGUMENTS:
+    (none)
+
+EXAMPLES:
+    arp
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    arp -w 30

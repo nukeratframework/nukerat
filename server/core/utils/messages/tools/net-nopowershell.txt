@@ -1,0 +1,18 @@
+ABOUT
+    PowerShell-like command execution in .NET without System.Management.Automation.dll.
+    Runs in-memory via execute-assembly, avoiding PowerShell logging. Supports pipelines,
+    AD cmdlets, WMI, registry, networking, and archive operations.
+
+USAGE:
+    net-nopowershell --- <command> [arguments] [| <command> ...]
+
+EXAMPLES:
+    net-nopowershell --- Get-Process
+    net-nopowershell --- Get-ADUser -Filter * | Select-Object Name,SamAccountName
+    net-nopowershell --- Get-WmiObject Win32_OperatingSystem
+    net-nopowershell --- Get-ChildItem C:\Users
+    net-nopowershell --- Test-NetConnection dc01.corp.local -Port 445
+
+NOTES:
+    Pipeline characters must be surrounded by spaces. See CHEATSHEET.md for full cmdlet list.
+    TLS 1.1+ not supported (.NET Framework 2).

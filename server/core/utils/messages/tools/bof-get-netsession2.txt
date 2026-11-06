@@ -1,0 +1,14 @@
+ABOUT
+    Modified version of `netsession` that supports BOFHound
+
+USAGE:
+    bof-get-netsession2 --- [opt:computer] [opt:resolution method] [opt:dns server]
+
+EXAMPLES:
+    bof-get-netsession2
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-get-netsession2 -w 60 --- [opt:computer] [opt:resolution method] [opt:dns server]

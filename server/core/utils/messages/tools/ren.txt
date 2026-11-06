@@ -1,0 +1,20 @@
+ABOUT
+    Rename a file on the implant (same directory; destination is the new name or path).
+
+USAGE:
+    ren <source> <destination>
+
+ARGUMENTS:
+    <source>            Existing file (positional).
+    <destination>       New name or path (positional).
+
+EXAMPLES:
+    ren /tmp/a.txt /tmp/b.txt
+    ren C:\Temp\old.txt C:\Temp\new.txt
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    ren -w 30 C:\Temp\old.txt C:\Temp\new.txt

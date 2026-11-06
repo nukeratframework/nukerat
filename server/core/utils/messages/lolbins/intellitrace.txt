@@ -1,0 +1,17 @@
+ABOUT
+    Visual Studio command-line tool for collecting and managing
+    diagnostic trace files. LOLBAS documents executing an executable
+    under a trusted Microsoft-signed binary.
+
+USAGE:
+    IntelliTrace.exe launch /cp:"collectionplan.xml" /f:"c:\users\public\log" "C:\Windows\System32\calc.exe"
+
+EXAMPLES:
+    IntelliTrace.exe launch /cp:"collectionplan.xml" /f:"c:\users\public\log" "C:\Windows\System32\calc.exe"
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    IntelliTrace.exe launch /cp:"collectionplan.xml" /f:"c:\users\public\log" "C:\Windows\System32\calc.exe"

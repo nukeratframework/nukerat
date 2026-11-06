@@ -1,0 +1,15 @@
+ABOUT
+    Delete a rogue machine account created in Active Directory.
+
+USAGE:
+    bof-del-machine-account --- <Computername>
+
+EXAMPLES:
+    bof-del-machine-account --- DCPWN$
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-del-machine-account -w 60 --- <arguments>

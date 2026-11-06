@@ -1,0 +1,19 @@
+ABOUT
+    Credential Manager command-line tool.
+    Lists cached credentials with cmdkey /list for host reconnaissance.
+
+USAGE:
+    cmdkey /list
+
+ARGUMENTS:
+    /list                        List stored credentials on host
+
+EXAMPLES:
+    cmdkey /list
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    cmdkey /list

@@ -1,0 +1,9 @@
+ABOUT
+    Returns row count for a table on a SQL server.
+
+USAGE:
+    bof-sql-rows --- <server> [database] <table> [linkedserver] [impersonate]
+
+EXAMPLES:
+    bof-sql-rows --- SQL01 master sysusers
+    bof-sql-rows --- SQL01 AdventureWorks Users

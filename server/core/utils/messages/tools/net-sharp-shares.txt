@@ -1,0 +1,25 @@
+ABOUT
+    Multithreaded C# assembly to enumerate accessible network shares in a domain.
+    Queries LDAP for targets and checks read/write access on discovered shares.
+
+USAGE:
+    net-sharp-shares --- [/threads:N] [/ldap:filter] [options]
+
+OPTIONS:
+    /threads:N    Maximum parallel threads (default: 25)
+    /dc           Domain controller to query
+    /domain       Domain name
+    /ldap         LDAP host filter: all, dc, exclude-dc, servers, servers-exclude-dc
+    /ou           LDAP OU to query (e.g. "OU=Servers,DC=corp,DC=local")
+    /stealth      List share names without read/write access checks
+    /filter       Comma separated shares to exclude (default: SYSVOL,NETLOGON,IPC$,PRINT$)
+    /outfile      Write results to file instead of stdout
+    /verbose      Show unauthorized shares
+
+EXAMPLES:
+    net-sharp-shares    net-sharp-shares --- /ldap:all /threads:50
+    net-sharp-shares --- /ldap:servers /ou:"OU=Special Servers,DC=corp,DC=local" /verbose
+    net-sharp-shares --- /ldap:all /filter:sysvol,netlogon,ipc$,print$ /outfile:C:\\shares.txt
+
+OUTPUT LEGEND:
+    [r] Readable  [w] Writeable  [-] Unauthorized  [?] Unchecked (stealth mode)

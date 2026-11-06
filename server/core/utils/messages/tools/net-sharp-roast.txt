@@ -1,0 +1,23 @@
+ABOUT
+    Requests service tickets and outputs crackable TGS hashes in hashcat
+    format.
+
+USAGE:
+    net-sharp-roast --- <target> [domain\\user] [password]
+
+TARGET:
+    all                           Roast all users in current domain
+    <username>                    Roast specific user
+    <SPN>                         Roast specific service principal name
+    <OU DN>                       Roast users in specified OU
+    LDAP://DC=domain,DC=local     Roast users in trusted domain
+    <SPN>@domain                  Roast SPN in trusted domain
+
+EXAMPLES:
+    net-sharp-roast --- all
+    net-sharp-roast --- sqlservice
+    net-sharp-roast --- "MSSQLSvc/SQL.corp.local"
+    net-sharp-roast --- harmj0y "corp.local\\user" "Password123!"
+
+NOTES:
+    Deprecated. Functionality incorporated into net-rubeus kerberoast action.

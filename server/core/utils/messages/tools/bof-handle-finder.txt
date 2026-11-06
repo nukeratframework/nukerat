@@ -1,0 +1,16 @@
+ABOUT
+    List processes that have open handles to a file.
+
+USAGE:
+    bof-handle-finder --- <path\to\file>
+
+EXAMPLES:
+    bof-handle-finder --- C:\Windows\System32\ntdll.dll
+    bof-handle-finder --- C:\Windows\explorer.exe
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-handle-finder -w 60 --- <arguments>

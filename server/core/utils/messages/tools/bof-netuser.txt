@@ -1,0 +1,16 @@
+ABOUT
+    Get info about specific user. Pull from domain if a domainname is specified
+
+USAGE:
+    bof-netuser --- <username> [opt:domain]
+
+EXAMPLES:
+    bof-netuser --- administrator
+    bof-netuser --- jsmith corp.local
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-netuser -w 60 --- administrator

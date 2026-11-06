@@ -1,0 +1,1422 @@
+{
+    "acccheckconsole": {
+        "path": "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.22000.0\\x86\\AccChecker\\AccCheckConsole.exe",
+        "tags": [
+            "execute",
+            "dll"
+        ]
+    },
+    "addinutil": {
+        "path": "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\AddinUtil.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "adplus": {
+        "path": "C:\\Program Files (x86)\\Windows Kits\\10\\Debuggers\\x64\\adplus.exe",
+        "tags": [
+            "dump"
+        ]
+    },
+    "agentexecutor": {
+        "path": "C:\\Program Files (x86)\\Microsoft Intune Management Extension\\AgentExecutor.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "appcert": {
+        "path": "C:\\Program Files (x86)\\Windows Kits\\10\\App Certification Kit\\appcert.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "appinstaller": {
+        "path": "C:\\Program Files\\WindowsApps\\Microsoft.DesktopAppInstaller_1.11.2521.0_x64__8wekyb3d8bbwe\\AppInstaller.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "applaunch": {
+        "path": "C:\\Windows\\Microsoft.NET\\Framework\\v2.0.50727\\Applaunch.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "applauncher": {
+        "path": "C:\\Program Files\\Windows Kits\\10\\Microsoft User Experience Virtualization\\Management\\AppLauncher.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "appvlp": {
+        "path": "C:\\Program Files\\Microsoft Office\\root\\client\\appvlp.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "aspnet-compiler": {
+        "path": "c:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\aspnet_compiler.exe",
+        "tags": [
+            "compile"
+        ]
+    },
+    "at": {
+        "path": "C:\\WINDOWS\\System32\\At.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "atbroker": {
+        "path": "C:\\Windows\\System32\\Atbroker.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "bash": {
+        "path": "C:\\Windows\\System32\\bash.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "bcp": {
+        "path": "C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\bcp.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "bitsadmin": {
+        "path": "C:\\Windows\\System32\\bitsadmin.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "cdb": {
+        "path": "C:\\Program Files (x86)\\Windows Kits\\10\\Debuggers\\x64\\cdb.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "certoc": {
+        "path": "c:\\windows\\system32\\certoc.exe",
+        "tags": [
+            "dll"
+        ]
+    },
+    "certreq": {
+        "path": "C:\\Windows\\System32\\certreq.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "certutil": {
+        "path": "C:\\Windows\\System32\\certutil.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "change": {
+        "path": "c:\\windows\\system32\\change.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "cipher": {
+        "path": "c:\\windows\\system32\\cipher.exe",
+        "tags": [
+            "tamper"
+        ]
+    },
+    "cl-invocation": {
+        "path": "C:\\Windows\\diagnostics\\system\\AERO\\CL_Invocation.ps1",
+        "tags": [
+            "proxy"
+        ]
+    },
+    "cl-loadassembly": {
+        "path": "C:\\Windows\\diagnostics\\system\\Audio\\CL_LoadAssembly.ps1",
+        "tags": [
+            "dll"
+        ]
+    },
+    "cl-mutexverifiers": {
+        "path": "C:\\Windows\\diagnostics\\system\\WindowsUpdate\\CL_Mutexverifiers.ps1",
+        "tags": [
+            "proxy"
+        ]
+    },
+    "cmd": {
+        "path": "C:\\Windows\\System32\\cmd.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "cmdkey": {
+        "path": "C:\\Windows\\System32\\cmdkey.exe",
+        "tags": [
+            "credentials"
+        ]
+    },
+    "cmdl32": {
+        "path": "C:\\Windows\\System32\\cmdl32.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "cmstp": {
+        "path": "C:\\Windows\\System32\\cmstp.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "code": {
+        "path": "C:\\Users\\<username>\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe",
+        "placeholders": [
+            "<username>"
+        ],
+        "tags": [
+            "execute"
+        ]
+    },
+    "colorcpl": {
+        "path": "C:\\Windows\\System32\\colorcpl.exe",
+        "tags": [
+            "copy"
+        ]
+    },
+    "computerdefaults": {
+        "path": "C:\\Windows\\System32\\ComputerDefaults.exe",
+        "tags": [
+            "uac"
+        ]
+    },
+    "configsecuritypolicy": {
+        "path": "C:\\Program Files\\Windows Defender\\ConfigSecurityPolicy.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "conhost": {
+        "path": "c:\\windows\\system32\\conhost.exe",
+        "tags": [
+            "proxy"
+        ]
+    },
+    "control": {
+        "path": "C:\\Windows\\System32\\control.exe",
+        "tags": [
+            "dll"
+        ]
+    },
+    "coregen": {
+        "path": "C:\\Program Files\\Microsoft Silverlight\\5.1.50918.0\\coregen.exe",
+        "tags": [
+            "dll"
+        ]
+    },
+    "createdump": {
+        "path": "C:\\Program Files\\dotnet\\shared\\Microsoft.NETCore.App\\<version>\\createdump.exe",
+        "placeholders": [
+            "<version>"
+        ],
+        "tags": [
+            "dump"
+        ]
+    },
+    "csc": {
+        "path": "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\Csc.exe",
+        "tags": [
+            "compile"
+        ]
+    },
+    "cscript": {
+        "path": "C:\\Windows\\System32\\cscript.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "csi": {
+        "path": "c:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\MSBuild\\15.0\\Bin\\Roslyn\\csi.exe",
+        "tags": [
+            "compile"
+        ]
+    },
+    "customshellhost": {
+        "path": "C:\\Windows\\System32\\CustomShellHost.exe",
+        "tags": [
+            "proxy"
+        ]
+    },
+    "datasvcutil": {
+        "path": "C:\\Windows\\Microsoft.NET\\Framework64\\v3.5\\DataSvcUtil.exe",
+        "tags": [
+            "upload"
+        ]
+    },
+    "dbgsrv": {
+        "path": "C:\\Program Files (x86)\\Windows Kits\\10\\Debuggers\\x64\\dbgsrv.exe",
+        "tags": [
+            "proxy"
+        ]
+    },
+    "defaultpack": {
+        "path": "C:\\Program Files (x86)\\Microsoft\\DefaultPack\\DefaultPack.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "desk": {
+        "path": "C:\\Windows\\System32\\desk.cpl",
+        "tags": [
+            "dll"
+        ]
+    },
+    "desktopimgdownldr": {
+        "path": "c:\\windows\\system32\\desktopimgdownldr.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "devicecredentialdeployment": {
+        "path": "C:\\Windows\\System32\\DeviceCredentialDeployment.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "devinit": {
+        "path": "C:\\Program Files\\Microsoft Visual Studio\\<version>\\Community\\Common7\\Tools\\devinit\\devinit.exe",
+        "placeholders": [
+            "<version>"
+        ],
+        "tags": [
+            "download"
+        ]
+    },
+    "devtoolslauncher": {
+        "path": "c:\\windows\\system32\\devtoolslauncher.exe",
+        "tags": [
+            "proxy"
+        ]
+    },
+    "devtunnels": {
+        "path": "C:\\Users\\<username>\\AppData\\Local\\Temp\\.net\\devtunnel\\devtunnel.exe",
+        "placeholders": [
+            "<username>"
+        ],
+        "tags": [
+            "proxy"
+        ]
+    },
+    "dfshim": {
+        "path": "C:\\Windows\\Microsoft.NET\\Framework\\v2.0.50727\\Dfsvc.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "dfsvc": {
+        "path": "C:\\Windows\\Microsoft.NET\\Framework\\v2.0.50727\\Dfsvc.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "diantz": {
+        "path": "c:\\windows\\system32\\diantz.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "diskshadow": {
+        "path": "C:\\Windows\\System32\\diskshadow.exe",
+        "tags": [
+            "dump"
+        ]
+    },
+    "dnscmd": {
+        "path": "C:\\Windows\\System32\\Dnscmd.exe",
+        "tags": [
+            "dll"
+        ]
+    },
+    "dotnet": {
+        "path": "C:\\Program Files\\dotnet\\dotnet.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "dotnet-counters": {
+        "path": "C:\\Users\\<user>\\.dotnet\\tools\\dotnet-counters.exe",
+        "placeholders": [
+            "<user>"
+        ],
+        "tags": [
+            "proxy"
+        ]
+    },
+    "dotnet-trace": {
+        "path": "C:\\Users\\<user>\\.dotnet\\tools\\dotnet-trace.exe",
+        "placeholders": [
+            "<user>"
+        ],
+        "tags": [
+            "proxy"
+        ]
+    },
+    "dsdbutil": {
+        "path": "C:\\Windows\\System32\\dsdbutil.exe",
+        "tags": [
+            "dump"
+        ]
+    },
+    "dtutil": {
+        "path": "C:\\Program Files\\Microsoft SQL Server\\<version>\\DTS\\Binn\\dtutil.exe",
+        "placeholders": [
+            "<version>"
+        ],
+        "tags": [
+            "copy"
+        ]
+    },
+    "dump64": {
+        "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\Feedback\\dump64.exe",
+        "tags": [
+            "dump"
+        ]
+    },
+    "dumpminitool": {
+        "path": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\Extensions\\TestPlatform\\Extensions\\DumpMinitool.exe",
+        "tags": [
+            "dump"
+        ]
+    },
+    "dxcap": {
+        "path": "C:\\Windows\\System32\\dxcap.exe",
+        "tags": [
+            "proxy"
+        ]
+    },
+    "ecmangen": {
+        "path": "C:\\Program Files (x86)\\Microsoft SDKs\\Windows\\<version>\\Bin\\ECMangen.exe",
+        "placeholders": [
+            "<version>"
+        ],
+        "tags": [
+            "download"
+        ]
+    },
+    "esentutl": {
+        "path": "C:\\Windows\\System32\\esentutl.exe",
+        "tags": [
+            "copy"
+        ]
+    },
+    "eudcedit": {
+        "path": "c:\\windows\\system32\\eudcedit.exe",
+        "tags": [
+            "uac"
+        ]
+    },
+    "eventvwr": {
+        "path": "C:\\Windows\\System32\\eventvwr.exe",
+        "tags": [
+            "uac"
+        ]
+    },
+    "excel": {
+        "path": "C:\\Program Files (x86)\\Microsoft Office 16\\ClientX86\\Root\\Office16\\Excel.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "expand": {
+        "path": "C:\\Windows\\System32\\Expand.exe",
+        "tags": [
+            "copy"
+        ]
+    },
+    "explorer": {
+        "path": "C:\\Windows\\explorer.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "extexport": {
+        "path": "C:\\Program Files\\Internet Explorer\\Extexport.exe",
+        "tags": [
+            "dll"
+        ]
+    },
+    "extrac32": {
+        "path": "C:\\Windows\\System32\\extrac32.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "findstr": {
+        "path": "C:\\Windows\\System32\\findstr.exe",
+        "tags": [
+            "credentials"
+        ]
+    },
+    "finger": {
+        "path": "c:\\windows\\system32\\finger.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "fltmc": {
+        "path": "C:\\Windows\\System32\\fltMC.exe",
+        "tags": [
+            "evasion"
+        ]
+    },
+    "forfiles": {
+        "path": "C:\\Windows\\System32\\forfiles.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "fsi": {
+        "path": "C:\\Program Files\\dotnet\\sdk\\<version>\\FSharp\\fsi.exe",
+        "placeholders": [
+            "<version>"
+        ],
+        "tags": [
+            "execute"
+        ]
+    },
+    "fsianycpu": {
+        "path": "c:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\Common7\\IDE\\CommonExtensions\\Microsoft\\FSharp\\fsianycpu.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "fsutil": {
+        "path": "C:\\Windows\\System32\\fsutil.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "ftp": {
+        "path": "C:\\Windows\\System32\\ftp.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "gfxdownloadwrapper": {
+        "path": "c:\\windows\\system32\\driverstore\\filerepository\\64kb6472.inf_amd64_3daef03bbe98572b\\GfxDownloadWrapper.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "gpscript": {
+        "path": "C:\\Windows\\System32\\gpscript.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "hh": {
+        "path": "C:\\Windows\\hh.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "ie4uinit": {
+        "path": "c:\\windows\\system32\\ie4uinit.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "iediagcmd": {
+        "path": "C:\\Program Files\\Internet Explorer\\iediagcmd.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "ieexec": {
+        "path": "C:\\Windows\\Microsoft.NET\\Framework\\v2.0.50727\\ieexec.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "ilasm": {
+        "path": "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\ilasm.exe",
+        "tags": [
+            "compile"
+        ]
+    },
+    "imewdbld": {
+        "path": "C:\\Windows\\System32\\IME\\SHARED\\IMEWDBLD.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "infdefaultinstall": {
+        "path": "C:\\Windows\\System32\\Infdefaultinstall.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "installutil": {
+        "path": "C:\\Windows\\Microsoft.NET\\Framework\\v2.0.50727\\InstallUtil.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "intellitrace": {
+        "path": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\IntelliTrace\\IntelliTrace.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "iscsicpl": {
+        "path": "c:\\windows\\system32\\iscsicpl.exe",
+        "tags": [
+            "uac"
+        ]
+    },
+    "jsc": {
+        "path": "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\Jsc.exe",
+        "tags": [
+            "compile"
+        ]
+    },
+    "launch-vsdevshell": {
+        "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\Tools\\Launch-VsDevShell.ps1",
+        "tags": [
+            "proxy"
+        ]
+    },
+    "ldifde": {
+        "path": "c:\\windows\\system32\\ldifde.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "logger": {
+        "path": "C:\\Program Files (x86)\\Windows Kits\\10\\Debuggers\\x86\\logger.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "makecab": {
+        "path": "C:\\Windows\\System32\\makecab.exe",
+        "tags": [
+            "ads"
+        ]
+    },
+    "manage-bde": {
+        "path": "C:\\Windows\\System32\\manage-bde.wsf",
+        "tags": [
+            "proxy"
+        ]
+    },
+    "mavinject": {
+        "path": "C:\\Windows\\System32\\mavinject.exe",
+        "tags": [
+            "inject"
+        ]
+    },
+    "mftrace": {
+        "path": "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.16299.0\\x86\\mftrace.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "microsoft-nodejstools-pressanykey": {
+        "path": "C:\\Program Files\\Microsoft Visual Studio\\<version>\\Community\\Common7\\IDE\\Extensions\\Microsoft\\NodeJsTools\\NodeJsTools\\Microsoft.NodejsTools.PressAnyKey.exe",
+        "placeholders": [
+            "<version>"
+        ],
+        "tags": [
+            "execute"
+        ]
+    },
+    "microsoft-workflow-compiler": {
+        "path": "C:\\Windows\\Microsoft.Net\\Framework64\\v4.0.30319\\Microsoft.Workflow.Compiler.exe",
+        "tags": [
+            "compile"
+        ]
+    },
+    "mmc": {
+        "path": "C:\\Windows\\System32\\mmc.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "mofcomp": {
+        "path": "C:\\Windows\\System32\\wbem\\mofcomp.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "mpcmdrun": {
+        "path": "C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.2008.4-0\\MpCmdRun.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "mpiexec": {
+        "path": "C:\\Program Files\\Microsoft MPI\\Bin\\mpiexec.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "msaccess": {
+        "path": "C:\\Program Files (x86)\\Microsoft Office 16\\ClientX86\\Root\\Office16\\MSAccess.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "msbuild": {
+        "path": "C:\\Windows\\Microsoft.NET\\Framework\\v2.0.50727\\Msbuild.exe",
+        "tags": [
+            "compile"
+        ]
+    },
+    "msconfig": {
+        "path": "C:\\Windows\\System32\\msconfig.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "mscopilot": {
+        "path": "C:\\Program Files (x86)\\Microsoft\\Copilot\\Application\\mscopilot.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "mscopilot-proxy": {
+        "path": "C:\\Program Files (x86)\\Microsoft\\Copilot\\Application\\mscopilot_proxy.exe",
+        "tags": [
+            "proxy"
+        ]
+    },
+    "msdeploy": {
+        "path": "C:\\Program Files\\IIS\\Microsoft Web Deploy V2\\msdeploy.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "msdt": {
+        "path": "C:\\Windows\\System32\\Msdt.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "msedge": {
+        "path": "c:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "msedge-proxy": {
+        "path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge_proxy.exe",
+        "tags": [
+            "proxy"
+        ]
+    },
+    "msedgewebview2": {
+        "path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\114.0.1823.43\\msedgewebview2.exe",
+        "tags": [
+            "proxy"
+        ]
+    },
+    "mshta": {
+        "path": "C:\\Windows\\System32\\mshta.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "msiexec": {
+        "path": "C:\\Windows\\System32\\msiexec.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "msohtmed": {
+        "path": "C:\\Program Files (x86)\\Microsoft Office 16\\ClientX86\\Root\\Office16\\MSOHTMED.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "msoxmled": {
+        "path": "C:\\Program Files\\Microsoft Office\\root\\vfs\\ProgramFilesCommonX64\\Microsoft Shared\\Office16\\msoxmled.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "mspub": {
+        "path": "C:\\Program Files (x86)\\Microsoft Office 16\\ClientX86\\Root\\Office16\\MSPUB.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "netsh": {
+        "path": "C:\\WINDOWS\\System32\\Netsh.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "ngen": {
+        "path": "C:\\Windows\\Microsoft.NET\\Framework\\v2.0.50727\\ngen.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "nmcap": {
+        "path": "C:\\Program Files\\Microsoft Network Monitor 3\\nmcap.exe",
+        "tags": [
+            "recon"
+        ]
+    },
+    "ntdsutil": {
+        "path": "C:\\Windows\\System32\\ntdsutil.exe",
+        "tags": [
+            "dump"
+        ]
+    },
+    "ntsd": {
+        "path": "C:\\Program Files (x86)\\Windows Kits\\10\\Debuggers\\x64\\ntsd.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "odbcad32": {
+        "path": "c:\\windows\\system32\\odbcad32.exe",
+        "tags": [
+            "uac"
+        ]
+    },
+    "odbcconf": {
+        "path": "C:\\Windows\\System32\\odbcconf.exe",
+        "tags": [
+            "dll"
+        ]
+    },
+    "offlinescannershell": {
+        "path": "C:\\Program Files\\Windows Defender\\Offline\\OfflineScannerShell.exe",
+        "tags": [
+            "dll"
+        ]
+    },
+    "onedrivestandaloneupdater": {
+        "path": "C:\\Users\\<username>\\AppData\\Local\\Microsoft\\OneDrive\\OneDriveStandaloneUpdater.exe",
+        "placeholders": [
+            "<username>"
+        ],
+        "tags": [
+            "download"
+        ]
+    },
+    "openconsole": {
+        "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\Terminal\\ServiceHub\\os64\\OpenConsole.exe",
+        "tags": [
+            "proxy"
+        ]
+    },
+    "osscripts-syncappvpublishingserver": {
+        "path": "C:\\Windows\\System32\\SyncAppvPublishingServer.vbs",
+        "tags": [
+            "execute"
+        ]
+    },
+    "outlook": {
+        "path": "C:\\Program Files (x86)\\Microsoft Office 16\\ClientX86\\Root\\Office16\\Outlook.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "pcalua": {
+        "path": "C:\\Windows\\System32\\pcalua.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "pcwrun": {
+        "path": "C:\\Windows\\System32\\pcwrun.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "pester": {
+        "path": "c:\\Program Files\\WindowsPowerShell\\Modules\\Pester\\<VERSION>\\bin\\Pester.bat",
+        "placeholders": [
+            "<VERSION>"
+        ],
+        "tags": [
+            "execute"
+        ]
+    },
+    "pixtool": {
+        "path": "C:\\Program Files\\Microsoft PIX\\pixtool.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "pktmon": {
+        "path": "c:\\windows\\system32\\pktmon.exe",
+        "tags": [
+            "recon"
+        ]
+    },
+    "pnputil": {
+        "path": "C:\\Windows\\system32\\pnputil.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "powerpnt": {
+        "path": "C:\\Program Files (x86)\\Microsoft Office 16\\ClientX86\\Root\\Office16\\Powerpnt.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "powershell": {
+        "path": "C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "presentationhost": {
+        "path": "C:\\Windows\\System32\\Presentationhost.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "print": {
+        "path": "C:\\Windows\\System32\\print.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "printbrm": {
+        "path": "C:\\Windows\\System32\\spool\\tools\\PrintBrm.exe",
+        "tags": [
+            "compress"
+        ]
+    },
+    "protocolhandler": {
+        "path": "C:\\Program Files (x86)\\Microsoft Office 16\\ClientX86\\Root\\Office16\\ProtocolHandler.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "provlaunch": {
+        "path": "c:\\windows\\system32\\provlaunch.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "psr": {
+        "path": "c:\\windows\\system32\\psr.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "pubprn": {
+        "path": "C:\\Windows\\System32\\Printing_Admin_Scripts\\en-US\\pubprn.vbs",
+        "tags": [
+            "execute"
+        ]
+    },
+    "query": {
+        "path": "c:\\windows\\system32\\query.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "rasautou": {
+        "path": "C:\\Windows\\System32\\rasautou.exe",
+        "tags": [
+            "dll"
+        ]
+    },
+    "rdrleakdiag": {
+        "path": "c:\\windows\\system32\\rdrleakdiag.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "reg": {
+        "path": "C:\\Windows\\System32\\reg.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "regasm": {
+        "path": "C:\\Windows\\Microsoft.NET\\Framework\\v2.0.50727\\regasm.exe",
+        "tags": [
+            "dll"
+        ]
+    },
+    "regedit": {
+        "path": "C:\\Windows\\regedit.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "regini": {
+        "path": "C:\\Windows\\System32\\regini.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "register-cimprovider": {
+        "path": "C:\\Windows\\System32\\Register-cimprovider.exe",
+        "tags": [
+            "dll"
+        ]
+    },
+    "regsvcs": {
+        "path": "C:\\Windows\\Microsoft.NET\\Framework64\\v2.0.50727\\RegSvcs.exe",
+        "tags": [
+            "dll"
+        ]
+    },
+    "regsvr32": {
+        "path": "C:\\Windows\\System32\\regsvr32.exe",
+        "tags": [
+            "dll"
+        ]
+    },
+    "remote": {
+        "path": "C:\\Program Files (x86)\\Windows Kits\\10\\Debuggers\\x64\\remote.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "replace": {
+        "path": "C:\\Windows\\System32\\replace.exe",
+        "tags": [
+            "copy"
+        ]
+    },
+    "reset": {
+        "path": "c:\\windows\\system32\\reset.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "rpcping": {
+        "path": "C:\\Windows\\System32\\rpcping.exe",
+        "tags": [
+            "recon"
+        ]
+    },
+    "rundll32": {
+        "path": "C:\\Windows\\System32\\rundll32.exe",
+        "tags": [
+            "dll"
+        ]
+    },
+    "runexehelper": {
+        "path": "c:\\windows\\system32\\runexehelper.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "runonce": {
+        "path": "C:\\Windows\\System32\\runonce.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "runscripthelper": {
+        "path": "C:\\Windows\\WinSxS\\amd64_microsoft-windows-u..ed-telemetry-client_31bf3856ad364e35_10.0.16299.15_none_c2df1bba78111118\\Runscripthelper.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "sc": {
+        "path": "C:\\Windows\\System32\\sc.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "schtasks": {
+        "path": "c:\\windows\\system32\\schtasks.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "scp": {
+        "path": "C:\\Windows\\System32\\OpenSSH\\scp.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "scriptrunner": {
+        "path": "C:\\Windows\\System32\\scriptrunner.exe",
+        "tags": [
+            "proxy"
+        ]
+    },
+    "setres": {
+        "path": "c:\\windows\\system32\\setres.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "settingsynchost": {
+        "path": "C:\\Windows\\System32\\SettingSyncHost.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "setupugc": {
+        "path": "C:\\Windows\\System32\\setupugc.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "sftp": {
+        "path": "C:\\Windows\\System32\\OpenSSH\\sftp.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "sigverif": {
+        "path": "C:\\Windows\\System32\\sigverif.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "sqldumper": {
+        "path": "C:\\Program Files\\Microsoft SQL Server\\90\\Shared\\SQLDumper.exe",
+        "tags": [
+            "dump"
+        ]
+    },
+    "sqlps": {
+        "path": "C:\\Program files (x86)\\Microsoft SQL Server\\100\\Tools\\Binn\\sqlps.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "sqltoolsps": {
+        "path": "C:\\Program files (x86)\\Microsoft SQL Server\\130\\Tools\\Binn\\sqlps.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "squirrel": {
+        "path": "C:\\Users\\<username>\\AppData\\Local\\Microsoft\\Teams\\current\\Squirrel.exe",
+        "placeholders": [
+            "<username>"
+        ],
+        "tags": [
+            "execute"
+        ]
+    },
+    "ssh": {
+        "path": "c:\\windows\\system32\\OpenSSH\\ssh.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "stordiag": {
+        "path": "c:\\windows\\system32\\stordiag.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "syncappvpublishingserver": {
+        "path": "C:\\Windows\\System32\\SyncAppvPublishingServer.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "tar": {
+        "path": "C:\\Windows\\System32\\tar.exe",
+        "tags": [
+            "compress"
+        ]
+    },
+    "teams": {
+        "path": "C:\\Users\\<username>\\AppData\\Local\\Microsoft\\Teams\\current\\Teams.exe",
+        "placeholders": [
+            "<username>"
+        ],
+        "tags": [
+            "execute"
+        ]
+    },
+    "testwindowremoteagent": {
+        "path": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\TestWindow\\RemoteAgent\\TestWindowRemoteAgent.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "ttdinject": {
+        "path": "C:\\Windows\\System32\\ttdinject.exe",
+        "tags": [
+            "inject"
+        ]
+    },
+    "tttracer": {
+        "path": "C:\\Windows\\System32\\tttracer.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "unregmp2": {
+        "path": "C:\\Windows\\System32\\unregmp2.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "update": {
+        "path": "C:\\Users\\<username>\\AppData\\Local\\Microsoft\\Teams\\update.exe",
+        "placeholders": [
+            "<username>"
+        ],
+        "tags": [
+            "execute"
+        ]
+    },
+    "utilityfunctions": {
+        "path": "C:\\Windows\\diagnostics\\system\\Networking\\UtilityFunctions.ps1",
+        "tags": [
+            "dll"
+        ]
+    },
+    "vbc": {
+        "path": "C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\vbc.exe",
+        "tags": [
+            "compile"
+        ]
+    },
+    "verclsid": {
+        "path": "C:\\Windows\\System32\\verclsid.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "visio": {
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office14\\Visio.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "visualuiaverifynative": {
+        "path": "c:\\Program Files (x86)\\Windows Kits\\10\\bin\\<version>\\arm64\\UIAVerify\\VisualUiaVerifyNative.exe",
+        "placeholders": [
+            "<version>"
+        ],
+        "tags": [
+            "proxy"
+        ]
+    },
+    "vsdiagnostics": {
+        "path": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Team Tools\\DiagnosticsHub\\Collector\\VSDiagnostics.exe",
+        "tags": [
+            "proxy"
+        ]
+    },
+    "vshadow": {
+        "path": "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\<version>\\x64\\vshadow.exe",
+        "placeholders": [
+            "<version>"
+        ],
+        "tags": [
+            "execute"
+        ]
+    },
+    "vsiisexelauncher": {
+        "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\IDE\\Extensions\\Microsoft\\Web Tools\\ProjectSystem\\VSIISExeLauncher.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "vsjitdebugger": {
+        "path": "c:\\windows\\system32\\vsjitdebugger.exe",
+        "tags": [
+            "proxy"
+        ]
+    },
+    "vslaunchbrowser": {
+        "path": "C:\\Program Files\\Microsoft Visual Studio\\<version>\\Community\\Common7\\IDE\\VSLaunchBrowser.exe",
+        "placeholders": [
+            "<version>"
+        ],
+        "tags": [
+            "download"
+        ]
+    },
+    "vsls-agent": {
+        "path": "c:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\Common7\\IDE\\Extensions\\Microsoft\\LiveShare\\Agent\\vsls-agent.exe",
+        "tags": [
+            "dll"
+        ]
+    },
+    "vssadmin": {
+        "path": "C:\\Windows\\System32\\vssadmin.exe",
+        "tags": [
+            "tamper"
+        ]
+    },
+    "vstest-console": {
+        "path": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\TestWindow\\vstest.console.exe",
+        "tags": [
+            "proxy"
+        ]
+    },
+    "wab": {
+        "path": "C:\\Program Files\\Windows Mail\\wab.exe",
+        "tags": [
+            "dll"
+        ]
+    },
+    "wbadmin": {
+        "path": "C:\\Windows\\System32\\wbadmin.exe",
+        "tags": [
+            "dump"
+        ]
+    },
+    "wbemtest": {
+        "path": "c:\\windows\\system32\\wbem\\wbemtest.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "wfc": {
+        "path": "C:\\Program Files (x86)\\Microsoft SDKs\\Windows\\v10.0A\\bin\\NETFX 4.8 Tools\\wfc.exe",
+        "tags": [
+            "compile"
+        ]
+    },
+    "wfmformat": {
+        "path": "C:\\there\\is\\no\\default\\installation\\path\\WFMFormat.exe",
+        "tags": [
+            "proxy"
+        ]
+    },
+    "windbg": {
+        "path": "C:\\Program Files (x86)\\Windows Kits\\10\\Debuggers\\x64\\windbg.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "winfile": {
+        "path": "C:\\Windows\\System32\\winfile.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "winget": {
+        "path": "C:\\Users\\user\\AppData\\Local\\Microsoft\\WindowsApps\\winget.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "winproj": {
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office14\\WinProj.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "winrm": {
+        "path": "C:\\Windows\\System32\\winrm.vbs",
+        "tags": [
+            "proxy"
+        ]
+    },
+    "winword": {
+        "path": "C:\\Program Files\\Microsoft Office\\root\\Office16\\winword.exe",
+        "tags": [
+            "download"
+        ]
+    },
+    "wlrmdr": {
+        "path": "c:\\windows\\system32\\wlrmdr.exe",
+        "tags": [
+            "proxy"
+        ]
+    },
+    "wmic": {
+        "path": "C:\\Windows\\System32\\wbem\\wmic.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "workfolders": {
+        "path": "C:\\Windows\\System32\\WorkFolders.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "write": {
+        "path": "C:\\Windows\\write.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "wsb": {
+        "path": "C:\\Users\\<user>\\AppData\\Local\\Microsoft\\WindowsApps\\wsb.exe",
+        "placeholders": [
+            "<user>"
+        ],
+        "tags": [
+            "execute"
+        ]
+    },
+    "wscript": {
+        "path": "C:\\Windows\\System32\\wscript.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "wsl": {
+        "path": "C:\\Windows\\System32\\wsl.exe",
+        "tags": [
+            "execute"
+        ]
+    },
+    "wsreset": {
+        "path": "C:\\Windows\\System32\\wsreset.exe",
+        "tags": [
+            "uac"
+        ]
+    },
+    "wt": {
+        "path": "C:\\Program Files\\WindowsApps\\Microsoft.WindowsTerminal_<version_packageid>\\wt.exe",
+        "placeholders": [
+            "<version_packageid>"
+        ],
+        "tags": [
+            "proxy"
+        ]
+    },
+    "wuauclt": {
+        "path": "C:\\Windows\\System32\\wuauclt.exe",
+        "tags": [
+            "dll"
+        ]
+    },
+    "xbootmgr": {
+        "path": "C:\\Program Files\\Windows Kits\\10\\Windows Performance Toolkit\\xbootmgr.exe",
+        "tags": [
+            "proxy"
+        ]
+    },
+    "xbootmgrsleep": {
+        "path": "C:\\Program Files\\Windows Kits\\10\\Windows Performance Toolkit\\xbootmgrsleep.exe",
+        "tags": [
+            "proxy"
+        ]
+    },
+    "xsd": {
+        "path": "C:\\Program Files (x86)\\Microsoft SDKs\\Windows\\<version>\\bin\\NETFX <version> Tools\\xsd.exe",
+        "placeholders": [
+            "<version>"
+        ],
+        "tags": [
+            "download"
+        ]
+    },
+    "xwizard": {
+        "path": "C:\\Windows\\System32\\xwizard.exe",
+        "tags": [
+            "execute"
+        ]
+    }
+}

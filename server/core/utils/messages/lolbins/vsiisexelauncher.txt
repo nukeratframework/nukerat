@@ -1,0 +1,17 @@
+ABOUT
+    Binary will execute specified binary. Part of VS/VScode
+    installation. LOLBAS documents executing any binary with given
+    arguments.
+
+USAGE:
+    VSIISExeLauncher.exe -p {PATH:.exe} -a "{CMD:args}"
+
+EXAMPLES:
+    VSIISExeLauncher.exe -p {PATH:.exe} -a "{CMD:args}"
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    VSIISExeLauncher.exe -p {PATH:.exe} -a "{CMD:args}"

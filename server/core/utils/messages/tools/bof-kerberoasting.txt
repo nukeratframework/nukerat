@@ -1,0 +1,27 @@
+ABOUT
+    Lists SPN enabled user or service accounts or requests service tickets
+    (TGS REP) for offline cracking with Hashcat. Output tickets appear
+    between TICKET tags. Convert with TicketToHashcat.py.
+USAGE:
+    bof-kerberoasting --- <list|list-no-aes|roast|roast-no-aes> [account]
+
+ARGUMENTS:
+    list                List SPN enabled accounts
+    list-no-aes         List SPN enabled accounts without AES encryption
+    roast               Request tickets for all matching accounts
+    roast-no-aes        Request tickets without AES encryption
+    account             Optional sAMAccountName filter (default: all)
+
+EXAMPLES:
+    bof-kerberoasting --- list
+    bof-kerberoasting --- list-no-aes
+    bof-kerberoasting --- roast
+    bof-kerberoasting --- roast-no-aes
+    bof-kerberoasting --- roast svc-test
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-kerberoasting -w 60 --- list

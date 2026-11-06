@@ -1,0 +1,9 @@
+ABOUT
+    Enumerates users with database access on a SQL server.
+
+USAGE:
+    bof-sql-users --- <server> [database] [linkedserver] [impersonate]
+
+EXAMPLES:
+    bof-sql-users --- SQL01
+    bof-sql-users --- SQL01 master

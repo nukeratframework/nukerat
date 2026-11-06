@@ -1,0 +1,12 @@
+ABOUT
+    This tool will: setup a hidden file structure, move an already on disk present malicious proxy DLL to the new system32 folder, hide the proxy DLL, modify the SYSTEMROOT environment variable, run the vulnerable binary as a spoofed process to execute the malicious DLL, and reset the original SYSTEMROOT environment variable so the beacon keeps working as intended.
+
+USAGE:
+    bof-dll-env-hijacking --- <sysroot> <proxydll> <pathtodll> <vulnbinary> <pid>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-dll-env-hijacking -w 60 --- <sysroot> <proxydll> <pathtodll> <vulnbinary> <pid>

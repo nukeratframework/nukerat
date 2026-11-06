@@ -1,0 +1,20 @@
+ABOUT
+    Lists targetable browser subprocesses for cookie dumping. Use the
+    returned PID with bof-cookie-katz. x64 only.
+USAGE:
+    bof-list-chrome-cookies --- </chrome|/edge|/webview>
+
+ARGUMENTS:
+    /chrome|/edge|/webview Browser to enumerate (leading slash required)
+
+EXAMPLES:
+    bof-list-chrome-cookies --- /chrome
+    bof-list-chrome-cookies --- /edge
+    bof-list-chrome-cookies --- /webview
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-list-chrome-cookies -w 60 --- /chrome

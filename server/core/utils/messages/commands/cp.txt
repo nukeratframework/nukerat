@@ -1,0 +1,20 @@
+ABOUT
+    Copy a file to a new path. Overwrites the destination if it exists.
+
+USAGE:
+    cp <source> <destination>
+
+ARGUMENTS:
+    <source>            Source file (positional).
+    <destination>       Destination path (positional).
+
+EXAMPLES:
+    cp /tmp/a.txt /tmp/b.txt
+    cp C:\Temp\a.txt C:\Temp\b.txt
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    cp -w 60 C:\Temp\a.txt C:\Temp\b.txt

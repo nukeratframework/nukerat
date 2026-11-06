@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" spellcheck="false">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="./favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NukeRat Framework</title>
+    <script>
+      (function () {
+        var isElectron =
+          /Electron/i.test(navigator.userAgent) ||
+          typeof window.electronAPI !== 'undefined'
+        if (!isElectron) {
+          document.documentElement.classList.add('nr-standalone-browser')
+        }
+      })()
+    </script>
+    <style>#nr-browser-only-notice{display:none;box-sizing:border-box;min-height:100vh;margin:0;padding:2rem 1.5rem;align-items:center;justify-content:center;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#0a0a0b;color:#e4e4e7;text-align:center}html.nr-standalone-browser #nr-browser-only-notice{display:flex;flex-direction:column;gap:.75rem}html.nr-standalone-browser #root{display:none}#nr-browser-only-notice h1{margin:0;font-size:1.25rem;font-weight:600}#nr-browser-only-notice p{margin:0;max-width:28rem;font-size:.9375rem;line-height:1.5;color:#a1a1aa}</style>
+  </head>
+  <body style="background-color: #0b0b0b;">
+    <div id="nr-browser-only-notice" role="alert">
+      <h1>Desktop app only</h1>
+      <p>The NukeRat client is not supported in standard web browsers and must be run as a desktop application using Electron.</p>
+    </div>
+    <div id="root"></div>
+    <script type="module">
+      const isElectron =
+        /Electron/i.test(navigator.userAgent) ||
+        typeof window.electronAPI !== 'undefined'
+      if (isElectron) {
+        await import('/src/main.tsx')
+      }
+    </script>
+  </body>
+</html>

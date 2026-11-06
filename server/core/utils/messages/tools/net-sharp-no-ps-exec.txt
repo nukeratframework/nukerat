@@ -1,0 +1,26 @@
+ABOUT
+    Fileless lateral movement tool. Hijacks an existing stopped LocalSystem service
+    by temporarily replacing its binary path, executes the payload, then restores
+    the original service configuration after 5 seconds.
+
+USAGE:
+    net-sharp-no-ps-exec --- --target=<host> --payload=<command> [options]
+
+REQUIRED:
+    --target          IP or hostname of remote target
+    --payload         Command to execute on the target
+
+OPTIONAL:
+    --username        Username for remote authentication
+    --password        Password for authentication
+    --domain          Domain name (default: .)
+    --service         Specific service to hijack (random LocalSystem service if omitted)
+
+EXAMPLES:
+    net-sharp-no-ps-exec --- --target=192.168.56.128 --payload="c:\\windows\\system32\\cmd.exe /c whoami"
+    net-sharp-no-ps-exec --- --target=dc01 --username=DOMAIN\\admin --password=Pass --payload="c:\\beacon.exe"
+    net-sharp-no-ps-exec --- --target=host --service=Spooler --payload="c:\\windows\\system32\\cmd.exe /c calc.exe"
+
+NOTES:
+    Selects a stopped service with Manual or Disabled start type and LocalSystem privileges.
+    Supports pass the hash via integrated authentication.

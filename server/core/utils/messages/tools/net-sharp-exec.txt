@@ -1,0 +1,36 @@
+ABOUT
+    Offensive C# lateral movement tool. Supports PSExec, WMI, WMIExec, and SMBExec
+    modules for remote command execution and semi interactive shells.
+
+USAGE:
+    net-sharp-exec --- -m=<module> -i=<target> [options]
+
+MODULES (-m):
+    psexec     Remote command or file execution as NT AUTHORITY\SYSTEM
+    wmi        Remote command or file execution as authenticated user
+    wmiexec    Semi interactive shell as authenticated user
+    smbexec    Semi interactive shell as NT AUTHORITY\SYSTEM
+
+OPTIONS:
+    -i    Target IP or hostname (required)
+    -u    Username
+    -p    Password
+    -d    Domain
+    -f    Local file path to upload
+    -e    Remote executable path or command
+    -c    Arguments for remote command
+
+SHELL COMMANDS (wmiexec/smbexec):
+    put     Upload file to current shell directory
+    get     Download file from current shell directory
+    help    Show help menu
+    exit    Exit shell
+
+EXAMPLES:
+    net-sharp-exec --- -m=psexec -i=192.168.1.10 -u=User -p=Pass -d=DOMAIN -e=C:\Windows\System32\cmd.exe -c="whoami"
+    net-sharp-exec --- -m=wmiexec -i=192.168.1.10 -u=User -p=Pass -d=DOMAIN
+    net-sharp-exec --- -m=smbexec -i=192.168.1.10 -u=User -p=Pass -d=DOMAIN
+    net-sharp-exec --- -m=wmi -i=192.168.1.10 -f=C:\local\tool.exe -e=C:\tool.exe
+
+NOTES:
+    All modules require administrative rights on the target system.

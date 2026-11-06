@@ -1,0 +1,22 @@
+ABOUT
+    Stops a running scheduled task.
+
+USAGE:
+    bof-schtasksstop --- [HOSTNAME] <TASKNAME>
+
+ARGUMENTS:
+
+    HOSTNAME   Optional remote host
+
+    TASKNAME   Full scheduled task path
+
+EXAMPLES:
+
+    bof-schtasksstop --- \MyTask
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-schtasksstop -w 60 --- \MyTask

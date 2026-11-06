@@ -1,0 +1,19 @@
+ABOUT
+    Delete a file or directory on the implant
+
+USAGE:
+    rm <path>
+
+ARGUMENTS:
+    <path>              File to delete.
+
+EXAMPLES:
+    rm /tmp/a.txt
+    rm C:\Temp\a.txt
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    rm -w 15 C:\Temp\a.txt

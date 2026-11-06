@@ -1,0 +1,19 @@
+ABOUT
+    Microsoft Management Console host for snap-ins. LOLBAS embeds
+    COM payloads in MSC files, bypasses UAC via COR Profiler and
+    gpedit.msc, or downloads executables through crafted snap-ins.
+
+USAGE:
+    mmc.exe -Embedding {PATH_ABSOLUTE:.msc}
+    mmc.exe gpedit.msc
+
+EXAMPLES:
+    mmc.exe -Embedding {PATH_ABSOLUTE:.msc}
+    mmc.exe gpedit.msc
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    mmc.exe -Embedding {PATH_ABSOLUTE:.msc}

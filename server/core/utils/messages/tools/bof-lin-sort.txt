@@ -1,0 +1,20 @@
+ABOUT
+    (linux) Sort lines of a file.
+
+USAGE:
+    bof-lin-sort --- [file] [options]
+
+ARGUMENTS:
+    file                Input file
+    options             Flags: r (reverse), n (numeric) (choices: r|n|rn)
+
+Supports pipe chaining with other BusyBOF tools.
+
+EXAMPLES:
+    bof-lin-sort
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-sort -w 60 --- [file] [options]

@@ -1,0 +1,27 @@
+ABOUT
+    Captures the target machine's screen in one of two modes: a single screenshot
+    or a recurring loop.
+
+USAGE:
+    screenshot [start|stop] [--delay <seconds>]
+
+ARGUMENTS:
+    --delay             Loop interval in seconds for screenshot start. Default 2.
+    -d                  Short form of --delay.
+
+MODES:
+    screenshot          One immediate capture.
+    start               Background capture loop.
+    stop                End the loop.
+
+EXAMPLES:
+    screenshot
+    screenshot start --delay 15
+    screenshot stop
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    screenshot -w 60 start --delay 10

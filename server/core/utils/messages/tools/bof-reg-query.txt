@@ -1,0 +1,24 @@
+ABOUT
+    Query a registry value or enumerate a single key. Supports remote computers.
+
+USAGE:
+    bof-reg-query --- <hive> <path> [value]
+    bof-reg-query --- --host <hostname> <hive> <path> [value]
+
+ARGUMENTS:
+    hive                Numeric hive code (not string): HKCR=0 HKCU=1 HKLM=2 HKU=3 HKCC=5
+    path                Registry key path
+    value               Optional value name to query
+    --host              Optional remote computer name
+
+EXAMPLES:
+    bof-reg-query --- 2 Software\Microsoft\Windows\CurrentVersion
+    bof-reg-query --- 1 Software\NukeratBenchTest
+    bof-reg-query --- --host kingslanding 2 Software\Microsoft\Windows\CurrentVersion
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-reg-query -w 60 --- 2 Software\Microsoft\Windows\CurrentVersion

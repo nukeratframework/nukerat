@@ -1,0 +1,19 @@
+ABOUT
+    Print text or an environment variable.
+
+USAGE:
+    echo <text|$variable>
+
+ARGUMENTS:
+    <text>              Literal text or $<var> for environment variable.
+
+EXAMPLES:
+    echo hello world
+    echo $PATH
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    echo -w 15 hello world

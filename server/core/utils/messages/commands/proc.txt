@@ -1,0 +1,35 @@
+ABOUT
+    Process inspection and control. Windows only.
+
+USAGE:
+    proc <info|privileges|kill|suspend|resume> [flags]
+
+ARGUMENTS:
+    --pid               Target process. Default is implant for proc info.
+    --name              Privilege name for proc privileges (e.g. SeDebugPrivilege).
+    -st                 on or off to enable or disable the privilege.
+
+MODES:
+    info                Summary for current or --pid process.
+    info modules        Loaded modules list.
+    info privileges     Token privileges for the opened process.
+    info full           Summary, privileges, extra details, and modules.
+    privileges          Enable or disable a privilege on the implant process only. No --pid.
+    kill                Terminate target PID. Cannot kill the implant.
+    suspend             Suspend target PID. Cannot suspend the implant.
+    resume              Resume a suspended PID.
+
+EXAMPLES:
+    proc info
+    proc info modules
+    proc info --pid 1234
+    proc info --pid 1234 privileges
+    proc privileges --name SeDebugPrivilege -st on
+    proc kill --pid 5678
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    proc -w 60 info full

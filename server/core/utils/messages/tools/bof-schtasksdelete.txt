@@ -1,0 +1,33 @@
+ABOUT
+    Deletes a scheduled task or folder.
+
+USAGE:
+    bof-schtasksdelete --- [HOSTNAME] <TASKNAME> <TYPE>
+
+    TYPE is 0 for a task or 1 for a folder (same as Cobalt TASK/FOLDER).
+    For a local delete, pass an empty hostname as the first argument after ---.
+
+LAB DISPOSABLE TASK (create via shell, then delete with this BOF):
+
+    shell schtasks /Create /TN \NukeratBenchDelete /TR "cmd /c echo ok>NUL" /SC ONCE /ST 23:59 /F
+    bof-schtasksdelete --- "" \NukeratBenchDelete 0
+
+ARGUMENTS:
+
+    HOSTNAME   Optional remote host ("" for local)
+
+    TASKNAME   Full task or folder path
+
+    TYPE       0 = TASK, 1 = FOLDER
+
+EXAMPLES:
+
+    bof-schtasksdelete --- "" \NukeratBenchDelete 0
+    bof-schtasksdelete --- \Microsoft\Windows\MUI\LpRemove 0
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-schtasksdelete -w 60 --- "" \NukeratBenchDelete 0

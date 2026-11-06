@@ -1,0 +1,20 @@
+ABOUT
+    Move or rename a file.
+
+USAGE:
+    mv <source> <destination>
+
+ARGUMENTS:
+    <source>            Source file (positional).
+    <destination>       Destination path (positional).
+
+EXAMPLES:
+    mv /tmp/a /tmp/b
+    mv C:\Temp\old.txt C:\Temp\new.txt
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    mv -w 30 C:\Temp\old.txt C:\Temp\new.txt

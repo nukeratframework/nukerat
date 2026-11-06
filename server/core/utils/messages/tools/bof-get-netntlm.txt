@@ -1,0 +1,19 @@
+ABOUT
+    Capture NetNTLMv2 hash via SSPI.
+
+USAGE:
+    bof-get-netntlm --- [DisableESS]
+
+ARGUMENTS:
+    DisableESS    0 = keep ESS (default), 1 = disable ESS flag in challenge
+
+EXAMPLES:
+    bof-get-netntlm
+    bof-get-netntlm --- 1
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-get-netntlm -w 60 --- true

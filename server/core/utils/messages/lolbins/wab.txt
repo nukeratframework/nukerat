@@ -1,0 +1,16 @@
+ABOUT
+    Windows address book manager. LOLBAS documents execute dll file.
+    Bypass defensive counter measures.
+
+USAGE:
+    wab.exe
+
+EXAMPLES:
+    wab.exe
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    wab.exe

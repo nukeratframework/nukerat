@@ -1,0 +1,17 @@
+ABOUT
+    Executes a Run Once Task that has been configured in the
+    registry. LOLBAS documents persistence, bypassing defensive
+    counter measures.
+
+USAGE:
+    Runonce.exe /AlternateShellStartup
+
+EXAMPLES:
+    Runonce.exe /AlternateShellStartup
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    Runonce.exe /AlternateShellStartup

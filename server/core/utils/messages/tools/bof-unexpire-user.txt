@@ -1,0 +1,20 @@
+ABOUT
+    Set a user account to never expire.
+
+USAGE:
+    bof-unexpire-user --- <username> [hostname]
+
+ARGUMENTS:
+    username            Account to update
+    hostname            Optional remote computer or domain (default: local)
+
+EXAMPLES:
+    bof-unexpire-user --- vagrant
+    bof-unexpire-user --- cersei.lannister kingslanding
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-unexpire-user -w 60 --- vagrant

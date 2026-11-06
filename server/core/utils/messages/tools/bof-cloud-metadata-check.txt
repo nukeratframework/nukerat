@@ -1,0 +1,26 @@
+ABOUT
+    Probes cloud local metadata services for AWS, Azure, and GCP from the current process,
+    reporting provider identity, instance context, and bounded credential snippets when
+    reachable.
+
+USAGE:
+    bof-cloud-metadata-check --- [presence] [-aud <audience>]
+
+ARGUMENTS:
+    presence            Optional. Presence and context only, no credential snippets
+    -aud arm            Azure ARM audience (default)
+    -aud graph          Microsoft Graph audience
+    -aud other:<resource>   Custom Azure audience
+
+EXAMPLES:
+    bof-cloud-metadata-check
+    bof-cloud-metadata-check --- presence
+    bof-cloud-metadata-check --- -aud graph
+    bof-cloud-metadata-check --- presence -aud other:https://vault.azure.net
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-cloud-metadata-check -w 60 --- presence

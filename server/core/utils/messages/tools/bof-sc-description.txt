@@ -1,0 +1,24 @@
+ABOUT
+    Sets the description of an existing Windows service.
+
+USAGE:
+    bof-sc-description --- <SVCNAME> <DESCRIPTION> [HOSTNAME]
+
+ARGUMENTS:
+
+    SVCNAME      Service name
+
+    DESCRIPTION  New description
+
+    HOSTNAME     Optional remote host
+
+EXAMPLES:
+
+    bof-sc-description --- MySvc "Updated description"
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-sc-description -w 60 --- MySvc "Updated description"

@@ -1,0 +1,15 @@
+ABOUT
+    Find what processes *modulepart* are loaded into, optionally searching just *procnamepart*
+
+USAGE:
+    bof-find-loaded-module --- <modulepart> [opt:procnamepart]
+
+EXAMPLES:
+    bof-find-loaded-module --- ntdll
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-find-loaded-module -w 60 --- ntdll

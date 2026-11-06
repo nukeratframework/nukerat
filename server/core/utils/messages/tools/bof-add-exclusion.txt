@@ -1,0 +1,12 @@
+ABOUT
+    Add a new exclusion to Windows Defender for a folder, file, process or extension.
+
+USAGE:
+    bof-add-exclusion --- path|process|extension <data>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-add-exclusion -w 60 --- path|process|extension <data>

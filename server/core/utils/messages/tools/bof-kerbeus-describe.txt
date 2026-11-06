@@ -1,0 +1,14 @@
+ABOUT
+    Parse and describe a Kerberos ticket.
+USAGE:
+    bof-kerbeus-describe --- /ticket:BASE64
+
+EXAMPLES:
+    bof-kerbeus-describe --- /ticket:BASE64
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-kerbeus-describe -w 60 --- /ticket:BASE64

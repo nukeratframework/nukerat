@@ -1,0 +1,17 @@
+ABOUT
+    Internet Explorer initialization tool. LOLBAS executes
+    commands from a planted ie4uinit.inf when run with -BaseSettings
+    outside the default Windows directory layout.
+
+USAGE:
+    ie4uinit.exe -BaseSettings
+
+EXAMPLES:
+    ie4uinit.exe -BaseSettings
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    ie4uinit.exe -BaseSettings

@@ -1,0 +1,10 @@
+ABOUT
+    Retrieves WiFi passwords in clear text from all WLAN profiles saved on the
+    workstation. Situational awareness tool using native Win32 WLAN APIs.
+
+USAGE:
+    net-sharp-wifi-grabber
+EXAMPLES:
+    net-sharp-wifi-grabber
+NOTES:
+    Dumps credentials for all saved wireless network profiles on the host.

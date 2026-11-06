@@ -1,0 +1,16 @@
+ABOUT
+    .NET tool that searches all email accounts and subfolders in a running Outlook instance
+    for emails containing a specified keyword.
+
+USAGE:
+    net-search-outlook --- <search_word>
+
+ARGUMENTS:
+    search_word    Keyword to search for in email bodies (case-insensitive)
+
+EXAMPLES:
+    net-search-outlook --- password
+    net-search-outlook --- confidential
+
+NOTES:
+    Requires Outlook to be running on the target. Searches Inbox and Deleted Items folders.

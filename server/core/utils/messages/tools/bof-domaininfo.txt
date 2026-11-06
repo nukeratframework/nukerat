@@ -1,0 +1,13 @@
+ABOUT
+    Enumerates domain information using Active Directory Domain Services.
+USAGE:
+    bof-domaininfo
+EXAMPLES:
+    bof-domaininfo
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-domaininfo -w 60
+    bof-domaininfo -bg

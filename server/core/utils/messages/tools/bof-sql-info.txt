@@ -1,0 +1,9 @@
+ABOUT
+    Gathers information about a remote SQL server.
+
+USAGE:
+    bof-sql-info --- <server> [database]
+
+EXAMPLES:
+    bof-sql-info --- SQL01
+    bof-sql-info --- SQL01 master

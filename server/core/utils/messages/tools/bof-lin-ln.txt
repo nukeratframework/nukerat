@@ -1,0 +1,20 @@
+ABOUT
+    (linux) Create links.
+
+USAGE:
+    bof-lin-ln --- <target> <linkname> [options]
+
+ARGUMENTS:
+    target              Link target
+    linkname            Link name
+    options             Flags: s (symbolic) (choices: s)
+
+EXAMPLES:
+    bof-lin-ln --- <target> <linkname>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-ln -w 60 --- <target> <linkname>

@@ -1,0 +1,16 @@
+ABOUT
+    Used for installing drivers. LOLBAS documents add malicious
+    driver.
+
+USAGE:
+    pnputil.exe -i -a {PATH_ABSOLUTE:.inf}
+
+EXAMPLES:
+    pnputil.exe -i -a {PATH_ABSOLUTE:.inf}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    pnputil.exe -i -a {PATH_ABSOLUTE:.inf}

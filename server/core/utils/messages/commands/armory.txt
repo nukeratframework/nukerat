@@ -1,0 +1,23 @@
+ABOUT
+    Download, update, or remove NukeRat armory tools.
+
+USAGE:
+    armory [install|remove|update] [<tool>]
+
+ARGUMENTS:
+    <tool>              Armory command name from the list (positional after install or
+                        remove).
+
+MODES:
+    armory              List tools and short descriptions.
+    install             Download payload files to the server armory directory.
+    install all         Download all armory tools from the release bundle.
+    remove              Delete downloaded files for that tool.
+    update              Update the armory index file.
+
+EXAMPLES:
+    armory
+    armory install all
+    armory install <tool>
+    armory remove <tool>
+    armory update <tool>

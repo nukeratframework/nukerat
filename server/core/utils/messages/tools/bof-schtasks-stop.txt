@@ -1,0 +1,15 @@
+ABOUT
+    Stop a running scheduled task.
+
+USAGE:
+    bof-schtasks-stop --- <hostname> <folder/taskname>
+
+EXAMPLES:
+    bof-schtasks-stop --- dc.corp.local \MyFolder\MyTask
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-schtasks-stop -w 60 --- dc.corp.local \MyFolder\MyTask

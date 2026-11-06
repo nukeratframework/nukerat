@@ -1,0 +1,14 @@
+ABOUT
+    Generate Kerberos key hashes from a password.
+USAGE:
+    bof-kerbeus-hash --- /password:PASSWORD [/user:USER] [/domain:DOMAIN]
+
+EXAMPLES:
+    bof-kerbeus-hash --- /password:P@ss /user:admin /domain:corp.local
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-kerbeus-hash -w 60 --- /password:P@ss /user:admin /domain:corp.local

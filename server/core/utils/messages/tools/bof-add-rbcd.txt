@@ -1,0 +1,15 @@
+ABOUT
+    Configure RBCD delegation. Supports standard LDAP (389) with
+    signing/sealing and LDAPS (636).
+USAGE:
+    bof-add-rbcd --- {target} {delegated} [-ou {path}] [-dc {ip}] [--ldaps]
+
+EXAMPLES:
+    bof-add-rbcd --- {target} {delegated} [-ou {path}] [-dc {ip}] [--ldaps]
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-add-rbcd -w 60 --- {target} {delegated} [-ou {path}] [-dc {ip}] [--ldaps]

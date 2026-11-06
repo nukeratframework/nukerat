@@ -1,0 +1,21 @@
+ABOUT
+    Legacy at.exe task scheduler.
+    Creates recurring interactive scheduled tasks (for example daily at
+    09:00) to keep shells or other commands running on older Windows.
+
+USAGE:
+    C:\Windows\System32\at.exe 09:00 /interactive /every:m,t,w,th,f,s,su {CMD}
+
+ARGUMENTS:
+    /interactive                 Run task in interactive user session
+    /every:                      Recur on selected weekdays
+
+EXAMPLES:
+    C:\Windows\System32\at.exe 09:00 /interactive /every:m,t,w,th,f,s,su {CMD}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    C:\Windows\System32\at.exe 09:00 /interactive /every:m,t,w,th,f,s,su {CMD}

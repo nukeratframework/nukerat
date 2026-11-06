@@ -1,0 +1,12 @@
+ABOUT
+    Enumerate and list basic informaton about all scheduled tasks in the root folder.
+
+USAGE:
+    bof-enum-task-scheduler --- [host]
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-enum-task-scheduler -w 60 --- [host]

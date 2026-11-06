@@ -1,0 +1,20 @@
+ABOUT
+    List files and directories under a path. With no path, lists the current directory.
+
+USAGE:
+    ls [<path>]
+
+ARGUMENTS:
+    <path>              Directory to list. Default current directory.
+
+EXAMPLES:
+    ls /etc
+    ls C:\Windows\Temp
+    ls
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    ls -w 60 C:\Windows\Temp

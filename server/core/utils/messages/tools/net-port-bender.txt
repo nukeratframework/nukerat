@@ -1,0 +1,15 @@
+ABOUT
+    Redirect a local port to a remote host through the beacon.
+
+USAGE:
+    net-port-bender --- <arguments>
+
+EXAMPLES:
+    net-port-bender --- --help
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    net-port-bender -w 60 --- <arguments>

@@ -1,0 +1,24 @@
+ABOUT
+    Async BOF that monitors clipboard changes using GetClipboardSequenceNumber and
+    prints clipboard contents when a change is detected. Supports text and image
+    capture (images as base64 BMP in sync mode). Image retrieval works in sync mode
+    only.
+
+USAGE:
+    bof-clipboard-monitor --- <monitor> [interval]
+
+ARGUMENTS:
+    monitor             1 for async monitoring until task cancelled, 0 for one time sync read
+    interval            Polling interval in seconds (required when monitor is 1)
+
+EXAMPLES:
+    bof-clipboard-monitor --- 0
+    bof-clipboard-monitor --- 1 5
+    bof-clipboard-monitor --- 1 2
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-clipboard-monitor -w 60 --- 0

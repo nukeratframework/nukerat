@@ -1,0 +1,29 @@
+ABOUT
+    Inspects Event Log channels, manages BOF owned classic logs and sources, writes text or
+    binary events through registered sources, and clears channels with optional backup.
+    create, clear, and destroy require elevated Administrator or SYSTEM context.
+
+USAGE:
+    bof-event-log-manage --- <action> [arguments]
+
+ACTIONS:
+    inspect <channel>                           Full channel configuration
+    create <log> <source> [max_size_bytes]      Register classic custom log and source
+    sources <log>                               Enumerate registered classic sources
+    write <log> <source> <text>                 Write textual event (max 12288 UTF-8 bytes)
+    write_raw <log> <source> <event_id> <category> <data>   Write binary event (max 8192 bytes)
+    clear <channel> [backup_path]               Clear channel, optional backup
+    destroy <log> <source>                      Clear and unregister BOF owned custom log
+
+EXAMPLES:
+    bof-event-log-manage --- inspect Application
+    bof-event-log-manage --- sources Application
+    bof-event-log-manage --- write Application Application "test event"
+    bof-event-log-manage --- clear Application C:\Temp\app_backup.evtx
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-event-log-manage -w 60 --- inspect Application

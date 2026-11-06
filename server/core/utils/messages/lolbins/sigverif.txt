@@ -1,0 +1,18 @@
+ABOUT
+    File Signature Verification utility to verify digital signatures
+    of files. LOLBAS documents execute arbitrary programs through a
+    trusted Microsoft-signed binary to bypass application
+    whitelisting.
+
+USAGE:
+    sigverif.exe
+
+EXAMPLES:
+    sigverif.exe
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    sigverif.exe

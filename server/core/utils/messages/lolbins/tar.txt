@@ -1,0 +1,21 @@
+ABOUT
+    Windows utility to extract and create archives. LOLBAS documents
+    can be used to evade defensive countermeasures, or to hide as
+    part of a persistence mechanism and copy files.
+
+USAGE:
+    tar -cf {PATH}:ads {PATH_ABSOLUTE:folder}
+    tar -xf {PATH}:ads
+    tar -xf {PATH_SMB:.tar}
+
+EXAMPLES:
+    tar -cf {PATH}:ads {PATH_ABSOLUTE:folder}
+    tar -xf {PATH}:ads
+    tar -xf {PATH_SMB:.tar}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    tar -cf {PATH}:ads {PATH_ABSOLUTE:folder}

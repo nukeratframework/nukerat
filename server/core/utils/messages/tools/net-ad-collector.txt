@@ -1,0 +1,78 @@
+ABOUT
+    ADCollector is a lightweight tool that enumerates the Active Directory environment to
+    identify possible attack vectors. It provides a basic understanding of the configuration
+    and deployment of the environment as a starting point for reconnaissance. It focuses on
+    extracting useful attributes, properties, and ACLs from high value targets rather than
+    enumerating all attributes from every user and computer object. It uses the S.DS namespace
+    to retrieve domain and forest information from the domain controller and the S.DS.P
+    namespace for LDAP searching.
+
+USAGE:
+    net-ad-collector --- [options]
+
+EXAMPLES:
+    net-ad-collector
+    net-ad-collector --- --LDAPS --DisableSigning
+    net-ad-collector --- --OU IT
+    net-ad-collector --- --OU OU=IT,DC=domain,DC=local
+    net-ad-collector --- --ADCS
+    net-ad-collector --- --TEMPLATES
+    net-ad-collector --- --LDAPONLY
+    net-ad-collector --- --SCHEMA
+    net-ad-collector --- --ADIDNS
+    net-ad-collector --- --NGAGP samaccountname
+    net-ad-collector --- --DACL DC=domain,DC=net
+    net-ad-collector --- --ACLScan user --OU OU=IT,DC=domain,DC=local
+    net-ad-collector --- --SessionEnum --Host targetHost
+    net-ad-collector --- --UserEnum --Host targetHost
+    net-ad-collector --- --LocalGMEnum --Host targetHost --Group 'Remote Desktop Users'
+    net-ad-collector --- --Domain domain.local --Username user --Password pass
+    net-ad-collector --- --Domain domain.local --DC 10.10.10.1
+
+CONNECTION OPTIONS:
+    --Domain            Domain to enumerate
+    --LDAPS             (Default: false) LDAP over SSL/TLS
+    --DisableSigning    (Default: false) Disable Kerberos Encryption (with LDAPS flag)
+    --UserName          Alternative UserName
+    --Password          Alternative Credential
+    --DC                Alternative Domain Controller (Hostname/IP) to connect to
+    --OU                Perform the Search under a specific Organizational Unit
+    --Debug             (Default: false) Debug Mode
+
+ENUMERATION MODES:
+    (default)           Full AD enumeration
+    --LDAPONLY          Only enumerate objects in LDAP
+    --ADCS              (Default: false) Only perform AD Certificate Service check
+    --TEMPLATES         (Default: false) Only enumerate all certificate templates with their DACL
+    --SCHEMA            (Default: false) Count schema attributes in the default naming context
+    --ADIDNS            (Default: false) Only collect ADIDNS records
+    --NGAGP             Nested group membership and applied group policies on the target object
+    --DACL              Enumerate DACL on the target object (with DistinguishedName)
+    --ACLScan           Perform ACL scan for an Identity
+
+HOST ENUMERATION:
+    --SessionEnum       (Default: false) Enumerate session information on the target host
+    --UserEnum          (Default: false) Enumerate user information on the target host
+    --LocalGMEnum       (Default: false) Enumerate local group members on the target host
+    --Host              (Default: Localhost) Hostname for Session/User/Groupmember Enumeration
+    --Group             (Default: Administrators) Local Group Name for Local GroupMember Enumeration
+
+DEFAULT ENUMERATION COVERS:
+    Current domain and forest information, domains in the forest, domain controllers,
+    domain and forest trusts, privileged users, unconstrained delegation accounts,
+    constrained delegation, resource based constrained delegation, MSSQL/Exchange/RDP/PS
+    remoting SPN accounts, user accounts with SPN set and password does not expire,
+    protected users, confidential attributes, ASREQROAST accounts, AdminSDHolder protected
+    accounts, domain attributes, LDAP basic info, Kerberos policy, interesting ACLs on
+    domain objects and GPOs, interesting user descriptions, sensitive and not delegate
+    accounts, Group Policy Preference cpassword in SYSVOL, effective GPOs, nested group
+    membership, restricted groups, LAPS password view access, ADCS configurations,
+    certificate templates, machine owners, ACL scan, privilege rights in group policies,
+    and user credentials stored in LDAP
+    
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    net-ad-collector -w 60 --- --LDAPS --DisableSigning

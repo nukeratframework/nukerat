@@ -1,0 +1,29 @@
+ABOUT
+    Extract Kerberos tickets from logon sessions.
+
+USAGE:
+    bof-dump
+    bof-dump --- [/luid:LOGINID] [/user:USER] [/service:SERVICE] [/client:CLIENT]
+
+ARGUMENTS:
+    (no args)         List Kerberos tickets for the current logon session
+    /luid:LOGINID     Target logon ID (hex, requires SYSTEM)
+    /user:USER        Target username (requires SYSTEM)
+    /service:SERVICE  Filter by service name
+    /client:CLIENT    Filter by client name
+
+EXAMPLES:
+    bof-dump
+    bof-dump --- /user:administrator
+    bof-dump --- /service:krbtgt
+
+NOTES:
+    /luid and /user require SYSTEM integrity. Best results on domain-joined
+    hosts; workgroup machines may hang on foreground execution (use -bg smoke).
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-dump -w 60 --- /user:administrator

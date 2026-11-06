@@ -1,0 +1,32 @@
+ABOUT
+    Communicates over the Koh named pipe to list, filter, impersonate, and
+    release captured tokens. Requires SeImpersonatePrivilege to impersonate
+    captured tokens.
+USAGE:
+    bof-koh-client --- <command> [args]
+
+COMMANDS:
+    list                    List captured tokens
+    groups <LUID>           List group SIDs for a captured token
+    filter list             List group SIDs used for capture filtering
+    filter add <SID>        Add a group SID for capture filtering
+    filter remove <SID>     Remove a group SID from capture filtering
+    filter reset            Reset all capture filter SIDs
+    impersonate <LUID>      Impersonate a captured token by LUID
+    release all             Release all captured tokens
+    release <LUID>          Release a captured token by LUID
+    exit                    Signal the Koh server to exit
+
+EXAMPLES:
+    bof-koh-client --- list
+    bof-koh-client --- groups 67568439
+    bof-koh-client --- filter add S-1-5-21-937929760-3187473010-80948926-512
+    bof-koh-client --- impersonate 67568439
+    bof-koh-client --- release all
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-koh-client -w 60 --- list

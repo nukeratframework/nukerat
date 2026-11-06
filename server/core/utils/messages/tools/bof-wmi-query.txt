@@ -1,0 +1,16 @@
+ABOUT
+    Run a wmi query and display results in CSV format
+
+USAGE:
+    bof-wmi-query --- <query> [opt:server] [opt:namespace]
+
+EXAMPLES:
+    bof-wmi-query --- "SELECT Name FROM Win32_OperatingSystem"
+    bof-wmi-query --- "SELECT * FROM Win32_Process"
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-wmi-query -w 60 --- SELECT * FROM Win32_Process

@@ -1,0 +1,31 @@
+ABOUT
+    Audits the local system for common Windows privilege escalation
+    misconfigurations.
+
+USAGE:
+    net-sharp-up --- [audit] [check1] [check2]...
+
+CHECKS:
+    AlwaysInstallElevated
+    CachedGPPPassword
+    DomainGPPPassword
+    HijackablePaths
+    McAfeeSitelistFiles
+    ModifiableScheduledTask
+    ModifiableServiceBinaries
+    ModifiableServiceRegistryKeys
+    ModifiableServices
+    ProcessDLLHijack
+    RegistryAutoLogons
+    RegistryAutoruns
+    TokenPrivileges
+    UnattendedInstallFiles
+    UnquotedServicePath
+
+EXAMPLES:
+    net-sharp-up    net-sharp-up --- audit
+    net-sharp-up --- HijackablePaths
+    net-sharp-up --- audit UnquotedServicePath ModifiableServices
+
+NOTES:
+    Without audit flag, checks only run in high integrity or local admin context.

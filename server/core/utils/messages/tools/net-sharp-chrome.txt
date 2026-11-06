@@ -1,0 +1,15 @@
+ABOUT
+    Extract Chrome browser data using a .NET assembly.
+
+USAGE:
+    net-sharp-chrome --- <arguments>
+
+EXAMPLES:
+    net-sharp-chrome --- --help
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    net-sharp-chrome -w 60 --- <arguments>

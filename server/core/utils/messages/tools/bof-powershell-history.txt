@@ -1,0 +1,17 @@
+ABOUT
+    Collects PowerShell history artifacts from default PSReadLine and transcript locations.
+    Useful for locating credentials or infrastructure.
+
+USAGE:
+    bof-powershell-history
+
+EXAMPLES:
+    bof-powershell-history
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-powershell-history -w 60
+    bof-powershell-history -bg

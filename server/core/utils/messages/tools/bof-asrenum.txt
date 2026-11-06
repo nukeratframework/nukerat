@@ -1,0 +1,17 @@
+ABOUT
+    Identifies Attack Surface Reduction (ASR) rules, actions, and exclusion locations by
+    querying MSFT_MpPreference via WMI. Requires an elevated context.
+
+USAGE:
+    bof-asrenum
+
+EXAMPLES:
+    bof-asrenum
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-asrenum -w 60
+    bof-asrenum -bg

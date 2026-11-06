@@ -1,0 +1,12 @@
+ABOUT
+    Delete a firewall rule using COM..
+
+USAGE:
+    bof-del-firewall-rule --- <name>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-del-firewall-rule -w 60 --- <name>

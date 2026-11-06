@@ -1,0 +1,12 @@
+ABOUT
+    Enumerate `process` and `thread` handle types between processes.
+
+USAGE:
+    bof-enum-handles --- <search> <query> [pid]
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-enum-handles -w 60 --- <search> <query> [pid]

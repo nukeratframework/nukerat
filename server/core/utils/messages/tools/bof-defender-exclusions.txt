@@ -1,0 +1,15 @@
+ABOUT
+    Lists Windows Defender exclusion paths, processes, and extensions from
+    the registry.
+USAGE:
+    bof-defender-exclusions
+EXAMPLES:
+
+    bof-defender-exclusions
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-defender-exclusions -w 60
+    bof-defender-exclusions -bg

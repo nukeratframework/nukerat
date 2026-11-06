@@ -1,0 +1,12 @@
+ABOUT
+    Delete an exclusion from Windows Defender for a folder, file, process or extension.
+
+USAGE:
+    bof-del-exclusion --- path|process|extension <data>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-del-exclusion -w 60 --- path|process|extension <data>

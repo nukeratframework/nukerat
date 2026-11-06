@@ -1,0 +1,22 @@
+ABOUT
+    Host Process for Setting Synchronization. LOLBAS documents can
+    be used to evade defensive countermeasures or to hide as a
+    persistence mechanism and can be used to evade defensive
+    countermeasures or to hide as a persistence mechanism.
+    Additionally, effectively act as a -WindowStyle Hidden option
+    (as there is in PowerShell) for any arbitrary batch file.
+
+USAGE:
+    SettingSyncHost -LoadAndRunDiagScript {PATH:.exe}
+    SettingSyncHost -LoadAndRunDiagScriptNoCab {PATH:.bat}
+
+EXAMPLES:
+    SettingSyncHost -LoadAndRunDiagScript {PATH:.exe}
+    SettingSyncHost -LoadAndRunDiagScriptNoCab {PATH:.bat}
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    SettingSyncHost -LoadAndRunDiagScript {PATH:.exe}

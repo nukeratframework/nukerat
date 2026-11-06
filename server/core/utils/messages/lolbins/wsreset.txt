@@ -1,0 +1,17 @@
+ABOUT
+    Used to reset Windows Store settings according to its manifest
+    file. LOLBAS documents execute a binary or script as a high-
+    integrity process without a UAC prompt.
+
+USAGE:
+    wsreset.exe
+
+EXAMPLES:
+    wsreset.exe
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    wsreset.exe

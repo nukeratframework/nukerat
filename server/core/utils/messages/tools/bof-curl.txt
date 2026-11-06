@@ -1,0 +1,36 @@
+ABOUT
+    Making HTTP requests without establishing a SOCKS proxy.
+USAGE:
+    bof-curl --- <host> [port] [method] [--show|--noproxy] [useragent] [headers] [body]
+
+ARGUMENTS:
+    host                Target URL or hostname (http or https prefix supported)
+    port                Optional port (default: 80 or 443 for https)
+    method              Optional HTTP method: GET, POST, PUT, PATCH, DELETE (default: GET)
+    --show              Print response body to output
+    --noproxy           Disable proxy autodetection
+    useragent           Optional User-Agent header
+    headers             Optional additional headers
+    body                Optional request body
+
+EXAMPLES:
+    bof-curl --- https://example.com
+    bof-curl --- http://example.com 80 GET --show
+    bof-curl --- http://192.168.15.10 8080 GET --show
+    bof-curl --- http://192.168.15.10/file.jpeg 8080 GET --show
+    bof-curl --- http://192.168.15.10 8080 POST --show "Mozilla/5.0" "Accept: */*" "body"
+    bof-curl --- http://192.168.15.10 8080 GET "NukeratBench/1.0"
+    bof-curl --- http://192.168.15.10 8080 GET --show "Mozilla/5.0" "X-Custom: value"
+
+NOTES:
+    Pass port as a separate argument (e.g. `http://host 8080`), not embedded in the host URL.
+    Embedding `:8080` in the host string breaks parsing (`host:8080:80`).
+    Custom user-agent: pass after method without `--show` (do not use `0` as a placeholder).
+    `--noproxy` disables WinINet proxy autodetection (default uses system proxy).
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-curl -w 60 --- https://f-secure.com

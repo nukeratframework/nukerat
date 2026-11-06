@@ -1,0 +1,24 @@
+ABOUT
+    Sets the password for the specified user account.
+
+USAGE:
+    bof-setuserpass --- <USERNAME> <PASSWORD> <DOMAIN>
+
+ARGUMENTS:
+
+    USERNAME    Target user
+
+    PASSWORD    New password (must meet GPO requirements)
+
+    DOMAIN      Domain for the account (empty for local)
+
+EXAMPLES:
+
+    bof-setuserpass --- user P@ssw0rd CORP
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-setuserpass -w 60 --- user P@ssw0rd CORP

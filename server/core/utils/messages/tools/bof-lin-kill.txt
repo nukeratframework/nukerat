@@ -1,0 +1,19 @@
+ABOUT
+    (linux) Send signal to process.
+
+USAGE:
+    bof-lin-kill --- <pid> [signal]
+
+ARGUMENTS:
+    pid                 Process ID
+    signal              Signal name or number (default: TERM) (choices: HUP|INT|KILL|TERM|STOP|CONT|USR1|USR2) (default: TERM)
+
+EXAMPLES:
+    bof-lin-kill --- <pid>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-kill -w 60 --- <pid>

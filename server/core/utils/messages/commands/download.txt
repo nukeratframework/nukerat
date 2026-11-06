@@ -1,0 +1,30 @@
+ABOUT
+    Download a file from the target machine to the operator station. Downloads
+    use chunks to avoid issues with large files. Compatible with relay
+    communication.
+
+USAGE:
+    download [-f <remotepath> -o <localfile> | list | delete --id <id>]
+
+ARGUMENTS:
+    -f                  File on the implant (--file).
+    -o                  Save path on the operator station (--output).
+    --id                Download queue id for download delete.
+
+MODES:
+    download            Pull a remote file to the operator station (-f and -o).
+    list                Show active downloads (id, file name, status, progress).
+    delete              Remove a queued download by id and clean up server state.
+
+EXAMPLES:
+    download -f C:/file.exe -o file.exe
+    download -f C:\large.bin -o large.bin
+    download list
+    download delete --id 7f3a2b1c
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    EXAMPLE:
+    download -w 300 -f C:\data.zip -o data.zip

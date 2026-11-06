@@ -1,0 +1,19 @@
+ABOUT
+    Lists active named pipes and optionally returns owner and DACL permissions for
+    a specific pipe.
+
+USAGE:
+    bof-xpipe --- LIST
+    bof-xpipe --- <pipe_path>
+
+ARGUMENTS:
+    LIST         Enumerate all local named pipes (required literal; first character L).
+    pipe_path    Full pipe path for owner/DACL details (e.g. \\\\.\\pipe\\lsass)
+
+EXAMPLES:
+    bof-xpipe --- LIST
+    bof-xpipe --- \\\\.\\pipe\\lsass
+
+NOTES:
+    Listing requires the argument LIST (armory requires one positional arg). Querying
+    a specific pipe without rights may hang up to ~5s and return no output.

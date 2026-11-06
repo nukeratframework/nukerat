@@ -1,0 +1,18 @@
+ABOUT
+    (linux) Read/write kernel parameters.
+
+USAGE:
+    bof-lin-sysctl --- [key] [filter]
+
+ARGUMENTS:
+    key                 Sysctl key to read (omit to list all)
+    filter              Filter pattern when listing all
+
+EXAMPLES:
+    bof-lin-sysctl
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-sysctl -w 60 --- [key] [filter]

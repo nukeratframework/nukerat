@@ -1,0 +1,21 @@
+ABOUT
+    (linux) Output first part of file.
+
+USAGE:
+    bof-lin-head --- <file> [lines]
+
+ARGUMENTS:
+    file                Input file
+    lines               Number of lines (default: 10)
+
+Supports pipe chaining with other BusyBOF tools.
+
+EXAMPLES:
+    bof-lin-head --- <file>
+
+NUKERAT FLAGS:
+    -w <seconds>    Maximum wait time until timeout
+    -bg             Fork and run without waiting for output
+
+    Example:
+    bof-lin-head -w 60 --- <file>
