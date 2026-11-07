@@ -334,7 +334,7 @@ async def replace(tmp_path, config, tag, implant_base="stageless"):
         "867530901": str(beacon_sec * 1000 if loader else beacon_sec),
         "867530902": str(jitter),
         "867530904": str(second_delay),
-        "867530905": "true" if second_enabled else "false",
+        "867530905": "1" if second_enabled else "0",
     }
     if not loader:
         reps.update(
