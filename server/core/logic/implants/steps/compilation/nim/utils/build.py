@@ -183,6 +183,8 @@ async def nim_args(config, path, extra=None, icon_obj=None):
         "--lineTrace:off",
         "--hints:on",
         "--warnings:on",
+        "--warningAsError:UnusedImport:off",
+        "--warningAsError:Deprecated:off",
         "--passC=-g0",
         "--passC=-ffunction-sections",
         "--passC=-fdata-sections",
