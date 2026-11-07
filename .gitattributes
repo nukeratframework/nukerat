@@ -1,0 +1,4 @@
+*.rs linguist-detectable=false
+*.css linguist-detectable=false
+*.mdx linguist-detectable=false
+*.txt linguist-detectable=false
