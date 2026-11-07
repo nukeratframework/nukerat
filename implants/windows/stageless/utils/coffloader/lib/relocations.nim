@@ -1,8 +1,6 @@
 import ./types
 import ./parse
 import ./symbols
-import ./ptrmath
-
 proc fitsInt32(value: int64): bool =
   # Checks that a value fits in a 32 bit integer
   value >= int32.low.int64 and value <= int32.high.int64
@@ -112,8 +110,8 @@ proc processRelocations*(
         else:
           resolved
 
-      let result = applyRelocation(ctx, sectionIndex, relocation, target, symbolEntry)
-      if not result[0]:
-        return result
+      let relocResult = applyRelocation(ctx, sectionIndex, relocation, target, symbolEntry)
+      if not relocResult[0]:
+        return relocResult
 
   coffOk()

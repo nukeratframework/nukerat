@@ -1,5 +1,4 @@
 import ../utils/global
-import ../utils/winapi/handlers
 import ../utils/winapi/syscall
 import execution/core
 

@@ -1,7 +1,6 @@
 import ../global
 import ./lib/types
 import ./lib/parse
-import ./lib/symbols
 import ./lib/beacon
 import ./lib/relocations
 import ./lib/memory
@@ -30,26 +29,26 @@ proc runCoff*(
   #   freeCoffMemory(ctx)
   #   return (false, 1'i32, obf("Missing required parameters. Use help <bof> for usage."))
 
-  var result = mapSections(ctx)
-  if not result[0]:
-    return failFree(ctx, result)
+  var step = mapSections(ctx)
+  if not step[0]:
+    return failFree(ctx, step)
 
   let relocCount = countRelocations(ctx)
-  result = allocImportTable(ctx, relocCount)
-  if not result[0]:
-    return failFree(ctx, result)
+  step = allocImportTable(ctx, relocCount)
+  if not step[0]:
+    return failFree(ctx, step)
 
-  result = processRelocations(ctx, resolveExternal)
-  if not result[0]:
-    return failFree(ctx, result)
+  step = processRelocations(ctx, resolveExternal)
+  if not step[0]:
+    return failFree(ctx, step)
 
-  result = protectSections(ctx)
-  if not result[0]:
-    return failFree(ctx, result)
+  step = protectSections(ctx)
+  if not step[0]:
+    return failFree(ctx, step)
 
-  result = protectImportTable(ctx)
-  if not result[0]:
-    return failFree(ctx, result)
+  step = protectImportTable(ctx)
+  if not step[0]:
+    return failFree(ctx, step)
 
   var (entry, entryResult) = findEntryPoint(ctx, entryName)
   if not entryResult[0] and entryName == obf("go"):

@@ -1,7 +1,6 @@
 import ../utils/global
 import ../utils/network/smb as nsmb
 import ../utils/network/relay_packet
-import ../utils/tasks/tasks as taskdb
 import ../utils/tasks/utils as tasks
 import ../utils/actions/fingerprint
 import ../capabilities/sleep/core

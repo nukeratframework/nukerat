@@ -1,5 +1,3 @@
-import ../global
-
 const
   frameChunkSize* = 60 * 1024
   frameMoreFlag* = 0x80000000'i32

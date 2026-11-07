@@ -29,7 +29,6 @@ const
   tokenQuery = 0x0008'u32
   tokenAdjust = 0x0020'u32
   tokenDuplicate = 0x0002'u32
-  tokenAssignPrimary = 0x0001'u32
   tokenAllAccess = 0xF01FF'u32
   processQuery = 0x0400'u32
   tokenUserClass = 1'u32
@@ -44,7 +43,6 @@ const
   logonNetwork = 3'u32
   logonProviderWinNt50 = 3'u32
   statusInfoLengthMismatch = 0xC0000004'u32
-  tokenTypeClass = 8'u32
 
 type
   Luid = object
@@ -210,24 +208,9 @@ proc formatTokenSummary*(token: pointer; pid: uint32;
   result = obf("Process  : ") & procName & obf("  (PID: ") & $pid & obf(")\n")
   result &= obf("User     : ") & tokenUserLabel(token) & "\n"
   result &= obf("Integrity: ") & tokenIntegrity(token) & "\n"
-
-proc processImagePath(procH: pointer): string =
-  # Reads the image path of a process
-  var need: culong = 0
-  var img: array[2048, byte]
-  if queryInformationProcess(procH, processImageName, addr img[0], culong(
-      img.len), addr need) != 0:
-    return ""
-  let us = cast[ptr UnicodeString](addr img[0])
-  if us.length == 0 or us.buffer == nil: return ""
-  wcsPtrToStr(us.buffer)
-
-proc processNameFromHandle(procH: pointer): string =
-  # Returns the process name from a handle
-  let full = processImagePath(procH)
-  if full.len == 0: return obf("<unknown>")
-  let sep = full.rfind('\\')
-  if sep >= 0: full[sep + 1 .. ^1] else: full
+  let privs = formatPrivileges(token)
+  if privs.len > 0:
+    result &= obf("Privileges:\n") & privs
 
 proc ntToWin32(ntPath: string): string =
   # Converts an nt device path into a win32 path
@@ -250,6 +233,24 @@ proc ntToWin32(ntPath: string): string =
           return newString(dl) & ntPath[devPath.len .. ^1]
     i += j + 1
   ntPath
+
+proc processImagePath(procH: pointer): string =
+  # Reads the image path of a process
+  var need: culong = 0
+  var img: array[2048, byte]
+  if queryInformationProcess(procH, processImageName, addr img[0], culong(
+      img.len), addr need) != 0:
+    return ""
+  let us = cast[ptr UnicodeString](addr img[0])
+  if us.length == 0 or us.buffer == nil: return ""
+  ntToWin32(wcsPtrToStr(us.buffer))
+
+proc processNameFromHandle(procH: pointer): string =
+  # Returns the process name from a handle
+  let full = processImagePath(procH)
+  if full.len == 0: return obf("<unknown>")
+  let sep = full.rfind('\\')
+  if sep >= 0: full[sep + 1 .. ^1] else: full
 
 proc openEffectiveToken(): pointer =
   # Opens the current thread or process token

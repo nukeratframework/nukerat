@@ -1,5 +1,4 @@
 import std/strutils
-import std/unicode
 import ../utils/global
 import ../utils/winapi/handlers
 import ../utils/winapi/utils

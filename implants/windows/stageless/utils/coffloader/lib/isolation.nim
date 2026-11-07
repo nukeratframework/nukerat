@@ -2,8 +2,6 @@ import ../../global
 import ../../winapi/handlers
 import ../../winapi/syscall
 import ../../winapi/utils
-import ./types
-import ./beacon
 
 var tlsBofActive {.threadvar.}: int
 

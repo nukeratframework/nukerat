@@ -1,4 +1,4 @@
-import std/[json, math, strutils, tables]
+import std/[json, math, tables]
 import ../utils/global
 import ../utils/general/strings
 import ../utils/winapi/handlers

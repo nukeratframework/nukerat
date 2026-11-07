@@ -1,9 +1,7 @@
-import std/math
 import ../../winapi/syscall
 import ../../winapi/utils
 import ./types
 import ./parse
-import ./ptrmath
 
 proc sectionAllocSize(header: pointer): int =
   # Returns the allocation size of a section

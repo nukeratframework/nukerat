@@ -16,7 +16,6 @@ const
   tcpTableOwnerPidAll = 5'u32
   udpTableOwnerPid = 1'u32
   errorInsufficientBuffer = 122'u32
-  driveUnknown = 0'u32
   driveNoRootDir = 1'u32
   driveRemovable = 2'u32
   driveFixed = 3'u32

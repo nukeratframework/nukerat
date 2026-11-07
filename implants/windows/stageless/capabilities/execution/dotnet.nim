@@ -1,5 +1,4 @@
 import std/json
-from std/strutils import toHex
 import ../../utils/global
 import ../../utils/general/strings
 import ../../utils/winapi/handlers
@@ -156,7 +155,6 @@ proc runDotnetInline*(payload: openArray[byte]; params: string; buf: var openArr
     TAppDomainLoad3 = proc(self: pointer; rawAssembly: pointer; assembly: ptr pointer): culong {.stdcall.}
     TAssemblyEntryPoint = proc(self: pointer; entry: ptr pointer): culong {.stdcall.}
     TMethodGetParameters = proc(self: pointer; ret: ptr pointer): culong {.stdcall.}
-    TMethodInvoke3 = proc(self: pointer; obj: pointer; parameters: pointer; ret: pointer): culong {.stdcall.}
     TSafeArrayGetUBound = proc(psa: pointer; nDim: culong; pUbound: ptr clong): culong {.stdcall.}
     TSafeArrayCreate = proc(elemType: uint16; dims: culong; bounds: pointer): pointer {.stdcall.}
     TSafeArrayCreateVector = proc(elemType: uint16; lower, count: clong): pointer {.stdcall.}

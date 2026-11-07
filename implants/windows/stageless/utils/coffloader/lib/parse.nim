@@ -1,4 +1,3 @@
-import std/strutils
 import ./types
 
 proc fail*(code: int32): (bool, int32, string) =

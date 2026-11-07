@@ -16,8 +16,6 @@ import runas
 import keylogger/core as keylogger
 import screenshots
 import relay/core as relay
-import relay/tcp
-import relay/smb
 import general
 import recognition
 import proc_info

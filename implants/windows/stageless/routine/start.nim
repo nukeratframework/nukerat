@@ -1,7 +1,6 @@
 import ../utils/global
 import ../utils/actions/prep
 import http as httpRoutine
-import ../capabilities/modes
 import tcp as tcpRoutine
 import smb as smbRoutine
 import custom as customRoutine

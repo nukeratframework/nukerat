@@ -1,5 +1,3 @@
-import ../global
-
 const pngSig: array[8, byte] = [137'u8, 80'u8, 78'u8, 71'u8, 13'u8, 10'u8, 26'u8, 10'u8]
 
 proc be32(n: uint32): array[4, byte] =

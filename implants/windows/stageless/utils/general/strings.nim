@@ -1,6 +1,8 @@
 import ../global
 import std/json
+{.push warning[Deprecated]: off.}
 import std/md5
+{.pop.}
 import std/parseutils
 import std/strutils
 import std/tables
