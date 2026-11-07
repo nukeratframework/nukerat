@@ -21,7 +21,6 @@ export const stagelessCustomChannelWindows = dedent(`
     import ../utils/general/metadata
     import ../utils/network/http as nhttp
     import ../utils/actions/fingerprint
-    import ../utils/tasks/tasks as taskdb
     import ../utils/tasks/utils as tasks
     import ../utils/crypt/transport
     import ../capabilities/sleep/core
