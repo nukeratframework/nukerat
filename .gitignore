@@ -10,7 +10,7 @@ main/client/**/.cache/
 main/client/**/*.AppImage
 
 # implants
-main/implants/**/nimcache/
+main/implants/**/nimcache*/
 main/implants/**/*.o
 main/implants/**/*.exe
 main/implants/**/*.dll
@@ -62,7 +62,7 @@ client/**/build/
 client/**/.cache/
 client/**/*.AppImage
 
-implants/**/nimcache/
+implants/**/nimcache*/
 implants/**/*.o
 implants/**/*.exe
 implants/**/*.dll
