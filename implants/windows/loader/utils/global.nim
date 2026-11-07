@@ -2,6 +2,7 @@ const obfuscationType* = "<obfuscationType>"
 
 from crypt/xordec import fromXor
 from crypt/rc4 import fromRC4
+export fromXor, fromRC4
 include "../macro"
 import tables
 
