@@ -1,7 +1,6 @@
 import ../../global
 import ../../linapi/handlers
 import ./symbols
-import ./types
 
 {.emit: """
 #include <stdarg.h>

@@ -1,5 +1,3 @@
-import ../../global
-
 const
   ELFMAG0* = 0x7F'u8
   ELFMAG1* = 'E'.byte

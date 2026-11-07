@@ -1,4 +1,6 @@
-import macros, md5, times, hashes
+{.push warning[Deprecated]: off.}
+import macros, std/md5, times, hashes
+{.pop.}
 
 macro obf*(data: static[string]): untyped =
   # Here is where a static string is obfuscated at compile time

@@ -60,7 +60,7 @@ proc handleClose(params: JsonNode): string =
     socksFds.del(cid)
   jsonOk()
 
-proc run passive(input, params: string): string =
+proc runPassive(input, params: string): string =
   # Dispatches the socks operation to the matching handler
   let op = input
   let p = parseJson(params)

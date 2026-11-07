@@ -1,9 +1,9 @@
 import std/[options, strutils]
+{.push warning[UnusedImport]: off.}
+from ../../utils/global import obfuscationType, fromXor, fromRC4
+{.pop.}
 import ../../utils/linapi/handlers
 
-const obfuscationType = "<obfuscationType>"
-from ../../utils/crypt/xordec import fromXor
-from ../../utils/crypt/rc4 import fromRC4
 include "../../macro"
 
 const max_ports* = 1024
@@ -11,21 +11,21 @@ const max_ports* = 1024
 func top20_ports_obf(): array[20, string] =
   # Returns the obfuscated list of the top 20 ports
   [
-  obf("21"), obf("22"), obf("23"), obf("25"), obf("53"), obf("80"), obf("110"), obf("111"), obf("135"), obf("139"),
-  obf("143"), obf("443"), obf("445"), obf("993"), obf("995"), obf("1723"), obf("3306"), obf("3389"), obf("5900"), obf("8080")
-]
+    obf("21"), obf("22"), obf("23"), obf("25"), obf("53"), obf("80"), obf("110"), obf("111"), obf("135"), obf("139"),
+    obf("143"), obf("443"), obf("445"), obf("993"), obf("995"), obf("1723"), obf("3306"), obf("3389"), obf("5900"), obf("8080"),
+  ]
 
 func top100_ports_obf(): array[99, string] =
   # Returns the obfuscated list of the top 100 ports
   [
-  obf("7"), obf("9"), obf("13"), obf("21"), obf("22"), obf("23"), obf("25"), obf("26"), obf("37"), obf("53"), obf("79"), obf("80"), obf("81"), obf("88"), obf("106"), obf("110"), obf("111"), obf("113"), obf("119"), obf("135"),
-  obf("139"), obf("143"), obf("144"), obf("179"), obf("199"), obf("389"), obf("427"), obf("443"), obf("444"), obf("445"), obf("465"), obf("513"), obf("514"), obf("515"), obf("543"), obf("544"), obf("548"),
-  obf("554"), obf("587"), obf("631"), obf("646"), obf("873"), obf("990"), obf("993"), obf("995"), obf("1025"), obf("1026"), obf("1027"), obf("1028"), obf("1029"), obf("1110"), obf("1433"),
-  obf("1720"), obf("1723"), obf("1755"), obf("1900"), obf("2000"), obf("2001"), obf("2049"), obf("2121"), obf("2717"), obf("3000"), obf("3128"), obf("3306"), obf("3389"), obf("3986"),
-  obf("4899"), obf("5000"), obf("5009"), obf("5051"), obf("5060"), obf("5101"), obf("5190"), obf("5357"), obf("5432"), obf("5631"), obf("5666"), obf("5800"), obf("5900"), obf("6000"),
-  obf("6646"), obf("7070"), obf("8000"), obf("8008"), obf("8009"), obf("8080"), obf("8081"), obf("8443"), obf("8888"), obf("9100"), obf("9999"), obf("10000"), obf("32768"), obf("49152"),
-  obf("49153"), obf("49154"), obf("49155"), obf("49156"), obf("49157")
-]
+    obf("7"), obf("9"), obf("13"), obf("21"), obf("22"), obf("23"), obf("25"), obf("26"), obf("37"), obf("53"), obf("79"), obf("80"), obf("81"), obf("88"), obf("106"), obf("110"), obf("111"), obf("113"), obf("119"), obf("135"),
+    obf("139"), obf("143"), obf("144"), obf("179"), obf("199"), obf("389"), obf("427"), obf("443"), obf("444"), obf("445"), obf("465"), obf("513"), obf("514"), obf("515"), obf("543"), obf("544"), obf("548"),
+    obf("554"), obf("587"), obf("631"), obf("646"), obf("873"), obf("990"), obf("993"), obf("995"), obf("1025"), obf("1026"), obf("1027"), obf("1028"), obf("1029"), obf("1110"), obf("1433"),
+    obf("1720"), obf("1723"), obf("1755"), obf("1900"), obf("2000"), obf("2001"), obf("2049"), obf("2121"), obf("2717"), obf("3000"), obf("3128"), obf("3306"), obf("3389"), obf("3986"),
+    obf("4899"), obf("5000"), obf("5009"), obf("5051"), obf("5060"), obf("5101"), obf("5190"), obf("5357"), obf("5432"), obf("5631"), obf("5666"), obf("5800"), obf("5900"), obf("6000"),
+    obf("6646"), obf("7070"), obf("8000"), obf("8008"), obf("8009"), obf("8080"), obf("8081"), obf("8443"), obf("8888"), obf("9100"), obf("9999"), obf("10000"), obf("32768"), obf("49152"),
+    obf("49153"), obf("49154"), obf("49155"), obf("49156"), obf("49157"),
+  ]
 
 proc ports_from_obf(data: openArray[string]): seq[int32] =
   # Converts the obfuscated port strings into integers

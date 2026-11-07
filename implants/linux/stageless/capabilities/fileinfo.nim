@@ -56,7 +56,7 @@ proc run_fileinfo*(args: string; buf: var openArray[char]): int =
       var sec = ts.tv_sec
       if localtime_r(sec, tm) != nil:
         var dateBuf: array[32, char]
-        if strftime(addr dateBuf[0], dateBuf.len, mtimeFmt, tm) > 0:
+        if strftime(cast[cstring](addr dateBuf[0]), dateBuf.len, mtimeFmt, tm) > 0:
           at = $cast[cstring](addr dateBuf[0])
     report.add(label & obf(": ") & at & '\n')
   writeMsg(report, buf)

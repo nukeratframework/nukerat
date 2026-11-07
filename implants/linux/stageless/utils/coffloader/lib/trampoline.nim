@@ -1,5 +1,4 @@
 import ../../linapi/handlers
-import ./types
 
 const TrampolineSize = 12
 

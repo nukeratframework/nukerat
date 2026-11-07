@@ -1,4 +1,4 @@
-import std/[json, strutils]
+import std/json
 import ../global
 import ../general/strings
 type TransportResponse* = object

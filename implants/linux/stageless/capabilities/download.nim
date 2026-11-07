@@ -2,8 +2,7 @@ from std/base64 import encode
 import std/json
 import std/parseutils
 from std/strutils import strip
-from posix import O_RDONLY, Stat, close, open, read
-from posix import S_ISDIR
+from posix import O_RDONLY, Stat, S_ISDIR, close, open, read
 import ../utils/global
 import ../utils/linapi/handlers
 import ../utils/msg

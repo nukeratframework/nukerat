@@ -421,6 +421,7 @@ proc newProxy*(url: string): Proxy =
   ## Constructs a new `TProxy` object.
   result = Proxy(url: parseUri(url))
 
+{.push warning[Deprecated]: off.}
 proc newProxy*(url: Uri; auth: string): Proxy {.deprecated: "Provide auth in url instead".} =
   # Builds a proxy and stores the auth user and password on it
   result = Proxy(url: url)
@@ -434,6 +435,7 @@ proc newProxy*(url: Uri; auth: string): Proxy {.deprecated: "Provide auth in url
 proc newProxy*(url: string; auth: string): Proxy {.deprecated: "Provide auth in url instead".} =
   # Builds a proxy from the URL string and the auth string
   result = newProxy(parseUri(url), auth)
+{.pop.}
 
 proc auth*(p: Proxy): string {.deprecated: "Get auth from p.url.username and p.url.password".} =
   # Returns the proxy user and password joined together

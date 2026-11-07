@@ -1,5 +1,7 @@
 import std/base64
+{.push warning[Deprecated]: off.}
 import std/md5
+{.pop.}
 import std/sysrand
 
 import ../global

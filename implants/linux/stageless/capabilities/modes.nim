@@ -15,7 +15,6 @@ import load_so
 import shell
 import spawn
 import relay/core as relay
-import relay/tcp
 import search
 import folders as foldersCmd
 import files as filesCmd

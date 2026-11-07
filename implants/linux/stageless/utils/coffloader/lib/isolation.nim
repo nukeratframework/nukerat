@@ -1,6 +1,5 @@
 import ../../global
 import ../../linapi/handlers
-import ./types
 
 type
   BofThreadParam = object

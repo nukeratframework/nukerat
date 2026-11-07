@@ -1,10 +1,8 @@
-from std/base64 import encode
-import std/[algorithm, json, parseutils, strutils]
+import std/[algorithm, json, strutils]
 import ../utils/global
 import ../utils/general/strings
 import ../utils/linapi/handlers
 import ../utils/linapi/utils
-import execution
 
 var prev = ""
 var prevLen = 0

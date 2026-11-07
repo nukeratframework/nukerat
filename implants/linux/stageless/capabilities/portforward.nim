@@ -1,4 +1,4 @@
-import std/[json, strutils, base64]
+import std/[json, base64]
 import ../utils/global
 import ../utils/network/portforward/core
 import execution
@@ -14,7 +14,7 @@ proc jsonOk(extra: JsonNode = newJObject()): string =
     o[k] = v
   $o
 
-proc run passive(input, params: string): string =
+proc runPassive(input, params: string): string =
   # Dispatches the port forward operation and returns the json result
   let op = input
   let p = parseJson(params)

@@ -25,15 +25,6 @@ proc ensureKlMtx() =
     initLock(klMtx)
     klReady = true
 
-proc paramsHasMethod(params: string): bool =
-  # Checks that the params contain a method field
-  if params.len == 0:
-    return false
-  try:
-    parseJson(params).hasKey(obf("method"))
-  except JsonParsingError:
-    false
-
 proc keysymFFLabel(ks: culong): string =
   # Returns the function key label for a keysym
   let v = ks.int

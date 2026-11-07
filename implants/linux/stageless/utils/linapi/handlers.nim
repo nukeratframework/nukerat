@@ -388,7 +388,7 @@ proc formatPathDate*(path: string): string =
   if localtime_r(st.st_mtim.tv_sec, tm) == nil:
     return obf("unknown")
   var buf: array[16, char]
-  let n = strftime(addr buf[0], buf.len, dateFmt, tm)
+  let n = strftime(cast[cstring](addr buf[0]), buf.len, dateFmt, tm)
   if n == 0:
     return obf("unknown")
   $cast[cstring](addr buf[0])
@@ -422,7 +422,7 @@ proc formatPathMtime*(path: string): string =
   if localtime_r(st.st_mtim.tv_sec, tm) == nil:
     return obf("-")
   var buf: array[32, char]
-  let n = strftime(addr buf[0], buf.len, mtimeFmt, tm)
+  let n = strftime(cast[cstring](addr buf[0]), buf.len, mtimeFmt, tm)
   if n == 0:
     return obf("-")
   $cast[cstring](addr buf[0])
@@ -434,7 +434,7 @@ proc formatPathMtime*(path: string): string =
 proc getCurrentDir*(): string =
   # Returns the current working directory
   var buf: array[pathMax, char]
-  if getcwd(addr buf[0], buf.len) == nil:
+  if getcwd(cast[cstring](addr buf[0]), buf.len) == nil:
     return ""
   ($cast[cstring](addr buf[0])).strip()
 
@@ -550,7 +550,7 @@ proc envEnumerate*(): seq[(string, string)] =
 proc readHostname*(): string =
   # Reads the machine hostname
   var buf: array[256, cchar]
-  if gethostname(addr buf[0], buf.len) == 0:
+  if gethostname(cast[cstring](addr buf[0]), buf.len) == 0:
     result = ($cast[cstring](addr buf[0])).strip()
   else:
     result = ""
