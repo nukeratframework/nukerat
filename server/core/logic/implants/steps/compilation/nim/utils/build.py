@@ -181,7 +181,7 @@ async def nim_args(config, path, extra=None, icon_obj=None):
         "--debuginfo:off",
         "--stackTrace:off",
         "--lineTrace:off",
-        "--hints:on",
+        "--hints:off",
         "--warnings:on",
         "--warningAsError:UnusedImport:off",
         "--warningAsError:Deprecated:off",
@@ -253,9 +253,13 @@ async def build(config, body, path=None, icon_obj=None):
     stderr = err.decode(errors="replace")
 
     if proc.returncode:
+        message = format_build_output(stdout, stderr)
+        if proc.returncode < 0:
+            # Killed by a signal (e.g. OOM): the compiler dies before printing any error
+            message = f"Compiler terminated by signal {-proc.returncode}\n\n{message}".rstrip()
         return {
             "status": "failure",
-            "message": format_build_output(stdout, stderr),
+            "message": message,
             "stdout": stdout,
             "stderr": stderr,
         }
