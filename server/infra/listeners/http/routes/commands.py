@@ -75,7 +75,7 @@ def make_router(config: dict) -> APIRouter:
             data = json.loads((await request.body()).decode("utf-8", errors="replace"))
         except (json.JSONDecodeError, UnicodeError):
             return Response(status_code=404)
-        shared = str((server_config.get("implants") or {}).get("relay_aes_key") or "").strip()
+        shared = str((server_config.get("config") or {}).get("sync_aes_key") or "").strip()
         if not shared or data.get("auth") != shared:
             return Response(status_code=404)
         tag = str(data.get("tag") or "").strip()

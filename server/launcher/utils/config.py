@@ -106,6 +106,7 @@ keyfile =
 [server.keys]
 jwt.duration = 7d
 jwt_secret = {jwt_secret}
+sync_aes_key =
 
 [server.database]
 max_cell_value_size_unit = mb
@@ -468,9 +469,11 @@ def load_config():
 
     jwt_duration = "7d"
     jwt_secret = ""
+    sync_aes_key = ""
     if parser.has_section("server.keys"):
         jwt_duration = parser.get("server.keys", "jwt.duration", fallback="7d").strip()
         jwt_secret = parser.get("server.keys", "jwt_secret", fallback="").strip()
+        sync_aes_key = parser.get("server.keys", "sync_aes_key", fallback="").strip()
 
     jwt_expire_minutes = 10080
     duration = str(jwt_duration).strip().lower()
@@ -582,6 +585,7 @@ def load_config():
             "certfile": certfile,
             "keyfile": keyfile,
             "jwt_secret": jwt_secret,
+            "sync_aes_key": sync_aes_key,
             "jwt_expire_minutes": jwt_expire_minutes,
             "workers": workers,
             "reload": runtime_bool("reload", False),
