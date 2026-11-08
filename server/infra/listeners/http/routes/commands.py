@@ -68,14 +68,19 @@ def make_router(config: dict) -> APIRouter:
         await check_host(body)
         return await main_core(body, data, config, request, aes_key)
 
-    @router.post("/sync-aes")
+    sync_cfg = server_config.get("aes_sync") or {}
+    sync_path = str(sync_cfg.get("sync_path") or "/sync").strip() or "/sync"
+    if not sync_path.startswith("/"):
+        sync_path = f"/{sync_path}"
+
+    @router.post(sync_path)
     async def sync_aes(request: Request):
         # Receives the implant aes key pushed by the team server that compiled it
         try:
             data = json.loads((await request.body()).decode("utf-8", errors="replace"))
         except (json.JSONDecodeError, UnicodeError):
             return Response(status_code=404)
-        shared = str((server_config.get("config") or {}).get("sync_aes_key") or "").strip()
+        shared = str(sync_cfg.get("secret_key") or "").strip()
         if not shared or data.get("auth") != shared:
             return Response(status_code=404)
         tag = str(data.get("tag") or "").strip()

@@ -1,7 +1,7 @@
 {
   "name": "nukerat",
   "private": true,
-  "version": "1.1.0-alpha",
+  "version": "1.2.0-alpha",
   "description": "nukerat client",
   "author": "nukerat",
   "desktopName": "com.nukerat.app",

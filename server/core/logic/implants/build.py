@@ -16,7 +16,11 @@ async def push_aes_key(tag, body):
         return
     rows = await sqlite_db.read(AesKeys, tag=tag)
     key = rows[0].key if rows else ""
-    shared = str((config.get("config") or {}).get("sync_aes_key") or "").strip()
+    sync_cfg = config.get("aes_sync") or {}
+    shared = str(sync_cfg.get("secret_key") or "").strip()
+    sync_path = str(sync_cfg.get("sync_path") or "/sync").strip() or "/sync"
+    if not sync_path.startswith("/"):
+        sync_path = f"/{sync_path}"
     if not key or not shared:
         return
     async with httpx.AsyncClient(verify=False, timeout=10) as client:
@@ -25,7 +29,7 @@ async def push_aes_key(tag, body):
             if not origin:
                 continue
             try:
-                await client.post(f"{origin}/sync-aes", json={"tag": tag, "key": key, "auth": shared})
+                await client.post(f"{origin}{sync_path}", json={"tag": tag, "key": key, "auth": shared})
             except Exception as exc:
                 write_log(logger, "warning", f"Aes key sync failed for {origin} | {exc}")
 

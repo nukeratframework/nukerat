@@ -106,7 +106,10 @@ keyfile =
 [server.keys]
 jwt.duration = 7d
 jwt_secret = {jwt_secret}
-sync_aes_key =
+
+[server.aes_sync]
+secret_key =
+sync_path = /sync
 
 [server.database]
 max_cell_value_size_unit = mb
@@ -469,11 +472,9 @@ def load_config():
 
     jwt_duration = "7d"
     jwt_secret = ""
-    sync_aes_key = ""
     if parser.has_section("server.keys"):
         jwt_duration = parser.get("server.keys", "jwt.duration", fallback="7d").strip()
         jwt_secret = parser.get("server.keys", "jwt_secret", fallback="").strip()
-        sync_aes_key = parser.get("server.keys", "sync_aes_key", fallback="").strip()
 
     jwt_expire_minutes = 10080
     duration = str(jwt_duration).strip().lower()
@@ -496,6 +497,14 @@ def load_config():
     relay_aes_key = ""
     if parser.has_section("implants"):
         relay_aes_key = parser.get("implants", "relay_aes_key", fallback="").strip()
+
+    aes_sync_secret = ""
+    aes_sync_path = "/sync"
+    if parser.has_section("server.aes_sync"):
+        aes_sync_secret = parser.get("server.aes_sync", "secret_key", fallback="").strip()
+        aes_sync_path = parser.get("server.aes_sync", "sync_path", fallback="/sync").strip() or "/sync"
+    if not aes_sync_path.startswith("/"):
+        aes_sync_path = f"/{aes_sync_path}"
 
     max_cell_value_bytes = max_cell_value_bytes_from_conf(parser)
 
@@ -585,7 +594,6 @@ def load_config():
             "certfile": certfile,
             "keyfile": keyfile,
             "jwt_secret": jwt_secret,
-            "sync_aes_key": sync_aes_key,
             "jwt_expire_minutes": jwt_expire_minutes,
             "workers": workers,
             "reload": runtime_bool("reload", False),
@@ -600,6 +608,7 @@ def load_config():
             "forwarded_allow_ips": runtime_str("forwarded_allow_ips", "127.0.0.1"),
         },
         "implants": {"relay_aes_key": relay_aes_key},
+        "aes_sync": {"secret_key": aes_sync_secret, "sync_path": aes_sync_path},
         "armory": {"repository": armory_repository.rstrip("/")},
         "compiler": {"sandbox": build_sandbox},
         "nukescripts": {"sandbox": nukescripts_sandbox},
