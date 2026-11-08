@@ -24,6 +24,7 @@ export default ({
   const [advancedOpen, setAdvancedOpen] = useState(false);
 
   useEffect(() => {
+    if (formData.teamHost.trim() && formData.teamPort.trim()) return;
     getServers()
       .then((servers) => {
         const first = servers[0];
@@ -32,7 +33,7 @@ export default ({
         handleFormChange("teamPort", first.port);
       })
       .catch(() => {});
-  }, []);
+  }, [formData.teamHost, formData.teamPort]);
 
   return (
     <>

@@ -1,3 +1,3 @@
 """NukeRat team server release version."""
 
-__version__ = "1.2.0-alpha"
+__version__ = "1.3.0-alpha"
