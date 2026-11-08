@@ -2,10 +2,11 @@ import json
 
 from fastapi import APIRouter, Request
 from fastapi.responses import Response
+from launcher.utils.config import config as server_config
 from infra.listeners.profile import listener_path
 from pydantic import ValidationError
 from ..logic.core import main_core
-from infra.database.database import Host
+from infra.database.database import Host, AesKeys
 from infra.database.listener_utils import listener_utils
 from ..schemas.implant import parse_implant_payload
 from ..utils.checking import check_host
@@ -66,5 +67,24 @@ def make_router(config: dict) -> APIRouter:
 
         await check_host(body)
         return await main_core(body, data, config, request, aes_key)
+
+    @router.post("/sync-aes")
+    async def sync_aes(request: Request):
+        # Receives the implant aes key pushed by the team server that compiled it
+        try:
+            data = json.loads((await request.body()).decode("utf-8", errors="replace"))
+        except (json.JSONDecodeError, UnicodeError):
+            return Response(status_code=404)
+        shared = str((server_config.get("implants") or {}).get("relay_aes_key") or "").strip()
+        if not shared or data.get("auth") != shared:
+            return Response(status_code=404)
+        tag = str(data.get("tag") or "").strip()
+        key = str(data.get("key") or "").strip()
+        if tag and key:
+            if await listener_utils.read(AesKeys, tag=tag):
+                await listener_utils.modify(AesKeys, {"tag": tag}, {"key": key})
+            else:
+                await listener_utils.write(AesKeys(tag=tag, key=key))
+        return Response(status_code=200)
 
     return router
