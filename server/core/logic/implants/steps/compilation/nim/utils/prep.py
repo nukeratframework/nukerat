@@ -309,10 +309,15 @@ async def replace(tmp_path, config, tag, implant_base="stageless"):
     loader = str(implant_base or "").strip().lower() == "loader"
     protocol = str(config.get("protocol", "")).strip().lower()
     hp = ""
+    extra_servers = []
     for key in sorted(config.get("servers") or {}):
-        hp = str(config["servers"][key]).strip()
-        if hp:
-            break
+        v = str(config["servers"][key]).strip()
+        if not v:
+            continue
+        if not hp:
+            hp = v
+        else:
+            extra_servers.append(v)
     stage_url = host = port = ""
     http_path = "/"
     if protocol == "smb":
@@ -338,6 +343,14 @@ async def replace(tmp_path, config, tag, implant_base="stageless"):
             host = hp
     if not port:
         port = "443" if protocol == "https" else "80"
+    if protocol in ("http", "https"):
+        for extra in extra_servers:
+            h, p, _, x = parse_server(extra, protocol)
+            if not h:
+                continue
+            host = f"{host},{h}" if host else h
+            port = f"{port},{p}" if port else p
+            http_path = f"{http_path},{x or '/'}"
 
     beacon_sec = parse_int(config, "sleep", 5, 0)
     jitter = parse_int(config, "delay", 20, 0, 100)
