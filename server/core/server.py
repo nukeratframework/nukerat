@@ -37,7 +37,6 @@ try:
     from infra.general.create_log import global_exception_handler, setup_logging, logger as app_logger, clip_log
     from schemas.__exception__ import validation_exception_handler
     from middlewares.jwt import jwt_middleware
-    from middlewares.whitelist import ip_whitelist_middleware
     from utils.nukescripts.core import start_worker
     print(" done")
 
@@ -109,7 +108,6 @@ app.add_exception_handler(RequestValidationError, validation_exception_handler)
 app.add_exception_handler(Exception, global_exception_handler)
 
 app.middleware("http")(jwt_middleware)
-app.middleware("http")(ip_whitelist_middleware)
 app.add_middleware(
     CORSMiddleware,
     allow_origin_regex="https?://.*",
