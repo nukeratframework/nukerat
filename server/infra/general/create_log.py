@@ -36,10 +36,10 @@ def setup_logging():
         file.setFormatter(formatter)
         logger.setLevel(logging.DEBUG)
         logger.addHandler(file)
-        console = logging.StreamHandler()
-        console.setLevel(logging.DEBUG)
-        console.setFormatter(formatter)
-        logger.addHandler(console)
+        # console = logging.StreamHandler()
+        # console.setLevel(logging.DEBUG)
+        # console.setFormatter(formatter)
+        # logger.addHandler(console)
         logger.propagate = False
     if not listener_logger.handlers:
         listeners_file = RotatingFileHandler(
@@ -49,10 +49,10 @@ def setup_logging():
         listeners_file.setFormatter(formatter)
         listener_logger.setLevel(logging.DEBUG)
         listener_logger.addHandler(listeners_file)
-        listeners_console = logging.StreamHandler()
-        listeners_console.setLevel(logging.DEBUG)
-        listeners_console.setFormatter(formatter)
-        listener_logger.addHandler(listeners_console)
+        # listeners_console = logging.StreamHandler()
+        # listeners_console.setLevel(logging.DEBUG)
+        # listeners_console.setFormatter(formatter)
+        # listener_logger.addHandler(listeners_console)
         listener_logger.propagate = False
 
 async def global_exception_handler(request: Request, exc: Exception):
