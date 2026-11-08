@@ -2,3 +2,5 @@
 *.css linguist-detectable=false
 *.mdx linguist-detectable=false
 *.txt linguist-detectable=false
+*.sh linguist-detectable=false
+*.s linguist-detectable=false
