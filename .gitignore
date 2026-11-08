@@ -1,6 +1,9 @@
 # main/misc
 main/misc/
 
+# private keys
+*.key
+
 # client
 main/client/**/node_modules/
 main/client/**/out/
