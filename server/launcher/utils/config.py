@@ -60,6 +60,7 @@ def config_operations(operation, *args):
         "server.nukescripts",
         "server.sandbox",
         "server.armory",
+        "server.aes_sync",
         "implants",
     )
 
@@ -67,7 +68,7 @@ def config_operations(operation, *args):
         return conf_path
 
     if operation == "read":
-        parser = configparser.ConfigParser()
+        parser = configparser.ConfigParser(interpolation=None)
         parser.read(conf_path, encoding="utf-8")
         return parser
 
@@ -135,6 +136,7 @@ sandbox = false
 sandbox = false
 
 [server.sandbox]
+usage_limit = false
 memory_max = 512M
 memory_swap_max = 0
 cpu_quota = 150%
@@ -247,11 +249,13 @@ def validate_config():
 
 
 def config_list():
-    # Prints every config key and its value
+    # Prints the config the same way it sits in server.conf
     parser = config_operations("read")
     for section in parser.sections():
+        print(f"[{section}]")
         for key, value in parser.items(section):
-            print(f"{section}.{key} = {value}")
+            print(f"{key} = {value}")
+        print()
 
 
 def config_set(key, value):
@@ -433,6 +437,16 @@ def ensure_secrets(parser):
         )
         changed = True
 
+    if not parser.has_section("server.aes_sync"):
+        parser.add_section("server.aes_sync")
+        changed = True
+    if not parser.get("server.aes_sync", "secret_key", fallback="").strip():
+        parser.set("server.aes_sync", "secret_key", secrets.token_hex(64))
+        changed = True
+    if not parser.get("server.aes_sync", "sync_path", fallback="").strip():
+        parser.set("server.aes_sync", "sync_path", "/sync")
+        changed = True
+
     if changed:
         config_operations("write", parser)
 
@@ -444,7 +458,7 @@ def load_config():
     if not conf_path.is_file():
         create_default_config()
 
-    parser = configparser.ConfigParser()
+    parser = configparser.ConfigParser(interpolation=None)
     parser.read(conf_path, encoding="utf-8")
     ensure_secrets(parser)
 
@@ -532,6 +546,8 @@ def load_config():
         return raw if raw else default
 
     sandbox_limits = {
+        "usage_limit": sandbox_value("usage_limit", "false").strip().lower()
+        in ("1", "true", "yes", "on"),
         "memory_max": sandbox_value("memory_max", "512M"),
         "memory_swap_max": sandbox_value("memory_swap_max", "0"),
         "cpu_quota": sandbox_value("cpu_quota", "150%"),
@@ -634,9 +650,10 @@ def sandbox_scope(argv):
         ("RuntimeMaxSec", "runtime_max"),
     )
     prefix = [run, "--user", "--scope", "--quiet", "--collect"]
-    for prop, key in pairs:
-        value = str(limits.get(key, "")).strip()
-        if value:
-            prefix.extend(["-p", f"{prop}={value}"])
+    if limits.get("usage_limit"):
+        for prop, key in pairs:
+            value = str(limits.get(key, "")).strip()
+            if value:
+                prefix.extend(["-p", f"{prop}={value}"])
     prefix.append("--")
     return prefix + list(argv)
