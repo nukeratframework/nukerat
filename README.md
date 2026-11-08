@@ -11,8 +11,8 @@
 
 <p align="center">
   <a href="https://nukerat.com/docs"><strong>Documentation</strong></a> ·
-  <a href="https://nukerat.com"><strong>Armory</strong></a> ·
-  <a href="https://nukerat.com/templates"><strong>Tutorial</strong></a>
+  <a href="https://nukerat.com/docs/armory"><strong>Armory</strong></a> ·
+  <a href="https://nukerat.com/docs/fast-setup"><strong>Tutorial</strong></a>
 </p>
 
 ## NukeRat
@@ -35,7 +35,7 @@ NukeRat is a post-exploitation framework for advanced Red Team operations, focus
 <br/>
 
 <div align="center">
-  <a href="https://github.com/loseys/NukeRat">
+  <a href=".github/banners/01.png">
     <img
         src=".github/banners/01.png"
         style="width: 87rem; border-radius: 11px;"
@@ -81,13 +81,13 @@ You can read the full NukeRat documentation at [https://nukerat.com/docs](https:
 ## Gallery
 
 <div align="center">
-  <a href="https://github.com/loseys/NukeRat">
+  <a href=".github/banners/02.png">
     <img src=".github/banners/02.png" style="width: 87rem; border-radius: 11px;" alt="NukeRat">
   </a>
 
   <br/>
 
-  <a href="https://github.com/loseys/NukeRat">
+  <a href=".github/banners/03.png">
     <img src=".github/banners/03.png" style="width: 87rem; border-radius: 11px;" alt="NukeRat">
   </a>
 </div>
