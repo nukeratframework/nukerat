@@ -296,7 +296,7 @@ install_client() {
   # npm packages install
 
   cd "$gui_dir"
-  npm install --silent
+  npm install --no-audit
   npm run dist
   electron_files_setup
 

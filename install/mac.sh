@@ -10,17 +10,7 @@ set -euo pipefail
 # VARIABLES
 # ======================================================================================
 
-help_message="Usage: bash mac.sh <mode>
-
-MODES:
-  server    Install server
-  client    Install client
-  all       Install server and client
-
-EXAMPLES:
-  bash mac.sh server
-  bash mac.sh client
-  bash mac.sh all
+help_message="Usage: bash mac.sh client
 "
 
 main_dir="$(cd "$(dirname "$0")/.." && pwd)"
@@ -115,7 +105,7 @@ install_client() {
   # npm packages install
 
   cd "$gui_dir"
-  npm install --silent
+  npm install --no-audit
   npm run dist
   electron_files_setup
 }
@@ -124,14 +114,7 @@ install_client() {
 # MAIN ENTRYPOINT
 # ======================================================================================
 
-if [ "${1:-}" = "server" ]; then
-  echo "Server installation is not supported on macOS." >&2
-  exit 1
-elif [ "${1:-}" = "client" ]; then
-  check_user
-  install_client
-elif [ "${1:-}" = "all" ]; then
-  echo "Server installation is not supported on macOS. Only the client will be installed." >&2
+if [ "${1:-}" = "client" ]; then
   check_user
   install_client
 else
