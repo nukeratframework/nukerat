@@ -207,9 +207,9 @@ def validate_config():
             return "Error: server.tls.certfile is required when tls is enabled"
         if not keyfile:
             return "Error: server.tls.keyfile is required when tls is enabled"
-        if not os.path.isfile(certfile):
+        if certfile.lower() != "none" and not os.path.isfile(certfile):
             return f"Error: TLS certfile not found ({certfile})"
-        if not os.path.isfile(keyfile):
+        if keyfile.lower() != "none" and not os.path.isfile(keyfile):
             return f"Error: TLS keyfile not found ({keyfile})"
 
     duration = parser.get("server.keys", "jwt.duration").strip().lower()
