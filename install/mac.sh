@@ -44,6 +44,54 @@ load_brew() {
   fi
 }
 
+electron_files_setup() {
+  local gui_dir="${main_dir}/client/gui"
+  local master="${gui_dir}/public/icon_256x256.png"
+  local app_src=""
+  local candidate
+  local found=()
+
+  shopt -s nullglob
+  found=("${gui_dir}/dist/"mac*/nukerat.app)
+  shopt -u nullglob
+  for candidate in "${found[@]}"; do
+    if [[ -d "${candidate}" ]]; then
+      app_src="${candidate}"
+      break
+    fi
+  done
+  if [[ -z "${app_src}" ]]; then
+    echo "No .app in ${gui_dir}/dist/." >&2
+    exit 1
+  fi
+
+  local dest_dir="${HOME}/Applications"
+  local dest="${dest_dir}/nukerat.app"
+  mkdir -p "${dest_dir}"
+  rm -rf "${dest}"
+  ln -sfn "${app_src}" "${dest}"
+
+  local resources="${app_src}/Contents/Resources"
+  if [[ -f "${master}" && -d "${resources}" ]] && command -v sips >/dev/null 2>&1 && command -v iconutil >/dev/null 2>&1; then
+    local work iconset size
+    work="$(mktemp -d)"
+    iconset="${work}/icon.iconset"
+    mkdir -p "${iconset}"
+    for size in 16 32 128 256 512; do
+      sips -z "${size}" "${size}" "${master}" --out "${iconset}/icon_${size}x${size}.png" >/dev/null
+      sips -z "$((size * 2))" "$((size * 2))" "${master}" --out "${iconset}/icon_${size}x${size}@2x.png" >/dev/null
+    done
+    mkdir -p "${resources}"
+    iconutil -c icns "${iconset}" -o "${resources}/icon.icns"
+    rm -rf "${work}"
+  fi
+
+  local lsregister="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister"
+  if [[ -x "${lsregister}" ]]; then
+    "${lsregister}" -f "${dest}" >/dev/null 2>&1 || true
+  fi
+}
+
 # ======================================================================================
 # CLIENT INSTALLATION
 # ======================================================================================
@@ -69,6 +117,7 @@ install_client() {
   cd "$gui_dir"
   npm install --silent
   npm run dist
+  electron_files_setup
 }
 
 # ======================================================================================

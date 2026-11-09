@@ -186,6 +186,92 @@ install_nim() {
   rm -rf "${nim_src}"
 }
 
+electron_files_setup() {
+  local app_id="com.nukerat.app"
+  local gui_dir="${main_dir}/client/gui"
+  local public="${gui_dir}/public"
+  local home_dir="${HOME}"
+  local owner=""
+
+  if [[ -n "${SUDO_USER:-}" && "${SUDO_USER}" != "root" ]]; then
+    home_dir="$(getent passwd "${SUDO_USER}" | cut -d: -f6)"
+    owner="${SUDO_USER}:${SUDO_USER}"
+  fi
+  if [[ -z "${home_dir}" || ! -d "${home_dir}" ]]; then
+    echo "Could not resolve the user home for the desktop entry." >&2
+    exit 1
+  fi
+
+  local icon_root="${home_dir}/.local/share/icons/hicolor"
+  local desktop_dir="${home_dir}/.local/share/applications"
+  local desktop_file="${desktop_dir}/${app_id}.desktop"
+  local sizes=(16 24 32 48 64 128 256)
+  local master="${public}/icon_256x256.png"
+  local size src dest
+
+  for size in "${sizes[@]}"; do
+    src="${public}/icon_${size}x${size}.png"
+    if [[ ! -f "${src}" && -f "${master}" ]]; then
+      if command -v magick >/dev/null 2>&1; then
+        magick "${master}" -filter Lanczos -resize "${size}x${size}" "${src}"
+      elif command -v convert >/dev/null 2>&1; then
+        convert "${master}" -filter Lanczos -resize "${size}x${size}" "${src}"
+      fi
+    fi
+    [[ -f "${src}" ]] || continue
+    dest="${icon_root}/${size}x${size}/apps"
+    mkdir -p "${dest}"
+    cp -f "${src}" "${dest}/${app_id}.png"
+    if [[ -n "${owner}" ]]; then
+      chown "${owner}" "${dest}/${app_id}.png" "${dest}" "${icon_root}/${size}x${size}"
+    fi
+  done
+
+  local appimage=""
+  local found=()
+  shopt -s nullglob
+  found=("${gui_dir}/dist/"*.AppImage)
+  shopt -u nullglob
+  if [[ ${#found[@]} -eq 0 ]]; then
+    echo "No AppImage in ${gui_dir}/dist/." >&2
+    exit 1
+  fi
+  appimage="$(readlink -f "${found[0]}")"
+  if [[ ! -f "${appimage}" ]]; then
+    echo "Not found: ${appimage}" >&2
+    exit 1
+  fi
+
+  mkdir -p "${desktop_dir}"
+  cat > "${desktop_file}" <<EOF
+[Desktop Entry]
+Type=Application
+Name=nukerat
+Comment=nukerat
+Exec="${appimage}" %U
+Path=$(dirname "${appimage}")
+Icon=${app_id}
+Terminal=false
+Categories=Utility;
+StartupNotify=true
+StartupWMClass=${app_id}
+EOF
+
+  if [[ -n "${owner}" ]]; then
+    chown "${owner}" \
+      "${home_dir}/.local" \
+      "${home_dir}/.local/share" \
+      "${home_dir}/.local/share/icons" \
+      "${icon_root}" \
+      "${desktop_dir}" \
+      "${desktop_file}"
+  fi
+
+  if command -v gtk-update-icon-cache >/dev/null 2>&1; then
+    gtk-update-icon-cache -f -t "${icon_root}" >/dev/null 2>&1 || true
+  fi
+}
+
 # ======================================================================================
 # CLIENT INSTALLATION
 # ======================================================================================
@@ -212,6 +298,7 @@ install_client() {
   cd "$gui_dir"
   npm install --silent
   npm run dist
+  electron_files_setup
 
   restore_sudo_user_ownership "${main_dir}/client"
 }

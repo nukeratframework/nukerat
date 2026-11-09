@@ -91,6 +91,24 @@ call npm install --silent
 if errorlevel 1 exit /b 1
 call npm run dist
 if errorlevel 1 exit /b 1
+call :electron_files_setup
+if errorlevel 1 exit /b 1
+exit /b 0
+
+:electron_files_setup
+set "APP_EXE=%GUI_DIR%\dist\win-unpacked\nukerat.exe"
+if not exist "%APP_EXE%" (
+  echo No Windows build in "%GUI_DIR%\dist". 1>&2
+  exit /b 1
+)
+set "ICO=%GUI_DIR%\public\icon.ico"
+set "SHORTCUT=%APPDATA%\Microsoft\Windows\Start Menu\Programs\nukerat.lnk"
+set "NUKERAT_APP_EXE=%APP_EXE%"
+set "NUKERAT_ICO=%ICO%"
+set "NUKERAT_SHORTCUT=%SHORTCUT%"
+set "NUKERAT_WORKDIR=%GUI_DIR%\dist\win-unpacked"
+powershell -NoProfile -Command "$s = (New-Object -ComObject WScript.Shell).CreateShortcut($env:NUKERAT_SHORTCUT); $s.TargetPath = $env:NUKERAT_APP_EXE; $s.WorkingDirectory = $env:NUKERAT_WORKDIR; if (Test-Path -LiteralPath $env:NUKERAT_ICO) { $s.IconLocation = $env:NUKERAT_ICO }; $s.Description = 'nukerat'; $s.Save()"
+if errorlevel 1 exit /b 1
 exit /b 0
 
 :refresh_path
