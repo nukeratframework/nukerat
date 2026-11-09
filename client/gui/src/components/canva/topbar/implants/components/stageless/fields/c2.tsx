@@ -200,7 +200,7 @@ export default function C2Fields({
           You must use the same sync key on every team server so every listener has the
           communication encryption key for this implant.{" "}
           <a
-            className="underline underline-offset-2 text-[#c8a86b] cursor-pointer"
+            className="underline underline-offset-2 text-[#c8a86b] hover:text-[#e0c88a] cursor-pointer"
             href="https://nukerat.com/docs/listeners/aes-sync"
             target="_blank"
             rel="noreferrer"
