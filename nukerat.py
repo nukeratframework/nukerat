@@ -28,7 +28,6 @@ nukerat_cmd = Path(sys.argv[0]).name
 
 server_root = root / "server"
 client_root = root / "client" / "gui"
-client_app = client_root / "dist" / "nukerat.AppImage"
 
 nukerat_help = f"""USAGE:
     {nukerat_cmd} <mode> <command> ...
@@ -66,28 +65,40 @@ COMMANDS
 # FUNCTIONS ======================================================================================
 
 
+def is_root():
+    if os.name == "nt":
+        return False
+    return os.geteuid() == 0
+
+
 def client():
+    if os.name == "nt":
+        if not (client_root / "dist" / "win-unpacked" / "nukerat.exe").is_file():
+            print(f"[ \x1b[38;2;255;48;48mERROR\x1b[0m ] Client executable not found: {client_root / 'dist' / 'win-unpacked' / 'nukerat.exe'}", file=sys.stderr)
+            sys.exit(1)
+        os.execv(str(client_root / "dist" / "win-unpacked" / "nukerat.exe"), [str(client_root / "dist" / "win-unpacked" / "nukerat.exe")])
+
     gui = Path("/usr/local/bin/nukerat-gui")
     if os.access(gui, os.X_OK):
         os.execv(gui, [str(gui)])
 
-    if not os.access(client_app, os.X_OK):
-        print(f"[ \x1b[38;2;255;48;48mERROR\x1b[0m ] Client AppImage not found: {client_app}", file=sys.stderr)
+    if not os.access(client_root / "dist" / "nukerat.AppImage", os.X_OK):
+        print(f"[ \x1b[38;2;255;48;48mERROR\x1b[0m ] Client AppImage not found: {client_root / 'dist' / 'nukerat.AppImage'}", file=sys.stderr)
         sys.exit(1)
 
     # Fix display for root user
     env = os.environ.copy()
-    if os.geteuid() == 0:
+    if is_root():
         env["DISPLAY"] = env.get("DISPLAY") or ":0"
         sudo_user = env.get("SUDO_USER", "")
         if sudo_user:
             env["XAUTHORITY"] = f"/home/{sudo_user}/.Xauthority"
 
     # Start
-    argv = [str(client_app)]
-    if os.geteuid() == 0:
+    argv = [str(client_root / "dist" / "nukerat.AppImage")]
+    if is_root():
         argv.append("--no-sandbox")
-    os.execve(str(client_app), argv, env)
+    os.execve(str(client_root / "dist" / "nukerat.AppImage"), argv, env)
 
 
 def server(argv):
@@ -149,13 +160,13 @@ if len(args) == 0 or " help " in args_spaced:
     sys.exit(0)
 
 if len(args) >= 2 and args[0] == "client" and args[1] == "start":
-    if os.geteuid() == 0:
+    if is_root():
         print("[ \x1b[38;2;255;48;48mERROR\x1b[0m ] The client must not be executed with sudo", file=sys.stderr)
         sys.exit(1)
     client()
 
 if len(args) >= 1 and args[0] == "server":
-    if os.geteuid() == 0:
+    if is_root():
         print("[ \x1b[38;2;255;48;48mERROR\x1b[0m ] The server must not be executed with sudo", file=sys.stderr)
         sys.exit(1)
     server(args[1:])
