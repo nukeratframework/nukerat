@@ -649,7 +649,7 @@ export function useStagelessPanel() {
         next.requestBody = preset.implantBody;
         next.responseBody = preset.listenerResponse;
       }
-      if (key === "protocol") {
+      if (key === "protocol" && prev.protocol !== value) {
         next.servers = [];
         if (value === "custom") {
           next.customChannel = buildStagelessCustomChannel(next.os, next);

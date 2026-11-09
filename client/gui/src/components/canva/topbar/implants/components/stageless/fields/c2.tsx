@@ -1,6 +1,7 @@
 import CustomChannelFields from "./custom_channel";
 import { sanitizeDigitsInput, sanitizeNumericInput } from "@/components/ui/lib/utils";
-import { CircleHelp } from "lucide-react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { CircleHelp, TriangleAlertIcon } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -191,6 +192,24 @@ export default function C2Fields({
         </div>
       )}
     </div>
+
+    {isHttpProtocol(formData.protocol) && entries.length >= 2 && (
+      <Alert className="mb-3 border-[#5c4a2a] bg-[#2a2419] text-[#e0a84b] [&_[data-slot=alert-description]]:text-[#9a9080]">
+        <TriangleAlertIcon />
+        <AlertDescription>
+          You must use the same sync key on every team server so every listener has the
+          communication encryption key for this implant.{" "}
+          <a
+            className="underline underline-offset-2 hover:text-[#e0a84b] text-[#c8a86b]"
+            href="https://nukerat.com/docs/listeners/aes-sync"
+            target="_blank"
+            rel="noreferrer"
+          >
+            How to configure it
+          </a>
+        </AlertDescription>
+      </Alert>
+    )}
 
     <div className="mb-3 space-y-1.5">
       <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Delay (seconds)</label>
