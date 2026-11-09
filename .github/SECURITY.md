@@ -1,6 +1,6 @@
 # Security Policy
 
-Along with stability, security is a priority for NukeRat. If you find a vulnerability, please feel free to report it in [Security Advisories](https://github.com/nukeratframework/nukerat/security/advisories).
+Along with stability, security is a priority for NukeRat. If you find a vulnerability, please feel free to report it in [Security Advisories](https://github.com/nukeratframework/nukerat/security/advisories/new).
 
 For a detailed report, we suggest:
 

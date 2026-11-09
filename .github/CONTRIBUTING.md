@@ -43,4 +43,4 @@ Use **Pull request** for any change.
 
 ### Vulnerability
 
-- Report it in [Security Advisories](https://github.com/nukeratframework/nukerat/security/advisories). Include a step by step explanation, and a screenshot when it applies.
+- Report it in [Security Advisories](https://github.com/nukeratframework/nukerat/security/advisories/new). Include a step by step explanation, and a screenshot when it applies.

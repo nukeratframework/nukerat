@@ -17,7 +17,7 @@
 
 ## NukeRat
 
-NukeRat is a post-exploitation framework for advanced Red Team operations, focused on exploiting modern and complex environments. Some of its features and characteristics include:
+NukeRat is a post exploitation framework for advanced Red Team operations, focused on exploiting modern and complex environments. Some of its features and characteristics include:
 
 | Feature | Description |
 | --- | --- |
