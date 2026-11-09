@@ -92,5 +92,10 @@ You can read the full NukeRat documentation at [https://nukerat.com/docs](https:
   </a>
 </div>
 
-## Like the project?
-If you liked the project, consider giving it a **STAR** on the repository, or if you want to go further, read [CONTRIBUTING.md](CONTRIBUTING.md) to learn how to contribute code.
+### License (GPLv3)
+
+NukeRat is licensed under [GPLv3](LICENSE). Other licenses in this repo:
+
+- [SGN](server/infra/bin/encoders/sgn/) under MIT (Ege Balcı)
+- [Nim crypt utils](implants/linux/stageless/utils/crypt/utils/) under MIT (Eugene Kabanov, adapted from [nimcrypto](https://github.com/cheatfate/nimcrypto)).
+- [LOLBAS reference](server/core/utils/messages/lolbins/reference/LOLBAS/) under GPLv3 (upstream LOLBAS dataset)
