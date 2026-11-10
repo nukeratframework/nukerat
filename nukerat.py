@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.13
+#!/usr/bin/env python3
 
 # Copyright (C) 2026 Gustavo Henrique T.
 # SPDX-License-Identifier: GPL-3.0-or-later

@@ -32,6 +32,7 @@ apt_packages=(
   cargo
   g++-aarch64-linux-gnu
   gcc
+  make
   gcc-aarch64-linux-gnu
   gcc-mingw-w64-i686
   gcc-mingw-w64-x86-64
@@ -39,6 +40,9 @@ apt_packages=(
   mingw-w64-i686-dev
   mingw-w64-x86-64-dev
   openssl
+  python3
+  python3-dev
+  python3-venv
   rustc
   sqlite3
   golang-go
@@ -58,8 +62,8 @@ dnf_packages=(
   mingw64-gcc
   gtk3
   openssl
-  python3.13
-  python3.13-devel
+  python3
+  python3-devel
   rust
   sqlite
   golang
@@ -71,13 +75,14 @@ pacman_packages=(
   mingw-w64-binutils
   bubblewrap
   gcc
+  make
   aarch64-linux-gnu-gcc
   mingw-w64-gcc
   gtk3
   openssl
+  python
   rust
   sqlite
-  nim
   go
 )
 
@@ -125,34 +130,6 @@ restore_sudo_user_ownership() {
   fi
 }
 
-install_python() {
-  if command -v python3.13 >/dev/null 2>&1; then
-    return
-  fi
-
-  if [[ "${ID:-}" == "kali" ]]; then
-    DEBIAN_FRONTEND=noninteractive apt install python3.13 python3.13-dev python3.13-venv -y -q
-    return
-  fi
-
-  # Arch has no python3.13 package. python.org publishes the 3.13.5 source, not a Linux binary.
-  pacman -S --needed --noconfirm base-devel curl libffi zlib bzip2 xz readline ncurses
-  local py_ver="3.13.5"
-  local py_sha="93e583f243454e6e9e4588ca2c2662206ad961659863277afcdb96801647d640"
-  local py_src
-  py_src="$(mktemp -d)"
-  curl -fsSL "https://www.python.org/ftp/python/${py_ver}/Python-${py_ver}.tar.xz" -o "${py_src}/Python-${py_ver}.tar.xz"
-  echo "${py_sha}  ${py_src}/Python-${py_ver}.tar.xz" | sha256sum -c -
-  tar -xJf "${py_src}/Python-${py_ver}.tar.xz" -C "${py_src}"
-  (
-    cd "${py_src}/Python-${py_ver}"
-    ./configure --prefix=/usr/local --with-ensurepip=install
-    make -j"$(nproc)"
-    make altinstall
-  )
-  rm -rf "${py_src}"
-}
-
 install_nim() {
   if command -v nim >/dev/null 2>&1; then
     return
@@ -163,7 +140,7 @@ install_nim() {
     return
   fi
 
-  # dnf distros have no Nim package. nim-lang.org publishes the binary.
+  # nim-lang.org publishes the binary.
   local nim_arch
   case "$(uname -m)" in
     x86_64) nim_arch="linux_x64" ;;
@@ -172,7 +149,6 @@ install_nim() {
       exit 1
       ;;
   esac
-  dnf install curl xz -y -q
   local nim_ver="2.4.0"
   local nim_sha="23c1c83d9031c498a2b3ad0bce153b8905710d04eb5922cf8ebd8f9d12125743"
   local nim_src
@@ -322,7 +298,6 @@ install_server() {
     for pkg in "${apt_packages[@]}"; do
       DEBIAN_FRONTEND=noninteractive apt install "$pkg" -y -q
     done
-    install_python
     install_nim
   # dnf
   elif command -v dnf >/dev/null 2>&1; then
@@ -335,7 +310,7 @@ install_server() {
     for pkg in "${pacman_packages[@]}"; do
       pacman -S --needed --noconfirm "$pkg"
     done
-    install_python
+    install_nim
   else
     echo "Unsupported package manager. Install the dependencies manually." >&2
     exit 1
@@ -344,11 +319,11 @@ install_server() {
   # pip packages install 
 
   cd "${main_dir}/server"
-  if ! command -v python3.13 >/dev/null 2>&1; then
-    echo "python3.13 is required." >&2
+  if ! command -v python3 >/dev/null 2>&1; then
+    echo "python3 is required." >&2
     exit 1
   fi
-  python3.13 -m venv venv
+  python3 -m venv venv
   source venv/bin/activate
   pip install -r requirements.txt
 

@@ -68,7 +68,8 @@ fn parse_bad_chars(s: &str) -> Result<Vec<u8>, String> {
     if cleaned.is_empty() {
         return Ok(Vec::new());
     }
-    if !cleaned.len().is_multiple_of(2) {
+    // if !cleaned.len().is_multiple_of(2) {
+    if cleaned.len() % 2 != 0 {
         return Err("bad characters must be an even number of hex digits".into());
     }
     (0..cleaned.len())
