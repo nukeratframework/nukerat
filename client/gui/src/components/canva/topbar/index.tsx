@@ -389,7 +389,7 @@ export default function TopBar(props: MainProps) {
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() =>
-                window.open("https://nukerat.com/docs", "_blank")
+                window.open("https://nukerat.com/docs/shortcuts", "_blank")
               }
             >
               <Command size={13} />
@@ -412,7 +412,7 @@ export default function TopBar(props: MainProps) {
             <DropdownMenuItem
               onClick={() =>
                 window.open(
-                  "https://github.com/nukeratframework/nukerat",
+                  "https://raw.githubusercontent.com/nukeratframework/nukerat/refs/heads/main/LICENSE",
                   "_blank"
                 )
               }
