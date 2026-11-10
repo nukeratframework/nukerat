@@ -39,12 +39,8 @@ apt_packages=(
   mingw-w64-i686-dev
   mingw-w64-x86-64-dev
   openssl
-  python3.13
-  python3.13-dev
-  python3.13-venv
   rustc
   sqlite3
-  nim
   golang-go
 )
 
