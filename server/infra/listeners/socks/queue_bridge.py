@@ -20,7 +20,11 @@ class QueueBridge:
             parameters=params,
         )
 
-        raw = await sqlite_db.wait_response(host_tag, cmd_tag, None)
+        try:
+            raw = await sqlite_db.wait_response(host_tag, cmd_tag, None)
+        except Exception as e:
+            write_log(logger, "error", f"Unhandled exception | socks/queue_bridge | {e}")
+            return {"ok": False, "error": str(e)}
         if not raw or raw.startswith("timeout"):
             return {"ok": False, "error": raw or "timeout"}
         try:
