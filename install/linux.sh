@@ -319,13 +319,11 @@ install_server() {
 
   # apt
   if command -v apt >/dev/null 2>&1; then
-    if [[ "${ID:-}" == "kali" ]]; then
-      install_python
-      install_nim
-    fi
     for pkg in "${apt_packages[@]}"; do
       DEBIAN_FRONTEND=noninteractive apt install "$pkg" -y -q
     done
+    install_python
+    install_nim
   # dnf
   elif command -v dnf >/dev/null 2>&1; then
     for pkg in "${dnf_packages[@]}"; do
