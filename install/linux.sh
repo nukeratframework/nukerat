@@ -134,6 +134,11 @@ install_python() {
     return
   fi
 
+  if [[ "${ID:-}" == "kali" ]]; then
+    DEBIAN_FRONTEND=noninteractive apt install python3.13 python3.13-dev python3.13-venv -y -q
+    return
+  fi
+
   # Arch has no python3.13 package. python.org publishes the 3.13.5 source, not a Linux binary.
   pacman -S --needed --noconfirm base-devel curl libffi zlib bzip2 xz readline ncurses
   local py_ver="3.13.5"
@@ -154,6 +159,11 @@ install_python() {
 
 install_nim() {
   if command -v nim >/dev/null 2>&1; then
+    return
+  fi
+
+  if [[ "${ID:-}" == "kali" ]]; then
+    DEBIAN_FRONTEND=noninteractive apt install nim -y -q
     return
   fi
 
@@ -313,6 +323,10 @@ install_server() {
 
   # apt
   if command -v apt >/dev/null 2>&1; then
+    if [[ "${ID:-}" == "kali" ]]; then
+      install_python
+      install_nim
+    fi
     for pkg in "${apt_packages[@]}"; do
       DEBIAN_FRONTEND=noninteractive apt install "$pkg" -y -q
     done
