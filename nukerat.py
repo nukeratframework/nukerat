@@ -78,6 +78,15 @@ def client():
             sys.exit(1)
         os.execv(str(client_root / "dist" / "win-unpacked" / "nukerat.exe"), [str(client_root / "dist" / "win-unpacked" / "nukerat.exe")])
 
+    if sys.platform == "darwin":
+        app = client_root / "dist" / "mac" / "nukerat.app" / "Contents" / "MacOS" / "nukerat"
+        if not app.is_file():
+            app = client_root / "dist" / "mac-arm64" / "nukerat.app" / "Contents" / "MacOS" / "nukerat"
+        if not app.is_file():
+            print(f"[ \x1b[38;2;255;48;48mERROR\x1b[0m ] Client app not found: {client_root / 'dist' / 'mac' / 'nukerat.app'}", file=sys.stderr)
+            sys.exit(1)
+        os.execv(str(app), [str(app)])
+
     gui = Path("/usr/local/bin/nukerat-gui")
     if os.access(gui, os.X_OK):
         os.execv(gui, [str(gui)])
