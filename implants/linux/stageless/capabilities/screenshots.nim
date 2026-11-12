@@ -151,6 +151,8 @@ proc grab(): (string, string) =
       if cap.error.len > 0:
         return ("", cap.error)
       return ("", obf("Screen capture failed"))
+    if cap.png.len > 0:
+      return (encode(cap.png), "")
     if cap.data.len == 0 or cap.w <= 0 or cap.h <= 0:
       return ("", obf("Screen capture returned empty image"))
     let png = encodePng(toOpenArray(cap.data, 0, cap.data.len - 1), cap.w, cap.h, cap.stride)

