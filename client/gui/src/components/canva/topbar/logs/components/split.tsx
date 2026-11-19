@@ -11,7 +11,7 @@ export default function SplitPanel({ entry, onClose }: { entry: LogEntry; onClos
   return (
     <div className="flex flex-col h-full min-h-0 min-w-[32rem]">
       <div className="flex items-center justify-between px-4 py-3 border-b border-[#2a2a2a] shrink-0">
-        <span className="text-[13.5px] font-semibold text-[#cecece] tracking-wide">Log</span>
+        <span className="text-[13.5px] font-semibold text-[#cecece] tracking-wide">{translate("logs.split.title")}</span>
         <button
           type="button"
           onClick={onClose}

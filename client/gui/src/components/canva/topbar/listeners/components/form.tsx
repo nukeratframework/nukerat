@@ -349,7 +349,7 @@ export const CertSection = ({
         {cert.source === "self_signed" && showSubject && (
           <div className="space-y-3">
             <div>
-              <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">Key</label>
+              <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">{t("listeners.form.key")}</label>
               <SegmentedButtons
                 options={["ecdsa", "rsa"] as CertKeyType[]}
                 value={cert.keyType}

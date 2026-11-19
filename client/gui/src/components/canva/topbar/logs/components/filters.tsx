@@ -80,7 +80,7 @@ const LogTopBar = ({
               <SelectValue />
             </SelectTrigger>
             <SelectContent className="text-[13.5px]">
-              <SelectItem value="all">All</SelectItem>
+              <SelectItem value="all">{translate("logs.filters.all")}</SelectItem>
               {logTypes.map((t) => (
                 <SelectItem key={t} value={t}>
                   {t}
@@ -96,7 +96,7 @@ const LogTopBar = ({
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All</SelectItem>
+              <SelectItem value="all">{translate("logs.filters.all")}</SelectItem>
               {logCategories.map((c) => (
                 <SelectItem key={c} value={c} className="capitalize">
                   {c}
