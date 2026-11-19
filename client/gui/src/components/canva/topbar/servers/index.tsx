@@ -4,6 +4,7 @@ import FetchToast from "@/components/canva/utils/toast_rules";
 import { PanelEmptyState } from "@/components/canva/utils/panel-empty-state";
 import { PanelPortal } from "@/components/canva/utils/panel-portal";
 import ServerFormPanel from "./components/add";
+import { translate } from "@/i18n";
 import {
   formatServerHost,
   formatServerProtocol,
@@ -75,7 +76,7 @@ const ServerPanel = () => {
             {loading ? (
               <div className="flex items-center justify-center h-16 text-[#444] text-[13.5px]">
                 <RefreshCw size={14} className="animate-spin mr-2" />
-                Loading...
+                {translate("common.loading")}
               </div>
             ) : (
               <>
@@ -133,7 +134,7 @@ const ServerPanel = () => {
                     </tbody>
                   )}
                 </table>
-                {servers.length === 0 && <PanelEmptyState>No servers configured</PanelEmptyState>}
+                {servers.length === 0 && <PanelEmptyState>{translate("servers.empty")}</PanelEmptyState>}
               </>
             )}
           </div>

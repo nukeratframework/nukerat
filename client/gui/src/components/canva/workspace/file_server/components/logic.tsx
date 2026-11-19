@@ -14,8 +14,9 @@ import {
   truncateServerLabel,
 } from "@/components/canva/topbar/listeners/components/logic";
 import { fileServerMenuRuntimeRef } from "@/components/ui/rigth-click-menu.tsx";
-import { utcTableColumnTitle } from "@/components/canva/utils/utc-date";
+import { utcColumn, type TableColumn } from "@/components/canva/utils/utc-date";
 import { tryConfirmDialogEnter } from "@/components/canva/utils/confirm-dialog-keydown";
+import { translate } from "@/i18n";
 
 export interface FileEntry {
   id: string;
@@ -24,12 +25,15 @@ export interface FileEntry {
   upload_date?: string;
 }
 
-export const tableColumns = [
-  utcTableColumnTitle("Date"),
-  "Name",
-  "Size",
-  "Actions",
-] as const;
+export type FileServerColumn = "date" | "name" | "size" | "actions";
+
+/// Column keys are stable; `label` is an i18n key resolved at render time.
+export const tableColumns: TableColumn<FileServerColumn>[] = [
+  utcColumn("date", "fileServer.columns.date"),
+  { key: "name", label: "fileServer.columns.name" },
+  { key: "size", label: "fileServer.columns.size" },
+  { key: "actions", label: "fileServer.columns.actions" },
+];
 
 const serverBaseKey = (ip: string, port: string) =>
   `${ip.trim().replace(/\/$/, "")}:${port.trim()}`;
@@ -286,7 +290,7 @@ export function useFileServerPanel(options?: FileServerPanelOptions) {
       const res = await downloadFileRequest(server.ip, server.port, tag, target, dest);
       setLoading(false);
       if (res?.status === "success") {
-        toast.success(res.message ?? "File downloaded");
+        toast.success(res.message ?? translate("fileServer.toast.downloaded"));
         return;
       }
       setResponse(res);

@@ -6,6 +6,7 @@ import {
   DialogContent,
 } from "@/components/ui/dialog";
 import { topbarFloatEscapeBlockRef } from "@/components/canva/shortcuts";
+import { translate } from "@/i18n";
 
 interface ReportViewDialogProps {
   open: boolean;
@@ -68,7 +69,7 @@ const ReportViewDialog = ({ open, loading, title, html, onOpenChange }: ReportVi
         <div style={{ padding: "18px" }} className="relative flex items-center px-4 py-2.5 !border-b-0">
           <DialogClose className="absolute top-1.5 right-2 rounded p-0.5 text-[#6b6b6b] transition-colors hover:text-[#d4d4d4]">
             <X size={20} />
-            <span className="sr-only">Close</span>
+            <span className="sr-only">{translate("common.close")}</span>
           </DialogClose>
         </div>
 
@@ -87,7 +88,7 @@ const ReportViewDialog = ({ open, loading, title, html, onOpenChange }: ReportVi
               sandbox=""
             />
           ) : (
-            <div className="flex h-[70vh] items-center justify-center text-[#666]">No preview available</div>
+            <div className="flex h-[70vh] items-center justify-center text-[#666]">{translate("reports.viewDialog.noPreview")}</div>
           )}
         </div>
       </DialogContent>

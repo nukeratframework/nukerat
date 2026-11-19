@@ -1,4 +1,5 @@
 import type { IDockviewPanelProps } from "dockview";
+import { useTranslation } from "react-i18next";
 import { RefreshCw, Trash2, X } from "lucide-react";
 import AgentModelFilter from "@/components/canva/workspace/agent/components/model-filter";
 import FetchToast from "@/components/canva/utils/toast_rules";
@@ -11,6 +12,7 @@ const nsDebuggerSelectTriggerClass =
   "h-[29px] w-[16.25rem] shrink-0 rounded border border-[#363636] bg-[#212121] py-0 text-[13.5px] text-[#cecece] focus:border-[#555] focus-visible:ring-0";
 
 export default function NsDebuggerPanel(props: IDockviewPanelProps) {
+  const { t } = useTranslation();
   const {
     servers,
     search,
@@ -54,10 +56,10 @@ export default function NsDebuggerPanel(props: IDockviewPanelProps) {
               onRefresh={refreshServers}
               onSelectItem={(option, s) => selectNsDebuggerTarget(s.id, option.id)}
               onClear={clearServerFilter}
-              placeholder="Select a server"
-              searchPlaceholder="Search server..."
-              emptyLabel="No server found."
-              clearAriaLabel="Clear server"
+              placeholder={t("nsDebugger.selectServer")}
+              searchPlaceholder={t("nsDebugger.searchServer")}
+              emptyLabel={t("nsDebugger.noServer")}
+              clearAriaLabel={t("nsDebugger.clearServer")}
             />
             <div className="relative min-w-[8rem] flex-1 shrink-0" data-ns-debugger-search-input>
               <input
@@ -65,7 +67,7 @@ export default function NsDebuggerPanel(props: IDockviewPanelProps) {
                 className="box-border h-[29px] w-full rounded border border-[#363636] bg-[#212121] py-0 pl-3 pr-8 text-[13.5px] text-[#cecece] outline-none transition-colors placeholder:text-[#444] focus:border-[#555]"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search output..."
+                placeholder={t("nsDebugger.searchOutput")}
                 autoComplete="off"
                 spellCheck={false}
               />
@@ -85,15 +87,15 @@ export default function NsDebuggerPanel(props: IDockviewPanelProps) {
         <div className="mK2vP flex min-h-0 flex-1 flex-col overflow-hidden !py-2 !px-3">
           {!hasServer ? (
             <PanelEmptyState className="h-full px-6 text-center">
-              Select a server to view output
+              {t("nsDebugger.emptySelectServer")}
             </PanelEmptyState>
           ) : lines.length === 0 ? (
             <PanelEmptyState className="h-full px-6 text-center">
-              No content found
+              {t("nsDebugger.empty")}
             </PanelEmptyState>
           ) : displayLines.length === 0 ? (
             <PanelEmptyState className="h-full px-6 text-center">
-              No matching output
+              {t("nsDebugger.noMatches")}
             </PanelEmptyState>
           ) : (
             <div data-ns-debugger-output className="flex min-h-0 flex-1 flex-col overflow-hidden">
@@ -113,7 +115,7 @@ export default function NsDebuggerPanel(props: IDockviewPanelProps) {
             className="button-default flex h-[29px] shrink-0 items-center gap-1.5 rounded border border-[#333] bg-[#232323] px-3 text-[13px] text-[#cecece] hover:bg-[#2b2b2b] hover:text-[#d4d4d4] cursor-pointer disabled:cursor-not-allowed disabled:opacity-25"
           >
             <RefreshCw size={11} />
-            Update
+            {t("nsDebugger.update")}
           </button>
           <div className="min-w-2 flex-1 shrink" aria-hidden />
           <button
@@ -123,7 +125,7 @@ export default function NsDebuggerPanel(props: IDockviewPanelProps) {
             className="button-default flex h-[29px] shrink-0 items-center gap-1.5 rounded border border-[#333] bg-[#232323] px-3 text-[13px] text-[#cecece] hover:bg-[#2b2b2b] hover:text-[#c97070] cursor-pointer disabled:cursor-not-allowed disabled:opacity-25"
           >
             <Trash2 size={11} />
-            Clear
+            {t("nsDebugger.clear")}
           </button>
         </div>
       </div>

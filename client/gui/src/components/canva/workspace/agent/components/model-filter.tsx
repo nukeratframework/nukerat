@@ -1,4 +1,5 @@
 import { CheckIcon, ChevronsUpDownIcon, RefreshCw, RotateCw, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import type { ServerEntry } from "@/api/system/config";
 import { Button } from "@/components/ui/button";
 import {
@@ -31,12 +32,12 @@ export default function AgentModelFilter({
   onSelectItem,
   onClear,
   disabled = false,
-  placeholder = "Select a model",
+  placeholder,
   selectedId,
   displayLabel,
-  searchPlaceholder = "Search model...",
-  emptyLabel = "No model found.",
-  clearAriaLabel = "Clear model",
+  searchPlaceholder,
+  emptyLabel,
+  clearAriaLabel,
   triggerClassName,
   mono = false,
 }: {
@@ -61,10 +62,15 @@ export default function AgentModelFilter({
   triggerClassName?: string;
   mono?: boolean;
 }) {
+  const { t } = useTranslation();
+  const resolvedPlaceholder = placeholder ?? t("agent.selectModel");
+  const resolvedSearchPlaceholder = searchPlaceholder ?? t("agent.searchModel");
+  const resolvedEmptyLabel = emptyLabel ?? t("agent.noModel");
+  const resolvedClearAriaLabel = clearAriaLabel ?? t("agent.clearModel");
   const monoClass = mono ? monaMono : "";
   const resolvedLabel = (displayLabel || model).trim();
   const hasSelection = Boolean(resolvedLabel);
-  const buttonLabel = hasSelection ? resolvedLabel : placeholder;
+  const buttonLabel = hasSelection ? resolvedLabel : resolvedPlaceholder;
   const triggerClass =
     triggerClassName ??
     `button-default h-[29px] w-[12.5rem] shrink-0 justify-between gap-1 rounded border border-[#363636] bg-[#212121] py-0 text-[13.5px] font-normal text-[#cecece] outline-none hover:bg-[#212121] focus:border-[#555] focus-visible:ring-0 disabled:cursor-not-allowed disabled:opacity-50 ${hasSelection ? "pl-2.5 pr-7" : "px-2.5"}`;
@@ -98,7 +104,7 @@ export default function AgentModelFilter({
         {hasSelection && (
           <button
             type="button"
-            aria-label={clearAriaLabel}
+            aria-label={resolvedClearAriaLabel}
             onMouseDown={(e) => e.preventDefault()}
             onClick={(e) => {
               e.stopPropagation();
@@ -130,7 +136,7 @@ export default function AgentModelFilter({
               <CommandInputNoIcon
                 wrapperClassName="w-full min-w-0"
                 className="w-full placeholder:text-[#ffffff0b]"
-                placeholder={searchPlaceholder}
+                placeholder={resolvedSearchPlaceholder}
               />
             </div>
           </div>
@@ -140,11 +146,11 @@ export default function AgentModelFilter({
                 className={`flex items-center justify-center h-10 text-[#666] text-[13.5px] ${monoClass}`}
               >
                 <RefreshCw size={14} className="animate-spin mr-2" />
-                Loading...
+                {t("common.loading")}
               </div>
             ) : (
               <>
-                <CommandEmpty className={monoClass}>{emptyLabel}</CommandEmpty>
+                <CommandEmpty className={monoClass}>{resolvedEmptyLabel}</CommandEmpty>
                 {servers.map((s) => {
                   const items = getAgentsForServer(s);
                   if (!items.length) return null;

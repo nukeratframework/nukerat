@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ChannelEditor from "./editor/channel";
 import { usesCustomHttpRelay, type ImplantFormChange, type ImplantFormData } from "../logic";
@@ -12,6 +13,7 @@ export default function CustomChannelFields({
   formData: ImplantFormData;
   handleFormChange: ImplantFormChange;
 }) {
+  const { t } = useTranslation();
   const showRelay = usesCustomHttpRelay(formData.os);
 
   if (!showRelay) {
@@ -32,8 +34,8 @@ export default function CustomChannelFields({
   return (
     <Tabs defaultValue="implant" className="implant-custom-channel-tabs">
       <TabsList variant="line" className="gap-4">
-        <TabsTrigger value="implant">Implant routine</TabsTrigger>
-        <TabsTrigger value="relay">Relay forwarder</TabsTrigger>
+        <TabsTrigger value="implant">{t("implants.tabs.implantRoutine")}</TabsTrigger>
+        <TabsTrigger value="relay">{t("implants.tabs.relayForwarder")}</TabsTrigger>
       </TabsList>
       <TabsContent value="implant">
         <div className={editorChrome}>

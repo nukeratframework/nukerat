@@ -1,6 +1,7 @@
 import { Download, Link, Pencil, RefreshCw, Trash2, Upload } from "lucide-react";
 import type { FileServerMenuRuntime, PanelCustomMenuItem, PanelEditMenuBridge } from "./types.ts";
 import { menuAction, pathInput } from "./util.ts";
+import { translate } from "@/i18n";
 
 export const fileServerMenuRuntimeRef: { current: FileServerMenuRuntime | null } = { current: null };
 
@@ -15,13 +16,13 @@ export function createFileServerBridge(): PanelEditMenuBridge | null {
     canEdit: () => !off(),
     prepareMenu: (t) => rt.prepareFromTarget(t),
     getCustomMenuItems: (): PanelCustomMenuItem[] => [
-      menuAction("Copy link", Link, () => rt.copyLink(), () => !rt.canCopyLink() || off()),
-      menuAction("Rename", Pencil, () => rt.rename(), () => !rt.canUseSelection() || off()),
-      menuAction("Download", Download, () => rt.download(), () => !rt.canUseSelection() || off()),
-      menuAction("Delete", Trash2, () => rt.deleteFile(), () => !rt.canUseSelection() || off()),
+      menuAction(translate("clickMenu.copyLink"), Link, () => rt.copyLink(), () => !rt.canCopyLink() || off()),
+      menuAction(translate("clickMenu.rename"), Pencil, () => rt.rename(), () => !rt.canUseSelection() || off()),
+      menuAction(translate("clickMenu.download"), Download, () => rt.download(), () => !rt.canUseSelection() || off()),
+      menuAction(translate("clickMenu.delete"), Trash2, () => rt.deleteFile(), () => !rt.canUseSelection() || off()),
       { kind: "separator" },
-      menuAction("Upload", Upload, () => rt.upload(), () => !rt.canUpload() || off()),
-      menuAction("Update", RefreshCw, () => rt.refresh()),
+      menuAction(translate("clickMenu.upload"), Upload, () => rt.upload(), () => !rt.canUpload() || off()),
+      menuAction(translate("clickMenu.update"), RefreshCw, () => rt.refresh()),
     ],
   };
 }

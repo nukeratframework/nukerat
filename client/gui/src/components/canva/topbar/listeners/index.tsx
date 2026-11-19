@@ -10,6 +10,7 @@ import {
 } from "./components/logic";
 import AddListenerPanel from "./components/add";
 import ViewListenerPanel from "./components/view";
+import { translate } from "@/i18n";
 
 const ListenersPanel = () => {
    const {
@@ -52,7 +53,7 @@ const ListenersPanel = () => {
                   {loading ? (
                      <div className="flex items-center justify-center h-16 text-[#444] text-[13.5px]">
                         <RefreshCw size={14} className="animate-spin mr-2" />
-                        Loading...
+                        {translate("common.loading")}
                      </div>
                   ) : (
                      <>
@@ -126,7 +127,7 @@ const ListenersPanel = () => {
                               </tbody>
                            )}
                         </table>
-                        {listeners.length === 0 && <PanelEmptyState>No listeners configured</PanelEmptyState>}
+                        {listeners.length === 0 && <PanelEmptyState>{translate("listeners.empty")}</PanelEmptyState>}
                      </>
                   )}
                </div>

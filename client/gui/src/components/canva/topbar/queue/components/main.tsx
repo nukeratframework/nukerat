@@ -2,6 +2,7 @@ import { RefreshCw } from "lucide-react";
 import { PanelEmptyState } from "@/components/canva/utils/panel-empty-state";
 import { UtcTableColumnHeader } from "@/components/canva/utils/utc-date";
 import { short, TABLE_COLUMNS, yn, type QueueEntry } from "./logic";
+import { translate } from "@/i18n";
 
 export default function MainList({
   loading,
@@ -26,7 +27,7 @@ export default function MainList({
       {loading && !entries.length ? (
         <div className="flex items-center justify-center h-16 text-[#444] text-[13.5px]">
           <RefreshCw size={14} className="animate-spin mr-2" />
-          Loading...
+          {translate("common.loading")}
         </div>
       ) : (
         <>
@@ -83,7 +84,7 @@ export default function MainList({
               </tbody>
             )}
           </table>
-          {entries.length === 0 && !loading && <PanelEmptyState>No content found</PanelEmptyState>}
+          {entries.length === 0 && !loading && <PanelEmptyState>{translate("queue.empty")}</PanelEmptyState>}
         </>
       )}
     </div>

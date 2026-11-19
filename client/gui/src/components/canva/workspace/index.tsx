@@ -1,6 +1,6 @@
 import { DockviewReact, type IDockviewPanelHeaderProps } from "dockview";
 import { X } from "lucide-react";
-import { forwardRef } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import TerminalWindow from "./terminal/index";
 import GraphWindow from "./graphs/index";
 import ExplorerWindow from "./explorer/index";
@@ -14,9 +14,9 @@ import NsDebuggerPanel from "./ns_debugger/index";
 import CredentialsPanel from "./credentials/index";
 import ScreenshotWindow from "./screenshot/index";
 import { floatComponents } from "../logic";
+import { isHostlessPanel } from "../panels";
 import {
-  getPanelHeaderJustify,
-  shouldShowHostSelect,
+  panelIdFromParams,
   useWorkspace,
   type WorkspaceHandle,
   type WorkspaceProps,
@@ -26,52 +26,64 @@ const Workspace = forwardRef<WorkspaceHandle, WorkspaceProps>(
   (props, ref) => {
     const { onDockviewReady, onWorkspacePointerMove } = useWorkspace(props, ref);
 
-    const PanelHeader = ({ api, params }: IDockviewPanelHeaderProps) => (
-      <div
-        className="cursor-default flex items-center h-full"
-        style={{
-          minWidth: 0,
-          overflow: "hidden",
-          width: "100%",
-          justifyContent: getPanelHeaderJustify(api.title),
-        }}
-      >
-        <span
-          className="font-[400] text-nowrap gap-2 text-[13px] text-[#9e9e9e] flex items-center h-full"
-          onAuxClick={(e) => {
-            if (e.button === 1) {
-              e.preventDefault();
-              api.close?.();
-            }
+    const PanelHeader = ({ api, params }: IDockviewPanelHeaderProps) => {
+      // Branch on the stable panel id, never on the (translated) title.
+      const panelId = panelIdFromParams(params);
+      // A custom header is not re-rendered by dockview on `setTitle`, so the
+      // language switch would leave a stale label. Subscribe to the title event
+      // and mirror it into local state.
+      const [title, setTitle] = useState(api.title);
+      useEffect(() => {
+        setTitle(api.title);
+        const sub = api.onDidTitleChange((e) => setTitle(e.title));
+        return () => sub.dispose();
+      }, [api]);
+      return (
+        <div
+          className="cursor-default flex items-center h-full"
+          style={{
+            minWidth: 0,
+            overflow: "hidden",
+            width: "100%",
+            justifyContent: isHostlessPanel(panelId) ? "left" : "between",
           }}
         >
-          {shouldShowHostSelect(api.title) ? (
-            <>
-            <HostSelectBox
-              onSelect={(host) => api.updateParameters({ selectedHost: host })}
-              panelSelectedHost={params?.selectedHost ?? null}
-              hide={false}
-            />
-            {api.title}
-            </>
-          ) : (
-            <>
-              <div className="ml-1"></div>
-              {api.title}
-              <div className="mr-[1.1rem]"></div>
-            </>
-          )}
-
-        </span>
-        <button
-          onClick={() => api.close?.()}
-          className="button-default ml-2.5 mr-3.5 cursor-pointer rounded transition-colors"
-          style={{ padding: "0px 0px", flexShrink: 0, marginTop: "1px" }}
-        >
-          <X size={13} className="text-[#9e9e9e]" />
-        </button>
-      </div>
-    );
+          <span
+            className="font-[400] text-nowrap gap-2 text-[13px] text-[#9e9e9e] flex items-center h-full"
+            onAuxClick={(e) => {
+              if (e.button === 1) {
+                e.preventDefault();
+                api.close?.();
+              }
+            }}
+          >
+            {!isHostlessPanel(panelId) ? (
+              <>
+                <HostSelectBox
+                  onSelect={(host) => api.updateParameters({ selectedHost: host })}
+                  panelSelectedHost={params?.selectedHost ?? null}
+                  hide={false}
+                />
+                {title}
+              </>
+            ) : (
+              <>
+                <div className="ml-1"></div>
+                {title}
+                <div className="mr-[1.1rem]"></div>
+              </>
+            )}
+          </span>
+          <button
+            onClick={() => api.close?.()}
+            className="button-default ml-2.5 mr-3.5 cursor-pointer rounded transition-colors"
+            style={{ padding: "0px 0px", flexShrink: 0, marginTop: "1px" }}
+          >
+            <X size={13} className="text-[#9e9e9e]" />
+          </button>
+        </div>
+      );
+    };
 
     return (
       <div

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
+import { translate } from "@/i18n";
 
 const ctaStorageKey = "cta";
 const ctaToastId = "nukerat-repo-cta";
@@ -14,7 +15,7 @@ const dismissCta = () => {
 };
 
 const showCtaToast = () => {
-  toast("Enjoying NukeRat?", {
+  toast(translate("shell.cta.title"), {
     id: ctaToastId,
     className: "!h-auto !min-h-0 !w-[20rem] !py-3 !overflow-visible select-none",
     style: {
@@ -35,9 +36,7 @@ const showCtaToast = () => {
     },
     description: (
       <div className="flex flex-col gap-2 select-none">
-        <p className="m-0 font-[13px] mb-2 mt-1">
-          Star us on GitHub. It takes seconds and motivates us to keep improving the project.
-        </p>
+        <p className="m-0 font-[13px] mb-2 mt-1">{translate("shell.cta.body")}</p>
         <div className="flex flex-wrap items-center gap-2 pt-0.5">
           <Button
             type="button"
@@ -51,7 +50,7 @@ const showCtaToast = () => {
               dismissCta();
             }}
           >
-            Open Repo
+            {translate("shell.cta.openRepo")}
           </Button>
           <Button
             type="button"
@@ -64,7 +63,7 @@ const showCtaToast = () => {
               dismissCta();
             }}
           >
-            Maybe Later
+            {translate("shell.cta.later")}
           </Button>
         </div>
       </div>

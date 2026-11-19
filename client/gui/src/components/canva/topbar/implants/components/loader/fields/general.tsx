@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ChevronRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -21,6 +22,7 @@ export default ({
   formData: ImplantFormData;
   handleFormChange: ImplantFormChange;
 }) => {
+  const { t } = useTranslation();
   const [advancedOpen, setAdvancedOpen] = useState(false);
 
   useEffect(() => {
@@ -38,7 +40,7 @@ export default ({
   return (
     <>
       <div className="space-y-1.5">
-        <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Compile server</label>
+        <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("implants.fields.compileServer")}</label>
         <ServerDropdown
           hideLabel
           host={formData.teamHost}
@@ -53,7 +55,7 @@ export default ({
       <Separator className="bg-[#252525] mb-4 mt-2" />
 
       <div className="mb-3 space-y-1.5">
-        <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Operational system</label>
+        <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("implants.fields.operationalSystem")}</label>
         <Select value={formData.os} onValueChange={(v) => handleFormChange("os", v as ImplantFormData["os"])}>
           <SelectTrigger className="w-auto bg-[#212121] border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 h-auto focus:border-[#555] focus-visible:ring-0">
             <SelectValue />
@@ -67,7 +69,7 @@ export default ({
       </div>
 
       <div className="mb-4 space-y-1.5">
-        <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Architecture</label>
+        <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("implants.fields.architecture")}</label>
         <div className="flex gap-2">
           <Select
             value={formData.cpu}
@@ -101,7 +103,7 @@ export default ({
       </div>
 
       <div className="mb-3 space-y-1.5">
-        <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Format</label>
+        <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("implants.fields.format")}</label>
         <Select
           value={formData.os === "macos" ? "app" : formData.format}
           disabled={formData.os === "macos"}
@@ -140,7 +142,7 @@ export default ({
             checked={formData.showConhost}
             onCheckedChange={(v) => handleFormChange("showConhost", v === true)}
           />
-          <span className="text-[13px] text-[#cecece]">Show conhost window</span>
+          <span className="text-[13px] text-[#cecece]">{t("implants.fields.showConhost")}</span>
         </label>
         </>
       ) : null}
@@ -154,57 +156,57 @@ export default ({
             className="button-default flex items-center gap-1.5 w-full mb-3 cursor-pointer"
           >
             <ChevronRight size={11} className={`text-[#454545] transition-transform ${advancedOpen ? "rotate-90" : ""}`} />
-            <span className="text-[12px] text-[#6e6e6e] uppercase tracking-widest">Advanced</span>
+            <span className="text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("implants.fields.advanced")}</span>
           </button>
           {advancedOpen ? (
             <div className="pl-3 border-l border-[#252525]">
               <div className="mb-3 space-y-1.5">
-                <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Entropy</label>
+                <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("implants.fields.entropy")}</label>
                 <Select value={formData.donutEntropy} onValueChange={(v) => handleFormChange("donutEntropy", v as ImplantFormData["donutEntropy"])}>
                   <SelectTrigger className="w-full bg-[#212121] border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 h-auto focus:border-[#555] focus-visible:ring-0">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="none">none</SelectItem>
-                    <SelectItem value="random">random names</SelectItem>
-                    <SelectItem value="encrypt">random + encrypt</SelectItem>
+                    <SelectItem value="none">{t("implants.options.none")}</SelectItem>
+                    <SelectItem value="random">{t("implants.options.randomNames")}</SelectItem>
+                    <SelectItem value="encrypt">{t("implants.options.randomEncrypt")}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               <div className="mb-3 space-y-1.5">
-                <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Compression</label>
+                <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("implants.fields.compression")}</label>
                 <Select value={formData.donutCompress} onValueChange={(v) => handleFormChange("donutCompress", v as ImplantFormData["donutCompress"])}>
                   <SelectTrigger className="w-full bg-[#212121] border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 h-auto focus:border-[#555] focus-visible:ring-0">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="none">none</SelectItem>
+                    <SelectItem value="none">{t("implants.options.none")}</SelectItem>
                     <SelectItem value="aplib">aPLib</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               <div className="mb-3 space-y-1.5">
-                <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">PE headers</label>
+                <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("implants.fields.peHeaders")}</label>
                 <Select value={formData.donutHeaders} onValueChange={(v) => handleFormChange("donutHeaders", v as ImplantFormData["donutHeaders"])}>
                   <SelectTrigger className="w-full bg-[#212121] border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 h-auto focus:border-[#555] focus-visible:ring-0">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="overwrite">overwrite</SelectItem>
-                    <SelectItem value="keep">keep all</SelectItem>
+                    <SelectItem value="overwrite">{t("implants.options.overwrite")}</SelectItem>
+                    <SelectItem value="keep">{t("implants.options.keepAll")}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               <div className="mb-3 space-y-1.5">
-                <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Exit behavior</label>
+                <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("implants.fields.exitBehavior")}</label>
                 <Select value={formData.donutExit} onValueChange={(v) => handleFormChange("donutExit", v as ImplantFormData["donutExit"])}>
                   <SelectTrigger className="w-full bg-[#212121] border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 h-auto focus:border-[#555] focus-visible:ring-0">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="thread">exit thread</SelectItem>
-                    <SelectItem value="process">exit process</SelectItem>
-                    <SelectItem value="block">block indefinitely</SelectItem>
+                    <SelectItem value="thread">{t("implants.options.exitThread")}</SelectItem>
+                    <SelectItem value="process">{t("implants.options.exitProcess")}</SelectItem>
+                    <SelectItem value="block">{t("implants.options.blockIndefinitely")}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -214,7 +216,7 @@ export default ({
                   checked={formData.donutThread}
                   onCheckedChange={(v) => handleFormChange("donutThread", v === true)}
                 />
-                <span className="text-[13px] text-[#cecece]">Run entry as thread</span>
+                <span className="text-[13px] text-[#cecece]">{t("implants.fields.runEntryAsThread")}</span>
               </label>
             </div>
           ) : null}

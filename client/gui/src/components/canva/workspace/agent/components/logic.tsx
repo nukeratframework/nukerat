@@ -18,6 +18,7 @@ import {
 } from "@/components/canva/topbar/listeners/components/logic";
 import { agentMenuRuntimeRef } from "@/components/ui/rigth-click-menu.tsx";
 import { tryConfirmDialogEnter } from "@/components/canva/utils/confirm-dialog-keydown";
+import { translate } from "@/i18n";
 
 export type ChatMessage = {
   role: "user" | "agent";
@@ -119,7 +120,7 @@ export function useAgentPanel() {
     if (!ctx) return;
     e.preventDefault();
     setPastedContexts((prev) => [...prev, { id: crypto.randomUUID(), ...ctx }]);
-    toast.success(`${ctx.key} context attached`);
+    toast.success(translate("agent.toast.contextAttached", { key: ctx.key }));
   }, []);
 
   const removePastedContext = useCallback((id: string) => {
@@ -203,14 +204,14 @@ export function useAgentPanel() {
     const message = input.trim();
     if ((!message && !pastedContexts.length) || submitting) return;
     if (!serverId || !model) {
-      toast.error(!serverId ? "Select a model" : "Select a model");
+      toast.error(translate("agent.toast.selectModel"));
       return;
     }
     const server = servers.find((s) => s.id === serverId);
     const ip = server?.ip?.trim().replace(/\/$/, "");
     const port = server?.port?.trim();
     if (!ip || !port) {
-      toast.error("Select a model");
+      toast.error(translate("agent.toast.selectModel"));
       return;
     }
     const outgoingMessage = buildOutgoingMessage(message, pastedContexts);
@@ -302,7 +303,7 @@ export function useAgentPanel() {
       content: m.text,
     }));
     navigator.clipboard.writeText(`"context": ${JSON.stringify(context, null, 2)}`);
-    toast.success("History copied");
+    toast.success(translate("agent.toast.historyCopied"));
   };
 
   const onModelChange = (name: string) => {
@@ -381,7 +382,7 @@ export function useAgentPanel() {
       try {
         setCustomContext(JSON.stringify(JSON.parse(customContext), null, 4));
       } catch {
-        toast.error("Invalid JSON");
+        toast.error(translate("agent.toast.invalidJson"));
       }
     },
     setSystemPrompt,

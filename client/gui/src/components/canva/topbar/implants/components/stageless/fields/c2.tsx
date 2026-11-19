@@ -2,6 +2,7 @@ import CustomChannelFields from "./custom_channel";
 import { sanitizeDigitsInput, sanitizeNumericInput } from "@/components/ui/lib/utils";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { CircleHelp, TriangleAlertIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -32,6 +33,7 @@ export default function C2Fields({
   formData: ImplantFormData;
   handleFormChange: ImplantFormChange;
 }) {
+  const { t } = useTranslation();
   const { entries, url, setUrl, canAdd, add, remove } = useServerDraft(
     formData.servers,
     (servers) => handleFormChange("servers", servers),
@@ -61,19 +63,19 @@ export default function C2Fields({
 
   const channelSelect = (
     <div className="mb-3 shrink-0 space-y-1.5">
-      <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Channel</label>
+      <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("implants.fields.channel")}</label>
       <Select value={channelProtocolValue} onValueChange={onChannelProtocolChange}>
         <SelectTrigger className="w-auto text-[13.5px] bg-[#212121] border-[#363636] text-[#cecece] rounded px-3 py-1.5 h-auto focus:border-[#555] focus-visible:ring-0">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectLabel className="text-[11px] text-[#6e6e6e] uppercase">external</SelectLabel>
+            <SelectLabel className="text-[11px] text-[#6e6e6e] uppercase">{t("implants.fields.external")}</SelectLabel>
             <SelectItem value="http">http</SelectItem>
-            <SelectItem value="custom">custom</SelectItem>
+            <SelectItem value="custom">{t("implants.options.custom")}</SelectItem>
           </SelectGroup>
           <SelectGroup>
-            <SelectLabel className="text-[11px] text-[#6e6e6e] uppercase">pivoting</SelectLabel>
+            <SelectLabel className="text-[11px] text-[#6e6e6e] uppercase">{t("implants.fields.pivoting")}</SelectLabel>
             {smbRelaySupported(formData.os) ? <SelectItem value="smb">smb</SelectItem> : null}
             <SelectItem value="tcp">tcp</SelectItem>
           </SelectGroup>
@@ -98,7 +100,7 @@ export default function C2Fields({
 
     <div className="mb-3 space-y-1.5">
       <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">
-        {formData.protocol === "smb" || formData.protocol === "tcp" ? "Relay implant" : "Server"}
+        {formData.protocol === "smb" || formData.protocol === "tcp" ? t("implants.fields.relayImplant") : t("implants.fields.server")}
       </label>
       {formData.protocol === "smb" ? (
         <div className="flex gap-1.5 items-center">
@@ -197,22 +199,21 @@ export default function C2Fields({
       <Alert className="mb-3 border-[#5c4a2a] bg-[#2a2419] text-[#e0a84b] [&_[data-slot=alert-description]]:text-[#9a9080]">
         <TriangleAlertIcon />
         <AlertDescription>
-          You must use the same sync key on every team server so every listener has the
-          communication encryption key for this implant.{" "}
+          {t("implants.help.syncKeyWarning")}{" "}
           <a
             className="underline underline-offset-2 text-[#c8a86b] hover:text-[#e0c88a] cursor-pointer"
             href="https://nukerat.com/docs/listeners/aes-sync"
             target="_blank"
             rel="noreferrer"
           >
-            How to configure it
+            {t("implants.help.howToConfigure")}
           </a>
         </AlertDescription>
       </Alert>
     )}
 
     <div className="mb-3 space-y-1.5">
-      <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Delay (seconds)</label>
+      <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("implants.fields.delay")}</label>
       <input
         className="w-[5rem] text-[13.5px] bg-[#212121] border border-[#363636] text-[#cecece] rounded px-3 py-1.5 outline-none focus:border-[#555] placeholder:text-[#444] tabular-nums"
         value={formData.sleep}
@@ -225,7 +226,7 @@ export default function C2Fields({
     </div>
 
     <div className="mb-3 space-y-1.5">
-      <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Jitter (%)</label>
+      <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("implants.fields.jitter")}</label>
       <input
         className="w-[5rem] text-[13.5px] bg-[#212121] border border-[#363636] text-[#cecece] rounded px-3 py-1.5 outline-none focus:border-[#555] placeholder:text-[#444] tabular-nums"
         value={formData.delay}
@@ -239,20 +240,17 @@ export default function C2Fields({
 
     <div className="mb-3 space-y-1.5">
       <div className="flex items-center gap-2">
-        <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Second delay (optional)</label>
+        <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("implants.fields.secondDelay")}</label>
         <Tooltip delayDuration={200}>
           <TooltipTrigger asChild>
-            <span className="inline-flex items-center text-[#666] cursor-default select-none" aria-label="Second delay help">
+            <span className="inline-flex items-center text-[#666] cursor-default select-none" aria-label={t("implants.aria.secondDelayHelp")}>
               <CircleHelp size={13} />
             </span>
           </TooltipTrigger>
           <TooltipContent side="bottom" className="bg-[#3A3A3A] max-w-xs rounded-[6px]">
             <div className="text-xs space-y-1.5">
-              <p>Wait time after a command runs. Useful for sending results back before the main delay.</p>
-              <p>
-                Example: if the main delay is 10 minutes, set second delay to 5 seconds so output comes back
-                before the implant waits the full 10 minutes again.
-              </p>
+              <p>{t("implants.help.secondDelay")}</p>
+              <p>{t("implants.help.secondDelayExample")}</p>
             </div>
           </TooltipContent>
         </Tooltip>
@@ -273,25 +271,25 @@ export default function C2Fields({
         <Separator className="bg-[#252525] mb-4 mt-4" />
         <KeyValueEditor
           className="implant-kv-table mb-4"
-          label="Custom headers"
+          label={t("implants.fields.customHeaders")}
           items={formData.customHeaders}
           onChange={(next) => handleFormChange("customHeaders", next)}
-          keyPlaceholder="Header"
-          valuePlaceholder="Value"
+          keyPlaceholder={t("implants.fields.header")}
+          valuePlaceholder={t("implants.fields.value")}
         />
         <KeyValueEditor
           className="implant-kv-table mb-3"
-          label="Custom cookies"
+          label={t("implants.fields.customCookies")}
           items={formData.customCookies}
           onChange={(next) => handleFormChange("customCookies", next)}
-          keyPlaceholder="Cookie"
-          valuePlaceholder="Value"
+          keyPlaceholder={t("implants.fields.cookie")}
+          valuePlaceholder={t("implants.fields.value")}
         />
 
         <Separator className="bg-[#252525] mb-4 mt-4" />
 
         <div className="mb-3 space-y-1.5">
-          <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">Custom body</label>
+          <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">{t("implants.fields.customBody")}</label>
           <Select
             value={formData.requestBodyType}
             onValueChange={(v) => handleFormChange("requestBodyType", v as ImplantFormData["requestBodyType"])}
@@ -300,10 +298,10 @@ export default function C2Fields({
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="off">off</SelectItem>
-              <SelectItem value="custom">custom</SelectItem>
+              <SelectItem value="off">{t("implants.options.offLower")}</SelectItem>
+              <SelectItem value="custom">{t("implants.options.custom")}</SelectItem>
               <SelectGroup>
-                <SelectLabel>Examples</SelectLabel>
+                <SelectLabel>{t("implants.options.examples")}</SelectLabel>
                 <SelectItem value="json">json</SelectItem>
                 <SelectItem value="xml">xml</SelectItem>
               </SelectGroup>
@@ -312,7 +310,7 @@ export default function C2Fields({
           {formData.requestBodyType !== "off" && (
             <>
               <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">
-                Listener response
+                {t("implants.fields.listenerResponse")}
               </label>
               <textarea
                 className="w-full bg-[#212121] border border-[#363636] h-[12rem] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 outline-none focus:border-[#555] transition-colors placeholder:text-[#444] resize-w leading-relaxed"
@@ -321,7 +319,7 @@ export default function C2Fields({
                 spellCheck={false}
               />
               <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">
-                Implant request
+                {t("implants.fields.implantRequest")}
               </label>
               <textarea
                 ref={bodyRef}
@@ -336,14 +334,14 @@ export default function C2Fields({
                   onClick={addMarker}
                   className="button-default flex items-center gap-1.5 px-3 py-1 rounded bg-[#232323] text-[#cecece] text-[13px] transition-colors border border-[#333] cursor-pointer hover:bg-[#2b2b2b] hover:text-[#d4d4d4]"
                 >
-                  Add §
+                  {t("implants.fields.addMarker")}
                 </button>
                 <button
                   type="button"
                   onClick={clearMarkers}
                   className="button-default flex items-center gap-1.5 px-3 py-1 rounded bg-[#232323] text-[#cecece] text-[13px] transition-colors border border-[#333] cursor-pointer hover:bg-[#2b2b2b] hover:text-[#d4d4d4]"
                 >
-                  Clear §
+                  {t("implants.fields.clearMarker")}
                 </button>
               </div>
             </>

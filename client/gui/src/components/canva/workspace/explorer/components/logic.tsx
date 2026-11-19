@@ -3,7 +3,8 @@ import { toast } from "sonner";
 import { DataFetch } from "@/api/folders";
 import type { Session } from "@/api/sessions";
 import { explorerMenuRuntimeRef } from "@/components/ui/rigth-click-menu.tsx";
-import { utcTableColumnTitle } from "@/components/canva/utils/utc-date";
+import { utcColumn, type TableColumn } from "@/components/canva/utils/utc-date";
+import { translate } from "@/i18n";
 
 // types -----------------------------------------------------------------------
 
@@ -84,7 +85,10 @@ export function getItemSubtitle(name: string, nodeVal: unknown, fileNode: boolea
   const raw = (nodeVal as { size?: unknown })?.size ?? "0";
   if (fileNode) return String(raw);
   const folderCount = Number.parseInt(String(raw), 10);
-  return Number.isNaN(folderCount) ? `${raw} items` : `${folderCount} ${folderCount === 1 ? "item" : "items"}`;
+  if (Number.isNaN(folderCount)) return translate("explorer.itemsUnknown", { value: raw });
+  return translate(folderCount === 1 ? "explorer.itemOne" : "explorer.itemMany", {
+    count: folderCount,
+  });
 }
 
 export const EXPLORER_FILE_MAX_BYTES = 25 * 1024 * 1024;
@@ -401,11 +405,16 @@ export function useRightSidePath(currentPath: string[], onPathSubmit: (path: str
   return { inputValue, setInputValue, handlePathSubmit };
 }
 
-export const EXPLORER_MODIFIED_COLUMN = utcTableColumnTitle("Modified");
+export type ExplorerColumn = "name" | "type" | "size" | "modified";
 
-export const explorerTableColumns = ["Name", "Type", "Size", EXPLORER_MODIFIED_COLUMN];
+/// Column keys are stable; `label` is an i18n key resolved at render time.
+export const explorerTableColumns: TableColumn<ExplorerColumn>[] = [
+  { key: "name", label: "explorer.columns.name" },
+  { key: "type", label: "explorer.columns.type" },
+  { key: "size", label: "explorer.columns.size" },
+  utcColumn("modified", "explorer.columns.modified"),
+];
 
-export type ExplorerColumn = "Name" | "Type" | "Size" | typeof EXPLORER_MODIFIED_COLUMN;
 export type ExplorerListItem = [string, unknown];
 
 /** Natural name order (Explorer uses StrCmpLogicalW). */
@@ -451,30 +460,30 @@ function compareExplorerItems(
   const folderA = isFolderEntry(a);
   const folderB = isFolderEntry(b);
 
-  if (column !== EXPLORER_MODIFIED_COLUMN && folderA !== folderB) {
+  if (column !== "modified" && folderA !== folderB) {
     return folderA ? -1 : 1;
   }
 
   let cmp = 0;
   switch (column) {
-    case "Name":
+    case "name":
       cmp = compareExplorerNames(a[0], b[0]);
       break;
-    case "Type": {
+    case "type": {
       const extA = fileExtensionSortKey(a[0]);
       const extB = fileExtensionSortKey(b[0]);
       cmp = compareExplorerNames(extA, extB);
       if (cmp === 0) cmp = compareExplorerNames(a[0], b[0]);
       break;
     }
-    case "Size": {
+    case "size": {
       const sx = folderA ? folderSizeSortValue(a[1]) : fileSizeSortValue(a[1]);
       const sy = folderB ? folderSizeSortValue(b[1]) : fileSizeSortValue(b[1]);
       if (sx !== sy) cmp = sx - sy;
       else cmp = compareExplorerNames(a[0], b[0]);
       break;
     }
-    case EXPLORER_MODIFIED_COLUMN: {
+    case "modified": {
       const missing = ascending ? Number.POSITIVE_INFINITY : Number.NEGATIVE_INFINITY;
       const dx = modifiedSortValue(a[1], missing);
       const dy = modifiedSortValue(b[1], missing);
@@ -568,7 +577,7 @@ export function useExplorerWindow(
         autoRefresh
       );
       setLoading(false);
-      if (showFetchFailureToast(res, "Could not list folder content.")) return;
+      if (showFetchFailureToast(res, translate("explorer.toast.listFailed"))) return;
       const r = res as { status?: string; folders?: unknown[] };
       if (r?.status === "success" && Array.isArray(r.folders)) {
         setExplorerTree(r.folders);
@@ -627,7 +636,7 @@ export function useExplorerWindow(
         true
       );
       setLoading(false);
-      if (showFetchFailureToast(res, "Could not open file.")) return;
+      if (showFetchFailureToast(res, translate("explorer.toast.openFailed"))) return;
 
       const r = res as {
         file_content?: string;
@@ -636,7 +645,7 @@ export function useExplorerWindow(
       };
       const fallbackName = path[path.length - 1] ?? "download";
       const decodedContent =
-        typeof r?.file_content === "string" ? r.file_content : "Could not retrieve file content.";
+        typeof r?.file_content === "string" ? r.file_content : translate("explorer.toast.contentFailed");
       setFileContent({
         content: decodedContent,
         fileName: typeof r?.fileName === "string" && r.fileName.trim() ? r.fileName : fallbackName,
@@ -663,7 +672,7 @@ export function useExplorerWindow(
       );
       setLoading(false);
 
-      if (showFetchFailureToast(res, "Could not access the requested path.")) return false;
+      if (showFetchFailureToast(res, translate("explorer.toast.pathFailed"))) return false;
 
       const r = res as { status?: string; folders?: unknown[] };
       if (r?.status === "success" && Array.isArray(r.folders)) {

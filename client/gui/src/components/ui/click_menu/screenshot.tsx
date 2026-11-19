@@ -1,6 +1,7 @@
 import { Download } from "lucide-react";
 import type { PanelEditMenuBridge, ScreenshotMenuRuntime } from "./types.ts";
 import { menuAction, readOnlyInputBridge } from "./util.ts";
+import { translate } from "@/i18n";
 
 export const screenshotMenuRuntimeRef: { current: ScreenshotMenuRuntime | null } = { current: null };
 
@@ -18,7 +19,7 @@ export function createScreenshotBridge(): PanelEditMenuBridge {
   return {
     ...readOnlyInputBridge(),
     getFooterMenuItems: () => [
-      menuAction("Save", Download, () => screenshotSave(), () => !screenshotCanSave()),
+      menuAction(translate("clickMenu.save"), Download, () => screenshotSave(), () => !screenshotCanSave()),
     ],
   };
 }

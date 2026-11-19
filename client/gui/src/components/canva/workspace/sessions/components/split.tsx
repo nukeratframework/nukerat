@@ -3,6 +3,7 @@ import { X, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
 import { EditSession, type Session } from "@/api/sessions";
 import { formatDate, sessionIcon } from "./logic";
+import { useTranslation } from "react-i18next";
 
 const inputClass =
   "w-full bg-[#212121] border border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 outline-none cursor-text";
@@ -34,6 +35,7 @@ const ViewField = ({
 );
 
 export default function SplitPanel({ session, onClose, onSaved }: { session: Session | null; onClose: () => void; onSaved: () => void }) {
+  const { t } = useTranslation();
   const [note, setNote] = useState(session?.notes ?? "");
   const [saving, setSaving] = useState(false);
 
@@ -53,7 +55,7 @@ export default function SplitPanel({ session, onClose, onSaved }: { session: Ses
       <div className="flex items-center justify-between px-4 py-3 border-b border-[#2a2a2a] shrink-0">
         <span className="text-[13.5px] font-semibold text-[#cecece] tracking-wide flex items-center gap-2">
           {session && <img src={sessionIcon(session)} alt="" className="w-[16px] h-[16px] opacity-90" />}
-          View - {session?.tag ?? "Session"}
+          {t("sessions.view.title", { tag: session?.tag ?? t("sessions.view.fallbackTag") })}
         </span>
         <button type="button" onClick={onClose} className="p-1 rounded text-[#6b6b6b] hover:text-[#d4d4d4] hover:bg-[#2a2a2a] transition-colors cursor-pointer">
           <X size={13} />
@@ -61,7 +63,7 @@ export default function SplitPanel({ session, onClose, onSaved }: { session: Ses
       </div>
       <div className="flex-1 min-h-0 min-w-0 overflow-y-auto px-4 py-4">
         <div className="mb-3 space-y-1.5">
-          <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Note</label>
+          <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("sessions.view.note")}</label>
           <textarea
             className={`${inputClass} min-h-[72px] resize-y py-2 focus:border-[#555] transition-colors`}
             rows={3}
@@ -69,26 +71,26 @@ export default function SplitPanel({ session, onClose, onSaved }: { session: Ses
             onChange={(e) => setNote(e.target.value)}
           />
         </div>
-        <ViewField label="Last Check" value={session?.last_activity || "-"} />
-        <ViewField label="Tag" value={session?.tag} />
-        <ViewField label="Hostname" value={session?.hostname} />
-        <ViewField label="User" value={session?.user} />
-        <ViewField label="Privilege" value={session?.privilege || "user"} />
-        <ViewField label="Internal" value={session?.internal ?? session?.ip} />
-        <ViewField label="External" value={session?.external_ip} />
-        <ViewField label="Listener" value={session?.listener} uppercase />
-        <ViewField label="Host Server" value={session?.host_server} />
-        <ViewField label="Host Port" value={session?.host_port != null ? String(session.host_port) : undefined} />
-        <ViewField label="Arch" value={session?.arch} />
-        <ViewField label="PID" value={session?.pid != null ? String(session.pid) : undefined} />
-        <ViewField label="Process" value={session?.process || "-"} />
-        <ViewField label="OS" value={session?.os} />
-        <ViewField label="First Seen" value={formatDate(session?.first_seen)} />
-        <ViewField label="Last Seen" value={formatDate(session?.last_seen)} />
-        <ViewField label="delay" value={session?.delay != null ? String(session.delay) : undefined} />
-        <ViewField label="Server" value={session?._server} />
+        <ViewField label={t("sessions.view.fields.lastCheck")} value={session?.last_activity || "-"} />
+        <ViewField label={t("sessions.view.fields.tag")} value={session?.tag} />
+        <ViewField label={t("sessions.view.fields.hostname")} value={session?.hostname} />
+        <ViewField label={t("sessions.view.fields.user")} value={session?.user} />
+        <ViewField label={t("sessions.view.fields.privilege")} value={session?.privilege || "user"} />
+        <ViewField label={t("sessions.view.fields.internal")} value={session?.internal ?? session?.ip} />
+        <ViewField label={t("sessions.view.fields.external")} value={session?.external_ip} />
+        <ViewField label={t("sessions.view.fields.listener")} value={session?.listener} uppercase />
+        <ViewField label={t("sessions.view.fields.hostServer")} value={session?.host_server} />
+        <ViewField label={t("sessions.view.fields.hostPort")} value={session?.host_port != null ? String(session.host_port) : undefined} />
+        <ViewField label={t("sessions.view.fields.arch")} value={session?.arch} />
+        <ViewField label={t("sessions.view.fields.pid")} value={session?.pid != null ? String(session.pid) : undefined} />
+        <ViewField label={t("sessions.view.fields.process")} value={session?.process || "-"} />
+        <ViewField label={t("sessions.view.fields.os")} value={session?.os} />
+        <ViewField label={t("sessions.view.fields.firstSeen")} value={formatDate(session?.first_seen)} />
+        <ViewField label={t("sessions.view.fields.lastSeen")} value={formatDate(session?.last_seen)} />
+        <ViewField label={t("sessions.view.fields.delay")} value={session?.delay != null ? String(session.delay) : undefined} />
+        <ViewField label={t("sessions.view.fields.server")} value={session?._server} />
         <div className="mb-3 space-y-1.5">
-          <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Implant Config</label>
+          <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("sessions.view.fields.implantConfig")}</label>
           {implant && typeof implant === "object" ? (
             <div className="rounded border border-[#363636] bg-[#212121] overflow-hidden">
               {Object.entries(implant).map(([key, val], i, arr) => (
@@ -125,10 +127,10 @@ export default function SplitPanel({ session, onClose, onSaved }: { session: Ses
             const res = await EditSession(session.tag, note, session._server);
             setSaving(false);
             if (res?.status === "success") {
-              toast.success("Note saved");
+              toast.success(t("sessions.toast.noteSaved"));
               onSaved();
             } else {
-              toast.error(res?.message ?? "Failed to save");
+              toast.error(res?.message ?? t("sessions.toast.saveFailed"));
             }
           }}
           className="button-default flex h-[29px] shrink-0 items-center gap-1.5 rounded border border-[#444] bg-[#232323] px-3 text-[13px] text-[#c8c8c8] hover:bg-[#2b2b2b] cursor-pointer disabled:cursor-not-allowed disabled:opacity-30"

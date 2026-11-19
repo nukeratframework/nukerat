@@ -5,6 +5,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { useTranslation } from "react-i18next";
 import type { DockviewPanelApi } from "dockview";
 import {
   ContextMenu,
@@ -127,7 +128,7 @@ function CustomMenuItems({ items }: { items: PanelCustomMenuItem[] }) {
           return <ContextMenuSeparator key={`sep-${index}`} />;
         }
         if (item.kind === "header") {
-          const empty = item.label === "No target";
+          const empty = item.empty === true;
           return (
             <div
               key={`hdr-${index}`}
@@ -201,6 +202,7 @@ function Row({
 }
 
 function PanelEditContextMenu({ kind, children }: { kind: WorkspacePanelMenuKind; children: ReactNode }) {
+  const { t } = useTranslation();
   const panelApi = useContext(DockviewPanelApiContext);
   const targetRef = useRef<EventTarget | null>(null);
   const fieldRef = useRef<EditableField | null>(null);
@@ -361,8 +363,8 @@ function PanelEditContextMenu({ kind, children }: { kind: WorkspacePanelMenuKind
       <ContextMenuContent className={panelMenuContentClass}>
         {showEdit && docMode && (
           <ContextMenuGroup>
-            <Row label="Copy" hotkey={modKey("C")} disabled={!caps.copy} onClick={() => void runCopy()} />
-            <Row label="Select All" hotkey={modKey("A")} disabled={!caps.all} onClick={runSelectAll} />
+            <Row label={t("clickMenu.native.copy")} hotkey={modKey("C")} disabled={!caps.copy} onClick={() => void runCopy()} />
+            <Row label={t("clickMenu.native.selectAll")} hotkey={modKey("A")} disabled={!caps.all} onClick={runSelectAll} />
           </ContextMenuGroup>
         )}
         {showTerminalOutputActions && (
@@ -378,7 +380,7 @@ function PanelEditContextMenu({ kind, children }: { kind: WorkspacePanelMenuKind
                   <ContextMenuItemIcon>
                     <Bot />
                   </ContextMenuItemIcon>
-                  Copy context
+                  {t("clickMenu.copyContext")}
                 </span>
               </ContextMenuItem>
             </ContextMenuGroup>
@@ -387,19 +389,19 @@ function PanelEditContextMenu({ kind, children }: { kind: WorkspacePanelMenuKind
         {showEdit && !docMode && (
           <>
             <ContextMenuGroup>
-              <Row label="Undo" hotkey={modKey("Z")} disabled={!caps.undo} onClick={runUndo} />
-              <Row label="Redo" hotkey={modKey("Y")} disabled={!caps.redo} onClick={runRedo} />
+              <Row label={t("clickMenu.native.undo")} hotkey={modKey("Z")} disabled={!caps.undo} onClick={runUndo} />
+              <Row label={t("clickMenu.native.redo")} hotkey={modKey("Y")} disabled={!caps.redo} onClick={runRedo} />
             </ContextMenuGroup>
             <ContextMenuSeparator />
             <ContextMenuGroup>
-              <Row label="Cut" hotkey={modKey("X")} disabled={!caps.cut} onClick={() => void runCut()} />
-              <Row label="Copy" hotkey={modKey("C")} disabled={!caps.copy} onClick={() => void runCopy()} />
-              <Row label="Paste" hotkey={modKey("V")} disabled={!caps.paste} onClick={() => void runPaste()} />
-              <Row label="Delete" disabled={!caps.del} onClick={runDelete} />
+              <Row label={t("clickMenu.native.cut")} hotkey={modKey("X")} disabled={!caps.cut} onClick={() => void runCut()} />
+              <Row label={t("clickMenu.native.copy")} hotkey={modKey("C")} disabled={!caps.copy} onClick={() => void runCopy()} />
+              <Row label={t("clickMenu.native.paste")} hotkey={modKey("V")} disabled={!caps.paste} onClick={() => void runPaste()} />
+              <Row label={t("clickMenu.native.delete")} disabled={!caps.del} onClick={runDelete} />
             </ContextMenuGroup>
             <ContextMenuSeparator />
             <ContextMenuGroup>
-              <Row label="Select All" hotkey={modKey("A")} disabled={!caps.all} onClick={runSelectAll} />
+              <Row label={t("clickMenu.native.selectAll")} hotkey={modKey("A")} disabled={!caps.all} onClick={runSelectAll} />
             </ContextMenuGroup>
           </>
         )}
@@ -425,7 +427,7 @@ function PanelEditContextMenu({ kind, children }: { kind: WorkspacePanelMenuKind
                   <ContextMenuItemIcon>
                     <X />
                   </ContextMenuItemIcon>
-                  Close tab
+                  {t("clickMenu.native.closeTab")}
                 </span>
               </ContextMenuItem>
             </ContextMenuGroup>

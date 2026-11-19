@@ -1,0 +1,80 @@
+import type networkDict from "../en/network";
+import type { Localized } from "../localized";
+
+/** Network 面板：跳板/中继表格与表单。 */
+const network: Localized<typeof networkDict> = {
+  empty: "未配置任何连接",
+  loading: "加载中...",
+  columns: {
+    host: "主机",
+    type: "类型",
+    port: "端口",
+    forward: "转发",
+    protocol: "协议",
+    server: "服务器",
+  },
+  types: {
+    socks: "socks",
+    portForwarding: "端口转发",
+  },
+  actions: {
+    add: "添加",
+    view: "查看",
+    remove: "移除",
+    update: "更新",
+  },
+  removeConfirm: {
+    title: "移除连接",
+    prefix: "移除 ",
+    suffix: "？此操作无法撤销。",
+    remove: "移除",
+  },
+  form: {
+    newTitle: "新建连接",
+    type: "类型",
+    cancel: "取消",
+    create: "创建",
+    hostTag: "主机标记",
+    hostsLoading: "正在加载主机...",
+    selectHost: "选择主机",
+    noHosts: "未找到主机",
+    portTarget: "目标端口",
+    listenPort: "监听端口",
+    user: "用户名",
+    password: "密码",
+    optional: "可选",
+    protocol: "协议",
+    forwardHost: "转发主机",
+    forwardPort: "转发端口",
+  },
+  view: {
+    title: "查看 - {{name}}",
+    tag: "标记",
+    type: "类型",
+    server: "服务器",
+    bindHost: "绑定主机",
+    port: "端口",
+    protocol: "协议",
+    implantTag: "植入体标记",
+    authUser: "认证用户",
+    authPassword: "认证密码",
+    forward: "转发",
+    forwardHost: "转发主机",
+    forwardPort: "转发端口",
+    close: "关闭",
+  },
+  toast: {
+    credentialsPair: "用户名与密码必须同时设置或同时留空",
+    implantTagRequired: "必须填写植入体标记",
+    forwardRequired: "必须填写植入体、转发主机与端口",
+    tcpOnly: "仅支持 TCP",
+    createFailed: "创建连接失败",
+    created: "连接已创建",
+    restartFailed: "重启连接失败",
+    restarted: "连接已重启",
+    removeFailed: "移除连接失败",
+    removed: "连接已移除",
+  },
+};
+
+export default network;

@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import type { ExplorerMenuRuntime, PanelEditMenuBridge } from "./types.ts";
 import { menuAction, pathInput } from "./util.ts";
+import { translate } from "@/i18n";
 
 export const explorerMenuRuntimeRef: { current: ExplorerMenuRuntime | null } = { current: null };
 
@@ -21,21 +22,21 @@ export function createExplorerBridge(): PanelEditMenuBridge | null {
     writeValue: (_, v) => rt.setPathInput(v),
     canEdit: () => !off(),
     getCustomMenuItems: () => [
-      menuAction("Back", ArrowLeft, () => rt.goBack(), () => !rt.canBack() || off()),
-      menuAction("Forward", ArrowRight, () => rt.goForward(), () => !rt.canForward() || off()),
-      menuAction("Refresh", RefreshCw, () => rt.refresh(), off),
-      menuAction("Download", ArrowDownToLine, () => rt.download(), () => !rt.canDownload() || off()),
+      menuAction(translate("clickMenu.back"), ArrowLeft, () => rt.goBack(), () => !rt.canBack() || off()),
+      menuAction(translate("clickMenu.forward"), ArrowRight, () => rt.goForward(), () => !rt.canForward() || off()),
+      menuAction(translate("clickMenu.refresh"), RefreshCw, () => rt.refresh(), off),
+      menuAction(translate("clickMenu.download"), ArrowDownToLine, () => rt.download(), () => !rt.canDownload() || off()),
       {
         kind: "action",
-        label: "Grid view",
+        label: translate("clickMenu.gridView"),
         icon: LayoutGrid,
         disabled: off,
         items: [
-          { kind: "action", label: "Grid", onClick: () => rt.setGridView() },
-          { kind: "action", label: "List", onClick: () => rt.setListView() },
+          { kind: "action", label: translate("clickMenu.grid"), onClick: () => rt.setGridView() },
+          { kind: "action", label: translate("clickMenu.list"), onClick: () => rt.setListView() },
         ],
       },
-      menuAction("Copy context", Bot, () => rt.copyContext(), () => off() || !rt.canCopyContext()),
+      menuAction(translate("clickMenu.copyContext"), Bot, () => rt.copyContext(), () => off() || !rt.canCopyContext()),
     ],
   };
 }

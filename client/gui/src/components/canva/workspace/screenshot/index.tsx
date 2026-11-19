@@ -1,4 +1,5 @@
 import type { IDockviewPanelProps } from "dockview";
+import { useTranslation } from "react-i18next";
 import type { Session } from "@/api/sessions";
 import { useScreenshot } from "./components/logic";
 import { PanelEmptyState } from "@/components/canva/utils/panel-empty-state";
@@ -9,6 +10,7 @@ type ScreenshotPanelParams = {
 };
 
 const ScreenshotWindow = (props: IDockviewPanelProps<ScreenshotPanelParams>) => {
+  const { t } = useTranslation();
   const selectedHost = props.params?.selectedHost ?? null;
   const { src } = useScreenshot(selectedHost);
 
@@ -24,7 +26,7 @@ const ScreenshotWindow = (props: IDockviewPanelProps<ScreenshotPanelParams>) => 
             <img src={src} alt="" className="relative max-w-full max-h-full object-contain z-10" />
           </>
         ) : (
-          <PanelEmptyState>No screenshot to display</PanelEmptyState>
+          <PanelEmptyState>{t("screenshot.empty")}</PanelEmptyState>
         )}
       </div>
     </ScreenshotDockviewShell>

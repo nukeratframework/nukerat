@@ -22,6 +22,7 @@ import {
   FileText,
 } from "lucide-react";
 import { PanelMenuShell, type PanelCustomMenuItem } from "@/components/ui/rigth-click-menu.tsx";
+import { translate } from "@/i18n";
 
 export type EmptyMenuRuntime = {
   openWindow: (windowType: string) => void;
@@ -33,16 +34,22 @@ export const emptyMenuRuntimeRef: { current: EmptyMenuRuntime | null } = { curre
 const open = (t: string) => () => emptyMenuRuntimeRef.current?.openWindow(t);
 const float = (t: string) => () => emptyMenuRuntimeRef.current?.floatWindow(t);
 
-const leaf = (label: string, icon?: LucideIcon, onClick?: () => void): PanelCustomMenuItem => ({
+/// Labels are built at menu-open time, so i18n keys are resolved here rather
+/// than at module load (which would freeze the language of the first render).
+const leaf = (labelKey: string, icon?: LucideIcon, onClick?: () => void): PanelCustomMenuItem => ({
   kind: "action",
-  label,
+  label: translate(labelKey),
   icon,
   onClick,
 });
 
-const group = (label: string, items: PanelCustomMenuItem[], icon?: LucideIcon): PanelCustomMenuItem => ({
+const group = (
+  labelKey: string,
+  items: PanelCustomMenuItem[],
+  icon?: LucideIcon
+): PanelCustomMenuItem => ({
   kind: "action",
-  label,
+  label: translate(labelKey),
   icon,
   items,
 });
@@ -52,43 +59,43 @@ const sep = (): PanelCustomMenuItem => ({ kind: "separator" });
 export function buildEmptyWorkspaceMenuItems(): PanelCustomMenuItem[] {
   return [
     group(
-      "New",
+      "shell.newGroup",
       [
-        leaf("Terminal", SquareChevronRight, open("terminal")),
-        leaf("File Browser", Folder, open("explorer")),
-        leaf("Processes", Cpu, open("process")),
+        leaf("shell.terminal", SquareChevronRight, open("terminal")),
+        leaf("shell.fileBrowser", Folder, open("explorer")),
+        leaf("shell.processes", Cpu, open("process")),
         sep(),
-        leaf("Screenshot", Camera, open("screenshot")),
-        leaf("Keystrokes", Keyboard, open("keylogger")),
-        leaf("Credentials", KeyRound, open("credentials")),
+        leaf("shell.screenshot", Camera, open("screenshot")),
+        leaf("shell.keystrokes", Keyboard, open("keylogger")),
+        leaf("shell.credentials", KeyRound, open("credentials")),
         sep(),
-        leaf("Targets", MonitorIcon, open("sessions")),
-        leaf("Attack Graph", Share2, open("graphs")),
+        leaf("shell.targets", MonitorIcon, open("sessions")),
+        leaf("shell.attackGraph", Share2, open("graphs")),
         sep(),
-        leaf("AI Agent", Bot, open("agent")),
-        leaf("File Server", Globe, open("fileServer")),
+        leaf("shell.aiAgent", Bot, open("agent")),
+        leaf("shell.fileServer", Globe, open("fileServer")),
         sep(),
-        leaf("NS Debugger", CodeXml, open("nukescripts_output")),
+        leaf("shell.nsDebugger", CodeXml, open("nukescripts_output")),
       ],
       Plus
     ),
-    group("NukeRat", [
-      leaf("Servers", Server, float("servers")),
-      leaf("Listeners", Headphones, float("listeners")),
-      leaf("Implants", Bug, float("implants")),
-      leaf("Network", Network, float("network")),
+    group("shell.menu.nukerat", [
+      leaf("shell.servers", Server, float("servers")),
+      leaf("shell.listeners", Headphones, float("listeners")),
+      leaf("shell.implants", Bug, float("implants")),
+      leaf("shell.network", Network, float("network")),
       sep(),
-      leaf("Agents", Bot, float("agents")),
-      leaf("NukeScripts", CodeXml, float("nukescripts")),
+      leaf("shell.agents", Bot, float("agents")),
+      leaf("shell.nukescripts", CodeXml, float("nukescripts")),
       sep(),
       group(
-        "Reports",
-        [leaf("Files", undefined, float("reports")), leaf("IOCs", undefined, float("iocs"))],
+        "shell.reports",
+        [leaf("shell.files", undefined, float("reports")), leaf("shell.iocs", undefined, float("iocs"))],
         Scale
       ),
       sep(),
-      leaf("Queue", Logs, float("queue")),
-      leaf("Event Log", FileText, float("logs")),
+      leaf("shell.queue", Logs, float("queue")),
+      leaf("shell.eventLog", FileText, float("logs")),
     ]),
   ];
 }

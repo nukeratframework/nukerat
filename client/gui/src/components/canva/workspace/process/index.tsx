@@ -1,4 +1,5 @@
 import type { IDockviewPanelProps } from "dockview";
+import { useTranslation } from "react-i18next";
 import type { Session } from "@/api/sessions";
 import Toolbar from "./components/toolbar";
 import ProcessTable from "./components/process-table";
@@ -10,6 +11,7 @@ type ProcessPanelParams = {
 };
 
 const ProcessWindow = (props: IDockviewPanelProps<ProcessPanelParams>) => {
+  const { t } = useTranslation();
   const selectedHost = props.params?.selectedHost ?? null;
   const {
     hostUnavailable,
@@ -55,7 +57,7 @@ const ProcessWindow = (props: IDockviewPanelProps<ProcessPanelParams>) => {
               onClick={cancelLoading}
               className="mt-2 text-[13.5px] text-[#3a3a3a] cursor-pointer select-none hover:text-[#4a4a4a]"
             >
-              Cancel
+              {t("common.cancel")}
             </span>
           </div>
         ) : (

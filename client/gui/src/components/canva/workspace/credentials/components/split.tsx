@@ -1,4 +1,5 @@
 import { RefreshCw, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import {
   Select,
   SelectContent,
@@ -17,14 +18,15 @@ import {
 } from "./logic";
 
 function HostSelect({ server, value, onChange }: { server: string; value: string; onChange: (host: string) => void }) {
+  const { t } = useTranslation();
   const { hosts, loading, response } = useCredentialHostSelect(server);
   return (
     <div className="mb-3">
       <FetchToast response={response} />
-      <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">Host</label>
+      <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">{t("credentials.form.host")}</label>
       <Select value={value || undefined} onValueChange={onChange} disabled={!server || loading}>
         <SelectTrigger className="w-full bg-[#212121] border border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-2 h-auto outline-none focus:border-[#555] placeholder:text-[#444] disabled:opacity-40 focus-visible:ring-0">
-          <SelectValue placeholder={!server ? "Select a server first..." : loading ? "Loading hosts..." : "Select host..."} />
+          <SelectValue placeholder={!server ? t("credentials.form.selectServerFirst") : loading ? t("credentials.form.loadingHosts") : t("credentials.form.selectHost")} />
         </SelectTrigger>
         <SelectContent>
           {hosts.map((host) => {
@@ -62,6 +64,7 @@ export default function SplitPanel({
   onChange: <K extends keyof CredentialFormData>(key: K, value: CredentialFormData[K]) => void;
   onServerChange: (ip: string, port: string) => void;
 }) {
+  const { t } = useTranslation();
   const canSubmit = canSubmitCredentialForm(formData, mode, editBaseline);
   const { host: serverHost, port: serverPort } = parseCredentialServer(formData.server);
   const panelActionClass =
@@ -71,7 +74,7 @@ export default function SplitPanel({
     <div className="flex flex-col h-full min-h-0 min-w-[22rem]">
       <div className="flex items-center justify-between px-4 py-3 border-b border-[#2a2a2a] shrink-0">
         <span className="text-[13.5px] font-semibold text-[#cecece] tracking-wide min-w-0">
-          {mode === "add" ? "New Credential" : <>Edit - <span className="inline-block max-w-[180px] truncate align-bottom">{selectedName}</span></>}
+          {mode === "add" ? t("credentials.form.newTitle") : <>{t("credentials.form.editPrefix")} - <span className="inline-block max-w-[180px] truncate align-bottom">{selectedName}</span></>}
         </span>
         <button
           type="button"
@@ -84,24 +87,24 @@ export default function SplitPanel({
       <div className="flex-1 min-h-0 min-w-0 overflow-y-auto px-4 py-4" data-credentials-input>
         <div className="min-w-[280px]">
           <div className="mb-3">
-            <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">Name</label>
-            <input data-credential-field="name" className="w-full bg-[#212121] border border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-2 outline-none focus:border-[#555] placeholder:text-[#444]" value={formData.name} onChange={(e) => onChange("name", e.target.value)} placeholder="Credential name" autoComplete="off" spellCheck={false} />
+            <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">{t("credentials.form.name")}</label>
+            <input data-credential-field="name" className="w-full bg-[#212121] border border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-2 outline-none focus:border-[#555] placeholder:text-[#444]" value={formData.name} onChange={(e) => onChange("name", e.target.value)} placeholder={t("credentials.form.namePlaceholder")} autoComplete="off" spellCheck={false} />
           </div>
           <ServerDropdown host={serverHost} port={serverPort} onSelect={onServerChange} />
           <HostSelect server={formData.server} value={formData.host} onChange={(host) => onChange("host", host)} />
           <div className="mb-3">
-            <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">Description</label>
-            <input data-credential-field="desc" className="w-full bg-[#212121] border border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-2 outline-none focus:border-[#555] placeholder:text-[#444]" value={formData.desc} onChange={(e) => onChange("desc", e.target.value)} placeholder="Optional" autoComplete="off" spellCheck={false} />
+            <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">{t("credentials.form.description")}</label>
+            <input data-credential-field="desc" className="w-full bg-[#212121] border border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-2 outline-none focus:border-[#555] placeholder:text-[#444]" value={formData.desc} onChange={(e) => onChange("desc", e.target.value)} placeholder={t("credentials.form.optional")} autoComplete="off" spellCheck={false} />
           </div>
           <div className="mb-3">
-            <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">Credentials</label>
-            <textarea data-credential-field="content" className="w-full h-48 resize-none font-mono bg-[#212121] border border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-2 outline-none focus:border-[#555] placeholder:text-[#444]" value={formData.content} onChange={(e) => onChange("content", e.target.value)} placeholder="username:password" autoComplete="off" spellCheck={false} />
+            <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">{t("credentials.form.credentials")}</label>
+            <textarea data-credential-field="content" className="w-full h-48 resize-none font-mono bg-[#212121] border border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-2 outline-none focus:border-[#555] placeholder:text-[#444]" value={formData.content} onChange={(e) => onChange("content", e.target.value)} placeholder={t("credentials.form.credentialsPlaceholder")} autoComplete="off" spellCheck={false} />
           </div>
         </div>
       </div>
       <div className="flex shrink-0 flex-nowrap items-center justify-end gap-2 border-t border-[#2a2a2a] p-2">
         <button type="button" onClick={onClose} className={panelActionClass}>
-          Cancel
+          {t("common.cancel")}
         </button>
         <button
           type="button"
@@ -110,7 +113,7 @@ export default function SplitPanel({
           className={`${panelActionClass} disabled:cursor-not-allowed disabled:opacity-25`}
         >
           {submitting && <RefreshCw size={10} className="animate-spin" />}
-          {mode === "add" ? "Add" : "Edit"}
+          {mode === "add" ? t("common.add") : t("common.edit")}
         </button>
       </div>
     </div>

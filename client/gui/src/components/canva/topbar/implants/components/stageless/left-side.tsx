@@ -1,9 +1,10 @@
+import { useTranslation } from "react-i18next";
 import { navSections, sectionLabels, type Format, type Os, type Section } from "./logic";
 
-const leftSectionLabels: Record<Section, string> = {
+const leftSectionLabels = {
   ...sectionLabels,
-  c2: "Command & Control",
-};
+  c2: "implants.sections.c2Command",
+} as const satisfies Record<Section, string>;
 
 export default ({
   section,
@@ -15,21 +16,25 @@ export default ({
   format: Format;
   os: Os;
   onSelect: (s: Section) => void;
-}) => (
-  <div className="flex-1 min-h-0 overflow-y-auto py-3">
-    {navSections(format, os).map((s) => (
-      <button
-        key={s}
-        type="button"
-        onClick={() => onSelect(s)}
-        className={`button-default w-full text-left px-4 py-2 text-[13.5px] transition-colors cursor-pointer ${
-          section === s
-            ? "bg-[#2a2a2a] text-[#d4d4d4] border-r-2 border-[#888]"
-            : "text-[#666] hover:text-[#aaa] hover:bg-[#1c1c1c]"
-        }`}
-      >
-        {leftSectionLabels[s]}
-      </button>
-    ))}
-  </div>
-);
+}) => {
+  const { t } = useTranslation();
+
+  return (
+    <div className="flex-1 min-h-0 overflow-y-auto py-3">
+      {navSections(format, os).map((s) => (
+        <button
+          key={s}
+          type="button"
+          onClick={() => onSelect(s)}
+          className={`button-default w-full text-left px-4 py-2 text-[13.5px] transition-colors cursor-pointer ${
+            section === s
+              ? "bg-[#2a2a2a] text-[#d4d4d4] border-r-2 border-[#888]"
+              : "text-[#666] hover:text-[#aaa] hover:bg-[#1c1c1c]"
+          }`}
+        >
+          {t(leftSectionLabels[s])}
+        </button>
+      ))}
+    </div>
+  );
+};

@@ -1,4 +1,5 @@
 import { ChevronRight, ChevronDown, Folder, FolderOpen, File } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import {
   getChildren,
   isFile,
@@ -136,6 +137,7 @@ const LeftSide = ({
   onFileClick: (path: string[]) => void;
 }) => {
   const { search, setSearch, displayExpanded, rootEntries, toggle } = useLeftSideTree(explorerTree, currentPath);
+  const { t } = useTranslation();
 
   const panelWidth = Math.min(width, EXPLORER_LEFT_SIDE_MAX_WIDTH);
 
@@ -149,7 +151,7 @@ const LeftSide = ({
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search..."
+            placeholder={t("explorer.searchPlaceholder")}
             disabled={disabled}
             className="box-border h-[29px] w-full select-none rounded border border-[#363636] bg-[#212121] px-3 py-0 text-[13.5px] text-[#cecece] outline-none transition-colors placeholder:text-[#444] focus:border-[#555] disabled:opacity-50"
           />

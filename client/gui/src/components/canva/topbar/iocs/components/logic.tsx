@@ -18,6 +18,7 @@ import { topbarFloatEscapeBlockRef } from "@/components/canva/shortcuts";
 import { tryConfirmDialogEnter } from "@/components/canva/utils/confirm-dialog-keydown";
 import { formatUtcDateOnly } from "@/components/canva/utils/utc-date";
 import { listRowMouseDown } from "@/components/canva/utils/list-row-selection";
+import { translate } from "@/i18n";
 
 export type IocEntry = {
   id: string;
@@ -157,7 +158,7 @@ export function useIocPanel() {
 
   const handleConfirmRemove = async () => {
     if (!selected?.server.trim()) {
-      setResponse({ status: "failure", message: "No server associated with this entry" });
+      setResponse({ status: "failure", message: translate("iocs.toast.noServer") });
       setShowRemoveConfirm(false);
       return;
     }

@@ -13,11 +13,21 @@ import {
   type CredentialEntry,
 } from "@/api/credentials";
 import { credentialsMenuRuntimeRef } from "@/components/ui/rigth-click-menu.tsx";
+import type { TableColumn } from "@/components/canva/utils/utc-date";
+import { translate } from "@/i18n";
 
 export type FormMode = "add" | "edit";
 export type PanelMode = FormMode | "view" | null;
 
-export const TABLE_COLUMNS = ["Name", "Server", "Host Tag", "Desc"] as const;
+export type CredentialColumn = "name" | "server" | "hostTag" | "desc";
+
+/// Column keys are stable; `label` is an i18n key resolved at render time.
+export const TABLE_COLUMNS: TableColumn<CredentialColumn>[] = [
+  { key: "name", label: "credentials.columns.name" },
+  { key: "server", label: "credentials.columns.server" },
+  { key: "hostTag", label: "credentials.columns.hostTag" },
+  { key: "desc", label: "credentials.columns.desc" },
+];
 
 export const tableCellTruncate =
   "inline-block max-w-[30ch] truncate align-middle";
@@ -132,7 +142,7 @@ export function useCredentialsPanel() {
     if (isCredentialSuccess(res?.status)) {
       setCredentials(Array.isArray(res.credentials) ? res.credentials : []);
     } else if (res?.message !== "Cancelled") {
-      toast.error(formatToastMessage(res?.message ?? "Failed to load credentials"));
+      toast.error(formatToastMessage(res?.message ?? translate("credentials.toast.loadFailed")));
     }
     setLoading(false);
   }, []);
@@ -238,14 +248,19 @@ export function useCredentialsPanel() {
       toast.error(
         formatToastMessage(
           res?.message ??
-            (panelMode === "edit" ? "Failed to update credential" : "Failed to create credential")
+            translate(
+              panelMode === "edit" ? "credentials.toast.updateFailed" : "credentials.toast.createFailed",
+            )
         )
       );
       return;
     }
 
     setSubmitting(false);
-    toast.success(res?.message ?? (panelMode === "edit" ? "Credential updated" : "Credential created"));
+    toast.success(
+      res?.message ??
+        translate(panelMode === "edit" ? "credentials.toast.updated" : "credentials.toast.created"),
+    );
     closePanel();
     await loadCredentials();
   };
@@ -282,12 +297,15 @@ export function useCredentialsPanel() {
       toast.error(
         formatToastMessage(
           failed === list.length
-            ? (lastMessage ?? "Failed to remove credentials")
-            : `Failed to remove ${failed} credential${failed === 1 ? "" : "s"}`
+            ? (lastMessage ?? translate("credentials.toast.removeAllFailed"))
+            : translate(
+                failed === 1 ? "credentials.toast.removeManyFailedOne" : "credentials.toast.removeManyFailed",
+                { count: failed },
+              )
         )
       );
     } else {
-      toast.success(lastMessage ?? "Credentials removed");
+      toast.success(lastMessage ?? translate("credentials.toast.removedMany"));
     }
     await loadCredentials();
   }, [loadCredentials]);
@@ -304,14 +322,14 @@ export function useCredentialsPanel() {
 
     if (!isCredentialSuccess(res?.status)) {
       setSubmitting(false);
-      toast.error(formatToastMessage(res?.message ?? "Failed to remove credential"));
+      toast.error(formatToastMessage(res?.message ?? translate("credentials.toast.removeFailed")));
       return;
     }
 
     setShowRemoveConfirm(false);
     setSelectedTag(null);
     setSubmitting(false);
-    toast.success(res?.message ?? "Credential removed");
+    toast.success(res?.message ?? translate("credentials.toast.removed"));
     await loadCredentials();
   };
   confirmRemoveRef.current = () => {

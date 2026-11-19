@@ -1,6 +1,7 @@
 import { Copy, Trash2 } from "lucide-react";
 import type { AgentMenuRuntime, PanelEditMenuBridge } from "./types.ts";
 import { html, menuAction } from "./util.ts";
+import { translate } from "@/i18n";
 
 export const agentMenuRuntimeRef: { current: AgentMenuRuntime | null } = { current: null };
 
@@ -13,8 +14,8 @@ export function createAgentBridge(): PanelEditMenuBridge | null {
     writeValue: (_, v) => rt.setInput(v),
     canEdit: () => rt.canEditInput(),
     getCustomMenuItems: () => [
-      menuAction("Copy history", Copy, () => rt.copyHistory(), () => !rt.hasHistory()),
-      menuAction("Clear history", Trash2, () => rt.clearHistory(), () => !rt.hasHistory()),
+      menuAction(translate("clickMenu.copyHistory"), Copy, () => rt.copyHistory(), () => !rt.hasHistory()),
+      menuAction(translate("clickMenu.clearHistory"), Trash2, () => rt.clearHistory(), () => !rt.hasHistory()),
     ],
   };
 }

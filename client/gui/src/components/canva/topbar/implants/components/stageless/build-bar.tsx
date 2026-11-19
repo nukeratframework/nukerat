@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { RefreshCw, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const LOG_MIN = 80;
 const LOG_MAX = 420;
@@ -29,6 +30,7 @@ export default function StagelessBuildBar({
   onBuild: () => void;
   onClear: () => void;
 }) {
+  const { t } = useTranslation();
   const [logHeight, setLogHeight] = useState(LOG_DEFAULT);
 
   return (
@@ -41,7 +43,7 @@ export default function StagelessBuildBar({
           className="button-default flex items-center gap-1.5 px-3 py-1 rounded bg-[#232323] text-[#cecece] text-[13px] hover:bg-[#2b2b2b] hover:text-[#d4d4d4] transition-colors border border-[#333] disabled:opacity-25 disabled:cursor-not-allowed cursor-pointer"
         >
           {submitting ? <RefreshCw size={13} className="animate-spin" /> : null}
-          Build
+          {t("implants.build.button")}
         </button>
       </div>
       {error ? (
@@ -51,7 +53,7 @@ export default function StagelessBuildBar({
             onMouseDown={(e) => resizeLog(e, logHeight, setLogHeight)}
           />
           <div className="flex items-center justify-between px-3 border-b border-[#252525]">
-            <span className="text-[13px] text-[#b65959]">Build failed</span>
+            <span className="text-[13px] text-[#b65959]">{t("implants.build.failed")}</span>
             <button
               type="button"
               onClick={onClear}

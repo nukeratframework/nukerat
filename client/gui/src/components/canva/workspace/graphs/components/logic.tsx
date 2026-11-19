@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState, type CSSProperties, 
 import { MarkerType, type Edge, type Node } from 'reactflow';
 import { toast } from 'sonner';
 import { formatToastMessage } from '@/components/canva/utils/toast_rules';
+import { translate } from '@/i18n';
 
 import { DataFetch, type GraphSession, type GraphServerData } from '@/api/graphs';
 import { edge, layout } from '../style';
@@ -421,12 +422,12 @@ const useGraphData = () => {
             toast.dismiss(fetchToastId);
           } else {
             setGraphs([]);
-            toast.error(formatToastMessage(res.message ?? 'Failed to fetch graph'), { id: fetchToastId });
+            toast.error(formatToastMessage(res.message ?? translate('graphs.toast.fetchFailed')), { id: fetchToastId });
           }
         } catch (err) {
           if (signal.aborted || isAbortError(err)) return;
           setInitialized(true);
-          const message = err instanceof Error ? err.message : 'Unknown error';
+          const message = err instanceof Error ? err.message : translate('graphs.toast.unknownError');
           toast.error(formatToastMessage(message), { id: fetchToastId });
           try {
             await sleep(retryDelayMs, signal);
@@ -520,9 +521,9 @@ export const useGraph = (): GraphViewModel => {
     : { zIndex: 999 };
 
   const overlayMessage = !initialized
-    ? 'loading...'
+    ? translate('graphs.overlay.loading')
     : graphs.length === 0
-      ? 'No content'
+      ? translate('graphs.overlay.empty')
       : null;
 
   return {

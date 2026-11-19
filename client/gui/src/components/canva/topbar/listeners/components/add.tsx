@@ -18,6 +18,7 @@ import {
 import AddHttpChannel from "./add-http";
 import AddHttpsChannel from "./add-https";
 import AddFileServer from "./add-file-server";
+import { useTranslation } from "react-i18next";
 
 export interface AddListenerPanelProps extends ListenerFormBodyProps {
   submitting: boolean;
@@ -37,6 +38,7 @@ const AddListenerPanel = ({
   formData,
   handleFormChange,
 }: AddListenerPanelProps) => {
+  const { t } = useTranslation();
   const handleServerSelect = createServerSelectHandler(handleFormChange);
   const { isChannel, isFileServer, cp } = getAddFormFlags(formData);
   const submitDisabled = isAddSubmitDisabled(formData, submitting);
@@ -60,19 +62,19 @@ const AddListenerPanel = ({
 
       <div className="flex-1 min-h-0 min-w-0 overflow-y-auto px-4 py-4">
         <div className="mb-3 space-y-1.5">
-          <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Name</label>
+          <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("listeners.add.name")}</label>
           <input
             className="w-full text-[13.5px] bg-[#212121] border border-[#363636] text-[#cecece] rounded px-3 py-1.5 outline-none focus:border-[#555] placeholder:text-[#444]"
             value={formData.name}
             onChange={(e) => handleFormChange("name", e.target.value)}
-            placeholder="Listener name"
+            placeholder={t("listeners.add.namePlaceholder")}
             autoComplete="off"
             spellCheck={false}
           />
         </div>
 
         <div className="mb-3 space-y-1.5">
-          <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Type</label>
+          <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("listeners.add.type")}</label>
           <Select
             value={formData.listenerType}
             onValueChange={(v) => handleFormChange("listenerType", v as ListenerType)}
@@ -81,8 +83,8 @@ const AddListenerPanel = ({
               <SelectValue />
             </SelectTrigger>
             <SelectContent className="text-[13.5px]">
-              <SelectItem value="channel" className="text-[13.5px]">Channel</SelectItem>
-              <SelectItem value="file_server" className="text-[13.5px]">File server</SelectItem>
+              <SelectItem value="channel" className="text-[13.5px]">{t("listeners.add.channel")}</SelectItem>
+              <SelectItem value="file_server" className="text-[13.5px]">{t("listeners.type.fileServer")}</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -92,7 +94,7 @@ const AddListenerPanel = ({
         {isChannel && (
           <>
             <div className="mb-3 space-y-1.5">
-              <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Channel</label>
+              <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("listeners.add.channel")}</label>
               <Select
                 value={cp}
                 onValueChange={(v) => handleFormChange("channelPayload", v as ChannelPayload)}

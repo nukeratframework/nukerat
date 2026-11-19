@@ -10,6 +10,7 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { translate } from "@/i18n";
 
 export default function QueueHostFilter({
   groups,
@@ -60,17 +61,17 @@ export default function QueueHostFilter({
             >
               <RotateCw className={`h-3.5 w-3.5 ${loading ? "animate-spin" : ""}`} />
             </Button>
-            <CommandInputNoIcon className="w-[9.7rem] placeholder:text-[#ffffff0b]" placeholder="Search host..." />
+            <CommandInputNoIcon className="w-[9.7rem] placeholder:text-[#ffffff0b]" placeholder={translate("queue.hostFilter.searchPlaceholder")} />
           </div>
           <CommandList>
             {loading ? (
               <div className="flex items-center justify-center h-10 text-[#666] text-[13.5px]">
                 <RefreshCw size={14} className="animate-spin mr-2" />
-                Loading...
+                {translate("common.loading")}
               </div>
             ) : (
               <>
-                <CommandEmpty>No host found.</CommandEmpty>
+                <CommandEmpty>{translate("queue.hostFilter.empty")}</CommandEmpty>
                 {Object.entries(groups).map(([server, list]) => (
                   <CommandGroup key={server} heading={server}>
                     {list.map((host) => (

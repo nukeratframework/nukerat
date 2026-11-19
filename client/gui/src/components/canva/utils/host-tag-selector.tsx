@@ -1,5 +1,6 @@
 import { Checkbox } from "@/components/ui/checkbox";
 import type { Session } from "@/api/sessions";
+import { useTranslation } from "react-i18next";
 
 export default function HostTagSelector({
   hosts,
@@ -14,9 +15,10 @@ export default function HostTagSelector({
   onSelectAll: () => void;
   onClear: () => void;
 }) {
+  const { t } = useTranslation();
   return (
     <>
-      <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest mb-2">Hosts</label>
+      <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest mb-2">{t("common.hostSelect.hosts")}</label>
 
       <div className="max-h-[200px] overflow-hidden rounded-lg border border-[#292929] bg-[#141414]">
         {hosts.length > 0 ? (
@@ -42,7 +44,7 @@ export default function HostTagSelector({
             })}
           </div>
         ) : (
-          <span className="block px-3 py-6 text-center text-[13px] text-[#555]">No hosts found</span>
+          <span className="block px-3 py-6 text-center text-[13px] text-[#555]">{t("common.hostSelect.noHosts")}</span>
         )}
       </div>
 

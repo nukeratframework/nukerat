@@ -1,6 +1,7 @@
 import { Eye, RefreshCw, Trash2 } from "lucide-react";
 import type { KeyloggerMenuRuntime, PanelEditMenuBridge } from "./types.ts";
 import { menuAction, pathInput } from "./util.ts";
+import { translate } from "@/i18n";
 
 export const keyloggerMenuRuntimeRef: { current: KeyloggerMenuRuntime | null } = { current: null };
 
@@ -32,23 +33,23 @@ export function createKeyloggerBridge(): PanelEditMenuBridge | null {
     readValue: () => rt.getSearch(),
     writeValue: (_, v) => rt.setSearch(v),
     getCustomMenuItems: () => [
-      menuAction("View", Eye, () => rt.view(), () => !rt.canUseSelection()),
-      menuAction("Update", RefreshCw, () => rt.refresh()),
+      menuAction(translate("clickMenu.view"), Eye, () => rt.view(), () => !rt.canUseSelection()),
+      menuAction(translate("clickMenu.update"), RefreshCw, () => rt.refresh()),
       {
         kind: "action",
-        label: "Remove",
+        label: translate("clickMenu.remove"),
         icon: Trash2,
         disabled: () => !keyloggerCanRemoveSelected() && !keyloggerCanRemoveAll(),
         items: [
           {
             kind: "action",
-            label: "Selected",
+            label: translate("clickMenu.selected"),
             onClick: () => keyloggerRemoveSelected(),
             disabled: () => !keyloggerCanRemoveSelected(),
           },
           {
             kind: "action",
-            label: "All",
+            label: translate("clickMenu.all"),
             onClick: () => keyloggerRemoveAll(),
             disabled: () => !keyloggerCanRemoveAll(),
           },

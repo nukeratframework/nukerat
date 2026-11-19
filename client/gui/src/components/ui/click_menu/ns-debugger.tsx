@@ -1,6 +1,7 @@
 import { RefreshCw, Trash2 } from "lucide-react";
 import type { NsDebuggerMenuRuntime, PanelEditMenuBridge } from "./types.ts";
 import { html, menuAction, readOnlyInputBridge } from "./util.ts";
+import { translate } from "@/i18n";
 
 export const nsDebuggerMenuRuntimeRef: { current: NsDebuggerMenuRuntime | null } = { current: null };
 
@@ -14,9 +15,9 @@ export function createNsDebuggerBridge(): PanelEditMenuBridge {
       return r;
     },
     getCustomMenuItems: () => [
-      menuAction("Update", RefreshCw, () => nsDebuggerMenuRuntimeRef.current?.refresh()),
+      menuAction(translate("clickMenu.update"), RefreshCw, () => nsDebuggerMenuRuntimeRef.current?.refresh()),
       menuAction(
-        "Clear",
+        translate("clickMenu.clear"),
         Trash2,
         () => nsDebuggerMenuRuntimeRef.current?.clear(),
         () => !nsDebuggerMenuRuntimeRef.current?.canClear(),

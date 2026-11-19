@@ -4,6 +4,7 @@ import type { Session } from "@/api/sessions";
 import { fetchScreenshot } from "@/api/screenshot";
 import { formatToastMessage } from "@/components/canva/utils/toast_rules";
 import { screenshotMenuRuntimeRef } from "@/components/ui/rigth-click-menu.tsx";
+import { translate } from "@/i18n";
 
 function screenshotDataUrlHasBytes(dataUrl: string | null): boolean {
   if (!dataUrl?.startsWith("data:image")) return false;
@@ -42,7 +43,7 @@ export function useScreenshot(selectedHost?: { host: Session; server: string } |
         try {
           const data = await fetchScreenshot(selectedHost, signal, hash, !!hash);
           if (data.status === "failure") {
-            toast.error(formatToastMessage(data.message ?? "Screenshot failed"));
+            toast.error(formatToastMessage(data.message ?? translate("screenshot.toast.failed")));
             continue;
           }
           hash = data.hash ?? hash;
@@ -53,7 +54,7 @@ export function useScreenshot(selectedHost?: { host: Session; server: string } |
           }
         } catch (err) {
           if (signal.aborted || (err instanceof Error && err.name === "AbortError")) return;
-          toast.error(formatToastMessage(err instanceof Error ? err.message : "Unknown error"));
+          toast.error(formatToastMessage(err instanceof Error ? err.message : translate("screenshot.toast.unknownError")));
           await new Promise((r) => setTimeout(r, 5000));
         }
       }

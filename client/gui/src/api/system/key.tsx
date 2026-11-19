@@ -1,3 +1,5 @@
+import { translate } from "@/i18n";
+
 export class KeyError extends Error {
   constructor(message: string) {
     super(message);
@@ -14,17 +16,18 @@ export interface ParsedKey {
 
 export function parseKey(raw: string): ParsedKey {
   const line = raw.trim();
-  if (!line) throw new KeyError("Key is empty");
+  if (!line) throw new KeyError(translate("api.keyEmpty"));
 
+  const badKey = translate("api.badKey");
   const parts = line.split(":");
-  if (parts.length !== 3) throw new KeyError("Bad authentication key");
+  if (parts.length !== 3) throw new KeyError(badKey);
 
   const [name, pass, secret] = parts;
   if (!name || !pass || !secret) {
-    throw new KeyError(`${name || "Key"}: Bad authentication key`);
+    throw new KeyError(`${name || "Key"}: ${badKey}`);
   }
   if (secret.length !== 256) {
-    throw new KeyError(`${name}: Bad authentication key`);
+    throw new KeyError(`${name}: ${badKey}`);
   }
 
   return { name, user: name, pass, secret };

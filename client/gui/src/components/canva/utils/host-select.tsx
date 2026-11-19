@@ -12,6 +12,7 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import FetchToast from "@/components/canva/utils/toast_rules";
 import { useHostSelect, type HostSelectBoxProps } from "./host-select-logic";
+import { translate } from "@/i18n";
 
 const mono = "font-mona-mono";
 const serverHeadingClass = `block max-w-[27ch] truncate ${mono}`;
@@ -21,7 +22,6 @@ const formatServerHeading = (label: string) =>
 
 const HostSelectBox = ({ onSelect, hide, panelSelectedHost }: HostSelectBoxProps) => {
   const {
-    id,
     open,
     setOpen,
     value,
@@ -61,7 +61,7 @@ const HostSelectBox = ({ onSelect, hide, panelSelectedHost }: HostSelectBoxProps
                 </span>
               </span>
             ) : (
-              <span className={`text-muted-foreground text-[12px] ${mono}`}>Host</span>
+              <span className={`text-muted-foreground text-[12px] ${mono}`}>{translate("common.hostSelect.host")}</span>
             )}
             <ChevronsUpDownIcon
               className="text-muted-foreground/80 shrink-0"
@@ -91,7 +91,7 @@ const HostSelectBox = ({ onSelect, hide, panelSelectedHost }: HostSelectBoxProps
               </Button>
               <CommandInputNoIcon
                 className={`w-[9.7rem] placeholder:text-[#ffffff0b] ${mono}`}
-                placeholder="Search host..."
+                placeholder={translate("common.hostSelect.searchPlaceholder")}
               />
             </div>
             <CommandList>
@@ -101,7 +101,7 @@ const HostSelectBox = ({ onSelect, hide, panelSelectedHost }: HostSelectBoxProps
                   Loading...
                 </div>
               )}
-              {!loading && <CommandEmpty className={mono}>No host found.</CommandEmpty>}
+              {!loading && <CommandEmpty className={mono}>{translate("common.hostSelect.noHostFound")}</CommandEmpty>}
               {Object.entries(groups).map(([server, serverHosts]) => (
                 <Fragment key={server}>
                   <CommandGroup

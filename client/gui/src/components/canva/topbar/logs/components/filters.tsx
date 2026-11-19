@@ -1,3 +1,4 @@
+import { translate } from "@/i18n";
 import { X } from "lucide-react";
 import {
   Select,
@@ -42,7 +43,7 @@ const LogTopBar = ({
         <div className="flex w-max min-w-full flex-nowrap items-center gap-2">
           <Select value={serverId || undefined} onValueChange={setServer}>
             <SelectTrigger className={`w-[10rem] px-2.5 ${selectTriggerClass}`}>
-              <SelectValue placeholder="Server" />
+              <SelectValue placeholder={translate("logs.filters.serverPlaceholder")} />
             </SelectTrigger>
             <SelectContent className="text-[13.5px]">
               {servers.map((s) => (
@@ -57,7 +58,7 @@ const LogTopBar = ({
               className="box-border h-[29px] w-full rounded border border-[#363636] bg-[#212121] py-0 pl-3 pr-8 text-[13.5px] text-[#cecece] outline-none transition-colors placeholder:text-[#444] focus:border-[#555]"
               value={filters.search}
               onChange={(e) => setFilter("search", e.target.value)}
-              placeholder="Search logs..."
+              placeholder={translate("logs.filters.searchPlaceholder")}
               autoComplete="off"
               spellCheck={false}
             />

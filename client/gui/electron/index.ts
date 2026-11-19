@@ -99,6 +99,28 @@ function disableNativeAppMenu(win: BrowserWindow): void {
   win.setMenuBarVisibility(false)
 }
 
+/**
+ * Copy for native (main-process) dialogs. English defaults keep the app usable
+ * before the renderer has had a chance to push localized strings.
+ */
+const dialogText = {
+  quit: 'Quit',
+  cancel: 'Cancel',
+  title: 'Confirm exit',
+  message: 'There are active sessions. Are you sure you want to quit?',
+}
+
+ipcMain.on(
+  'app:setDialogText',
+  (_e, next: Partial<typeof dialogText> | null) => {
+    if (!next) return
+    for (const key of Object.keys(dialogText) as (keyof typeof dialogText)[]) {
+      const value = next[key]
+      if (typeof value === 'string' && value.trim()) dialogText[key] = value
+    }
+  },
+)
+
 function createWindow(): void {
   const windowIconPath = resolveWindowIcon()
   const wa = screen.getDisplayNearestPoint(screen.getCursorScreenPoint()).workArea
@@ -130,13 +152,15 @@ function createWindow(): void {
 
   mainWindow.on('close', (e) => {
     if (!hasWindows) return
+    // Native dialogs are drawn by the OS, so they cannot use the renderer's
+    // i18n instance; the renderer pushes its translated copy over instead.
     const choice = dialog.showMessageBoxSync(mainWindow, {
       type: 'question',
-      buttons: ['Quit', 'Cancel'],
+      buttons: [dialogText.quit, dialogText.cancel],
       defaultId: 1,
       cancelId: 1,
-      title: 'Confirm exit',
-      message: 'There are active sessions. Are you sure you want to quit?',
+      title: dialogText.title,
+      message: dialogText.message,
     })
     if (choice !== 0) e.preventDefault()
   })

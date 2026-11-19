@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import { toast } from "sonner";
+import { translate } from "@/i18n";
 import { DataFetch, type Session } from "@/api/sessions";
 import {
   fetchConnections,
@@ -18,19 +19,23 @@ import {
   splitPanelMinWidth,
 } from "@/components/canva/utils/split-panel";
 import { listRowMouseDown } from "@/components/canva/utils/list-row-selection";
+import type { TableColumn } from "@/components/canva/utils/utc-date";
 
 export type { NetworkFormData, Connection };
 
 export type PanelMode = "add" | "view" | null;
 
-export const TABLE_COLUMNS = [
-  "Host",
-  "Type",
-  "Port",
-  "Forward",
-  "Protocol",
-  "Server",
-] as const;
+export type NetworkColumnKey = "host" | "type" | "port" | "forward" | "protocol" | "server";
+
+/// Column keys are stable; `label` is an i18n key resolved at render time.
+export const TABLE_COLUMNS: TableColumn<NetworkColumnKey>[] = [
+  { key: "host", label: "network.columns.host" },
+  { key: "type", label: "network.columns.type" },
+  { key: "port", label: "network.columns.port" },
+  { key: "forward", label: "network.columns.forward" },
+  { key: "protocol", label: "network.columns.protocol" },
+  { key: "server", label: "network.columns.server" },
+];
 
 export const emptyForm: NetworkFormData = {
   networkType: "port_forwarding",
@@ -45,8 +50,10 @@ export const emptyForm: NetworkFormData = {
   forwardPort: "",
 };
 
-export const typeLabel = (t?: string) =>
-  t === "socks" || t === "proxychains" ? "socks" : "port forwarding";
+export const typeLabel = (networkType?: string) =>
+  networkType === "socks" || networkType === "proxychains"
+    ? translate("network.types.socks")
+    : translate("network.types.portForwarding");
 
 export const formatForward = (c: Connection) => {
   if (c.networkType !== "port_forwarding") return "-";
@@ -202,22 +209,22 @@ export function useNetworkPanel() {
       const user = formData.authUser.trim();
       const pass = formData.authPass.trim();
       if (Boolean(user) !== Boolean(pass)) {
-        toast.error("User and password must both be set or both empty");
+        toast.error(translate("network.toast.credentialsPair"));
         return;
       }
       if (!formData.hostTag.trim()) {
-        toast.error("Implant tag is required");
+        toast.error(translate("network.toast.implantTagRequired"));
         return;
       }
     }
     if (formData.networkType === "port_forwarding") {
       const fp = Number(formData.forwardPort);
       if (!formData.hostTag.trim() || !formData.forwardHost.trim() || !formData.forwardPort.trim() || fp < 1 || fp > 65535) {
-        toast.error("Implant, forward host and port are required");
+        toast.error(translate("network.toast.forwardRequired"));
         return;
       }
       if (formData.protocol !== "tcp") {
-        toast.error("Only TCP supported");
+        toast.error(translate("network.toast.tcpOnly"));
         return;
       }
     }
@@ -225,10 +232,10 @@ export function useNetworkPanel() {
     const res = await saveConnectionRequest("create", formData, buildCreateSelectedServer(formData));
     setSubmitting(false);
     if (res?.status !== "success") {
-      toast.error(res?.message ?? "Failed to create connection");
+      toast.error(res?.message ?? translate("network.toast.createFailed"));
       return;
     }
-    toast.success(res?.message ?? "Connection created");
+    toast.success(res?.message ?? translate("network.toast.created"));
     await refresh();
     setPanelMode(null);
   };
@@ -240,10 +247,10 @@ export function useNetworkPanel() {
     const res = await restartConnectionRequest(id, buildActionSelectedServer(selected));
     setSubmitting(false);
     if (res?.status !== "success") {
-      toast.error(res?.message ?? "Failed to restart connection");
+      toast.error(res?.message ?? translate("network.toast.restartFailed"));
       return;
     }
-    toast.success(res?.message ?? "Connection restarted");
+    toast.success(res?.message ?? translate("network.toast.restarted"));
     await refresh();
   };
 
@@ -254,14 +261,14 @@ export function useNetworkPanel() {
     const res = await removeConnectionRequest(id, buildActionSelectedServer(selected));
     if (res?.status !== "success") {
       setSubmitting(false);
-      toast.error(res?.message ?? "Failed to remove connection");
+      toast.error(res?.message ?? translate("network.toast.removeFailed"));
       return;
     }
     setItems((prev) => prev.filter((c, i) => getRowId(c, i) !== selectedRowId));
     setSelectedRowId(null);
     setSubmitting(false);
     setShowRemoveConfirm(false);
-    toast.success(res?.message ?? "Connection removed");
+    toast.success(res?.message ?? translate("network.toast.removed"));
     await refresh();
   };
   confirmRemoveRef.current = () => {

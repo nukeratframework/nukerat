@@ -1,4 +1,5 @@
 import { memo, type RefObject } from 'react';
+import { useTranslation } from 'react-i18next';
 import { MdOutlineCancel } from 'react-icons/md';
 import { useTerminal } from './components/logic';
 import TerminalOutput from './components/content-view';
@@ -48,6 +49,7 @@ const TerminalInputBar = memo(function TerminalInputBar({
   onClearPrefix,
   onSend,
 }: TerminalInputBarProps) {
+  const { t } = useTranslation();
   const sendDisabled = input.trim() ? hostUnavailable || isLoading : true;
   const searchActive = isSearch && !isLoading;
 
@@ -71,7 +73,7 @@ const TerminalInputBar = memo(function TerminalInputBar({
       >
         {searchActive
           ? <>
-              search
+              {t('terminal.prompt.search')}
               {input.trim() && (
                 <span style={{ color: '#929193' }}>
                   {' '}({matchOccurrences.length === 0 ? '0/0' : `${searchMatchIndex < 0 ? 0 : searchMatchIndex + 1}/${matchOccurrences.length}`})
@@ -80,8 +82,8 @@ const TerminalInputBar = memo(function TerminalInputBar({
               {' >'}
             </>
           : isConfirming
-            ? `Execute "${confirmingCommand}"? [Y/n]`
-            : 'implant >'}
+            ? t('terminal.prompt.confirm', { command: confirmingCommand })
+            : t('terminal.prompt.implant')}
       </span>
       {commandPrefix && !searchActive && !isConfirming && (
         <span
@@ -94,7 +96,7 @@ const TerminalInputBar = memo(function TerminalInputBar({
             onClick={(e) => { e.stopPropagation(); onClearPrefix(); }}
             className="button-default opacity-50 hover:opacity-100"
             style={{ color: '#6eb5ff', padding: '0 2px', marginLeft: 1, lineHeight: 1, cursor: 'pointer' }}
-            title="Clear prefix (Esc)"
+            title={t('terminal.actions.clearPrefix')}
           >
             ×
           </button>
@@ -118,7 +120,7 @@ const TerminalInputBar = memo(function TerminalInputBar({
       </div>
       <button
         type="button"
-        title="Send (Enter)"
+        title={t('terminal.actions.send')}
         disabled={sendDisabled}
         onClick={(e) => {
           e.stopPropagation();

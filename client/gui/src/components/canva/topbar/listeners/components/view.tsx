@@ -1,3 +1,4 @@
+import { translate } from "@/i18n";
 import { X } from "lucide-react";
 import type { Listener } from "./logic";
 import {
@@ -79,22 +80,22 @@ const ViewListenerPanel = ({ listener, handleClosePanel }: ViewListenerPanelProp
       </div>
 
       <div className="flex-1 min-h-0 min-w-0 overflow-y-auto px-4 py-4">
-        <ViewField label="Name" value={listener?.name} />
-        <ViewField label="Type" value={getViewTypeLabel(listener)} />
-        <ViewField label="Server" value={listener?.server} />
-        <ViewField label="Protocol" value={getViewProtocolLabel(listener)} />
+        <ViewField label={translate("listeners.view.fields.name")} value={listener?.name} />
+        <ViewField label={translate("listeners.view.fields.type")} value={getViewTypeLabel(listener)} />
+        <ViewField label={translate("listeners.view.fields.server")} value={listener?.server} />
+        <ViewField label={translate("listeners.view.fields.protocol")} value={getViewProtocolLabel(listener)} />
 
         {isChannel && (
           <>
-            <ViewField label="Host" value={listener?.host} />
-            <ViewField label="Port" value={listener?.port} />
+            <ViewField label={translate("listeners.view.fields.host")} value={listener?.host} />
+            <ViewField label={translate("listeners.view.fields.port")} value={listener?.port} />
           </>
         )}
 
         {showAdvanced && (
           <>
-            <ViewField label="Endpoint Path" value={listener?.endpointPath} />
-            <ViewField label="Custom Body" value={listener?.implantBodyType} />
+            <ViewField label={translate("listeners.view.fields.endpointPath")} value={listener?.endpointPath} />
+            <ViewField label={translate("listeners.view.fields.customBody")} value={listener?.implantBodyType} />
             {(listener?.responseHeaders?.length ?? 0) > 0 && (
               <div className="mb-3 space-y-1.5">
                 <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">
@@ -122,15 +123,15 @@ const ViewListenerPanel = ({ listener, handleClosePanel }: ViewListenerPanelProp
                 </div>
               </div>
             )}
-            <ViewTextField label="Listener response" value={listener?.listenerResponse} />
-            <ViewTextField label="Implant request" value={listener?.implantBody} />
+            <ViewTextField label={translate("listeners.view.fields.listenerResponse")} value={listener?.listenerResponse} />
+            <ViewTextField label={translate("listeners.view.fields.implantRequest")} value={listener?.implantBody} />
           </>
         )}
 
         {isFileServer && (
           <>
-            <ViewField label="Host" value={listener?.host} />
-            <ViewField label="Port to Open" value={listener?.port} />
+            <ViewField label={translate("listeners.view.fields.host")} value={listener?.host} />
+            <ViewField label={translate("listeners.view.fields.portToOpen")} value={listener?.port} />
           </>
         )}
       </div>

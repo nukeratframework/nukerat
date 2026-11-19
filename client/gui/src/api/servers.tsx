@@ -1,6 +1,7 @@
 import type { ServerEntry } from "@/api/system/config";
 import { addBearer } from "@/api/system/auth";
 import { responseErrorMessage, thrownErrorMessage } from "@/api/http_status";
+import { translate } from "@/i18n";
 
 export type ConnectionStatus = "idle" | "checking" | "online" | "unauthorized" | "offline";
 
@@ -10,7 +11,7 @@ export async function testConnection(server: ServerEntry): Promise<any> {
   try {
     const ip = server.ip?.trim().replace(/\/$/, "");
     const port = server.port?.trim();
-    if (!ip || !port) return { status: "failure", message: `${server.name}: Invalid server` };
+    if (!ip || !port) return { status: "failure", message: `${server.name}: ${translate("api.invalidServer")}` };
     const endpoint = `${ip}:${port}/auth/check`;
     let bearer: Record<string, string> = {};
     try {
@@ -56,12 +57,12 @@ export async function testConnection(server: ServerEntry): Promise<any> {
     };
   } catch (error) {
     if (error instanceof Error && error.name === "AbortError") {
-      return { status: "error", online: false, message: `${server.name}: Connection timed out` };
+      return { status: "error", online: false, message: `${server.name}: ${translate("api.connectionTimedOut")}` };
     }
     if (error instanceof Error) {
       return { status: "failure", online: false, name: server.name, message: thrownErrorMessage(error, server.name) };
     }
-    return { status: "ERR_conn", online: false, name: server.name, message: `${server.name}: Unreachable host` };
+    return { status: "ERR_conn", online: false, name: server.name, message: `${server.name}: ${translate("api.unreachableHost")}` };
   } finally {
     clearTimeout(timer);
   }

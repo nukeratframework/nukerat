@@ -1,6 +1,7 @@
 import { Bot, LayoutGrid, RefreshCw } from "lucide-react";
 import type { PanelEditMenuBridge, ProcessMenuRuntime } from "./types.ts";
 import { menuAction, pathInput } from "./util.ts";
+import { translate } from "@/i18n";
 
 export const processMenuRuntimeRef: { current: ProcessMenuRuntime | null } = { current: null };
 
@@ -14,20 +15,20 @@ export function createProcessBridge(): PanelEditMenuBridge | null {
     writeValue: (_, v) => rt.setSearch(v),
     canEdit: () => !off(),
     getCustomMenuItems: () => [
-      menuAction("Refresh", RefreshCw, () => rt.refresh(), off),
+      menuAction(translate("clickMenu.refresh"), RefreshCw, () => rt.refresh(), off),
       {
         kind: "action",
-        label: "View mode",
+        label: translate("clickMenu.viewMode"),
         icon: LayoutGrid,
         disabled: off,
         items: [
-          { kind: "action", label: "Tree", onClick: () => rt.setTreeView() },
-          { kind: "action", label: "Flat", onClick: () => rt.setFlatView() },
+          { kind: "action", label: translate("clickMenu.tree"), onClick: () => rt.setTreeView() },
+          { kind: "action", label: translate("clickMenu.flat"), onClick: () => rt.setFlatView() },
         ],
       },
     ],
     getFooterMenuItems: () => [
-      menuAction("Copy context", Bot, () => rt.copyContext(), () => off() || !rt.canCopyContext()),
+      menuAction(translate("clickMenu.copyContext"), Bot, () => rt.copyContext(), () => off() || !rt.canCopyContext()),
     ],
   };
 }

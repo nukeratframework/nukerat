@@ -4,9 +4,19 @@ import type { Session } from "@/api/sessions";
 import { deleteKeylogger, fetchKeylogger, type KeyloggerItem } from "@/api/keylogger";
 import type { FetchToastResponse } from "@/components/canva/utils/toast_rules";
 import { tryConfirmDialogEnter } from "@/components/canva/utils/confirm-dialog-keydown";
-import { formatUtcDateOnly, utcTableColumnTitle } from "@/components/canva/utils/utc-date";
+import { listRowMouseDown } from "@/components/canva/utils/list-row-selection";
+import { formatUtcDateOnly, utcColumn, type TableColumn } from "@/components/canva/utils/utc-date";
+import { translate } from "@/i18n";
 
-export const TABLE_COLUMNS = [utcTableColumnTitle("Date"), "Server", "Host Tag", "Content"] as const;
+export type KeyloggerColumn = "date" | "server" | "hostTag" | "content";
+
+/// Column keys are stable; `label` is an i18n key resolved at render time.
+export const TABLE_COLUMNS: TableColumn<KeyloggerColumn>[] = [
+  utcColumn("date", "keylogger.columns.date"),
+  { key: "server", label: "keylogger.columns.server" },
+  { key: "hostTag", label: "keylogger.columns.hostTag" },
+  { key: "content", label: "keylogger.columns.content" },
+];
 
 export const tableCellTruncate =
   "inline-block max-w-[30ch] truncate align-middle";
@@ -127,7 +137,7 @@ export function useKeyloggerPanel() {
   const deleteSelected = useCallback(async () => {
     const sel = selectedRef.current;
     if (!sel?.server.trim()) {
-      setResponse({ status: "failure", message: "No server associated with this entry" });
+      setResponse({ status: "failure", message: translate("keylogger.toast.noServer") });
       return;
     }
     setDeleting(true);
@@ -182,7 +192,10 @@ export function useKeyloggerPanel() {
     if (failed > 0) {
       setResponse({
         status: "failure",
-        message: `Failed to remove ${failed} entr${failed === 1 ? "y" : "ies"}`,
+        message: translate(
+          failed === 1 ? "keylogger.toast.removeFailedOne" : "keylogger.toast.removeFailedMany",
+          { count: failed },
+        ),
       });
     }
   }, [load]);

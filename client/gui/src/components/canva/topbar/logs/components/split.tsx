@@ -1,3 +1,4 @@
+import { translate } from "@/i18n";
 import { X } from "lucide-react";
 import type { LogEntry } from "./logic";
 
@@ -22,7 +23,7 @@ export default function SplitPanel({ entry, onClose }: { entry: LogEntry; onClos
 
       <div className="flex-1 min-h-0 min-w-0 overflow-y-auto px-4 py-4">
         <div className="mb-3 space-y-1.5">
-          <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Message</label>
+          <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{translate("logs.split.message")}</label>
           <textarea
             readOnly
             tabIndex={-1}

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Calendar } from '@/components/ui/calendar'
 import { Input } from '@/components/ui/input'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
@@ -19,13 +20,14 @@ const field = 'bg-[#212121] border border-[#363636] text-[#cecece] text-[13px] r
 
 export function RangePicker({ date, onDate, timeFrom, onTimeFrom, timeTo, onTimeTo }: Props) {
   const [open, setOpen] = useState(false)
+  const { t } = useTranslation()
 
   return (
     <div className="flex items-center gap-2 shrink-0">
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <button type="button" className={`button-default ${field} flex items-center gap-1 cursor-pointer`}>
-            {date ? date.toLocaleDateString() : 'Date'}
+            {date ? date.toLocaleDateString() : t('ui.calendar.date')}
             <ChevronDownIcon size={12} />
           </button>
         </PopoverTrigger>

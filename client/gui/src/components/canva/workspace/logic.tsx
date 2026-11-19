@@ -1,6 +1,8 @@
-import { useImperativeHandle, useRef, type Ref } from "react";
+import { useEffect, useImperativeHandle, useRef, type Ref } from "react";
 import type { DockviewApi } from "dockview";
 import type { Session } from "@/api/sessions";
+import i18n, { translate } from "@/i18n";
+import { PANEL_TITLE_KEY, type PanelId } from "../panels";
 
 function panelAtPointer(api: DockviewApi, clientX: number, clientY: number) {
   const hit = document.elementFromPoint(clientX, clientY);
@@ -25,6 +27,9 @@ export type SessionSelectData = { host: Session; server: string } | null;
 
 export type PanelOpenParams = { selectedHost?: SessionSelectData };
 
+/** Dockview panel params: the host selection plus the stable panel identity. */
+export type PanelParams = PanelOpenParams & { panelId?: string };
+
 export const pendingPanelParamsRef = {
   current: null as PanelOpenParams | null,
 };
@@ -41,44 +46,14 @@ export type WorkspaceHandle = {
   closeHoveredPanel: () => void;
 };
 
-const hostless_titles = new Set([
-  "Docs",
-  "Graphs",
-  "Sessions",
-  "File Server",
-  "AI Agent",
-  "Keylogger",
-  "Queue",
-  "NukeScripts",
-  "Credentials",
-  "NS Debugger",
-  "Listeners",
-  "Network",
-  "Servers",
-  "Implants",
-  "Logs",
-  "Agents",
-  "IOCs",
-  "Reports",
-  "About",
-]);
-
-export function getPanelTitle(windowType: string): string {
-  if (windowType === "agent") return "AI Agent";
-  if (windowType === "explorer") return "File Browser";
-  if (windowType === "fileServer") return "File Server";
-  if (windowType === "nukescripts_output") return "NS Debugger";
-  if (windowType === "nukescripts") return "NukeScripts";
-  if (windowType === "iocs") return "IOCs";
-  return windowType.charAt(0).toUpperCase() + windowType.slice(1);
+/** Translated title for a panel id. Unknown ids fall back to the raw id. */
+export function panelTitle(panelId: string | null | undefined): string {
+  const key = panelId ? PANEL_TITLE_KEY[panelId as PanelId] : undefined;
+  return key ? translate(key) : (panelId ?? "");
 }
 
-export function shouldShowHostSelect(title: string | undefined): boolean {
-  return !hostless_titles.has(title ?? "");
-}
-
-export function getPanelHeaderJustify(title: string | undefined): "left" | "between" {
-  return hostless_titles.has(title ?? "") ? "left" : "between";
+export function panelIdFromParams(params: unknown): string | undefined {
+  return (params as PanelParams | undefined)?.panelId;
 }
 
 export function useWorkspace(
@@ -88,6 +63,21 @@ export function useWorkspace(
   const dockviewRef = useRef<DockviewApi | null>(null);
   const pointerRef = useRef({ x: 0, y: 0 });
 
+  // Titles are baked in at addPanel time, so a language switch has to rewrite
+  // the headers of panels that are already open.
+  useEffect(() => {
+    const relabel = () => {
+      const api = dockviewRef.current;
+      if (!api) return;
+      for (const panel of api.panels) {
+        const panelId = panelIdFromParams(panel.params);
+        if (panelId) panel.api.setTitle(panelTitle(panelId));
+      }
+    };
+    i18n.on("languageChanged", relabel);
+    return () => i18n.off("languageChanged", relabel);
+  }, []);
+
   const addPanel = (windowType: string, panelParams?: PanelOpenParams | null) => {
     if (!dockviewRef.current) return;
     const params = panelParams ?? pendingPanelParamsRef.current;
@@ -96,9 +86,9 @@ export function useWorkspace(
       id: `${windowType}-${Date.now()}`,
       component: windowType,
       tabComponent: "header",
-      title: getPanelTitle(windowType),
+      title: panelTitle(windowType) || translate("common.unknown"),
       position: { direction: "right" },
-      ...(params ? { params } : {}),
+      params: { panelId: windowType, ...(params ?? {}) },
     });
   };
 

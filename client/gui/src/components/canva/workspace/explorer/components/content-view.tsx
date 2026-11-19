@@ -1,4 +1,5 @@
 import { Virtuoso } from "react-virtuoso";
+import { useTranslation } from "react-i18next";
 import { CHUNK_SIZE, useContentPreview } from "./logic";
 
 const implantActionButtonClass =
@@ -12,6 +13,7 @@ interface ContentViewProps {
 }
 
 const ContentView = ({ content, fileKey, oversizedOnly, onDismissOversized }: ContentViewProps) => {
+  const { t } = useTranslation();
   const { isLargeContent, useChunkMode, lines, chunkCount } = useContentPreview(content, fileKey);
 
   if (oversizedOnly || isLargeContent) {
@@ -19,10 +21,10 @@ const ContentView = ({ content, fileKey, oversizedOnly, onDismissOversized }: Co
       <div className="flex-1 overflow-y-auto p-3">
         <div className="h-full flex flex-col items-center justify-center text-center gap-4">
           <p className="text-[13px] text-[#cecece] max-w-[560px]">
-            This file is over 25 MB.<br />Download it from the terminal instead.
+            {t("explorer.oversized")}<br />{t("explorer.oversizedHint")}
           </p>
           <button type="button" onClick={onDismissOversized} className={implantActionButtonClass}>
-            Close
+            {t("common.close")}
           </button>
         </div>
       </div>

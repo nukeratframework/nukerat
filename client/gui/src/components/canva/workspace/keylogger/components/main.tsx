@@ -1,6 +1,7 @@
 import { RefreshCw } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { PanelEmptyState } from "@/components/canva/utils/panel-empty-state";
-import { UtcTableColumnHeader } from "@/components/canva/utils/utc-date";
+import { TableColumnHeader } from "@/components/canva/utils/utc-date";
 import { TABLE_COLUMNS, tableCellTruncate, type KeyloggerEntry } from "./logic";
 
 export default function MainList({
@@ -18,6 +19,7 @@ export default function MainList({
   onRowDoubleClick: (key: string) => void;
   onListMouseDown: (e: React.MouseEvent) => void;
 }) {
+  const { t } = useTranslation();
   return (
     <div
       className="flex-1 overflow-auto flex flex-col min-h-0"
@@ -26,7 +28,7 @@ export default function MainList({
       {loading && !entries.length ? (
         <div className="flex items-center justify-center h-16 text-[#444] text-[13.5px]">
           <RefreshCw size={14} className="animate-spin mr-2" />
-          Loading...
+          {t("common.loading")}
         </div>
       ) : (
         <>
@@ -35,10 +37,10 @@ export default function MainList({
               <tr className="bg-[#171717] border-b border-[#252525]">
                 {TABLE_COLUMNS.map((col) => (
                   <th
-                    key={col}
+                    key={col.key}
                     className="text-left px-4 py-2 text-[12px] text-[#888888] font-medium uppercase tracking-widest whitespace-nowrap"
                   >
-                    <UtcTableColumnHeader label={col} />
+                    <TableColumnHeader column={col} />
                   </th>
                 ))}
               </tr>
@@ -78,7 +80,7 @@ export default function MainList({
               </tbody>
             )}
           </table>
-          {entries.length === 0 && !loading && <PanelEmptyState>No content found</PanelEmptyState>}
+          {entries.length === 0 && !loading && <PanelEmptyState>{t("keylogger.empty")}</PanelEmptyState>}
         </>
       )}
     </div>

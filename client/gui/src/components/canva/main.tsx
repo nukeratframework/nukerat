@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import { PinOff, X } from "lucide-react";
 import { MdCheckCircleOutline, MdErrorOutline, MdInfoOutline } from "react-icons/md";
@@ -9,6 +10,8 @@ import { emptyMenuRuntimeRef } from "./empty/rigth-click-menu";
 import { sessionsOpenRef } from "./workspace/sessions/components/rigth-click-menu";
 import { hostOsIcon } from "@/api/notification";
 import { useCanva, notifyDurationSecs } from "./logic";
+import { panelTitle } from "./workspace/logic";
+import { useNativeDialogLanguage } from "@/i18n/native-dialog";
 import { CanvaShortcuts } from "./shortcuts";
 import CtaToast from "./utils/cta";
 
@@ -16,6 +19,8 @@ const truncate = (text: string, max: number) =>
   text.length <= max ? text : `${text.slice(0, max - 3)}...`;
 
 export default function Canva() {
+  const { t } = useTranslation();
+  useNativeDialogLanguage();
   const {
     tabs,
     activeId,
@@ -52,7 +57,7 @@ export default function Canva() {
           setFloatType(null);
           openTerminalForNotify(n);
         };
-        toast.info("New session", {
+        toast.info(t("workspace.newSession"), {
           className: "!h-auto !py-2 select-none cursor-pointer relative overflow-hidden",
           style: {
             background: "#1515154a",
@@ -97,7 +102,7 @@ export default function Canva() {
         });
       } else {
         const kind = n.type || "info";
-        (kind === "error" ? toast.error : kind === "success" ? toast.success : toast.info)(truncate(n.title || "Notification", 25), {
+        (kind === "error" ? toast.error : kind === "success" ? toast.success : toast.info)(truncate(n.title || t("workspace.notification"), 25), {
           className: "!h-auto !py-2 min-w-[100px]",
           style: {
             background: "#1515154a",
@@ -120,7 +125,7 @@ export default function Canva() {
       }
     }
     setNotifyBatch([]);
-  }, [notifyBatch, setNotifyBatch, openTerminalForNotify, setFloatType]);
+  }, [notifyBatch, setNotifyBatch, openTerminalForNotify, setFloatType, t]);
 
   return (
     <div className="flex flex-col w-screen h-screen overflow-hidden">
@@ -145,7 +150,7 @@ export default function Canva() {
         onTabSelect={setActiveId}
         onTabAdd={addTab}
         onTabClose={closeTab}
-        onTabRename={(id, name) => updateTab(id, { name })}
+        onTabRename={(id, name) => updateTab(id, { customName: name })}
       />
       <div className="flex-1 overflow-hidden relative bg-color-workspace">
         {tabs.map((tab) => (
@@ -198,8 +203,8 @@ export default function Canva() {
                 borderBottom: "1px solid #222222",
               }}
             >
-              <span className="text-xs font-medium text-[#cecece] text-[13.5px] capitalize select-none">
-                {floatType}
+              <span className="text-xs font-medium text-[#cecece] text-[13.5px] select-none">
+                {panelTitle(floatType)}
               </span>
               <div className="flex items-center gap-0.5">
                 {floatType !== "about" && (

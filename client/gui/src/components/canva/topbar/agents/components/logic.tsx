@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import { toast } from "sonner";
+import { translate } from "@/i18n";
 import { fetchAgents, saveAgentRequest, removeAgentRequest } from "@/api/agents";
 import { topbarFloatEscapeBlockRef } from "@/components/canva/shortcuts";
 import { tryConfirmDialogEnter } from "@/components/canva/utils/confirm-dialog-keydown";
@@ -9,10 +10,21 @@ import {
   splitPanelMinWidth,
 } from "@/components/canva/utils/split-panel";
 import { listRowMouseDown } from "@/components/canva/utils/list-row-selection";
+import type { TableColumn } from "@/components/canva/utils/utc-date";
+
 export type AgentType = "custom" | "deepseek";
 export type PanelMode = "add" | "edit" | null;
 
-export const table_columns = ["Name", "Tag", "Type", "API Key", "Server"] as const;
+export type AgentColumnKey = "name" | "tag" | "type" | "apiKey" | "server";
+
+/// Column keys are stable; `label` is an i18n key resolved at render time.
+export const table_columns: TableColumn<AgentColumnKey>[] = [
+  { key: "name", label: "agents.columns.name" },
+  { key: "tag", label: "agents.columns.tag" },
+  { key: "type", label: "agents.columns.type" },
+  { key: "apiKey", label: "agents.columns.apiKey" },
+  { key: "server", label: "agents.columns.server" },
+];
 
 const TABLE_CELL_MAX_LEN = 15;
 
@@ -97,14 +109,14 @@ const formFingerprint = (form: AgentFormData) => JSON.stringify(form);
 
 const getMissingFields = (form: AgentFormData): string[] => {
   const missing: string[] = [];
-  if (!form.name.trim()) missing.push("Name");
-  if (!form.host.trim()) missing.push("Server");
+  if (!form.name.trim()) missing.push("agents.fields.name");
+  if (!form.host.trim()) missing.push("agents.fields.server");
   if (form.type === "deepseek") {
-    if (!form.apiKey.trim()) missing.push("API Key");
+    if (!form.apiKey.trim()) missing.push("agents.fields.apiKey");
   } else {
-    if (!form.endpoint.trim()) missing.push("Endpoint");
-    if (!form.bodyTemplate.trim()) missing.push("Request Body");
-    if (!form.responseField.trim()) missing.push("Response Field");
+    if (!form.endpoint.trim()) missing.push("agents.fields.endpoint");
+    if (!form.bodyTemplate.trim()) missing.push("agents.fields.requestBody");
+    if (!form.responseField.trim()) missing.push("agents.fields.responseField");
   }
   return missing;
 };
@@ -186,7 +198,7 @@ export function useAgentsPanel() {
     if (res?.status === "success") {
       setAgents(Array.isArray(res.agents) ? res.agents : []);
     } else if (res?.message !== "Cancelled") {
-      toast.error(res?.message ?? "Failed to load agents");
+      toast.error(res?.message ?? translate("agents.toast.loadFailed"));
     }
     setLoading(false);
   }, []);
@@ -264,7 +276,11 @@ export function useAgentsPanel() {
   const handleSubmitForm = async () => {
     const missing = getMissingFields(formData);
     if (missing.length) {
-      toast.error(`Required: ${missing.join(", ")}`);
+      toast.error(
+        translate("agents.toast.required", {
+          fields: missing.map((key) => translate(key)).join(", "),
+        }),
+      );
       return;
     }
     if (panelMode === "edit" && formFingerprint(formData) === editBaseline) return;
@@ -278,11 +294,16 @@ export function useAgentsPanel() {
     );
     if (res?.status !== "success") {
       setSubmitting(false);
-      toast.error(res?.message ?? (panelMode === "edit" ? "Failed to update agent" : "Failed to create agent"));
+      toast.error(
+        res?.message ??
+          translate(panelMode === "edit" ? "agents.toast.updateFailed" : "agents.toast.createFailed"),
+      );
       return;
     }
     setSubmitting(false);
-    toast.success(res?.message ?? (panelMode === "edit" ? "Agent updated" : "Agent created"));
+    toast.success(
+      res?.message ?? translate(panelMode === "edit" ? "agents.toast.updated" : "agents.toast.created"),
+    );
     setPanelMode(null);
     await loadAgents();
   };
@@ -296,13 +317,13 @@ export function useAgentsPanel() {
     );
     if (res?.status !== "success") {
       setSubmitting(false);
-      toast.error(res?.message ?? "Failed to remove agent");
+      toast.error(res?.message ?? translate("agents.toast.removeFailed"));
       return;
     }
     setShowRemoveConfirm(false);
     setSelectedId(null);
     setSubmitting(false);
-    toast.success(res?.message ?? "Agent removed");
+    toast.success(res?.message ?? translate("agents.toast.removed"));
     await loadAgents();
   };
   confirmRemoveRef.current = () => {

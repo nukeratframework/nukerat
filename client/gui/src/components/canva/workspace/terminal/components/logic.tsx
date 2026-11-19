@@ -9,6 +9,7 @@ import { fileBytesLogic, type DownloadExtras } from './fileBytesLogic';
 import { DataFetch } from '@/api/terminal';
 import type { Session } from "@/api/sessions";
 import { terminalMenuRuntimeRef } from "@/components/ui/rigth-click-menu.tsx";
+import { translate } from "@/i18n";
 
 const TERMINAL_CONTENT_FONT = {
   defaultPx: 13.5,
@@ -58,12 +59,12 @@ export const executeCommand = async (
   }
   if (cmdName === 'session') {
     if (cmdArg) {
-      return { output: `Session changed to: ${cmdArg}`, newHistory: trimmedCmd ? [...history, trimmedCmd] : history, session: cmdArg };
+      return { output: translate('terminal.messages.sessionChanged', { session: cmdArg }), newHistory: trimmedCmd ? [...history, trimmedCmd] : history, session: cmdArg };
     }
-    return { output: `Current session: ${currentSession.substring(0, 100)}`, newHistory: trimmedCmd ? [...history, trimmedCmd] : history };
+    return { output: translate('terminal.messages.currentSession', { session: currentSession.substring(0, 100) }), newHistory: trimmedCmd ? [...history, trimmedCmd] : history };
   }
   if (cmdName === 'exit') {
-    return { output: 'Session terminated', newHistory: trimmedCmd ? [...history, trimmedCmd] : history, session: '' };
+    return { output: translate('terminal.messages.terminated'), newHistory: trimmedCmd ? [...history, trimmedCmd] : history, session: '' };
   }
 
   // ======= download =======
@@ -78,7 +79,7 @@ export const executeCommand = async (
     downloadExtras = prepared.downloadExtras;
     uploadPath = prepared.uploadPath;
   } catch (error) {
-    const message = error instanceof Error ? error.message : 'Failed to read file';
+    const message = error instanceof Error ? error.message : translate('terminal.files.readFailed');
     return { output: message, newHistory: trimmedCmd ? [...history, trimmedCmd] : history };
   }
 
@@ -102,7 +103,7 @@ export const executeCommand = async (
           })
         : null);
     if (!dest) {
-      return { output: 'Download cancelled', newHistory: trimmedCmd ? [...history, trimmedCmd] : history };
+      return { output: translate('terminal.files.downloadCancelled'), newHistory: trimmedCmd ? [...history, trimmedCmd] : history };
     }
     const progressName =
       downloadExtras.download_name ?? String(dest).split(/[/\\]/).filter(Boolean).pop() ?? 'download';
@@ -136,7 +137,7 @@ export const executeCommand = async (
     return { output: null, newHistory: history, cancelled: true };
   }
   if (isTerminalRequestError(response) || response?.custom_response) {
-    const message = terminalRequestErrorMessage(response, 'Request failed');
+    const message = terminalRequestErrorMessage(response, translate('terminal.files.requestFailed'));
     if (downloadExtras.download_bytes) {
       const progressName =
         downloadExtras.download_name ??
@@ -364,9 +365,9 @@ export const useTerminal = (selectedHost?: { host: Session, server: string } | n
     const trimmed = raw.trim();
     const arg = trimmed.slice(6).trim();
     let msg: string;
-    if (!arg) msg = commandPrefix ? `Current prefix: ${commandPrefix}` : 'No prefix set\n';
-    else if (arg.toLowerCase() === 'clear') { setCommandPrefix(null); msg = 'Prefix cleared\n'; }
-    else { setCommandPrefix(arg); msg = `Prefix set: ${arg}\n`; }
+    if (!arg) msg = commandPrefix ? translate('terminal.messages.currentPrefix', { prefix: commandPrefix }) : `${translate('terminal.messages.noPrefix')}\n`;
+    else if (arg.toLowerCase() === 'clear') { setCommandPrefix(null); msg = `${translate('terminal.messages.prefixCleared')}\n`; }
+    else { setCommandPrefix(arg); msg = `${translate('terminal.messages.prefixSet', { prefix: arg })}\n`; }
     setOutput([...output, `$ ${trimmed}`, msg]);
     setHistory([...history, trimmed]);
     setCommandHistory([...commandHistory, trimmed]);

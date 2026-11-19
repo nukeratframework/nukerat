@@ -1,6 +1,7 @@
 "use client";
 
 import { Plus, Trash2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/components/ui/lib/utils";
@@ -11,8 +12,8 @@ export function KeyValueEditor({
   label,
   items,
   onChange,
-  keyPlaceholder = "Key",
-  valuePlaceholder = "Value",
+  keyPlaceholder,
+  valuePlaceholder,
   className,
 }: {
   label: string;
@@ -22,6 +23,9 @@ export function KeyValueEditor({
   valuePlaceholder?: string;
   className?: string;
 }) {
+  const { t } = useTranslation();
+  const keyLabel = keyPlaceholder ?? t("ui.keyValue.key");
+  const valueLabel = valuePlaceholder ?? t("ui.keyValue.value");
   return (
     <div className={cn("space-y-2", className)}>
       <div className="flex flex-wrap items-center justify-between gap-2">
@@ -34,7 +38,7 @@ export function KeyValueEditor({
           className="h-[25px] w-[90px] gap-1.5 rounded border-[#333] bg-[#232323] p-0 text-[12px] text-[#cecece] hover:bg-[#2b2b2b] hover:text-[#cecece]"
         >
           <Plus size={11} />
-          Add row
+          {t("ui.keyValue.addRow")}
         </Button>
       </div>
 
@@ -52,19 +56,19 @@ export function KeyValueEditor({
                   scope="col"
                   className="border-b border-r border-[#292929] px-3 py-1 text-left font-normal"
                 >
-                  {keyPlaceholder}
+                  {keyLabel}
                 </th>
                 <th
                   scope="col"
                   className="border-b border-r border-[#292929] px-3 py-1 text-left font-normal"
                 >
-                  {valuePlaceholder}
+                  {valueLabel}
                 </th>
                 <th
                   scope="col"
                   className="w-0 border-b border-[#292929] p-0 font-normal"
                 >
-                  <span className="sr-only">Remove</span>
+                  <span className="sr-only">{t("ui.keyValue.remove")}</span>
                 </th>
               </tr>
             </thead>
@@ -79,7 +83,7 @@ export function KeyValueEditor({
                           items.map((r, i) => (i === index ? { ...r, key: e.target.value } : r))
                         )
                       }
-                      placeholder={keyPlaceholder}
+                      placeholder={keyLabel}
                       autoComplete="off"
                       spellCheck={false}
                       className="!h-auto !min-h-0 !py-0 w-full rounded-none border-0 bg-transparent px-2 leading-none text-[13.5px] text-[#cecece] shadow-none placeholder:text-[#444] focus-visible:ring-0"
@@ -93,7 +97,7 @@ export function KeyValueEditor({
                           items.map((r, i) => (i === index ? { ...r, value: e.target.value } : r))
                         )
                       }
-                      placeholder={valuePlaceholder}
+                      placeholder={valueLabel}
                       autoComplete="off"
                       spellCheck={false}
                       className="!h-auto !min-h-0 !py-0 w-full rounded-none border-0 bg-transparent px-2 leading-none text-[13.5px] text-[#cecece] shadow-none placeholder:text-[#444] focus-visible:ring-0"
@@ -104,7 +108,7 @@ export function KeyValueEditor({
                       type="button"
                       variant="ghost"
                       size="icon"
-                      aria-label={`Remove row ${index + 1}`}
+                      aria-label={t("ui.keyValue.removeRow", { index: index + 1 })}
                       onClick={() => onChange(items.filter((_, i) => i !== index))}
                       className="size-6 min-h-6 min-w-6 shrink-0 p-0 text-[#6b6b6b] hover:bg-transparent hover:text-[#6b6b6b]"
                     >
@@ -116,7 +120,7 @@ export function KeyValueEditor({
             </tbody>
           </table>
         ) : (
-          <span className="block px-3 py-6 text-center text-[13px] text-[#555]">Empty</span>
+          <span className="block px-3 py-6 text-center text-[13px] text-[#555]">{t("ui.keyValue.empty")}</span>
         )}
       </div>
     </div>

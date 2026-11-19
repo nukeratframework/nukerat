@@ -1,6 +1,7 @@
 import { getServers, type ServerEntry } from "@/api/system/config";
 import { addBearer } from "@/api/system/auth";
 import { responseErrorMessage, thrownErrorMessage, unreachableHost } from "@/api/http_status";
+import { translate } from "@/i18n";
 
 export interface Session {
   id: number;
@@ -107,7 +108,9 @@ export const fetchSessions = async (
     if (servers.length === 0) {
       return {
         status: "failure",
-        message: selectedServer ? "Server not found" : "No servers configured",
+        message: selectedServer
+          ? translate("api.serverNotFound")
+          : translate("api.noServersConfigured"),
       };
     }
 
@@ -117,12 +120,12 @@ export const fetchSessions = async (
         servers.map((server) =>
           getSessionsFromServer(server, query, signal, onPartial).catch((error) => {
             if (error instanceof Error && error.name === "AbortError") {
-              return { status: "error", message: `${server.name}:Connection timed out` };
+              return { status: "error", message: `${server.name}:${translate("api.connectionTimedOut")}` };
             }
             return {
               status: "ERR_conn",
               name: server.name,
-              message: `${server.name}: Unreachable host`,
+              message: `${server.name}: ${translate("api.unreachableHost")}`,
             };
           }),
         ),
@@ -178,10 +181,10 @@ export const DataFetch = async (
 export const DeleteSession = async (tag: string, server: string): Promise<any> => {
   const servers = (await getServers()).filter((s) => matchServer(s, server));
   if (servers.length === 0) {
-    return { status: "failure", message: "Server not found" };
+    return { status: "failure", message: translate("api.serverNotFound") };
   }
 
-  let lastError: any = { status: "failure", message: "Request failed" };
+  let lastError: any = { status: "failure", message: translate("api.requestFailed") };
   for (const entry of servers) {
     const ip = entry.ip?.trim().replace(/\/$/, "");
     const port = entry.port?.trim();
@@ -207,7 +210,7 @@ export const DeleteSession = async (tag: string, server: string): Promise<any> =
     } catch {
       lastError = {
         status: "ERR_conn",
-        message: `${entry.name}: Unreachable host`,
+        message: `${entry.name}: ${translate("api.unreachableHost")}`,
       };
     }
   }
@@ -222,10 +225,10 @@ export const EditSession = async (
 ): Promise<any> => {
   const servers = (await getServers()).filter((s) => matchServer(s, server));
   if (servers.length === 0) {
-    return { status: "failure", message: "Server not found" };
+    return { status: "failure", message: translate("api.serverNotFound") };
   }
 
-  let lastError: any = { status: "failure", message: "Request failed" };
+  let lastError: any = { status: "failure", message: translate("api.requestFailed") };
   for (const entry of servers) {
     const ip = entry.ip?.trim().replace(/\/$/, "");
     const port = entry.port?.trim();
@@ -255,7 +258,7 @@ export const EditSession = async (
     } catch {
       lastError = {
         status: "ERR_conn",
-        message: `${entry.name}: Unreachable host`,
+        message: `${entry.name}: ${translate("api.unreachableHost")}`,
       };
     }
   }

@@ -1,6 +1,7 @@
 "use client"
 
 import { Clock2Icon } from "lucide-react"
+import { useTranslation } from "react-i18next"
 import { Calendar } from "@/components/ui/calendar"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field"
@@ -16,6 +17,7 @@ type Props = {
 }
 
 export function CalendarWithTime({ date, onDate, timeFrom, onTimeFrom, timeTo, onTimeTo }: Props) {
+  const { t } = useTranslation()
   return (
     <Card size="sm" className="mx-auto w-fit border-[#363636] bg-[#212121]">
       <CardContent>
@@ -24,7 +26,7 @@ export function CalendarWithTime({ date, onDate, timeFrom, onTimeFrom, timeTo, o
       <CardFooter className="border-t border-[#363636] bg-[#212121]">
         <FieldGroup>
           <Field>
-            <FieldLabel htmlFor="time-from">Start Time</FieldLabel>
+            <FieldLabel htmlFor="time-from">{t("ui.calendar.startTime")}</FieldLabel>
             <InputGroup>
               <InputGroupInput
                 id="time-from"
@@ -40,7 +42,7 @@ export function CalendarWithTime({ date, onDate, timeFrom, onTimeFrom, timeTo, o
             </InputGroup>
           </Field>
           <Field>
-            <FieldLabel htmlFor="time-to">End Time</FieldLabel>
+            <FieldLabel htmlFor="time-to">{t("ui.calendar.endTime")}</FieldLabel>
             <InputGroup>
               <InputGroupInput
                 id="time-to"

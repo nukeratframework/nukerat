@@ -7,7 +7,7 @@ import { kill_session } from "@/components/canva/workspace/sessions/components/m
 import { tryConfirmDialogEnter } from "@/components/canva/utils/confirm-dialog-keydown";
 import { formatToastMessage } from "@/components/canva/utils/toast_rules";
 import { listRowMouseDown } from "@/components/canva/utils/list-row-selection";
-import { formatUtcDateOnly, utcTableColumnTitle } from "@/components/canva/utils/utc-date";
+import { formatUtcDateOnly, utcColumn, type TableColumn } from "@/components/canva/utils/utc-date";
 import linuxHostRootSvg from "@/assets/icons/sessions/linux_root.svg";
 import linuxHostSvg from "@/assets/icons/sessions/linux.svg";
 import macHostRootSvg from "@/assets/icons/sessions/mac_root.svg";
@@ -16,6 +16,7 @@ import unknownHostRootSvg from "@/assets/icons/sessions/unknown_root.svg";
 import unknownHostSvg from "@/assets/icons/sessions/unknown.svg";
 import windowsHostRootSvg from "@/assets/icons/sessions/windows_root.svg";
 import windowsHostSvg from "@/assets/icons/sessions/windows.svg";
+import { translate } from "@/i18n";
 
 const fetchToastId = "sessions-fetch-error";
 const retryDelayMs = 5000;
@@ -29,25 +30,68 @@ const icons = {
   unknown: { n: unknownHostSvg, r: unknownHostRootSvg },
 };
 
-export const tableColumns = ["Platform", utcTableColumnTitle("Last Check"), "Tag", "Hostname", "User", "Privilege", "Internal", "External", "Listener", "PID", "Process", "Note"];
+export type SessionColumnKey =
+  | "platform"
+  | "lastCheck"
+  | "tag"
+  | "hostname"
+  | "user"
+  | "privilege"
+  | "internal"
+  | "external"
+  | "listener"
+  | "pid"
+  | "process"
+  | "note";
 
-function valorDaColuna(h: Session, coluna: string): string {
-  if (coluna === "Platform") return String(h.os ?? "");
-  if (coluna === utcTableColumnTitle("Last Check")) return formatUtcDateOnly(h.last_activity);
-  if (coluna === "Tag") return String(h.tag ?? "");
-  if (coluna === "Hostname") return String(h.hostname ?? "");
-  if (coluna === "User") return String(h.user ?? "");
-  if (coluna === "Privilege") return String(h.privilege ?? "user");
-  if (coluna === "Internal") return String(h.internal ?? h.ip ?? "");
-  if (coluna === "External") return String(h.external_ip ?? "");
-  if (coluna === "Listener") return String(h.listener ?? "");
-  if (coluna === "PID") return String(h.pid ?? "");
-  if (coluna === "Process") return formatProcess(h.process);
-  if (coluna === "Note") return String(h.notes ?? "");
-  return "";
+/// Column keys are stable; `label` is an i18n key resolved at render time.
+export const tableColumns: TableColumn<SessionColumnKey>[] = [
+  { key: "platform", label: "sessions.columns.platform" },
+  utcColumn("lastCheck", "sessions.columns.lastCheck"),
+  { key: "tag", label: "sessions.columns.tag" },
+  { key: "hostname", label: "sessions.columns.hostname" },
+  { key: "user", label: "sessions.columns.user" },
+  { key: "privilege", label: "sessions.columns.privilege" },
+  { key: "internal", label: "sessions.columns.internal" },
+  { key: "external", label: "sessions.columns.external" },
+  { key: "listener", label: "sessions.columns.listener" },
+  { key: "pid", label: "sessions.columns.pid" },
+  { key: "process", label: "sessions.columns.process" },
+  { key: "note", label: "sessions.columns.note" },
+];
+
+function valorDaColuna(h: Session, coluna: SessionColumnKey): string {
+  switch (coluna) {
+    case "platform":
+      return String(h.os ?? "");
+    case "lastCheck":
+      return formatUtcDateOnly(h.last_activity);
+    case "tag":
+      return String(h.tag ?? "");
+    case "hostname":
+      return String(h.hostname ?? "");
+    case "user":
+      return String(h.user ?? "");
+    case "privilege":
+      return String(h.privilege ?? "user");
+    case "internal":
+      return String(h.internal ?? h.ip ?? "");
+    case "external":
+      return String(h.external_ip ?? "");
+    case "listener":
+      return String(h.listener ?? "");
+    case "pid":
+      return String(h.pid ?? "");
+    case "process":
+      return formatProcess(h.process);
+    case "note":
+      return String(h.notes ?? "");
+    default:
+      return "";
+  }
 }
 
-export function ordenarSessions(lista: Session[], coluna: string, az: boolean): Session[] {
+export function ordenarSessions(lista: Session[], coluna: SessionColumnKey, az: boolean): Session[] {
   const copia = lista.slice();
   for (let i = 0; i < copia.length; i++) {
     for (let j = i + 1; j < copia.length; j++) {
@@ -139,7 +183,7 @@ export function useSessionsPanel() {
   const [killTarget, setKillTarget] = useState<Session | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [search, setSearch] = useState("");
-  const [sortCol, setSortCol] = useState<string | null>(null);
+  const [sortCol, setSortCol] = useState<SessionColumnKey | null>(null);
   const [sortAsc, setSortAsc] = useState(true);
 
   const selected = sessions.find((h) => h.id === selectedId) ?? null;
@@ -160,7 +204,7 @@ export function useSessionsPanel() {
     return lista;
   }, [sessions, search, sortCol, sortAsc]);
 
-  const handleSortColumn = (col: string) => {
+  const handleSortColumn = (col: SessionColumnKey) => {
     if (sortCol !== col) {
       setSortCol(col);
       setSortAsc(true);
@@ -176,7 +220,7 @@ export function useSessionsPanel() {
 
   const copyContext = useCallback(() => {
     void navigator.clipboard.writeText(JSON.stringify({ sessions: filteredSessions }));
-    toast.success("Sessions context copied");
+    toast.success(translate("sessions.toast.contextCopied"));
   }, [filteredSessions]);
 
   const searchRef = useRef(search);
@@ -219,7 +263,7 @@ export function useSessionsPanel() {
           } else {
             setSessions([]);
             if (!sessionsBulkDeleteQuiet.active) {
-              toast.error(formatToastMessage(res.message ?? "Failed to fetch sessions"), {
+              toast.error(formatToastMessage(res.message ?? translate("sessions.toast.fetchFailed")), {
                 id: fetchToastId,
               });
             }
@@ -355,7 +399,7 @@ export function useSessionsPanel() {
     setSelectedId(null);
     setRefreshKey((k) => k + 1);
     if (res?.status !== "success") {
-      toast.error(res?.message ?? "Failed to remove session");
+      toast.error(res?.message ?? translate("sessions.toast.removeFailed"));
     }
   };
 

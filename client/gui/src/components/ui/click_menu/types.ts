@@ -17,7 +17,7 @@ type PanelCustomMenuItemFields = {
 
 export type PanelCustomMenuItem =
   | { kind: "separator" }
-  | { kind: "header"; label: string; description?: string }
+  | { kind: "header"; label: string; description?: string; empty?: boolean }
   | ({ kind: "action"; label: string } & PanelCustomMenuItemFields);
 
 export type PanelEditMenuBridge = {

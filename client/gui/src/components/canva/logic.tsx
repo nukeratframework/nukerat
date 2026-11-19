@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react";
+import type { LooseT } from "@/i18n";
 import { getServers, subscribeServers } from "@/api/system/config";
 import { fetchServerNotifications, fetchServerCustomNotifications, type NotifyHost, type NotifyCustom } from "@/api/notification";
 import { DataFetch, type Session } from "@/api/sessions";
@@ -14,6 +15,7 @@ import IocPanel from "./topbar/iocs/index";
 import ScriptsPanel from "./topbar/nukescripts/index";
 import ReportsPanel from "./topbar/reports/index";
 import AboutPanel from "./topbar/about/index";
+import PreferencesPanel from "./topbar/preferences/index";
 
 
 export const floatComponents: Record<string, React.ComponentType> = {
@@ -28,19 +30,31 @@ export const floatComponents: Record<string, React.ComponentType> = {
   nukescripts: ScriptsPanel,
   reports: ReportsPanel,
   about: AboutPanel,
+  preferences: PreferencesPanel,
 };
 
 export interface WorkspaceTab {
   id: string;
-  name: string;
+  /** 1-based ordinal shown as `workspace.tabName` until the user renames it. */
+  tabNumber: number;
+  /** User-supplied name; `null` means "show the translated default". */
+  customName: string | null;
   hasWindows: boolean;
   pendingWindow: string | null;
   pendingPanelParams: PanelOpenParams | null;
 }
 
+export function workspaceTabLabel(
+  tab: Pick<WorkspaceTab, "tabNumber" | "customName">,
+  t: LooseT,
+): string {
+  return tab.customName ?? t("workspace.tabName", { n: tab.tabNumber });
+}
+
 const mkTab = (n: number): WorkspaceTab => ({
   id: String(Date.now()),
-  name: `Workspace ${n}`,
+  tabNumber: n,
+  customName: null,
   hasWindows: false,
   pendingWindow: null,
   pendingPanelParams: null,
@@ -109,10 +123,7 @@ export function useCanva() {
   const addTab = () => {
     let newId = "";
     setTabs((prev) => {
-      const nums = prev.map(
-        (t) => parseInt(t.name.replace("Workspace ", ""), 10) || 0
-      );
-      const nextN = Math.max(0, ...nums) + 1;
+      const nextN = prev.reduce((max, t) => Math.max(max, t.tabNumber), 0) + 1;
       const t = mkTab(nextN);
       newId = t.id;
       return [...prev, t];

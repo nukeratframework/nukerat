@@ -1,4 +1,5 @@
 import type { IDockviewPanelProps } from "dockview";
+import { useTranslation } from "react-i18next";
 import { ChevronLeft, ChevronRight, Eye, RefreshCw, Trash2, X } from "lucide-react";
 import FetchToast from "@/components/canva/utils/toast_rules";
 import MainList from "./components/main";
@@ -8,6 +9,7 @@ import { KeyloggerDockviewShell } from "./components/rigth-click-menu";
 import { useKeyloggerPanel } from "./components/logic";
 
 export default function KeyloggerPanel(props: IDockviewPanelProps) {
+  const { t } = useTranslation();
   const p = useKeyloggerPanel();
 
   return (
@@ -30,7 +32,7 @@ export default function KeyloggerPanel(props: IDockviewPanelProps) {
               className="box-border h-[29px] w-full rounded border border-[#363636] bg-[#212121] py-0 pl-3 pr-8 text-[13.5px] text-[#cecece] outline-none transition-colors placeholder:text-[#444] focus:border-[#555]"
               value={p.search}
               onChange={(e) => p.setSearch(e.target.value)}
-              placeholder="Search..."
+              placeholder={t("keylogger.searchPlaceholder")}
               autoComplete="off"
               spellCheck={false}
             />
@@ -75,7 +77,7 @@ export default function KeyloggerPanel(props: IDockviewPanelProps) {
               onClick={p.view}
               className="button-default flex h-[29px] shrink-0 items-center gap-1.5 rounded border border-[#333] bg-[#232323] px-3 text-[13px] text-[#cecece] hover:bg-[#2b2b2b] cursor-pointer disabled:cursor-not-allowed disabled:opacity-25"
             >
-              <Eye size={11} /> View
+              <Eye size={11} /> {t("keylogger.actions.view")}
             </button>
             <button
               type="button"
@@ -83,12 +85,12 @@ export default function KeyloggerPanel(props: IDockviewPanelProps) {
               onClick={p.remove}
               className="button-default flex h-[29px] shrink-0 items-center gap-1.5 rounded border border-[#333] bg-[#232323] px-3 text-[13px] text-[#cecece] hover:bg-[#2b2b2b] hover:text-[#c97070] cursor-pointer disabled:cursor-not-allowed disabled:opacity-25"
             >
-              <Trash2 size={11} /> Delete
+              <Trash2 size={11} /> {t("keylogger.actions.delete")}
             </button>
             <div className="ml-auto flex shrink-0 items-center gap-2">
               {p.total > 0 && !p.loading && (
                 <span className="text-nowrap text-[13px] tabular-nums text-[#444]">
-                  Page {p.page} / {p.pageCount}
+                  {t("keylogger.pagination", { page: p.page, pageCount: p.pageCount })}
                 </span>
               )}
               <button
@@ -138,20 +140,24 @@ export default function KeyloggerPanel(props: IDockviewPanelProps) {
           >
             <div className="flex text-[13.5px] items-center gap-2 mb-3">
               <Trash2 size={14} className="text-[#c97070] mb-0.5" />
-              <span className="text-[13.5px] font-semibold text-[#cecece]">Delete keylogger</span>
+              <span className="text-[13.5px] font-semibold text-[#cecece]">{t("keylogger.confirm.title")}</span>
             </div>
             <p className="text-[13px] text-[#9b9b9b] mb-5 leading-relaxed">
               {p.deleteConfirmMode === "all" ? (
                 <>
-                  Remove all{" "}
+                  {t("keylogger.confirm.removeAllLead")}{" "}
                   <span className="text-[#d4d4d4] font-semibold">{p.entryCount}</span>{" "}
-                  entr{p.entryCount === 1 ? "y" : "ies"}? This cannot be undone.
+                  {t(
+                    p.entryCount === 1
+                      ? "keylogger.confirm.removeAllTailOne"
+                      : "keylogger.confirm.removeAllTailMany",
+                  )}
                 </>
               ) : (
                 <>
-                  Remove this keylogger entry for{" "}
-                  <span className="text-[#d4d4d4] font-semibold">"{p.selected?.hostTag || p.selected?.host}"</span>? This
-                  cannot be undone.
+                  {t("keylogger.confirm.removeOneLead")}{" "}
+                  <span className="text-[#d4d4d4] font-semibold">"{p.selected?.hostTag || p.selected?.host}"</span>
+                  {t("keylogger.confirm.removeOneTail")}
                 </>
               )}
             </p>
@@ -161,7 +167,7 @@ export default function KeyloggerPanel(props: IDockviewPanelProps) {
                 onClick={() => p.setShowDeleteConfirm(false)}
                 className="button-default px-3 py-1 rounded text-[12px] text-[#9b9b9b] hover:text-[#cecece] hover:bg-[#252525] transition-colors border border-[#333] cursor-pointer"
               >
-                Cancel
+                {t("common.cancel")}
               </button>
               <button
                 type="button"
@@ -170,7 +176,7 @@ export default function KeyloggerPanel(props: IDockviewPanelProps) {
                 className="button-default flex items-center gap-1.5 px-3 py-1 rounded text-[12px] text-white bg-[#8b2020] hover:bg-[#a83232] transition-colors disabled:opacity-50 cursor-pointer"
               >
                 {p.deleting && <RefreshCw size={10} className="animate-spin" />}
-                Remove
+                {t("common.remove")}
               </button>
             </div>
           </div>

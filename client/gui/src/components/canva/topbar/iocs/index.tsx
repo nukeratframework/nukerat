@@ -5,6 +5,7 @@ import MainList from "./components/main";
 import IocHostFilter from "./components/host-filter";
 import SplitPanel from "./components/split";
 import { useIocPanel } from "./components/logic";
+import { translate } from "@/i18n";
 
 export default function IocPanel() {
   const p = useIocPanel();
@@ -18,7 +19,7 @@ export default function IocPanel() {
             type="button"
             onClick={p.applyFilter}
             disabled={p.loading}
-            title="Search"
+            title={translate("iocs.searchTitle")}
             className="button-default h-[29px] shrink-0 rounded-[5px] border border-[#ffffff26] px-2 text-[#cecece] cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
           >
             <Search size={14} />
@@ -31,7 +32,7 @@ export default function IocPanel() {
               onKeyDown={(e) => {
                 if (e.key === "Enter") p.applyFilter();
               }}
-              placeholder="Search..."
+              placeholder={translate("iocs.searchPlaceholder")}
               autoComplete="off"
               spellCheck={false}
             />
@@ -148,7 +149,7 @@ export default function IocPanel() {
             >
               <div className="flex items-center gap-2 mb-3">
                 <Trash2 size={14} className="text-[#c97070] mb-0.5" />
-                <span className="text-[13.5px] font-semibold text-[#cecece]">Remove IOC</span>
+                <span className="text-[13.5px] font-semibold text-[#cecece]">{translate("iocs.removeConfirm.title")}</span>
               </div>
               <p className="text-[13px] text-[#9b9b9b] mb-5 leading-relaxed">
                 Remove{" "}

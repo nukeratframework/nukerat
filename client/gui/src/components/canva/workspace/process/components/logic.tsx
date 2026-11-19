@@ -18,6 +18,8 @@ import { DataFetch, parseProcessTree } from "@/api/process";
 import type { ProcessNode } from "@/api/process";
 import type { Session } from "@/api/sessions";
 import { processMenuRuntimeRef } from "@/components/ui/rigth-click-menu.tsx";
+import type { TableColumn } from "@/components/canva/utils/utc-date";
+import { translate } from "@/i18n";
 
 // types -----------------------------------------------------------------------
 
@@ -37,13 +39,13 @@ export type SortDir = "asc" | "desc";
 
 export type ProcessFilter = "all" | "user" | "admin" | "system" | "root";
 
-export const PROCESS_FILTERS: { label: string; value: ProcessFilter }[] = [
-  { label: "All", value: "all" },
-  { label: "User", value: "user" },
-  { label: "Admin", value: "admin" },
-  { label: "System", value: "system" },
-  { label: "Root", value: "root" },
-];
+export const PROCESS_FILTERS = [
+  { label: "process.filters.all", value: "all" },
+  { label: "process.filters.user", value: "user" },
+  { label: "process.filters.admin", value: "admin" },
+  { label: "process.filters.system", value: "system" },
+  { label: "process.filters.root", value: "root" },
+] as const satisfies readonly { label: string; value: ProcessFilter }[];
 
 export function privilegeClass(privilege?: string): string {
   switch ((privilege ?? "").toLowerCase()) {
@@ -71,17 +73,18 @@ export const DEFAULT_WIDTHS: Record<string, number> = {
   privilege: 70,
 };
 
-export const TABLE_HEADERS: { label: string; key: string }[] = [
-  { label: "NAME", key: "name" },
-  { label: "PID", key: "pid" },
-  { label: "CPU", key: "cpu" },
-  { label: "MEMORY", key: "memory" },
-  { label: "USER", key: "user" },
-  { label: "PRIV", key: "privilege" },
-  { label: "INTEGRITY", key: "integrity" },
-  { label: "SESSION", key: "session" },
-  { label: "ARCH", key: "arch" },
-  { label: "NETWORK", key: "network" },
+/// Column keys are stable; `label` is an i18n key resolved at render time.
+export const TABLE_HEADERS: TableColumn<SortKey>[] = [
+  { key: "name", label: "process.columns.name" },
+  { key: "pid", label: "process.columns.pid" },
+  { key: "cpu", label: "process.columns.cpu" },
+  { key: "memory", label: "process.columns.memory" },
+  { key: "user", label: "process.columns.user" },
+  { key: "privilege", label: "process.columns.privilege" },
+  { key: "integrity", label: "process.columns.integrity" },
+  { key: "session", label: "process.columns.session" },
+  { key: "arch", label: "process.columns.arch" },
+  { key: "network", label: "process.columns.network" },
 ];
 
 // icons -----------------------------------------------------------------------
@@ -252,7 +255,7 @@ export function copyProcessContext(
     name, pid, cpu, memory, user, privilege, integrity, session, arch, network,
   }));
   navigator.clipboard.writeText(JSON.stringify({ process: payload }));
-  toast.success("Process context copied");
+  toast.success(translate("process.toast.copied"));
 }
 
 export function allParentPids(nodes: ProcessNode[]): Set<number> {
@@ -396,13 +399,13 @@ export function useProcessWindow(selectedHost?: { host: Session; server: string 
       return;
     }
 
-    if (showFetchFailureToast(res, "Could not load process list.")) {
+    if (showFetchFailureToast(res, translate("process.toast.loadFailed"))) {
       return;
     }
 
     const nextProcesses = parseProcessTree(res);
     if ((res as { status?: string })?.status === "success" && nextProcesses === null) {
-      toast.error("Could not parse process tree.");
+      toast.error(translate("process.toast.parseFailed"));
       return;
     }
 

@@ -33,8 +33,14 @@ export const archOptions = (cpu: Cpu, _os: Os): Arch[] => {
   return ["x64"];
 };
 
-export const sleepMaskOptions: { value: SleepMaskMode; label: string }[] = [
-  { value: "off", label: "Off" },
+/// `labelKey` is resolved at render; tool names (Ekko, Zilean) are not prose and
+/// stay literal so they are never mistranslated.
+export const sleepMaskOptions: {
+  value: SleepMaskMode;
+  label: string;
+  labelKey?: "implants.options.off";
+}[] = [
+  { value: "off", label: "Off", labelKey: "implants.options.off" },
   { value: "timer", label: "Ekko" },
   { value: "zilean", label: "Zilean" },
 ];
@@ -114,13 +120,14 @@ export const usesCustomHttpRelay = (_os: Os) => true;
 
 export const buildStagelessCustomHttpRelay = (os: Os) => stagelessCustomHttpRelayBase(os);
 
-export const sectionLabels: Record<Section, string> = {
-  general: "General",
-  c2: "C2",
-  preface: "Preface",
-  artifact: "PE Artifacts",
-  runtime: "Runtime",
-};
+/// Section ids are stable; `sectionLabels` holds i18n keys resolved at render.
+export const sectionLabels = {
+  general: "implants.sections.general",
+  c2: "implants.sections.c2",
+  preface: "implants.sections.preface",
+  artifact: "implants.sections.artifact",
+  runtime: "implants.sections.runtime",
+} as const satisfies Record<Section, string>;
 
 export const isHttpProtocol = (protocol: Protocol) =>
   protocol === "http" || protocol === "https";
@@ -323,16 +330,21 @@ export const peTimestampDayRange = (date: string) => {
   return { lo, hi };
 };
 
-export const requiredFields: { label: string; ok: (d: ImplantFormData) => boolean }[] = [
-  { label: "compile server", ok: (d) => !!(d.teamHost.trim() && d.teamPort.trim()) },
+/// `labelKey` entries are i18n keys resolved by the caller when reporting the
+/// missing field, so the toast follows the active language.
+export const requiredFields: { labelKey: string; ok: (d: ImplantFormData) => boolean }[] = [
+  { labelKey: "implants.required.compileServer", ok: (d) => !!(d.teamHost.trim() && d.teamPort.trim()) },
   {
-    label: "server",
+    labelKey: "implants.required.server",
     ok: (d) =>
       d.protocol === "smb" ||
       d.protocol === "custom" ||
       d.servers.some((s) => s.host.trim() && s.port.trim()),
   },
-  { label: "pipeline", ok: (d) => d.protocol !== "smb" || !!(d.smbHost.trim() && d.smbPipeName.trim()) },
+  {
+    labelKey: "implants.required.pipeline",
+    ok: (d) => d.protocol !== "smb" || !!(d.smbHost.trim() && d.smbPipeName.trim()),
+  },
 ];
 
 export const fileToBase64 = (file: File): Promise<string> =>

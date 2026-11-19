@@ -1,6 +1,7 @@
 import { Edit, Plus, RefreshCw, Trash2 } from "lucide-react";
 import type { CredentialsMenuRuntime, PanelEditMenuBridge } from "./types.ts";
 import { credKey, html, menuAction } from "./util.ts";
+import { translate } from "@/i18n";
 
 export const credentialsMenuRuntimeRef: { current: CredentialsMenuRuntime | null } = { current: null };
 
@@ -43,29 +44,29 @@ export function createCredentialsBridge(): PanelEditMenuBridge | null {
     canEdit: () => rt.canEditFields(),
     prepareMenu: (t) => rt.prepareRowFromTarget(t),
     getCustomMenuItems: () => [
-      menuAction("Add", Plus, () => rt.add()),
-      menuAction("Edit", Edit, () => rt.edit(), () => !rt.hasRowSelection()),
+      menuAction(translate("clickMenu.add"), Plus, () => rt.add()),
+      menuAction(translate("clickMenu.edit"), Edit, () => rt.edit(), () => !rt.hasRowSelection()),
       {
         kind: "action",
-        label: "Remove",
+        label: translate("clickMenu.remove"),
         icon: Trash2,
         disabled: () => !credentialsCanRemoveSelected() && !credentialsCanRemoveAll(),
         items: [
           {
             kind: "action",
-            label: "Selected",
+            label: translate("clickMenu.selected"),
             onClick: () => credentialsRemoveSelected(),
             disabled: () => !credentialsCanRemoveSelected(),
           },
           {
             kind: "action",
-            label: "All",
+            label: translate("clickMenu.all"),
             onClick: () => credentialsRemoveAll(),
             disabled: () => !credentialsCanRemoveAll(),
           },
         ],
       },
-      menuAction("Update", RefreshCw, () => rt.refresh()),
+      menuAction(translate("clickMenu.update"), RefreshCw, () => rt.refresh()),
     ],
   };
 }

@@ -1,4 +1,5 @@
 import { forwardRef, memo, useCallback, useEffect, useMemo, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { Virtuoso } from "react-virtuoso";
 import type { VirtuosoHandle } from "react-virtuoso";
 import { Badge } from "@/components/ui/badge";
@@ -52,6 +53,7 @@ const ChatMessageItem = memo(function ChatMessageItem({ msg }: { msg: ChatMessag
 });
 
 function SubmittingRow({ onCancel }: { onCancel: () => void }) {
+  const { t } = useTranslation();
   return (
     <div className="px-4 pt-1 pb-6">
       <div
@@ -70,7 +72,7 @@ function SubmittingRow({ onCancel }: { onCancel: () => void }) {
               />
             ))}
           </span>
-          <span>Thinking</span>
+          <span>{t("agent.thinking")}</span>
         </div>
         <span className="h-3 w-px shrink-0 bg-[#333]" aria-hidden="true" />
         <button
@@ -82,10 +84,10 @@ function SubmittingRow({ onCancel }: { onCancel: () => void }) {
           }}
           type="button"
           onClick={onCancel}
-          title="Cancel request"
+          title={t("agent.cancelRequest")}
           className="button-default flex text-left items-center gap-1.5 rounded px-1 py-0.5 text-[12px] text-[#7a7a7a] hover:text-[#c97070] transition-colors cursor-pointer"
         >
-          Stop
+          {t("agent.stop")}
         </button>
       </div>
     </div>

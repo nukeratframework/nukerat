@@ -1,3 +1,5 @@
+import { translate } from "@/i18n";
+
 export type DownloadExtras = {
   download_bytes: boolean;
   download_name?: string;
@@ -19,7 +21,9 @@ const extractPath = (afterFileFlag: string): string | null => {
 };
 
 const outputDestinationMessage = (detail: string, lowercase = true) =>
-  `Output destination: ${lowercase ? `${detail.charAt(0).toLowerCase()}${detail.slice(1)}` : detail}`;
+  translate("terminal.files.outputDestination", {
+    path: lowercase ? `${detail.charAt(0).toLowerCase()}${detail.slice(1)}` : detail,
+  });
 
 const extractOutputPath = (input: string): string | null => {
   for (const flag of ['--output', '-o']) {
@@ -95,13 +99,13 @@ export const fileBytesLogic = {
     if (streamed) {
       const path = (output as { download_path: string }).download_path;
       if (extras.download_output) return outputDestinationMessage(extras.download_output, false);
-      return `File downloaded successfully (${path})`;
+      return translate("terminal.files.downloadSuccessPath", { path });
     }
     let raw = (typeof output === 'string' ? output : String(output ?? '')).trim();
     if (extras.download_bytes) {
       raw = raw.replace(/\s/g, '');
     }
-    if (!raw || !window.electronAPI) return 'Error decoding file bytes';
+    if (!raw || !window.electronAPI) return translate("terminal.files.decodeError");
     try {
       atob(raw);
       const saved = await window.electronAPI.invoke('file:saveBytes', {
@@ -111,12 +115,12 @@ export const fileBytesLogic = {
       }) as boolean;
       if (!saved) return '';
       if (extras.download_output) return outputDestinationMessage(extras.download_output, false);
-      return 'File downloaded successfully';
+      return translate("terminal.files.downloadSuccess");
     } catch (error) {
       if (extras.download_output && error instanceof Error) {
         return outputDestinationMessage(error.message);
       }
-      return 'Error decoding file bytes';
+      return translate("terminal.files.decodeError");
     }
     // =======================
   },

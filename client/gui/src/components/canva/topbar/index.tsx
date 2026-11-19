@@ -30,9 +30,14 @@ import {
   Command,
   MessageCircleMore,
   Fingerprint,
+  Languages,
+  Settings,
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import type { WorkspaceTab } from "../logic";
+import { useTranslation } from "react-i18next";
+import { workspaceTabLabel, type WorkspaceTab } from "../logic";
+import { translate } from "@/i18n";
+import { useLocale } from "@/i18n/use-locale";
 import {
   Tooltip,
   TooltipTrigger,
@@ -43,7 +48,12 @@ import {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
   DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { HiOutlineDocumentReport } from "react-icons/hi";
@@ -57,11 +67,15 @@ import {
 import { DownloadsTopbarButton } from "./downloads";
 import logoSvg from "@/assets/logo.svg";
 
-export const hostOpenPanels: { type: string; icon: LucideIcon; label: string }[] = [
-  { type: "terminal", icon: SquareChevronRight, label: "Terminal" },
-  { type: "explorer", icon: Folder, label: "File browser" },
-  { type: "process", icon: Cpu, label: "Processes" },
-  { type: "screenshot", icon: Camera, label: "Screenshot" },
+/**
+ * Per-host panels offered in the session right-click menu. Labels are i18n keys
+ * so the caller decides when to resolve them (menus build at open time).
+ */
+export const hostOpenPanels: { type: string; icon: LucideIcon; labelKey: string }[] = [
+  { type: "terminal", icon: SquareChevronRight, labelKey: "shell.terminal" },
+  { type: "explorer", icon: Folder, labelKey: "shell.fileBrowser" },
+  { type: "process", icon: Cpu, labelKey: "shell.processes" },
+  { type: "screenshot", icon: Camera, labelKey: "shell.screenshot" },
 ];
 
 interface MainProps {
@@ -72,20 +86,25 @@ interface MainProps {
   onTabSelect: (id: string) => void;
   onTabAdd: () => void;
   onTabClose: (id: string) => void;
-  onTabRename: (id: string, name: string) => void;
+  onTabRename: (id: string, name: string | null) => void;
 }
 
 const WORKSPACE_TAB_NAME_MAX_LEN = 30;
 
 export default function TopBar(props: MainProps) {
+  const { t } = useTranslation();
+  const { language, setLanguage, locales } = useLocale();
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [renamingTabId, setRenamingTabId] = useState<string | null>(null);
   const [renameDraft, setRenameDraft] = useState("");
 
-  const commitTabRename = (tabId: string, fallback: string) => {
-    const raw = renameDraft.trim() || fallback;
-    const next = raw.slice(0, WORKSPACE_TAB_NAME_MAX_LEN);
-    props.onTabRename(tabId, next);
+  const commitTabRename = (tab: WorkspaceTab) => {
+    const raw = renameDraft.trim();
+    // An unchanged/blank draft clears the override so the tab follows the UI
+    // language again instead of freezing the old wording.
+    const current = workspaceTabLabel(tab, translate);
+    const next = !raw || raw === current ? null : raw.slice(0, WORKSPACE_TAB_NAME_MAX_LEN);
+    props.onTabRename(tab.id, next);
     setRenamingTabId(null);
   };
 
@@ -112,7 +131,7 @@ export default function TopBar(props: MainProps) {
         </div>
         <div className="w-px h-4 bg-[#292929] mr-4 ml-4 shrink-0" />
 
-        <TopBarMenu label="NukeRat" openMenu={openMenu} setOpenMenu={setOpenMenu}>
+        <TopBarMenu menuId="nukerat" label={t("shell.menu.nukerat")} openMenu={openMenu} setOpenMenu={setOpenMenu}>
           <DropdownMenuGroup>
             <DropdownMenuItem
               className="flex w-full items-center justify-between gap-2"
@@ -120,7 +139,7 @@ export default function TopBar(props: MainProps) {
             >
               <span className="flex items-center gap-2">
                 <Server size={13} />
-                Servers
+                {t("shell.servers")}
               </span>
               <ShortcutHint id="servers" />
             </DropdownMenuItem>
@@ -130,7 +149,7 @@ export default function TopBar(props: MainProps) {
             >
               <span className="flex items-center gap-2">
                 <Headphones size={14} />
-                Listeners
+                {t("shell.listeners")}
               </span>
               <ShortcutHint id="listeners" />
             </DropdownMenuItem>
@@ -140,7 +159,7 @@ export default function TopBar(props: MainProps) {
             >
               <span className="flex items-center gap-2">
                 <Bug size={13} />
-                Implants
+                {t("shell.implants")}
               </span>
               <ShortcutHint id="implants" />
             </DropdownMenuItem>
@@ -150,7 +169,7 @@ export default function TopBar(props: MainProps) {
             >
               <span className="flex items-center gap-2">
                 <Network size={13} />
-                Network
+                {t("shell.network")}
               </span>
               <ShortcutHint id="network" />
             </DropdownMenuItem>
@@ -159,22 +178,22 @@ export default function TopBar(props: MainProps) {
 
             <DropdownMenuItem onClick={() => props.floatWindow("agents")}>
               <Bot size={13} />
-              Agents
+              {t("shell.agents")}
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => props.floatWindow("nukescripts")}>
               <CodeXmlIcon size={13} />
-              NukeScripts
+              {t("shell.nukescripts")}
             </DropdownMenuItem>
 
             <DropdownMenuSeparator />
 
             <DropdownMenuItem onClick={() => props.floatWindow("reports")}>
               <HiOutlineDocumentReport size={13} />
-              Reports
+              {t("shell.reports")}
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => props.floatWindow("iocs")}>
               <Fingerprint size={13} />
-              IOCs
+              {t("shell.iocs")}
             </DropdownMenuItem>
 
             <DropdownMenuSeparator />
@@ -185,7 +204,7 @@ export default function TopBar(props: MainProps) {
             >
               <span className="flex items-center gap-2">
                 <Logs size={13} />
-                Queue
+                {t("shell.queue")}
               </span>
               <ShortcutHint id="queue" />
             </DropdownMenuItem>
@@ -195,7 +214,7 @@ export default function TopBar(props: MainProps) {
             >
               <span className="flex items-center gap-2">
                 <FileText size={13} />
-                Event Log
+                {t("shell.eventLog")}
               </span>
               <ShortcutHint id="logs" />
             </DropdownMenuItem>
@@ -208,14 +227,14 @@ export default function TopBar(props: MainProps) {
             >
               <span className="flex items-center gap-2">
                 <LogOut size={13} />
-                Quit
+                {t("shell.quit")}
               </span>
               <ShortcutHint id="quit" />
             </DropdownMenuItem>
           </DropdownMenuGroup>
         </TopBarMenu>
 
-        <TopBarMenu label="View" openMenu={openMenu} setOpenMenu={setOpenMenu}>
+        <TopBarMenu menuId="view" label={t("shell.menu.view")} openMenu={openMenu} setOpenMenu={setOpenMenu}>
           <DropdownMenuGroup>
             <DropdownMenuItem
               className="flex w-full items-center justify-between gap-2"
@@ -223,7 +242,7 @@ export default function TopBar(props: MainProps) {
             >
               <span className="flex items-center gap-2">
                 <Fullscreen size={13} />
-                Full Screen
+                {t("shell.fullScreen")}
               </span>
               <ShortcutHint id="view_fullscreen" />
             </DropdownMenuItem>
@@ -236,7 +255,7 @@ export default function TopBar(props: MainProps) {
             >
               <span className="flex items-center gap-2">
                 <ZoomIn size={13} />
-                Zoom In
+                {t("shell.zoomIn")}
               </span>
               <ShortcutHint id="view_zoom_in" />
             </DropdownMenuItem>
@@ -246,7 +265,7 @@ export default function TopBar(props: MainProps) {
             >
               <span className="flex items-center gap-2">
                 <ZoomOut size={13} />
-                Zoom Out
+                {t("shell.zoomOut")}
               </span>
               <ShortcutHint id="view_zoom_out" />
             </DropdownMenuItem>
@@ -256,7 +275,7 @@ export default function TopBar(props: MainProps) {
             >
               <span className="flex items-center gap-2">
                 <RotateCcw size={13} />
-                Reset Zoom
+                {t("shell.resetZoom")}
               </span>
               <ShortcutHint id="view_zoom_reset" />
             </DropdownMenuItem>
@@ -269,14 +288,40 @@ export default function TopBar(props: MainProps) {
             >
               <span className="flex items-center gap-2">
                 <CodeXml size={13} />
-                Devtools
+                {t("shell.devtools")}
               </span>
               <ShortcutHint id="view_devtools" />
+            </DropdownMenuItem>
+
+            <DropdownMenuSeparator />
+
+            <DropdownMenuSub>
+              <DropdownMenuSubTrigger className="flex w-full items-center gap-2">
+                <Languages size={13} />
+                {t("shell.language")}
+              </DropdownMenuSubTrigger>
+              <DropdownMenuSubContent>
+                <DropdownMenuRadioGroup
+                  value={language}
+                  onValueChange={setLanguage}
+                >
+                  {locales.map((locale) => (
+                    <DropdownMenuRadioItem key={locale.code} value={locale.code}>
+                      {locale.label}
+                    </DropdownMenuRadioItem>
+                  ))}
+                </DropdownMenuRadioGroup>
+              </DropdownMenuSubContent>
+            </DropdownMenuSub>
+
+            <DropdownMenuItem onClick={() => props.floatWindow("preferences")}>
+              <Settings size={13} />
+              {t("shell.preferences")}
             </DropdownMenuItem>
           </DropdownMenuGroup>
         </TopBarMenu>
 
-        <TopBarMenu label="Tabs" openMenu={openMenu} setOpenMenu={setOpenMenu}>
+        <TopBarMenu menuId="tabs" label={t("shell.menu.tabs")} openMenu={openMenu} setOpenMenu={setOpenMenu}>
           <DropdownMenuGroup>
             <DropdownMenuItem
               className="flex w-full items-center justify-between gap-2"
@@ -284,7 +329,7 @@ export default function TopBar(props: MainProps) {
             >
               <span className="flex items-center gap-2">
                 <SquareChevronRight size={13} />
-                Terminal
+                {t("shell.terminal")}
               </span>
               <ShortcutHint id="terminal" />
             </DropdownMenuItem>
@@ -294,7 +339,7 @@ export default function TopBar(props: MainProps) {
             >
               <span className="flex items-center gap-2">
                 <Folder size={13} />
-                File Browser
+                {t("shell.fileBrowser")}
               </span>
               <ShortcutHint id="explorer" />
             </DropdownMenuItem>
@@ -304,7 +349,7 @@ export default function TopBar(props: MainProps) {
             >
               <span className="flex items-center gap-2">
                 <Cpu size={13} />
-                Processes
+                {t("shell.processes")}
               </span>
               <ShortcutHint id="process" />
             </DropdownMenuItem>
@@ -313,11 +358,11 @@ export default function TopBar(props: MainProps) {
 
             <DropdownMenuItem onClick={() => props.openWindow("screenshot")}>
               <Camera size={13} />
-              Screenshot
+              {t("shell.screenshot")}
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => props.openWindow("keylogger")}>
               <Keyboard size={13} />
-              Keystrokes
+              {t("shell.keystrokes")}
             </DropdownMenuItem>
             <DropdownMenuItem
               className="flex w-full items-center justify-between gap-2"
@@ -325,7 +370,7 @@ export default function TopBar(props: MainProps) {
             >
               <span className="flex items-center gap-2">
                 <KeyRound size={13} />
-                Credentials
+                {t("shell.credentials")}
               </span>
               <ShortcutHint id="credentials" />
             </DropdownMenuItem>
@@ -338,13 +383,13 @@ export default function TopBar(props: MainProps) {
             >
               <span className="flex items-center gap-2">
                 <MonitorIcon size={13} />
-                Sessions
+                {t("shell.sessions")}
               </span>
               <ShortcutHint id="sessions" />
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => props.openWindow("graphs")}>
               <Share2 size={13} />
-              Attack Graph
+              {t("shell.attackGraph")}
             </DropdownMenuItem>
 
             <DropdownMenuSeparator />
@@ -355,25 +400,25 @@ export default function TopBar(props: MainProps) {
             >
               <span className="flex items-center gap-2">
                 <Bot size={13} />
-                AI Agent
+                {t("shell.aiAgent")}
               </span>
               <ShortcutHint id="agent" />
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => props.openWindow("fileServer")}>
               <Globe size={13} />
-              File Server
+              {t("shell.fileServer")}
             </DropdownMenuItem>
 
             <DropdownMenuSeparator />
 
             <DropdownMenuItem onClick={() => props.openWindow("nukescripts_output")}>
               <LuSquareCode size={13} />
-              NS Debugger
+              {t("shell.nsDebugger")}
             </DropdownMenuItem>
           </DropdownMenuGroup>
         </TopBarMenu>
 
-        <TopBarMenu label="Help" openMenu={openMenu} setOpenMenu={setOpenMenu}>
+        <TopBarMenu menuId="help" label={t("shell.menu.help")} openMenu={openMenu} setOpenMenu={setOpenMenu}>
           <DropdownMenuGroup>
             <DropdownMenuItem
               className="flex w-full items-center justify-between gap-2"
@@ -383,7 +428,7 @@ export default function TopBar(props: MainProps) {
             >
               <span className="flex items-center gap-2">
                 <GrHelpBook size={13} />
-                Documentation
+                {t("shell.docs")}
               </span>
               <ShortcutHint id="docs" />
             </DropdownMenuItem>
@@ -393,7 +438,7 @@ export default function TopBar(props: MainProps) {
               }
             >
               <Command size={13} />
-              Shortcuts
+              {t("shell.shortcuts")}
             </DropdownMenuItem>
 
             <DropdownMenuSeparator />
@@ -407,7 +452,7 @@ export default function TopBar(props: MainProps) {
               }
             >
               <MessageCircleMore size={13} />
-              Feedbacks
+              {t("shell.feedbacks")}
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() =>
@@ -418,14 +463,14 @@ export default function TopBar(props: MainProps) {
               }
             >
               <Scale size={13} />
-              License
+              {t("shell.license")}
             </DropdownMenuItem>
 
             <DropdownMenuSeparator />
 
             <DropdownMenuItem onClick={() => props.floatWindow("about")}>
               <Info size={10} />
-              About
+              {t("shell.about")}
             </DropdownMenuItem>
           </DropdownMenuGroup>
         </TopBarMenu>
@@ -436,27 +481,27 @@ export default function TopBar(props: MainProps) {
           onClick={() => props.openWindow("terminal")}
           type="icons-only"
           icon={<SquareChevronRight size={18.5} />}
-          label="Terminal"
-          title="Terminal"
-          desc="Interactive session console"
+          label={t("shell.terminal")}
+          title={t("shell.terminal")}
+          desc={t("shell.hints.terminal")}
           shortcutId="terminal"
         />
         <NavItem
           onClick={() => props.openWindow("explorer")}
           type="icons-only"
           icon={<Folder size={18.5} />}
-          label="File Browser"
-          title="File Browser"
-          desc="Browse files on the active host"
+          label={t("shell.fileBrowser")}
+          title={t("shell.fileBrowser")}
+          desc={t("shell.hints.explorer")}
           shortcutId="explorer"
         />
         <NavItem
           onClick={() => props.openWindow("process")}
           type="icons-only"
           icon={<Cpu size={18.5} />}
-          label="Processes"
-          title="Processes"
-          desc="View and manage host processes"
+          label={t("shell.processes")}
+          title={t("shell.processes")}
+          desc={t("shell.hints.process")}
           shortcutId="process"
         />
 
@@ -466,25 +511,25 @@ export default function TopBar(props: MainProps) {
           onClick={() => props.openWindow("screenshot")}
           type="icons-only"
           icon={<Camera size={20} />}
-          label="Screenshot"
-          title="Screenshot"
-          desc="Capture remote desktop view"
+          label={t("shell.screenshot")}
+          title={t("shell.screenshot")}
+          desc={t("shell.hints.screenshot")}
         />
         <NavItem
           onClick={() => props.openWindow("keylogger")}
           type="icons-only"
           icon={<Keyboard size={18.5} />}
-          label="Keylogger"
-          title="Keylogger"
-          desc="Capture keyboard events"
+          label={t("shell.keylogger")}
+          title={t("shell.keylogger")}
+          desc={t("shell.hints.keylogger")}
         />
         <NavItem
           onClick={() => props.openWindow("credentials")}
           type="icons-only"
           icon={<KeyRound size={18.5} />}
-          label="Credentials"
-          title="Credentials"
-          desc="Manage stored credentials"
+          label={t("shell.credentials")}
+          title={t("shell.credentials")}
+          desc={t("shell.hints.credentials")}
           shortcutId="credentials"
         />
 
@@ -494,18 +539,18 @@ export default function TopBar(props: MainProps) {
           onClick={() => props.openWindow("sessions")}
           type="icons-only"
           icon={<MonitorIcon size={18.5} />}
-          label="Sessions"
-          title="Sessions"
-          desc="View active sessions"
+          label={t("shell.sessions")}
+          title={t("shell.sessions")}
+          desc={t("shell.hints.sessions")}
           shortcutId="sessions"
         />
         <NavItem
           onClick={() => props.openWindow("graphs")}
           type="icons-only"
           icon={<Share2 size={18.5} />}
-          label="Attack Graph"
-          title="Attack Graph"
-          desc="Visualize lateral movement and pivots"
+          label={t("shell.attackGraph")}
+          title={t("shell.attackGraph")}
+          desc={t("shell.hints.graphs")}
         />
 
         <div className="w-px h-4 bg-[#292929] mr-4 ml-4 shrink-0" />
@@ -514,18 +559,18 @@ export default function TopBar(props: MainProps) {
           onClick={() => props.openWindow("agent")}
           type="icons-only"
           icon={<Bot size={22} />}
-          label="AI Agent"
-          title="AI Agent"
-          desc="AI-assisted session operations"
+          label={t("shell.aiAgent")}
+          title={t("shell.aiAgent")}
+          desc={t("shell.hints.agent")}
           shortcutId="agent"
         />
         <NavItem
           onClick={() => props.openWindow("fileServer")}
           type="icons-only"
           icon={<Globe size={18.5} />}
-          label="File Server"
-          title="File Server"
-          desc="Team server file staging"
+          label={t("shell.fileServer")}
+          title={t("shell.fileServer")}
+          desc={t("shell.hints.fileServer")}
         />
 
         <DownloadsTopbarButton />
@@ -561,12 +606,12 @@ export default function TopBar(props: MainProps) {
                   }
                   onClick={(e) => e.stopPropagation()}
                   onMouseDown={(e) => e.stopPropagation()}
-                  onBlur={() => commitTabRename(tab.id, tab.name)}
+                  onBlur={() => commitTabRename(tab)}
                   onKeyDown={(e) => {
                     e.stopPropagation();
                     if (e.key === "Enter") {
                       e.preventDefault();
-                      commitTabRename(tab.id, tab.name);
+                      commitTabRename(tab);
                     }
                     if (e.key === "Escape") {
                       e.preventDefault();
@@ -583,10 +628,15 @@ export default function TopBar(props: MainProps) {
                   onDoubleClick={(e) => {
                     e.stopPropagation();
                     setRenamingTabId(tab.id);
-                    setRenameDraft(tab.name.slice(0, WORKSPACE_TAB_NAME_MAX_LEN));
+                    setRenameDraft(
+                      workspaceTabLabel(tab, translate).slice(
+                        0,
+                        WORKSPACE_TAB_NAME_MAX_LEN,
+                      ),
+                    );
                   }}
                 >
-                  {tab.name}
+                  {workspaceTabLabel(tab, translate)}
                 </span>
               )}
               {props.workspaceTabs.length > 1 && (
@@ -605,7 +655,7 @@ export default function TopBar(props: MainProps) {
         ))}
         <button
           onClick={props.onTabAdd}
-          title="New workspace"
+          title={t("shell.newWorkspace")}
           className="button-default p-1 rounded text-[#6b6b6b] hover:text-[#a0a0a0] hover:bg-[#1e1e1e] transition-colors"
         >
           <Plus size={17} />
@@ -619,11 +669,13 @@ export default function TopBar(props: MainProps) {
 }
 
 function TopBarMenu({
+  menuId,
   label,
   children,
   openMenu,
   setOpenMenu,
 }: {
+  menuId: string;
   label: string;
   children: React.ReactNode;
   openMenu: string | null;
@@ -631,8 +683,8 @@ function TopBarMenu({
 }) {
   return (
     <DropdownMenu
-      open={openMenu === label}
-      onOpenChange={(open) => setOpenMenu(open ? label : null)}
+      open={openMenu === menuId}
+      onOpenChange={(open) => setOpenMenu(open ? menuId : null)}
     >
       <DropdownMenuTrigger asChild>
         <div className="ml-0.5 mr-0.5 font-[400] flex items-center gap-1.5 cursor-pointer rounded px-2 py-1 text-[13.5px] primary-text">
@@ -684,10 +736,7 @@ function NavItem({
           style={{ borderRadius: "7px" }}
         >
           <div className="font-semibold text-xs text-left w-full">{title}</div>
-          <div
-            className="text-xs opacity-90 text-left w-full"
-            dangerouslySetInnerHTML={{ __html: desc }}
-          />
+          <div className="text-xs opacity-90 text-left w-full">{desc}</div>
         </TooltipContent>
       )}
     </Tooltip>

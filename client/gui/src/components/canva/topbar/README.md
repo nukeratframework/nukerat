@@ -13,6 +13,7 @@ Main menu bar for the Canva shell. Workspace tabs, shortcuts, and entries that f
 - `/logs`: Team server log viewer
 - `/network`: Port forwards and SOCKS UI
 - `/nukescripts`: NukeScript editor and validation UI
+- `/preferences`: App preferences (interface language)
 - `/queue`: Command queue panel
 - `/reports`: Report create and view
 - `/servers`: Saved team server connections

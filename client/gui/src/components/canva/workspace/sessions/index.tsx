@@ -1,13 +1,15 @@
 import type { IDockviewPanelProps } from "dockview";
+import { useTranslation } from "react-i18next";
 import { ChevronDown, ChevronUp, CircleX, RefreshCw, Trash2 } from "lucide-react";
 import { PanelEmptyState } from "@/components/canva/utils/panel-empty-state";
-import { formatUtcDateOnly, UtcTableColumnHeader } from "@/components/canva/utils/utc-date";
+import { formatUtcDateOnly, TableColumnHeader } from "@/components/canva/utils/utc-date";
 import { formatProcess, sessionIcon, tableCellTruncate, tableColumns, useSessionsPanel } from "./components/logic";
 import TopBar from "./components/topbbar";
 import SplitPanel from "./components/split";
 import { SessionsDockviewShell } from "./components/rigth-click-menu";
 
 const SessionsPanel = (props: IDockviewPanelProps) => {
+  const { t } = useTranslation();
   const {
     filteredSessions,
     loading,
@@ -61,13 +63,13 @@ const SessionsPanel = (props: IDockviewPanelProps) => {
                       <tr className="bg-[#171717] border-b border-[#252525]">
                         {tableColumns.map((col) => (
                           <th
-                            key={col}
-                            onClick={() => handleSortColumn(col)}
-                            className={`min-w-max py-2 px-3 text-[12px] font-medium uppercase tracking-widest whitespace-nowrap text-center cursor-pointer select-none transition-colors hover:text-[#b0b0b0] ${sortCol === col ? "text-[#b8b8b8]" : "text-[#888888]"} ${col === "Platform" ? "max-w-[220px] !pl-5" : ""}`}
+                            key={col.key}
+                            onClick={() => handleSortColumn(col.key)}
+                            className={`min-w-max py-2 px-3 text-[12px] font-medium uppercase tracking-widest whitespace-nowrap text-center cursor-pointer select-none transition-colors hover:text-[#b0b0b0] ${sortCol === col.key ? "text-[#b8b8b8]" : "text-[#888888]"} ${col.key === "platform" ? "max-w-[220px] !pl-5" : ""}`}
                           >
                             <span className="inline-flex items-center justify-center gap-0.5 mx-3">
-                              <UtcTableColumnHeader label={col} />
-                              {sortCol === col ? (
+                              <TableColumnHeader column={col} />
+                              {sortCol === col.key ? (
                                 sortAsc ? (
                                   <ChevronUp size={13} strokeWidth={2.25} className="shrink-0 opacity-80" />
                                 ) : (
@@ -143,7 +145,7 @@ const SessionsPanel = (props: IDockviewPanelProps) => {
                       </tbody>
                     )}
                   </table>
-                  {filteredSessions.length === 0 && <PanelEmptyState>No sessions found</PanelEmptyState>}
+                  {filteredSessions.length === 0 && <PanelEmptyState>{t("sessions.empty")}</PanelEmptyState>}
                 </>
               )}
             </div>
@@ -200,7 +202,7 @@ const SessionsPanel = (props: IDockviewPanelProps) => {
             >
               <div className="flex text-[13.5px] items-center gap-2 mb-3">
                 <CircleX size={14} className="text-[#c97070] mb-0.5" />
-                <span className="text-[13.5px] font-semibold text-[#cecece]">Kill session</span>
+                <span className="text-[13.5px] font-semibold text-[#cecece]">{t("sessions.killSession")}</span>
               </div>
               <p className="text-[13px] text-[#9b9b9b] mb-5 leading-relaxed">
                 Kill{" "}
@@ -232,7 +234,7 @@ const SessionsPanel = (props: IDockviewPanelProps) => {
             >
               <div className="flex text-[13.5px] items-center gap-2 mb-3">
                 <Trash2 size={14} className="text-[#c97070] mb-0.5" />
-                <span className="text-[13.5px] font-semibold text-[#cecece]">Delete Session</span>
+                <span className="text-[13.5px] font-semibold text-[#cecece]">{t("sessions.deleteSession")}</span>
               </div>
               <p className="text-[13px] text-[#9b9b9b] mb-5 leading-relaxed">
                 {deleteConfirmMode === "all" ? (

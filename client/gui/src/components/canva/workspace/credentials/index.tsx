@@ -1,13 +1,16 @@
 import type { CSSProperties } from "react";
+import { useTranslation } from "react-i18next";
 import type { IDockviewPanelProps } from "dockview";
 import { Edit, Plus, Trash2, RefreshCw } from "lucide-react";
 import { PanelEmptyState } from "@/components/canva/utils/panel-empty-state";
+import { TableColumnHeader } from "@/components/canva/utils/utc-date";
 import SplitPanel from "./components/split";
 import ViewPanel from "./components/view";
 import { TABLE_COLUMNS, tableCellTruncate, useCredentialsPanel } from "./components/logic";
 import { CredentialsDockviewShell } from "./components/rigth-click-menu";
 
 const CredentialsPanel = (props: IDockviewPanelProps) => {
+  const { t } = useTranslation();
   const {
     credentials,
     loading,
@@ -52,7 +55,7 @@ const CredentialsPanel = (props: IDockviewPanelProps) => {
             {loading ? (
               <div className="flex items-center justify-center h-16 text-[#444] text-[13.5px]">
                 <RefreshCw size={14} className="animate-spin mr-2" />
-                Loading...
+                {t("common.loading")}
               </div>
             ) : (
               <>
@@ -61,10 +64,10 @@ const CredentialsPanel = (props: IDockviewPanelProps) => {
                     <tr className="bg-[#171717] border-b border-[#252525]">
                       {TABLE_COLUMNS.map((col) => (
                         <th
-                          key={col}
+                          key={col.key}
                           className="text-left px-4 py-2 text-[12px] text-[#888888] font-medium uppercase tracking-widest whitespace-nowrap"
                         >
-                          {col}
+                          <TableColumnHeader column={col} />
                         </th>
                       ))}
                     </tr>
@@ -96,7 +99,7 @@ const CredentialsPanel = (props: IDockviewPanelProps) => {
                     </tbody>
                   )}
                 </table>
-                {credentials.length === 0 && <PanelEmptyState>No content found</PanelEmptyState>}
+                {credentials.length === 0 && <PanelEmptyState>{t("credentials.empty")}</PanelEmptyState>}
               </>
             )}
           </div>
@@ -108,7 +111,7 @@ const CredentialsPanel = (props: IDockviewPanelProps) => {
               className="button-default flex h-[29px] shrink-0 items-center gap-1.5 rounded border border-[#333] bg-[#232323] px-3 text-[13px] text-[#cecece] hover:bg-[#2b2b2b] cursor-pointer"
             >
               <Plus size={11} />
-              Add
+              {t("common.add")}
             </button>
             <button
               type="button"
@@ -117,7 +120,7 @@ const CredentialsPanel = (props: IDockviewPanelProps) => {
               className="button-default flex h-[29px] shrink-0 items-center gap-1.5 rounded border border-[#333] bg-[#232323] px-3 text-[13px] text-[#cecece] hover:bg-[#2b2b2b] cursor-pointer disabled:cursor-not-allowed disabled:opacity-25"
             >
               <Edit size={11} />
-              Edit
+              {t("common.edit")}
             </button>
             <button
               type="button"
@@ -126,7 +129,7 @@ const CredentialsPanel = (props: IDockviewPanelProps) => {
               className="button-default flex h-[29px] shrink-0 items-center gap-1.5 rounded border border-[#333] bg-[#232323] px-3 text-[13px] font-medium text-[#cecece] hover:bg-[#2b2b2b] hover:text-[#c97070] cursor-pointer disabled:cursor-not-allowed disabled:opacity-25"
             >
               <Trash2 size={11} />
-              Remove
+              {t("common.remove")}
             </button>
             <div className="min-w-2 flex-1 shrink" aria-hidden />
             <button
@@ -135,7 +138,7 @@ const CredentialsPanel = (props: IDockviewPanelProps) => {
               className="button-default flex h-[29px] shrink-0 items-center gap-1.5 rounded border border-[#333] bg-[#232323] px-3 text-[13px] text-[#cecece] hover:bg-[#2b2b2b] hover:text-[#d4d4d4] cursor-pointer"
             >
               <RefreshCw size={11} />
-              Update
+              {t("credentials.actions.update")}
             </button>
           </div>
         </div>
@@ -178,28 +181,32 @@ const CredentialsPanel = (props: IDockviewPanelProps) => {
           <div style={{ borderRadius: "8px" }} className="bg-[#191919] border border-[#2f2f2f] p-5 max-w-sm w-[90%] shadow-2xl">
             <div className="flex items-center gap-2 mb-3">
               <Trash2 size={13} className="text-[#c97070]" />
-              <span className="text-[13.5px] font-semibold text-[#d4d4d4]">Remove credential</span>
+              <span className="text-[13.5px] font-semibold text-[#d4d4d4]">{t("credentials.confirm.removeTitle")}</span>
             </div>
             <p className="text-[13.5px] text-[#9b9b9b] mb-5 leading-relaxed">
               {removeConfirmMode === "all" ? (
                 <>
-                  Remove all{" "}
+                  {t("credentials.confirm.removeAllLead")}{" "}
                   <span className="text-[#d4d4d4] font-semibold">{credentialCount}</span>{" "}
-                  credential{credentialCount === 1 ? "" : "s"}? This cannot be undone.
+                  {t(
+                    credentialCount === 1
+                      ? "credentials.confirm.removeAllTailOne"
+                      : "credentials.confirm.removeAllTailMany",
+                  )}
                 </>
               ) : (
                 <>
-                  Remove{" "}
+                  {t("credentials.confirm.removeLead")}{" "}
                   <span className="inline-block max-w-[180px] truncate text-[#d4d4d4] font-semibold align-bottom">
                     "{selected?.name}"
                   </span>
-                  ? This cannot be undone.
+                  {t("credentials.confirm.removeTail")}
                 </>
               )}
             </p>
             <div className="flex items-center justify-end gap-2">
               <button onClick={() => setShowRemoveConfirm(false)} className="button-default flex items-center gap-1.5 px-3 py-1 rounded bg-[#232323] text-[#9b9b9b] text-[13px] hover:bg-[#252525] hover:text-[#d4d4d4] transition-colors border border-[#333] cursor-pointer">
-                Cancel
+                {t("common.cancel")}
               </button>
               <button
                 onClick={handleConfirmRemove}
@@ -207,7 +214,7 @@ const CredentialsPanel = (props: IDockviewPanelProps) => {
                 className="button-default flex items-center gap-1.5 px-3 py-1 rounded text-[13px] text-white bg-[#852b2b] hover:bg-[#a83232] disabled:opacity-50 cursor-pointer"
               >
                 {submitting && <RefreshCw size={10} className="animate-spin" />}
-                Remove
+                {t("common.remove")}
               </button>
             </div>
           </div>

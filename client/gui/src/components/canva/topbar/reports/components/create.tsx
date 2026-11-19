@@ -16,6 +16,7 @@ import {
 import { getServerOptionLabel, truncateServerLabel, useServerDropdown } from "@/components/canva/topbar/listeners/components/logic";
 import HostTagSelector from "@/components/canva/utils/host-tag-selector";
 import type { Session } from "@/api/sessions";
+import { useTranslation } from "react-i18next";
 
 interface CreateReportPanelProps {
   formData: ReportFormData;
@@ -37,15 +38,16 @@ const ServerSelect = ({
   server: string;
   onSelect: (host: string, port: string) => void;
 }) => {
+  const { t } = useTranslation();
   const [host, port] = server.includes(":") ? server.split(":") : ["", ""];
   const { servers, selectedId, handleChange } = useServerDropdown(host, port, onSelect);
 
   return (
     <div className="mb-3 space-y-1.5">
-      <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Server</label>
+      <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("reports.create.server")}</label>
       <Select value={selectedId || undefined} onValueChange={handleChange}>
         <SelectTrigger className="w-full bg-[#212121] border-[#363636] text-[#cecece] text-[13.5px] rounded h-auto focus:border-[#555] focus-visible:ring-0">
-          <SelectValue placeholder="Select a server..." />
+          <SelectValue placeholder={t("reports.create.serverPlaceholder")} />
         </SelectTrigger>
         <SelectContent>
           {servers.map((s) => (
@@ -71,12 +73,13 @@ const CreateReportPanel = ({
   handleClosePanel,
   handleSubmitForm,
 }: CreateReportPanelProps) => {
+  const { t } = useTranslation();
   const submitDisabled = !canSubmitReportForm(formData, submitting);
 
   return (
     <div className="flex flex-col h-full min-h-0 min-w-[32rem]">
       <div className="flex items-center justify-between px-4 py-3 border-b border-[#2a2a2a] shrink-0">
-        <span className="text-[13.5px] font-semibold text-[#cecece] tracking-wide">New Report</span>
+        <span className="text-[13.5px] font-semibold text-[#cecece] tracking-wide">{t("reports.create.title")}</span>
         <button
           onClick={handleClosePanel}
           className="button-default p-1 rounded text-[#6b6b6b] hover:text-[#d4d4d4] hover:bg-[#2a2a2a] transition-colors cursor-pointer"
@@ -87,12 +90,12 @@ const CreateReportPanel = ({
 
       <div className="flex-1 min-h-0 min-w-0 overflow-y-auto px-4 py-4">
         <div className="mb-3 space-y-1.5">
-          <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Name</label>
+          <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("reports.create.name")}</label>
           <input
             className="w-full bg-[#212121] border border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 outline-none focus:border-[#555] transition-colors placeholder:text-[#444]"
             value={formData.name}
             onChange={(e) => handleFormChange("name", e.target.value)}
-            placeholder="Report name"
+            placeholder={t("reports.create.namePlaceholder")}
             maxLength={100}
             autoComplete="off"
             spellCheck={false}
@@ -100,12 +103,12 @@ const CreateReportPanel = ({
         </div>
 
         <div className="mb-3 space-y-1.5">
-          <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Description</label>
+          <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("reports.create.description")}</label>
           <textarea
             className="w-full min-h-[4.5rem] bg-[#212121] border border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 outline-none focus:border-[#555] transition-colors placeholder:text-[#444] resize-none"
             value={formData.description}
             onChange={(e) => handleFormChange("description", e.target.value)}
-            placeholder="Optional report description"
+            placeholder={t("reports.create.descriptionPlaceholder")}
             maxLength={500}
             autoComplete="off"
             spellCheck={false}
@@ -115,7 +118,7 @@ const CreateReportPanel = ({
         <ServerSelect server={formData.server} onSelect={handleServerChange} />
 
         <div className="mb-4 space-y-1.5">
-          <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Report Type</label>
+          <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("reports.create.reportType")}</label>
           <Select
             value={formData.reportType}
             onValueChange={(v) => handleFormChange("reportType", v as ReportFormData["reportType"])}
@@ -126,7 +129,7 @@ const CreateReportPanel = ({
             <SelectContent>
               {report_type_options.map((opt) => (
                 <SelectItem key={opt.value} value={opt.value}>
-                  {opt.label}
+                  {t(opt.labelKey)}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -134,7 +137,7 @@ const CreateReportPanel = ({
         </div>
 
         <div className="mb-4 space-y-1.5">
-          <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">File Type</label>
+          <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("reports.create.fileType")}</label>
           <Select
             value={formData.fileType}
             onValueChange={(v) => handleFormChange("fileType", v as ReportFormData["fileType"])}
@@ -161,7 +164,7 @@ const CreateReportPanel = ({
                   checked={formData.hideCredentials}
                   onCheckedChange={(checked) => handleFormChange("hideCredentials", checked === true)}
                 />
-                <span className="text-[13px] text-[#6e6e6e] tracking-widest">Hide credentials</span>
+                <span className="text-[13px] text-[#6e6e6e] tracking-widest">{t("reports.create.hideCredentials")}</span>
               </label>
             </div>
           </>

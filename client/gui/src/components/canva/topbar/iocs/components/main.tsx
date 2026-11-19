@@ -3,6 +3,7 @@ import { PanelEmptyState } from "@/components/canva/utils/panel-empty-state";
 import type { IocEntry } from "./logic";
 
 import { UtcTableColumnHeader, utcTableColumnTitle } from "@/components/canva/utils/utc-date";
+import { translate } from "@/i18n";
 
 const cols = ["Host", "Type", "Value", utcTableColumnTitle("Date"), "Server"];
 
@@ -31,7 +32,7 @@ export default function MainList({
       {loading && !entries.length ? (
         <div className="flex items-center justify-center h-16 text-[#444] text-[13.5px]">
           <RefreshCw size={14} className="animate-spin mr-2" />
-          Loading...
+          {translate("common.loading")}
         </div>
       ) : (
         <>
@@ -87,7 +88,7 @@ export default function MainList({
               </tbody>
             )}
           </table>
-          {entries.length === 0 && !loading && <PanelEmptyState>No content found</PanelEmptyState>}
+          {entries.length === 0 && !loading && <PanelEmptyState>{translate("iocs.empty")}</PanelEmptyState>}
         </>
       )}
     </div>

@@ -1,4 +1,5 @@
 import { X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import type { Connection } from "./logic";
 import {
   formatForward,
@@ -41,6 +42,7 @@ const ViewField = ({
 );
 
 const ViewNetworkPanel = ({ connection, handleClosePanel }: ViewNetworkPanelProps) => {
+  const { t } = useTranslation();
   const { isSocks, isPortForward } = getViewFlags(connection);
 
   return (
@@ -48,7 +50,7 @@ const ViewNetworkPanel = ({ connection, handleClosePanel }: ViewNetworkPanelProp
       <div className="flex items-center justify-between px-4 py-3 border-b border-[#2a2a2a] shrink-0">
         <div className="flex items-center gap-2">
           <span className="text-[13.5px] font-semibold text-[#cecece] tracking-wide">
-            View - {getViewTitle(connection)}
+            {t("network.view.title", { name: getViewTitle(connection) })}
           </span>
         </div>
         <button
@@ -60,26 +62,26 @@ const ViewNetworkPanel = ({ connection, handleClosePanel }: ViewNetworkPanelProp
       </div>
 
       <div className="flex-1 min-h-0 min-w-0 overflow-y-auto px-4 py-4">
-        <ViewField label="Tag" value={connection?.tag ?? connection?.id} />
-        <ViewField label="Type" value={typeLabel(connection?.networkType)} />
-        <ViewField label="Server" value={connection?.server} />
-        <ViewField label="Bind Host" value={connection?.host} />
-        <ViewField label="Port" value={connection?.targetPort} />
-        <ViewField label="Protocol" value={connection ? formatProtocol(connection) : ""} />
-        <ViewField label="Implant Tag" value={connection?.hostTag} />
+        <ViewField label={t("network.view.tag")} value={connection?.tag ?? connection?.id} />
+        <ViewField label={t("network.view.type")} value={typeLabel(connection?.networkType)} />
+        <ViewField label={t("network.view.server")} value={connection?.server} />
+        <ViewField label={t("network.view.bindHost")} value={connection?.host} />
+        <ViewField label={t("network.view.port")} value={connection?.targetPort} />
+        <ViewField label={t("network.view.protocol")} value={connection ? formatProtocol(connection) : ""} />
+        <ViewField label={t("network.view.implantTag")} value={connection?.hostTag} />
 
         {isSocks && (
           <>
-            <ViewField label="Auth User" value={connection?.authUser} />
-            <ViewField label="Auth Password" value={connection?.authPass} />
+            <ViewField label={t("network.view.authUser")} value={connection?.authUser} />
+            <ViewField label={t("network.view.authPassword")} value={connection?.authPass} />
           </>
         )}
 
         {isPortForward && (
           <>
-            <ViewField label="Forward" value={connection ? formatForward(connection) : ""} />
-            <ViewField label="Forward Host" value={connection?.forwardHost} />
-            <ViewField label="Forward Port" value={connection?.forwardPort} />
+            <ViewField label={t("network.view.forward")} value={connection ? formatForward(connection) : ""} />
+            <ViewField label={t("network.view.forwardHost")} value={connection?.forwardHost} />
+            <ViewField label={t("network.view.forwardPort")} value={connection?.forwardPort} />
           </>
         )}
       </div>
@@ -90,7 +92,7 @@ const ViewNetworkPanel = ({ connection, handleClosePanel }: ViewNetworkPanelProp
           onClick={handleClosePanel}
           className="button-default z-10 flex h-[29px] shrink-0 items-center gap-1.5 rounded border border-[#333] bg-[#232323] px-3 text-[13px] text-[#cecece] hover:bg-[#2b2b2b] hover:text-[#d4d4d4] cursor-pointer disabled:cursor-not-allowed disabled:opacity-25"
         >
-          Close
+          {t("network.view.close")}
         </button>
       </div>
     </div>

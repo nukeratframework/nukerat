@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { ChevronRight, Upload } from "lucide-react";
 import { sanitizeNumericInput } from "@/components/ui/lib/utils";
 import {
@@ -81,11 +82,13 @@ export const PortToOpenField = ({
 }: {
   value: string;
   onChange: (v: string) => void;
-}) => (
+}) => {
+  const { t } = useTranslation();
+  return (
   <div className="mb-3 space-y-1.5">
-    <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Port to Open</label>
+    <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("listeners.form.portToOpen")}</label>
     <input
-      aria-label="Port to open"
+      aria-label={t("listeners.form.portToOpenAria")}
       className="w-full text-[13.5px] bg-[#212121] border border-[#363636] text-[#cecece] rounded px-3 py-1.5 outline-none focus:border-[#555] placeholder:text-[#444] tabular-nums"
       value={value}
       onChange={(e) => onChange(sanitizeNumericInput(e.target.value))}
@@ -95,7 +98,8 @@ export const PortToOpenField = ({
       spellCheck={false}
     />
   </div>
-);
+  );
+};
 
 export const ServerDropdown = ({
   host,
@@ -112,6 +116,7 @@ export const ServerDropdown = ({
   label?: string;
   hideLabel?: boolean;
 }) => {
+  const { t } = useTranslation();
   const { servers, selectedId, handleChange } = useServerDropdown(
     host,
     port,
@@ -126,7 +131,7 @@ export const ServerDropdown = ({
       ) : null}
       <Select value={selectedId || undefined} onValueChange={handleChange}>
         <SelectTrigger className="w-full text-[13.5px] bg-[#212121] border-[#363636] text-[#cecece] rounded px-3 py-1.5 h-auto focus:border-[#555] focus-visible:ring-0">
-          <SelectValue placeholder="Select a server..." />
+          <SelectValue placeholder={t("listeners.form.selectServer")} />
         </SelectTrigger>
         <SelectContent className="text-[13.5px]">
           {servers.map((s) => (
@@ -148,6 +153,7 @@ export const AdvancedSection = ({
   formData,
   handleFormChange,
 }: ListenerFormBodyProps) => {
+  const { t } = useTranslation();
   const {
     expanded,
     toggleExpanded,
@@ -172,13 +178,13 @@ export const AdvancedSection = ({
           className={`text-[#454545] transition-transform duration-150 ${expanded ? "rotate-90" : ""
             }`}
         />
-        <span className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Advanced</span>
+        <span className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("listeners.form.advanced")}</span>
       </button>
 
       {expanded && (
         <div className="pl-3 border-l border-[#252525]">
           <div className="mb-3 space-y-1.5">
-            <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Endpoint Path</label>
+            <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("listeners.form.endpointPath")}</label>
             <input
               className="w-full text-[13.5px] bg-[#212121] border border-[#363636] text-[#cecece] rounded px-3 py-1.5 outline-none focus:border-[#555] placeholder:text-[#444]"
               value={formData.endpointPath}
@@ -192,7 +198,7 @@ export const AdvancedSection = ({
           <div className="h-px bg-[#252525] mb-4 mt-4" />
 
           <div className="mb-3 space-y-1.5">
-            <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">Custom body</label>
+            <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">{t("listeners.form.customBody")}</label>
             <Select
               value={formData.implantBodyType}
               onValueChange={(v) =>
@@ -206,7 +212,7 @@ export const AdvancedSection = ({
                 <SelectItem value="off" className="text-[13.5px]">off</SelectItem>
                 <SelectItem value="custom" className="text-[13.5px]">custom</SelectItem>
                 <SelectGroup>
-                  <SelectLabel className="text-[11px] text-[#6e6e6e] uppercase">Examples</SelectLabel>
+                  <SelectLabel className="text-[11px] text-[#6e6e6e] uppercase">{t("listeners.form.examples")}</SelectLabel>
                   <SelectItem value="json" className="text-[13.5px]">json</SelectItem>
                   <SelectItem value="xml" className="text-[13.5px]">xml</SelectItem>
                 </SelectGroup>
@@ -214,14 +220,14 @@ export const AdvancedSection = ({
             </Select>
             {formData.implantBodyType !== "off" && (
               <>
-                <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">Listener response</label>
+                <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">{t("listeners.form.listenerResponse")}</label>
                 <textarea
                   className="w-full bg-[#212121] border border-[#363636] h-[12rem] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 outline-none focus:border-[#555] transition-colors placeholder:text-[#444] resize-w leading-relaxed"
                   value={formData.listenerResponse}
                   onChange={(e) => handleFormChange("listenerResponse", e.target.value)}
                   spellCheck={false}
                 />
-                <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">Implant request</label>
+                <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">{t("listeners.form.implantRequest")}</label>
                 <textarea
                   ref={bodyRef}
                   className="w-full bg-[#212121] border border-[#363636] h-[12rem] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 outline-none focus:border-[#555] transition-colors placeholder:text-[#444] resize-w leading-relaxed"
@@ -253,7 +259,7 @@ export const AdvancedSection = ({
           <div className="h-px bg-[#252525] mb-4 mt-4" />
 
           <div className="flex items-center justify-between mb-2">
-            <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Response Headers</label>
+            <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("listeners.form.responseHeaders")}</label>
             <button
               type="button"
               onClick={addHeader}
@@ -270,7 +276,7 @@ export const AdvancedSection = ({
                     className="flex-1 w-full text-[13.5px] bg-[#212121] border border-[#363636] text-[#cecece] rounded px-3 py-1.5 outline-none focus:border-[#555] placeholder:text-[#444] tabular-nums"
                     value={h.key}
                     onChange={(e) => updateHeader(i, "key", e.target.value)}
-                    placeholder="Header-Name"
+                    placeholder={t("listeners.form.headerName")}
                     autoComplete="off"
                     spellCheck={false}
                   />
@@ -305,6 +311,7 @@ export const CertSection = ({
   handleFormChange,
   showSubject = false,
 }: Pick<ListenerFormBodyProps, "formData" | "handleFormChange"> & { showSubject?: boolean }) => {
+  const { t } = useTranslation();
   const certFileInputRef = useRef<HTMLInputElement>(null);
   const keyFileInputRef = useRef<HTMLInputElement>(null);
   const cert = formData.cert;
@@ -313,10 +320,10 @@ export const CertSection = ({
 
   return (
     <>
-      <div className="text-[12px] text-[#6e6e6e] uppercase tracking-widest mb-3">Certificate</div>
+      <div className="text-[12px] text-[#6e6e6e] uppercase tracking-widest mb-3">{t("listeners.form.certificate")}</div>
       <div className="pl-3 border-l border-[#252525] mb-4 space-y-3">
         <div>
-          <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">Source</label>
+          <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">{t("listeners.form.source")}</label>
           <div className="flex flex-wrap gap-1.5">
             {(
               [
@@ -350,7 +357,7 @@ export const CertSection = ({
               />
             </div>
             <div>
-              <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">Days</label>
+              <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">{t("listeners.form.days")}</label>
               <input
                 className="w-full text-[13.5px] bg-[#212121] border border-[#363636] text-[#cecece] rounded px-3 py-1.5 outline-none focus:border-[#555] placeholder:text-[#444] tabular-nums"
                 value={cert.days}

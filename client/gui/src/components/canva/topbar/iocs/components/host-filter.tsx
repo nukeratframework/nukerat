@@ -10,6 +10,7 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { translate } from "@/i18n";
 
 export default function IocHostFilter({
   groups,
@@ -68,18 +69,18 @@ export default function IocHostFilter({
             </Button>
             <CommandInputNoIcon
               className="w-[9.7rem] placeholder:text-[#ffffff0b]"
-              placeholder="Search host..."
+              placeholder={translate("iocs.hostFilter.searchPlaceholder")}
             />
           </div>
           <CommandList>
             {loading ? (
               <div className="flex items-center justify-center h-10 text-[#666] text-[13.5px]">
                 <RefreshCw size={14} className="animate-spin mr-2" />
-                Loading...
+                {translate("common.loading")}
               </div>
             ) : (
               <>
-                <CommandEmpty>No host found.</CommandEmpty>
+                <CommandEmpty>{translate("iocs.hostFilter.empty")}</CommandEmpty>
                 {Object.entries(groups).map(([server, list]) => (
                   <CommandGroup key={server} heading={server}>
                     {list.map((host) => (

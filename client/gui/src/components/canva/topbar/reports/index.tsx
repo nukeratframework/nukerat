@@ -4,6 +4,7 @@ import { UtcTableColumnHeader } from "@/components/canva/utils/utc-date";
 import { PanelPortal } from "@/components/canva/utils/panel-portal";
 import CreateReportPanel from "./components/create";
 import ReportViewDialog from "./components/view-dialog";
+import { translate } from "@/i18n";
 import {
   getReportRowId,
   table_columns,
@@ -63,7 +64,7 @@ const ReportsPanel = () => {
             {loading ? (
               <div className="flex items-center justify-center h-16 text-[#444] text-[13.5px]">
                 <RefreshCw size={14} className="animate-spin mr-2" />
-                Loading...
+                {translate("common.loading")}
               </div>
             ) : (
               <>
@@ -115,7 +116,7 @@ const ReportsPanel = () => {
                     </tbody>
                   )}
                 </table>
-                {reports.length === 0 && <PanelEmptyState>No reports generated yet</PanelEmptyState>}
+                {reports.length === 0 && <PanelEmptyState>{translate("reports.empty")}</PanelEmptyState>}
               </>
             )}
           </div>
@@ -210,7 +211,7 @@ const ReportsPanel = () => {
           >
             <div className="flex items-center gap-2 mb-3">
               <Trash2 size={14} className="text-[#c97070] mb-0.5" />
-              <span className="text-[13.5px] font-semibold text-[#cecece]">Remove Report</span>
+              <span className="text-[13.5px] font-semibold text-[#cecece]">{translate("reports.removeConfirm.title")}</span>
             </div>
             <p className="text-[13px] text-[#9b9b9b] mb-5 leading-relaxed">
               Remove{" "}

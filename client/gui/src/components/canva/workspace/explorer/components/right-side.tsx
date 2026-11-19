@@ -1,16 +1,16 @@
 import { ArrowLeft, ArrowRight, RefreshCw, LayoutGrid, List, Folder, File, ArrowDownToLine, ChevronsRight, ChevronDown, ChevronUp } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { FileFallbackIcon, getFileIconSrc, getFolderIconSrc, NameTooltip, useTruncatedNames } from "./utils";
 import { PanelEmptyState } from "@/components/canva/utils/panel-empty-state";
 import ContentView from "./content-view";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { UtcTableColumnHeader } from "@/components/canva/utils/utc-date";
+import { TableColumnHeader } from "@/components/canva/utils/utc-date";
 import {
   explorerTableColumns,
   getItemSubtitle,
   isFile,
   isImage,
   useRightSideItems,
-  type ExplorerColumn,
   type FileContentData,
   type ViewMode,
 } from "./logic";
@@ -64,6 +64,7 @@ const RightSide = ({
   onCancelLoading: () => void;
   onDismissOversizedFile: () => void;
 }) => {
+  const { t } = useTranslation();
   const { items, sortCol, sortAsc, handleSortColumn } = useRightSideItems(explorerTree, currentPath);
   const controlsDisabled = loading || disabled;
   const { attachNameRef, isTruncated } = useTruncatedNames([items, viewMode, currentPath]);
@@ -126,15 +127,15 @@ const RightSide = ({
             type="button"
             onClick={onDownload}
             disabled={controlsDisabled || !canDownload}
-            title="Download"
+            title={t("explorer.download")}
             className="button-default flex h-[29px] shrink-0 items-center gap-1.5 rounded-[6px] border border-[#ffffff26] bg-[#191819] px-2 text-[13.5px] whitespace-nowrap text-[#bdbdbd] select-none hover:bg-[#1a1a1a] disabled:cursor-not-allowed disabled:border-[#2a2a2a] disabled:text-[#555] disabled:opacity-50"
           >
             <ArrowDownToLine size={10} />
-            <span>Download</span>
+            <span>{t("explorer.download")}</span>
           </button>
           <button
             type="button"
-            title="Icon view"
+            title={t("explorer.iconView")}
             onClick={() => onViewModeChange("grid")}
             className={`button-default flex h-[29px] shrink-0 items-center rounded-[5px] border px-2 ${viewMode === "grid" ? "border-[#ffffff26] text-[#cecece]" : "border-transparent text-[#555]"}`}
           >
@@ -142,7 +143,7 @@ const RightSide = ({
           </button>
           <button
             type="button"
-            title="List view"
+            title={t("explorer.listView")}
             onClick={() => onViewModeChange("list")}
             className={`button-default flex h-[29px] shrink-0 items-center rounded-[5px] border px-2 ${viewMode === "list" ? "border-[#ffffff26] text-[#cecece]" : "border-transparent text-[#555]"}`}
           >
@@ -164,7 +165,7 @@ const RightSide = ({
             onClick={onCancelLoading}
             className="mt-2 text-[13.5px] text-[#3a3a3a] cursor-pointer select-none hover:text-[#4a4a4a]"
           >
-            Cancel
+            {t("common.cancel")}
           </span>
         </div>
       ) : fileContent !== null ? (
@@ -185,7 +186,7 @@ const RightSide = ({
           />
         )
       ) : items.length === 0 ? (
-        <PanelEmptyState>No content found</PanelEmptyState>
+        <PanelEmptyState>{t("explorer.empty")}</PanelEmptyState>
       ) : viewMode === "grid" ? (
         <div id="explorer-grid-view" className="flex-1 overflow-y-auto overflow-x-hidden px-3 py-4">
           <TooltipProvider delayDuration={500}>
@@ -252,13 +253,13 @@ const RightSide = ({
             <div className="ml-0.5 grid grid-cols-[1fr_90px_90px_90px] px-3 py-1 font-[400] text-[13px] select-none sticky top-0 bg-[#161616] z-10 border-b border-[#252525]">
               {explorerTableColumns.map((col) => (
                 <button
-                  key={col}
+                  key={col.key}
                   type="button"
-                  onClick={() => handleSortColumn(col as ExplorerColumn)}
-                  className={`inline-flex items-center gap-0.5 text-left uppercase tracking-widest text-[12px] font-medium cursor-pointer transition-colors hover:text-[#b0b0b0] ${sortCol === col ? "text-[#b8b8b8]" : "text-[#888888]"}`}
+                  onClick={() => handleSortColumn(col.key)}
+                  className={`inline-flex items-center gap-0.5 text-left uppercase tracking-widest text-[12px] font-medium cursor-pointer transition-colors hover:text-[#b0b0b0] ${sortCol === col.key ? "text-[#b8b8b8]" : "text-[#888888]"}`}
                 >
-                  <UtcTableColumnHeader label={col} />
-                  {sortCol === col ? (
+                  <TableColumnHeader column={col} />
+                  {sortCol === col.key ? (
                     sortAsc ? (
                       <ChevronUp size={13} strokeWidth={2.25} className="shrink-0 opacity-80" />
                     ) : (
@@ -292,7 +293,9 @@ const RightSide = ({
                         {name}
                       </span>
                     </span>
-                    <span className="text-[13.5px] text-[#929193] self-center">{fileNode ? "File" : "Folder"}</span>
+                    <span className="text-[13.5px] text-[#929193] self-center">
+                      {fileNode ? t("explorer.fileType") : t("explorer.folderType")}
+                    </span>
                     <span className="text-[13.5px] text-[#929193] self-center">{String(nv.size ?? "-")}</span>
                     <span className="text-[13.5px] text-[#929193] self-center whitespace-nowrap">
                       {nv.modified?.slice?.(0, 10) ?? nv.modified ?? "-"}

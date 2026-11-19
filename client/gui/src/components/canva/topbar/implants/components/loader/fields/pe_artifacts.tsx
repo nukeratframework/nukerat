@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { CircleHelp, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
@@ -35,13 +36,14 @@ export default ({
   formData: ImplantFormData;
   handleFormChange: ImplantFormChange;
 }) => {
+  const { t } = useTranslation();
   const iconRef = useRef<HTMLInputElement>(null);
   const onIcon = createImplantAttachmentHandler("exeIcon", handleFormChange);
   return (
     <div className="space-y-4">
       {isExeFormat(formData.format) ? (
         <div className="mb-3 space-y-1.5">
-          <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">EXE icon</label>
+          <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("implants.fields.exeIcon")}</label>
           <input
             ref={iconRef}
             type="file"
@@ -56,11 +58,11 @@ export default ({
           <Attachment state={formData.exeIcon ? "done" : "idle"} className="w-full border-[#363636] bg-[#212121]">
             <AttachmentContent>
               <AttachmentTitle className="text-[#4e4e4e] text-[13px] truncate">
-                {formData.exeIcon?.name ?? "Choose file"}
+                {formData.exeIcon?.name ?? t("implants.attachment.chooseFile")}
               </AttachmentTitle>
             </AttachmentContent>
             <AttachmentDescription className="text-[#4e4e4e]">
-              {formData.exeIcon ? formatAttachmentSize(attachmentByteLength(formData.exeIcon)) : "No file selected"}
+              {formData.exeIcon ? formatAttachmentSize(attachmentByteLength(formData.exeIcon)) : t("implants.attachment.noFileSelected")}
             </AttachmentDescription>
             {formData.exeIcon ? (
               <AttachmentActions>
@@ -88,17 +90,17 @@ export default ({
                     checked={formData.customCopyPeStrings}
                     onCheckedChange={(v) => handleFormChange("customCopyPeStrings", v === true)}
                   />
-                  <span className="text-[13px] text-[#cecece]">PE strings</span>
+                  <span className="text-[13px] text-[#cecece]">{t("implants.fields.peStrings")}</span>
                 </label>
                 <Tooltip delayDuration={200}>
                   <TooltipTrigger asChild>
-                    <span className="inline-flex items-center text-[#666] cursor-default select-none" aria-label="PE strings help">
+                    <span className="inline-flex items-center text-[#666] cursor-default select-none" aria-label={t("implants.aria.peStringsHelp")}>
                       <CircleHelp size={13} />
                     </span>
                   </TooltipTrigger>
                   <TooltipContent side="bottom" className="bg-[#3A3A3A] max-w-xs rounded-[6px]">
                     <div className="text-xs">
-                      Embeds decoy values into PE sections at build.
+                      {t("implants.help.peStrings")}
                     </div>
                   </TooltipContent>
                 </Tooltip>
@@ -125,7 +127,7 @@ export default ({
 
           <div className="mb-3 space-y-3">
             <div className="space-y-1.5">
-              <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">TimeDateStamp</label>
+              <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("implants.fields.timeDateStamp")}</label>
               <PeTimestampField
                 value={formData.peTimestampDate}
                 onChange={(iso) => handleFormChange("peTimestampDate", iso)}
@@ -134,7 +136,7 @@ export default ({
 
             <div className="grid grid-cols-4 gap-2">
               <div className="space-y-1.5">
-                <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Linker major</label>
+                <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("implants.fields.linkerMajor")}</label>
                 <input
                   className="w-full tabular-nums bg-[#212121] border border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 outline-none focus:border-[#555] placeholder:text-[#444]"
                   value={formData.peMajorLinkerVersion}
@@ -148,7 +150,7 @@ export default ({
                 />
               </div>
               <div className="space-y-1.5">
-                <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Linker minor</label>
+                <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("implants.fields.linkerMinor")}</label>
                 <input
                   className="w-full tabular-nums bg-[#212121] border border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 outline-none focus:border-[#555] placeholder:text-[#444]"
                   value={formData.peMinorLinkerVersion}
@@ -162,7 +164,7 @@ export default ({
                 />
               </div>
               <div className="space-y-1.5">
-                <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">OS major</label>
+                <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("implants.fields.osMajor")}</label>
                 <input
                   className="w-full tabular-nums bg-[#212121] border border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 outline-none focus:border-[#555] placeholder:text-[#444]"
                   value={formData.peMajorOsVersion}
@@ -176,7 +178,7 @@ export default ({
                 />
               </div>
               <div className="space-y-1.5">
-                <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">OS minor</label>
+                <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("implants.fields.osMinor")}</label>
                 <input
                   className="w-full tabular-nums bg-[#212121] border border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 outline-none focus:border-[#555] placeholder:text-[#444]"
                   value={formData.peMinorOsVersion}
@@ -190,7 +192,7 @@ export default ({
                 />
               </div>
               <div className="space-y-1.5">
-                <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Image major</label>
+                <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("implants.fields.imageMajor")}</label>
                 <input
                   className="w-full tabular-nums bg-[#212121] border border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 outline-none focus:border-[#555] placeholder:text-[#444]"
                   value={formData.peMajorImageVersion}
@@ -204,7 +206,7 @@ export default ({
                 />
               </div>
               <div className="space-y-1.5">
-                <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Image minor</label>
+                <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("implants.fields.imageMinor")}</label>
                 <input
                   className="w-full tabular-nums bg-[#212121] border border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 outline-none focus:border-[#555] placeholder:text-[#444]"
                   value={formData.peMinorImageVersion}
@@ -218,7 +220,7 @@ export default ({
                 />
               </div>
               <div className="space-y-1.5">
-                <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Subsystem major</label>
+                <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("implants.fields.subsystemMajor")}</label>
                 <input
                   className="w-full tabular-nums bg-[#212121] border border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 outline-none focus:border-[#555] placeholder:text-[#444]"
                   value={formData.peMajorSubsystemVersion}
@@ -232,7 +234,7 @@ export default ({
                 />
               </div>
               <div className="space-y-1.5">
-                <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Subsystem minor</label>
+                <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("implants.fields.subsystemMinor")}</label>
                 <input
                   className="w-full tabular-nums bg-[#212121] border border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 outline-none focus:border-[#555] placeholder:text-[#444]"
                   value={formData.peMinorSubsystemVersion}

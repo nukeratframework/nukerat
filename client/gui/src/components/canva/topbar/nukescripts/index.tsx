@@ -6,6 +6,7 @@ import ScriptErrorBar from "./components/error-bar";
 import SplitPanel from "./components/split";
 import { UtcTableColumnHeader } from "@/components/canva/utils/utc-date";
 import { TABLE_COLUMNS, useScriptsPanel, formatUtc } from "./components/logic";
+import { translate } from "@/i18n";
 
 const StatusDot = ({ status }: { status?: number }) => (
   <span className="inline-flex items-center justify-center w-4 h-4">
@@ -30,7 +31,7 @@ const ScriptsPanel = () => {
             {p.loading ? (
               <div className="flex items-center justify-center h-16 text-[#444] text-[13.5px]">
                 <RefreshCw size={14} className="animate-spin mr-2" />
-                Loading...
+                {translate("common.loading")}
               </div>
             ) : (
               <>
@@ -65,7 +66,7 @@ const ScriptsPanel = () => {
                     </tbody>
                   )}
                 </table>
-                {p.scripts.length === 0 && <PanelEmptyState>No scripts configured</PanelEmptyState>}
+                {p.scripts.length === 0 && <PanelEmptyState>{translate("nukescripts.empty")}</PanelEmptyState>}
               </>
             )}
           </div>
@@ -125,13 +126,13 @@ const ScriptsPanel = () => {
           <div style={{ borderRadius: "8px" }} className="bg-[#191919] border border-[#2f2f2f] p-5 max-w-sm w-[90%] shadow-2xl">
             <div className="flex items-center gap-2 mb-3">
               <Trash2 size={13} className="text-[#c97070]" />
-              <span className="text-[13.5px] font-semibold text-[#d4d4d4]">Remove script</span>
+              <span className="text-[13.5px] font-semibold text-[#d4d4d4]">{translate("nukescripts.removeConfirm.title")}</span>
             </div>
             <p className="text-[13.5px] text-[#9b9b9b] mb-5 leading-relaxed">
               Remove <span className="inline-block max-w-[180px] align-bottom overflow-hidden text-ellipsis whitespace-nowrap text-[#d4d4d4] font-semibold">"{p.selected?.name}"</span>? This cannot be undone.
             </p>
             <div className="flex items-center justify-end gap-2">
-              <button onClick={() => p.setShowRemoveConfirm(false)} className="button-default px-3 py-1 rounded text-[13px] text-[#9b9b9b] hover:text-[#d4d4d4] hover:bg-[#252525] transition-colors border border-[#333] cursor-pointer">Cancel</button>
+              <button onClick={() => p.setShowRemoveConfirm(false)} className="button-default px-3 py-1 rounded text-[13px] text-[#9b9b9b] hover:text-[#d4d4d4] hover:bg-[#252525] transition-colors border border-[#333] cursor-pointer">{translate("common.cancel")}</button>
               <button onClick={p.handleConfirmRemove} disabled={p.submitting} className="button-default flex items-center gap-1.5 px-3 py-1 rounded text-[13px] text-white bg-[#852b2b] hover:bg-[#a83232] transition-colors disabled:opacity-50 cursor-pointer">
                 {p.submitting && <RefreshCw size={10} className="animate-spin" />} Remove
               </button>

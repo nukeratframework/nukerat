@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import logoSvg from "@/assets/logo.svg";
 
 type AboutInfo = {
@@ -11,6 +12,7 @@ type AboutInfo = {
 };
 
 const AboutPanel = () => {
+  const { t } = useTranslation();
   const [info, setInfo] = useState<AboutInfo | null>(null);
 
   useEffect(() => {
@@ -42,7 +44,7 @@ const AboutPanel = () => {
             }}
           />
           <span className="font-medium text-[17.5px] text-[#999999]">
-            NukeRat Framework
+            {t("about.title")}
           </span>
         </div>
 
@@ -50,15 +52,15 @@ const AboutPanel = () => {
           <dl className="mt-2.5 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-[13px] text-[#cecece] leading-[1.65] w-full">
             {(
               [
-                ["Version", info.version],
-                ["Platform", info.platform],
-                ["Electron", info.electron],
+                [t("about.version"), info.version],
+                [t("about.platform"), info.platform],
+                [t("about.electron"), info.electron],
                 ...(info.electronBuildId
                   ? [["ElectronBuildId", info.electronBuildId] as const]
                   : []),
-                ["Chromium", info.chromium],
-                ["Node", info.node],
-                ["Author", "Gustavo Henrique T."],
+                [t("about.chromium"), info.chromium],
+                [t("about.node"), info.node],
+                [t("about.author"), "Gustavo Henrique T."],
               ] as const
             ).map(([label, value]) => (
               <Fragment key={label}>

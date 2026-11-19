@@ -5,6 +5,7 @@ import {
   type ResponseHeader,
 } from "@/components/canva/topbar/listeners/components/logic";
 import { loaderCustomChannelBase } from "./custom_code";
+import { translate } from "@/i18n";
 import {
   defaultImplantCustomHeaders,
   defaultPreface,
@@ -38,8 +39,14 @@ export const archOptions = (cpu: Cpu, _os: Os): Arch[] => {
   return ["x64"];
 };
 
-export const sleepMaskOptions: { value: SleepMaskMode; label: string }[] = [
-  { value: "off", label: "Off" },
+/// `labelKey` is resolved at render; tool names (Ekko, Zilean) are not prose and
+/// stay literal so they are never mistranslated.
+export const sleepMaskOptions: {
+  value: SleepMaskMode;
+  label: string;
+  labelKey?: "implants.options.off";
+}[] = [
+  { value: "off", label: "Off", labelKey: "implants.options.off" },
   { value: "timer", label: "Ekko" },
   { value: "zilean", label: "Zilean" },
 ];
@@ -125,13 +132,14 @@ export interface ImplantFormData {
   customChannel: string;
 }
 
-export const sectionLabels: Record<Section, string> = {
-  general: "General",
-  stage: "Stage",
-  preface: "Preface",
-  artifact: "PE Artifacts",
-  runtime: "Runtime",
-};
+/// Section ids are stable; `sectionLabels` holds i18n keys resolved at render.
+export const sectionLabels = {
+  general: "implants.sections.general",
+  stage: "implants.sections.stage",
+  preface: "implants.sections.preface",
+  artifact: "implants.sections.artifact",
+  runtime: "implants.sections.runtime",
+} as const satisfies Record<Section, string>;
 
 export const isHttpProtocol = (protocol: Protocol) => protocol === "http";
 
@@ -312,10 +320,12 @@ export const peTimestampDayRange = (date: string) => {
   return { lo, hi };
 };
 
-export const requiredFields: { label: string; ok: (d: ImplantFormData) => boolean }[] = [
-  { label: "compile server", ok: (d) => !!(d.teamHost.trim() && d.teamPort.trim()) },
+/// `labelKey` entries are i18n keys resolved by the caller when reporting the
+/// missing field, so the toast follows the active language.
+export const requiredFields: { labelKey: string; ok: (d: ImplantFormData) => boolean }[] = [
+  { labelKey: "implants.required.compileServer", ok: (d) => !!(d.teamHost.trim() && d.teamPort.trim()) },
   {
-    label: "server",
+    labelKey: "implants.required.server",
     ok: (d) => d.protocol === "custom" || parseStageUrl(d.stageUrl) !== null,
   },
 ];
@@ -382,10 +392,10 @@ export const loaderStageUrlPlaceholder = (os: Os) =>
 
 export const loaderStagePayloadHint = (os: Os) =>
   os === "linux"
-    ? "(SO FILE)"
+    ? translate("implants.stageHint.so")
     : os === "macos"
-      ? "(APP FILE)"
-      : "(SHELLCODE FILE)";
+      ? translate("implants.stageHint.app")
+      : translate("implants.stageHint.shellcode");
 
 
 const escapeNimObfString = (value: string) =>

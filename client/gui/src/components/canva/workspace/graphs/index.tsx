@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import type { IDockviewPanelProps } from 'dockview';
 import ReactFlow, {
   Background,
@@ -16,7 +17,7 @@ import SplitPanel from './components/split';
 import { GraphsDockviewShell } from './components/rigth-click-menu';
 import GraphStraightEdge from './components/straight-edge';
 import { panelEmptyTextClass } from '@/components/canva/utils/panel-empty-state';
-import { useGraph, symmetricOffsets, type EntrypointNodeData, type SessionNodeData } from './components/logic';
+import { useGraph, symmetricOffsets, type EntrypointNodeData, type HostNodeData } from './components/logic';
 import {
   classes,
   colors,
@@ -26,7 +27,7 @@ import {
   styles,
 } from './style';
 
-const HostNode = ({ data }: { data: SessionNodeData }) => {
+const HostNode = ({ data }: { data: HostNodeData }) => {
   const iconCenter = node.iconSize / 2;
   const srcOffsets = symmetricOffsets(data.srcCount ?? 0, layout.handleStep);
   const tgtOffsets = symmetricOffsets(data.tgtCount ?? 0, layout.handleStep);
@@ -65,6 +66,7 @@ const HostNode = ({ data }: { data: SessionNodeData }) => {
 };
 
 const EntrypointNode = ({ data }: { data: EntrypointNodeData }) => {
+  const { t } = useTranslation();
   const iconCenter = node.entrypointIconMarginTop + node.entrypointIconSize / 2;
   const tgtOffsets = symmetricOffsets(data.tgtCount ?? 0, layout.handleStep);
 
@@ -84,7 +86,7 @@ const EntrypointNode = ({ data }: { data: EntrypointNodeData }) => {
       <img src={data.icon} style={styles.entrypointIconImg} />
     </div>
     <div style={styles.nodeLabel}>
-      <div style={styles.entrypointRole}>SERVER</div>
+      <div style={styles.entrypointRole}>{t("graphs.roleServer")}</div>
       <div style={styles.nodeMetaBold}>{data.label}</div>
     </div>
   </div>

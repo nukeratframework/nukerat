@@ -217,15 +217,30 @@
 }
 
 
+/*
+ * Mona Sans / Mona Sans Mono carry no CJK glyphs, so Chinese text would fall
+ * back to an arbitrary system font (often a serif). These stacks resolve the
+ * mismatch by naming the common Simplified-Chinese UI fonts, in the order each
+ * platform actually ships them. No CJK font is bundled: a full SC face is
+ * tens of megabytes, which is not worth it for an Electron app.
+ */
+:root {
+  --nr-font-sans: 'Mona Sans', system-ui, -apple-system,
+    'Noto Sans CJK SC', 'Source Han Sans SC', 'Microsoft YaHei', 'PingFang SC',
+    'Hiragino Sans GB', 'WenQuanYi Micro Hei', sans-serif;
+  --nr-font-mono: 'Mona Sans Mono', ui-monospace,
+    'Noto Sans Mono CJK SC', 'Sarasa Mono SC', 'Microsoft YaHei Mono', monospace;
+}
+
 * {
   box-sizing: border-box;
-  font-family: 'Mona Sans', system-ui, -apple-system, sans-serif;
+  font-family: var(--nr-font-sans);
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Mona Sans', system-ui, -apple-system, sans-serif;
+  font-family: var(--nr-font-sans);
 }
 
 ::selection {
@@ -490,7 +505,7 @@ body {
 }
 
 .tHa7k * {
-  font-family: 'Mona Sans Mono', system-ui, -apple-system, sans-serif;
+  font-family: var(--nr-font-mono);
   font-size: 13.5px;
   font-weight: 400;
   font-variant-ligatures: none;
@@ -498,7 +513,7 @@ body {
 }
 
 .font-mona-mono {
-  font-family: 'Mona Sans Mono', ui-monospace, monospace !important;
+  font-family: var(--nr-font-mono) !important;
   font-variant-ligatures: none;
   font-feature-settings: "liga" 0, "calt" 0;
 }
@@ -507,7 +522,7 @@ body {
 .ns-editor textarea,
 .ns-editor pre,
 .ns-editor * {
-  font-family: 'Mona Sans Mono', ui-monospace, monospace !important;
+  font-family: var(--nr-font-mono) !important;
   font-variant-ligatures: none;
   font-feature-settings: "liga" 0, "calt" 0;
 }
@@ -525,7 +540,7 @@ body {
 .code-editor textarea,
 .code-editor pre,
 .code-editor * {
-  font-family: 'Mona Sans Mono', ui-monospace, monospace !important;
+  font-family: var(--nr-font-mono) !important;
   font-variant-ligatures: none;
   font-feature-settings: "liga" 0, "calt" 0;
 }
@@ -1494,7 +1509,7 @@ button[data-slot="tabs-trigger"] {
 }
 
 .explorer-content-view {
-  font-family: 'Mona Sans Mono', system-ui, -apple-system, monospace !important;
+  font-family: var(--nr-font-mono) !important;
   padding: 12px 16px;
 }
 
@@ -1505,7 +1520,7 @@ button[data-slot="tabs-trigger"] {
 /* Docs - markdown rendered content -------------------------------------------------------------- */
 
 .docs-md-content {
-  font-family: 'Mona Sans', system-ui, -apple-system, sans-serif;
+  font-family: var(--nr-font-sans);
   font-size: 14px;
   color: #cecece;
   line-height: 1.7;
@@ -1605,7 +1620,7 @@ button[data-slot="tabs-trigger"] {
 }
 
 .docs-md-content code {
-  font-family: 'Mona Sans Mono', monospace;
+  font-family: var(--nr-font-mono);
   font-size: 12px;
   background: #1c1b1c;
   border: 1px solid #2a2a2a;

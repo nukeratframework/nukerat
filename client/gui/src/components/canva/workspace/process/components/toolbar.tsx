@@ -1,4 +1,5 @@
 import { useId, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   CheckIcon,
   ChevronsUpDownIcon,
@@ -42,6 +43,7 @@ const Toolbar = ({
   treeMode,
   onTreeModeChange,
 }: ToolbarProps) => {
+  const { t } = useTranslation();
   const id = useId();
   const [filterOpen, setFilterOpen] = useState(false);
   const controlsDisabled = loading || disabled;
@@ -69,7 +71,7 @@ const Toolbar = ({
             data-process-search-field="search"
             value={search}
             onChange={(e) => onSearchChange(e.target.value)}
-            placeholder="Filter processes..."
+            placeholder={t("process.searchPlaceholder")}
             className="h-[29px] w-full rounded border border-[#363636] bg-[#212121] px-3 py-0 text-[13.5px] text-[#cecece] outline-none transition-colors placeholder:text-[#444] focus:border-[#555]"
           />
         </div>
@@ -96,7 +98,7 @@ const Toolbar = ({
                 className="button-default h-[30px] w-[140px] min-w-0 justify-between gap-1 border-input bg-background px-0 py-0 font-normal outline-none outline-offset-0 hover:bg-background focus-visible:outline-[3px]"
               >
                 <span className="min-w-0 truncate text-[13.5px] text-[#cecece]">
-                  {selectedFilter.label}
+                  {t(selectedFilter.label)}
                 </span>
                 <ChevronsUpDownIcon
                   className="text-muted-foreground/80 shrink-0"
@@ -115,13 +117,13 @@ const Toolbar = ({
                       <CommandItem
                         className="cursor-pointer"
                         key={item.value}
-                        value={`${item.value}-${item.label}`}
+                        value={`${item.value}-${t(item.label)}`}
                         onSelect={() => {
                           onFilterChange(item.value);
                           setFilterOpen(false);
                         }}
                       >
-                        {item.label}
+                        {t(item.label)}
                         {filter === item.value && (
                           <CheckIcon
                             size={16}
@@ -143,14 +145,14 @@ const Toolbar = ({
           onClick={() => onTreeModeChange(true)}
           className={`button-default h-[29px] shrink-0 rounded-[5px] border px-2 text-[13.5px] cursor-pointer ${treeMode ? "border-[#ffffff26] text-[#cecece]" : "border-transparent text-[#555]"}`}
         >
-          Tree
+          {t("process.tree")}
         </button>
         <button
           type="button"
           onClick={() => onTreeModeChange(false)}
           className={`button-default h-[29px] shrink-0 rounded-[5px] border px-2 text-[13.5px] cursor-pointer ${!treeMode ? "border-[#ffffff26] text-[#cecece]" : "border-transparent text-[#555]"}`}
         >
-          Flat
+          {t("process.flat")}
         </button>
       </div>
     </div>

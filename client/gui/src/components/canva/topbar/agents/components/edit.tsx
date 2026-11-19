@@ -1,4 +1,5 @@
 import { X, RefreshCw } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import {
   Select,
@@ -29,11 +30,14 @@ const AgentFormPanel = ({
   handleSubmitForm,
   handleFormChange,
 }: AgentFormPanelProps) => {
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col h-full min-h-0 min-w-[32rem]">
       <div className="flex items-center justify-between px-4 py-3 border-b border-[#2a2a2a] shrink-0">
         <span className="text-[13.5px] font-medium text-[#cecece] tracking-wide">
-          {mode === "add" ? "New Agent" : `Edit - ${selectedName ?? ""}`}
+          {mode === "add"
+            ? t("agents.form.newTitle")
+            : t("agents.form.editTitle", { name: selectedName ?? "" })}
         </span>
         <button
           onClick={handleClosePanel}
@@ -45,12 +49,12 @@ const AgentFormPanel = ({
 
       <div className="flex-1 min-h-0 min-w-0 overflow-y-auto px-4 py-4">
         <div className="mb-3 space-y-1.5">
-          <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Name</label>
+          <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("agents.form.name")}</label>
           <input
             className="w-full bg-[#212121] border border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 outline-none focus:border-[#555] transition-colors placeholder:text-[#444]"
             value={formData.name}
             onChange={(e) => handleFormChange("name", e.target.value)}
-            placeholder="Agent name"
+            placeholder={t("agents.form.namePlaceholder")}
             autoComplete="off"
             spellCheck={false}
           />
@@ -66,7 +70,7 @@ const AgentFormPanel = ({
         />
 
         <div className="mb-4 space-y-1.5">
-          <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Type</label>
+          <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("agents.form.type")}</label>
           <Select
             value={formData.type}
             onValueChange={(v) => handleFormChange("type", v as AgentType)}
@@ -75,15 +79,15 @@ const AgentFormPanel = ({
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="custom">Custom</SelectItem>
-              <SelectItem value="deepseek">DeepSeek</SelectItem>
+              <SelectItem value="custom">{t("agents.form.typeCustom")}</SelectItem>
+              <SelectItem value="deepseek">{t("agents.form.typeDeepseek")}</SelectItem>
             </SelectContent>
           </Select>
         </div>
 
         {formData.type === "deepseek" ? (
           <div className="space-y-1.5">
-            <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">API Key</label>
+            <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("agents.form.apiKey")}</label>
             <input
               className="w-full bg-[#212121] border border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 outline-none focus:border-[#555] transition-colors placeholder:text-[#444] font-mono"
               value={formData.apiKey}
@@ -96,7 +100,7 @@ const AgentFormPanel = ({
         ) : (
           <>
             <div className="mb-3 space-y-1.5">
-              <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Endpoint</label>
+              <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("agents.form.endpoint")}</label>
               <input
                 className="w-full bg-[#212121] border border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 outline-none focus:border-[#555] transition-colors placeholder:text-[#444]"
                 value={formData.endpoint}
@@ -107,7 +111,7 @@ const AgentFormPanel = ({
               />
             </div>
             <div className="mb-3 space-y-1.5">
-              <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Request Body</label>
+              <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("agents.form.requestBody")}</label>
               <textarea
                 className="w-full bg-[#212121] border border-[#363636] h-[12rem] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 outline-none focus:border-[#555] transition-colors placeholder:text-[#444] resize-w ![font-family:'Mona_Sans_Mono',ui-monospace,monospace] leading-relaxed"
                 value={formData.bodyTemplate}
@@ -123,7 +127,7 @@ const AgentFormPanel = ({
                   style={{width: "70px"}}
                   className={kvRowButtonClass}
                 >
-                  Clear
+                  {t("agents.form.clear")}
                 </button>
                 <button
                   type="button"
@@ -135,34 +139,34 @@ const AgentFormPanel = ({
                         JSON.stringify(JSON.parse(formData.bodyTemplate), null, 4)
                       );
                     } catch {
-                      toast.error("Invalid JSON");
+                      toast.error(t("agents.form.invalidJson"));
                     }
                   }}
                   className={kvRowButtonClass}
                 >
-                  Format
+                  {t("agents.form.format")}
                 </button>
               </div>
             </div>
             <Separator className="bg-[#252525] mb-4 mt-4" />
             <KeyValueEditor
               className="implant-kv-table mb-4"
-              label="Custom headers"
+              label={t("agents.form.customHeaders")}
               items={formData.headers}
               onChange={(next) => handleFormChange("headers", next)}
-              keyPlaceholder="Header"
-              valuePlaceholder="Value"
+              keyPlaceholder={t("agents.form.header")}
+              valuePlaceholder={t("agents.form.value")}
             />
             <KeyValueEditor
               className="implant-kv-table mb-3"
-              label="Custom cookies"
+              label={t("agents.form.customCookies")}
               items={formData.cookies}
               onChange={(next) => handleFormChange("cookies", next)}
-              keyPlaceholder="Cookie"
-              valuePlaceholder="Value"
+              keyPlaceholder={t("agents.form.cookie")}
+              valuePlaceholder={t("agents.form.value")}
             />
             <div className="space-y-1.5">
-              <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">Response Field</label>
+              <label className="block text-[12px] text-[#6e6e6e] uppercase tracking-widest">{t("agents.form.responseField")}</label>
               <input
                 className="w-full bg-[#212121] border border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 outline-none focus:border-[#555] transition-colors placeholder:text-[#444] font-mono"
                 value={formData.responseField}
@@ -182,7 +186,7 @@ const AgentFormPanel = ({
           onClick={handleClosePanel}
           className="button-default flex h-[29px] shrink-0 items-center gap-1.5 rounded border border-[#444] bg-[#232323] px-3 text-[13px] text-[#c8c8c8] hover:bg-[#2b2b2b] cursor-pointer"
         >
-          Cancel
+          {t("agents.form.cancel")}
         </button>
         <button
           type="button"
@@ -191,7 +195,7 @@ const AgentFormPanel = ({
           className="button-default flex h-[29px] shrink-0 items-center gap-1.5 rounded border border-[#444] bg-[#232323] px-3 text-[13px] text-[#c8c8c8] hover:bg-[#2b2b2b] cursor-pointer disabled:cursor-not-allowed disabled:opacity-30"
         >
           {submitting && <RefreshCw size={10} className="animate-spin" />}
-          {mode === "add" ? "Create" : "Save"}
+          {mode === "add" ? t("agents.form.create") : t("agents.form.save")}
         </button>
       </div>
     </div>

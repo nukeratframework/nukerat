@@ -1,11 +1,12 @@
 import { useRef } from "react";
+import { useTranslation } from "react-i18next";
 import type { IDockviewPanelProps } from "dockview";
 import { Download, Pencil, RefreshCw, Trash2, Upload, X } from "lucide-react";
 import AgentModelFilter from "@/components/canva/workspace/agent/components/model-filter";
 import { Button } from "@/components/ui/button";
 import FetchToast from "@/components/canva/utils/toast_rules";
 import { PanelEmptyState } from "@/components/canva/utils/panel-empty-state";
-import { UtcTableColumnHeader } from "@/components/canva/utils/utc-date";
+import { TableColumnHeader } from "@/components/canva/utils/utc-date";
 import { tableColumns, useFileServerPanel } from "./components/logic";
 import { FileServerDockviewShell } from "./components/rigth-click-menu";
 
@@ -16,6 +17,7 @@ const rowActionIconBtn =
   "button-default size-7 shrink-0 border-none bg-transparent p-0 text-[#888] shadow-none hover:bg-transparent hover:text-[#cecece] disabled:opacity-25";
 
 const FileServerPanel = (props: IDockviewPanelProps) => {
+  const { t } = useTranslation();
   const uploadRef = useRef<HTMLInputElement>(null);
   const {
     servers,
@@ -74,10 +76,10 @@ const FileServerPanel = (props: IDockviewPanelProps) => {
             onRefresh={refreshTags}
             onSelectItem={(option, s) => selectFileServerTarget(s.id, option.id)}
             onClear={clearTagFilter}
-            placeholder="Select a server"
-            searchPlaceholder="Search server..."
-            emptyLabel="No server found."
-            clearAriaLabel="Clear server"
+            placeholder={t("fileServer.selectServer")}
+            searchPlaceholder={t("fileServer.searchServer")}
+            emptyLabel={t("fileServer.noServer")}
+            clearAriaLabel={t("fileServer.clearServer")}
           />
           <div className="relative min-w-[8rem] flex-1 shrink-0" data-file-server-search-input>
             <input
@@ -85,7 +87,7 @@ const FileServerPanel = (props: IDockviewPanelProps) => {
               className="box-border h-[29px] w-full rounded border border-[#363636] bg-[#212121] py-0 pl-3 pr-8 text-[13.5px] text-[#cecece] outline-none transition-colors placeholder:text-[#444] focus:border-[#555]"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search files..."
+              placeholder={t("fileServer.searchFiles")}
               autoComplete="off"
               spellCheck={false}
             />
@@ -109,7 +111,7 @@ const FileServerPanel = (props: IDockviewPanelProps) => {
         {loading ? (
           <div className="flex items-center justify-center h-16 text-[#444] text-[13.5px]">
             <RefreshCw size={14} className="animate-spin mr-2" />
-            Loading...
+            {t("common.loading")}
           </div>
         ) : (
           <>
@@ -118,16 +120,16 @@ const FileServerPanel = (props: IDockviewPanelProps) => {
                 <tr className="bg-[#171717] border-b border-[#252525]">
                   {tableColumns.map((col) => (
                     <th
-                      key={col}
+                      key={col.key}
                       className={`px-3 py-2 text-[12px] text-[#888888] font-medium uppercase tracking-widest whitespace-nowrap ${
-                        col === "Name"
+                        col.key === "name"
                           ? "!text-left !pl-[.9rem]"
-                          : col === "Actions"
+                          : col.key === "actions"
                             ? "!text-center"
                             : ""
                       }`}
                     >
-                      <UtcTableColumnHeader label={col} />
+                      <TableColumnHeader column={col} />
                     </th>
                   ))}
                 </tr>
@@ -164,7 +166,7 @@ const FileServerPanel = (props: IDockviewPanelProps) => {
                           type="button"
                           variant="ghost"
                           size="icon"
-                          aria-label="Download"
+                          aria-label={t("fileServer.actions.download")}
                           disabled={loading || !tag}
                           onClick={() => handleDownload(file.name)}
                           className={rowActionIconBtn}
@@ -175,7 +177,7 @@ const FileServerPanel = (props: IDockviewPanelProps) => {
                           type="button"
                           variant="ghost"
                           size="icon"
-                          aria-label="Rename"
+                          aria-label={t("fileServer.actions.rename")}
                           disabled={loading || !tag}
                           onClick={() => handleOpenRename(file.name)}
                           className={rowActionIconBtn}
@@ -186,7 +188,7 @@ const FileServerPanel = (props: IDockviewPanelProps) => {
                           type="button"
                           variant="ghost"
                           size="icon"
-                          aria-label="Delete"
+                          aria-label={t("fileServer.actions.delete")}
                           disabled={loading || !tag}
                           onClick={() => handleOpenDelete(file.name)}
                           className={`${rowActionIconBtn} hover:text-[#c97070]`}
@@ -203,7 +205,7 @@ const FileServerPanel = (props: IDockviewPanelProps) => {
             </table>
             {files.length === 0 && (
               <PanelEmptyState>
-                {!tag ? "Select a server to view files" : "No files found"}
+                {!tag ? t("fileServer.emptySelectServer") : t("fileServer.empty")}
               </PanelEmptyState>
             )}
           </>
@@ -218,7 +220,7 @@ const FileServerPanel = (props: IDockviewPanelProps) => {
           className="button-default flex h-[29px] shrink-0 items-center gap-1.5 rounded border border-[#333] bg-[#232323] px-3 text-[13px] text-[#cecece] hover:bg-[#2b2b2b] hover:text-[#d4d4d4] cursor-pointer disabled:cursor-not-allowed disabled:opacity-25"
         >
           <Upload size={11} />
-          Upload
+          {t("fileServer.actions.upload")}
         </button>
         <input
           ref={uploadRef}
@@ -238,7 +240,7 @@ const FileServerPanel = (props: IDockviewPanelProps) => {
             className="button-default flex h-[29px] shrink-0 items-center gap-1.5 rounded border border-[#333] bg-[#232323] px-3 text-[13px] text-[#cecece] hover:bg-[#2b2b2b] hover:text-[#d4d4d4] cursor-pointer disabled:cursor-not-allowed disabled:opacity-25"
           >
             <RefreshCw size={11} className={loading ? "animate-spin" : ""} />
-            Update
+            {t("fileServer.actions.update")}
           </button>
         </div>
       </div>
@@ -249,15 +251,15 @@ const FileServerPanel = (props: IDockviewPanelProps) => {
             <div className="flex items-center gap-2 mb-3">
               <Trash2 size={14} className="text-[#c97070] mb-0.5" />
               <span className="text-[13.5px] font-semibold text-[#cecece]">
-                Delete File
+                {t("fileServer.confirm.deleteTitle")}
               </span>
             </div>
             <p className="text-[13px] text-[#9b9b9b] mb-5 leading-relaxed">
-              Delete{" "}
+              {t("fileServer.confirm.deleteLead")}{" "}
               <span className="text-[#d4d4d4] text-[13px] font-semibold">
                 "{deleteTarget.length > 80 ? `${deleteTarget.slice(0, 80)}...` : deleteTarget}"
               </span>
-              ? This cannot be undone.
+              {t("fileServer.confirm.deleteTail")}
             </p>
             <div className="flex items-center justify-end gap-2">
               <button
@@ -265,7 +267,7 @@ const FileServerPanel = (props: IDockviewPanelProps) => {
                 onClick={() => setDeleteTarget(null)}
                 className="button-default flex items-center gap-1.5 px-3 py-1 rounded bg-[#232323] text-[#cecece] text-[13px] hover:bg-[#2b2b2b] hover:text-[#d4d4d4] transition-colors border border-[#333] cursor-pointer disabled:opacity-25 disabled:cursor-not-allowed"
               >
-                Cancel
+                {t("common.cancel")}
               </button>
               <button
                 type="button"
@@ -274,7 +276,7 @@ const FileServerPanel = (props: IDockviewPanelProps) => {
                 className="button-default flex items-center gap-1.5 px-3 py-1 rounded text-[12px] text-white bg-[#8b2020] hover:bg-[#a83232] transition-colors disabled:opacity-50 cursor-pointer"
               >
                 {submitting && <RefreshCw size={10} className="animate-spin" />}
-                Delete
+                {t("fileServer.actions.delete")}
               </button>
             </div>
           </div>
@@ -287,7 +289,7 @@ const FileServerPanel = (props: IDockviewPanelProps) => {
             <div className="flex items-center gap-2 mb-3">
               <Pencil size={14} className="text-[#c8c8c8] mb-0.5" />
               <span className="text-[13.5px] font-semibold text-[#cecece]">
-                Rename File
+                {t("fileServer.confirm.renameTitle")}
               </span>
             </div>
             <input
@@ -306,7 +308,7 @@ const FileServerPanel = (props: IDockviewPanelProps) => {
                 onClick={() => setRenameDraft(null)}
                 className="button-default px-3 py-1 rounded text-[12px] text-[#9b9b9b] hover:text-[#d4d4d4] hover:bg-[#252525] transition-colors border border-[#333] cursor-pointer"
               >
-                Cancel
+                {t("common.cancel")}
               </button>
               <button
                 type="button"
@@ -319,7 +321,7 @@ const FileServerPanel = (props: IDockviewPanelProps) => {
                 className="button-default flex items-center gap-1.5 px-3 py-1 rounded text-[12px] text-white bg-[#232323] hover:bg-[#2b2b2b] transition-colors border border-[#333] disabled:opacity-50 cursor-pointer"
               >
                 {submitting && <RefreshCw size={10} className="animate-spin" />}
-                Rename
+                {t("fileServer.actions.rename")}
               </button>
             </div>
           </div>

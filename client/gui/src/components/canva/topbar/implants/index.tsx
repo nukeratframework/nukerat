@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { useImplantsPanel } from "./components/logic";
 import ImplantBaseSelector from "./components/selector";
 import LoaderBuildBar from "./components/loader/build-bar";
@@ -8,6 +9,7 @@ import StagelessLeftSide from "./components/stageless/left-side";
 import StagelessRightSide from "./components/stageless/right-side";
 
 const ImplantsPanel = () => {
+  const { t } = useTranslation();
   const panel = useImplantsPanel();
   const isStageless = panel.implantBase === "stageless";
   const isLoader = panel.implantBase === "loader";
@@ -51,7 +53,7 @@ const ImplantsPanel = () => {
           />
         ) : (
           <div className="flex flex-1 items-center justify-center text-[13px] text-[#555]">
-            Select an implant base to configure build options.
+            {t("implants.empty")}
           </div>
         )}
       </div>

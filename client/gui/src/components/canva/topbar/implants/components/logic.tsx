@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { CalendarDays, ChevronDown } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import { buildImplantRequest } from "@/api/implants";
 import { formatPickerDate } from "@/components/canva/workspace/keylogger/components/logic";
 import { formatToastMessage } from "@/components/canva/utils/toast_rules";
+import { translate } from "@/i18n";
 import { Calendar } from "@/components/ui/calendar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -23,14 +25,15 @@ import {
 export const implantBases = ["stageless", "loader"] as const;
 export type ImplantBase = (typeof implantBases)[number];
 
-export const implantBaseLabels: Record<ImplantBase, string> = {
-  stageless: "Stageless",
-  loader: "Loader",
-};
+/// Display labels resolved at render; the keys are stable implant-base ids.
+export const implantBaseLabelKeys = {
+  stageless: "implants.base.stageless",
+  loader: "implants.base.loader",
+} as const satisfies Record<ImplantBase, string>;
 
 function buildErrorText(res: any) {
   const log = [res.stderr, res.stdout].map((s) => s?.trim()).filter(Boolean).join("\n\n");
-  return log || formatToastMessage(res.message ?? res.error ?? "Request failed");
+  return log || formatToastMessage(res.message ?? res.error ?? translate("common.requestFailed"));
 }
 
 export function PeTimestampField({
@@ -40,6 +43,7 @@ export function PeTimestampField({
   value: string;
   onChange: (iso: string) => void;
 }) {
+  const { t } = useTranslation();
   const [display, setDisplay] = useState(() => {
     const raw = value.trim();
     if (!raw) return "";
@@ -99,14 +103,14 @@ export function PeTimestampField({
         autoComplete="off"
         spellCheck={false}
         maxLength={8}
-        aria-label="TimeDateStamp"
+        aria-label={t("implants.fields.timeDateStamp")}
       />
       <Popover>
         <PopoverTrigger asChild>
           <button
             type="button"
             className="h-[28px] min-w-[28px] button-default bg-[#212121] border border-[#363636] text-[#cecece] rounded px-1.5 flex items-center justify-center cursor-pointer"
-            aria-label="Open calendar"
+            aria-label={t("implants.aria.openCalendar")}
           >
             <CalendarDays className="size-3.5 shrink-0 text-[#888]" />
             <ChevronDown className="size-3 shrink-0 text-[#666] ml-0.5" />
@@ -153,7 +157,11 @@ export function useImplantsPanel() {
     const missing = isLoader
       ? loaderRequiredFields.find((f) => !f.ok(loader.formData))
       : stagelessRequiredFields.find((f) => !f.ok(stageless.formData));
-    if (missing) return toast.error(`Missing ${missing.label}`);
+    if (missing) {
+      return toast.error(
+        translate("implants.toast.missingField", { field: translate(missing.labelKey) }),
+      );
+    }
 
     abort.current?.abort();
     abort.current = new AbortController();
@@ -184,7 +192,7 @@ export function useImplantsPanel() {
       URL.revokeObjectURL(url);
     }
 
-    toast.success(res.message ?? "Build completed");
+    toast.success(res.message ?? translate("implants.toast.buildCompleted"));
   };
 
   return {

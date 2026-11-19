@@ -5,6 +5,7 @@ import type { NotifyHost } from "@/api/notification";
 import type { PanelCustomMenuItem } from "@/components/ui/rigth-click-menu.tsx";
 import { PanelDockviewShell, sessionsMenuRuntimeRef } from "@/components/ui/rigth-click-menu.tsx";
 import { hostOpenPanels } from "@/components/canva/topbar/index";
+import { translate } from "@/i18n";
 
 export const sessionsOpenRef = {
   current: null as null | { closeFloat: () => void; openWindowForNotify: (type: string, n: NotifyHost) => void },
@@ -31,7 +32,7 @@ const hostNotify = (s: {
 export function buildSessionsMenuHeader(): PanelCustomMenuItem[] {
   const s = sessionsMenuRuntimeRef.current?.getMenuSession?.();
   if (!s) return [];
-  const tag = s.tag?.trim() || "Untagged";
+  const tag = s.tag?.trim() || translate("common.untagged");
   const ip = (s.internal ?? s.ip)?.trim();
   const sub = [ip, s.hostname?.trim(), s.os?.trim()].filter(Boolean).join(" · ");
   return [{ kind: "header", label: tag, description: sub || undefined }];
@@ -42,11 +43,11 @@ export function buildSessionsOpenMenu(): PanelCustomMenuItem[] {
   return [
     {
       kind: "action",
-      label: "Open",
+      label: translate("common.open"),
       icon: ExternalLink,
       items: hostOpenPanels.map((p) => ({
         kind: "action" as const,
-        label: p.label,
+        label: translate(p.labelKey),
         icon: p.icon,
         onClick: () => {
           const s = sessionsMenuRuntimeRef.current?.getMenuSession?.();
@@ -64,7 +65,7 @@ export function buildSessionsKillMenu(): PanelCustomMenuItem[] {
   return [
     {
       kind: "action",
-      label: "Kill session",
+      label: translate("sessions.killSession"),
       icon: CircleX,
       onClick: () => {
         const rt = sessionsMenuRuntimeRef.current;

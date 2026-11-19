@@ -5,6 +5,7 @@ import LogTopBar from "./components/filters";
 import MainList from "./components/main";
 import SplitPanel from "./components/split";
 import { useLogsPanel } from "./components/logic";
+import { translate } from "@/i18n";
 
 const LogsPanel = () => {
   const p = useLogsPanel();
@@ -30,17 +31,17 @@ const LogsPanel = () => {
       return (
         <div className="flex-1 min-h-0 flex items-center justify-center text-[#444] text-[13.5px] bg-[#171717]">
           <RefreshCw size={14} className="animate-spin mr-2" />
-          Loading...
+          {translate("common.loading")}
         </div>
       );
     }
     if (!p.serverId) {
-      return <PanelEmptyState>Select a server to view logs</PanelEmptyState>;
+      return <PanelEmptyState>{translate("logs.selectServer")}</PanelEmptyState>;
     }
     if (p.entries.length === 0) {
       return (
         <div className="flex flex-1 flex-col items-center justify-center min-h-0 gap-1">
-          <span className={panelEmptyTextClass}>No log entries</span>
+          <span className={panelEmptyTextClass}>{translate("logs.empty")}</span>
           {p.hasActiveFilters && (
             <button
               type="button"

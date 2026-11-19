@@ -6,6 +6,7 @@ import {
 } from "@/components/canva/workspace/sessions/components/rigth-click-menu";
 import type { PanelEditMenuBridge, SessionsMenuRuntime } from "./types.ts";
 import { menuAction, pathInput } from "./util.ts";
+import { translate } from "@/i18n";
 
 export const sessionsMenuRuntimeRef: { current: SessionsMenuRuntime | null } = { current: null };
 
@@ -58,24 +59,24 @@ export function createSessionsBridge(): PanelEditMenuBridge {
     getCustomMenuItems: () => [
       ...buildSessionsMenuHeader(),
       ...buildSessionsOpenMenu(),
-      menuAction("Update", RefreshCw, () => sessionsRefresh(), () => !sessionsCanRefresh()),
+      menuAction(translate("clickMenu.update"), RefreshCw, () => sessionsRefresh(), () => !sessionsCanRefresh()),
       { kind: "separator" },
       ...buildSessionsKillMenu(),
       {
         kind: "action",
-        label: "Remove",
+        label: translate("clickMenu.remove"),
         icon: Trash2,
         disabled: () => !sessionsCanRemoveSelected() && !sessionsCanRemoveAll(),
         items: [
           {
             kind: "action",
-            label: "Selected",
+            label: translate("clickMenu.selected"),
             onClick: () => sessionsRemoveSelected(),
             disabled: () => !sessionsCanRemoveSelected(),
           },
           {
             kind: "action",
-            label: "All",
+            label: translate("clickMenu.all"),
             onClick: () => sessionsRemoveAll(),
             disabled: () => !sessionsCanRemoveAll(),
           },
@@ -83,7 +84,7 @@ export function createSessionsBridge(): PanelEditMenuBridge {
       },
     ],
     getFooterMenuItems: () => [
-      menuAction("Copy context", Bot, () => sessionsCopyContext(), () => !sessionsCanCopyContext()),
+      menuAction(translate("clickMenu.copyContext"), Bot, () => sessionsCopyContext(), () => !sessionsCanCopyContext()),
     ],
   };
 }

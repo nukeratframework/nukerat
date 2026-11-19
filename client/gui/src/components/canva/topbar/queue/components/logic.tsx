@@ -18,6 +18,7 @@ import { topbarFloatEscapeBlockRef } from "@/components/canva/shortcuts";
 import { tryConfirmDialogEnter } from "@/components/canva/utils/confirm-dialog-keydown";
 import { listRowMouseDown } from "@/components/canva/utils/list-row-selection";
 import { formatUtcDateOnly, utcTableColumnTitle } from "@/components/canva/utils/utc-date";
+import { translate } from "@/i18n";
 
 export const TABLE_COLUMNS = ["Host", "Type", "Input", utcTableColumnTitle("Date"), "Completed", "Server"] as const;
 
@@ -166,7 +167,7 @@ export function useQueuePanel() {
 
   const handleConfirmRemove = async () => {
     if (!selected?.server.trim()) {
-      setResponse({ status: "failure", message: "No server associated with this entry" });
+      setResponse({ status: "failure", message: translate("queue.toast.noServer") });
       setShowRemoveConfirm(false);
       return;
     }

@@ -18,6 +18,7 @@ import {
   type ScriptEntry,
 } from "@/api/scripts";
 import { formatNukeScript } from "./format";
+import { translate } from "@/i18n";
 
 export type PanelMode = "add" | "edit" | null;
 
@@ -248,7 +249,7 @@ export function useScriptsPanel() {
       setSubmitting(false);
       if (reportFailure(res)) return;
       setScriptError(null);
-      toast.success(res?.message ?? "Script removed");
+      toast.success(res?.message ?? translate("nukescripts.toast.removed"));
       setShowRemoveConfirm(false);
       setSelectedTag(null);
       await loadScripts();
@@ -261,7 +262,7 @@ export function useScriptsPanel() {
       setSubmitting(false);
       if (reportFailure(res)) return;
       setScriptError(null);
-      toast.success(res?.message ?? "Script updated");
+      toast.success(res?.message ?? translate("nukescripts.toast.updated"));
       await loadScripts();
     },
     handleRefresh: () => loadScripts(true),

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { X } from "lucide-react";
+import { translate } from "@/i18n";
 
 const LOG_MIN = 80;
 const LOG_MAX = 420;
@@ -35,7 +36,7 @@ export default function ScriptErrorBar({
         onMouseDown={(e) => resizeLog(e, logHeight, setLogHeight)}
       />
       <div className="flex items-center justify-between px-3 border-b border-[#252525]">
-        <span className="text-[13px] text-[#b65959]">Exception</span>
+        <span className="text-[13px] text-[#b65959]">{translate("nukescripts.errorBar.exception")}</span>
         <button
           type="button"
           onClick={onClear}

@@ -1,5 +1,7 @@
 import { ChevronDown, ChevronRight, ChevronUp } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { PanelEmptyState } from "@/components/canva/utils/panel-empty-state";
+import { TableColumnHeader, type TableColumn } from "@/components/canva/utils/utc-date";
 import type { ProcessNode } from "@/api/process";
 import { ProcessIcon } from "./icons";
 import {
@@ -11,22 +13,22 @@ import {
 } from "./logic";
 
 const HeaderCell = ({
-  label, sortKey, width, currentSort, dir, onSort, onResizeStart,
+  column, width, currentSort, dir, onSort, onResizeStart,
 }: {
-  label: string; sortKey: string; width?: number;
+  column: TableColumn<SortKey>; width?: number;
   currentSort: SortKey | null; dir: SortDir;
   onSort: (k: SortKey) => void;
   onResizeStart: (e: React.MouseEvent, key: string) => void;
 }) => (
   <th
     style={width != null ? { width, minWidth: width } : undefined}
-    aria-sort={currentSort === sortKey ? (dir === "asc" ? "ascending" : "descending") : "none"}
-    onClick={() => onSort(sortKey as SortKey)}
-    className={`relative text-center px-3 py-2 text-[12px] font-medium uppercase tracking-widest whitespace-nowrap cursor-pointer select-none transition-colors hover:text-[#b0b0b0] ${currentSort === sortKey ? "text-[#b8b8b8]" : "text-[#888888]"}`}
+    aria-sort={currentSort === column.key ? (dir === "asc" ? "ascending" : "descending") : "none"}
+    onClick={() => onSort(column.key)}
+    className={`relative text-center px-3 py-2 text-[12px] font-medium uppercase tracking-widest whitespace-nowrap cursor-pointer select-none transition-colors hover:text-[#b0b0b0] ${currentSort === column.key ? "text-[#b8b8b8]" : "text-[#888888]"}`}
   >
     <span className="inline-flex items-center justify-center gap-0.5">
-      {label}
-      {currentSort === sortKey ? (
+      <TableColumnHeader column={column} />
+      {currentSort === column.key ? (
         dir === "asc" ? (
           <ChevronUp size={13} strokeWidth={2.25} className="shrink-0 opacity-80" />
         ) : (
@@ -37,7 +39,7 @@ const HeaderCell = ({
     <div
       onMouseDown={(e) => {
         e.stopPropagation();
-        onResizeStart(e, sortKey);
+        onResizeStart(e, column.key);
       }}
       onClick={(e) => e.stopPropagation()}
       className="absolute right-0 top-0 bottom-0 w-[5px] cursor-col-resize hover:bg-[#444] z-10"
@@ -150,6 +152,7 @@ const ProcessTable = ({
   sortDir: SortDir;
   onSort: (key: SortKey) => void;
 }) => {
+  const { t } = useTranslation();
   const { expandedPids, colWidths, toggle, handleResizeStart, visibleNodes } = table;
 
   return (
@@ -168,8 +171,7 @@ const ProcessTable = ({
                 {TABLE_HEADERS.map((h) => (
                   <HeaderCell
                     key={h.key}
-                    label={h.label}
-                    sortKey={h.key}
+                    column={h}
                     width={colWidths[h.key]}
                     currentSort={sort}
                     dir={sortDir}
@@ -197,7 +199,7 @@ const ProcessTable = ({
               </tbody>
             )}
           </table>
-          {visibleNodes.length === 0 && <PanelEmptyState>No processes</PanelEmptyState>}
+          {visibleNodes.length === 0 && <PanelEmptyState>{t("process.empty")}</PanelEmptyState>}
         </div>
       </div>
     </div>

@@ -1,3 +1,4 @@
+import { translate } from "@/i18n";
 import { X } from "lucide-react";
 import type { IocEntry } from "./logic";
 
@@ -70,11 +71,11 @@ export default function SplitPanel({ entry, onClose }: { entry: IocEntry; onClos
           }
           value={entry.time}
         />
-        <ViewField label="Server" value={entry.server} />
-        <ViewField label="Tag" value={entry.tag} />
-        <ViewField label="Host" value={entry.hostTag} />
-        <ViewField label="Type" value={entry.type} />
-        <ViewTextField label="Value" value={entry.value} />
+        <ViewField label={translate("iocs.split.server")} value={entry.server} />
+        <ViewField label={translate("iocs.split.tag")} value={entry.tag} />
+        <ViewField label={translate("iocs.split.host")} value={entry.hostTag} />
+        <ViewField label={translate("iocs.split.type")} value={entry.type} />
+        <ViewTextField label={translate("iocs.split.value")} value={entry.value} />
       </div>
     </div>
   );

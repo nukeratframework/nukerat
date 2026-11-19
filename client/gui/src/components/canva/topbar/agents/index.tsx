@@ -1,10 +1,13 @@
 import { Edit, Plus, Trash2, RefreshCw } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { PanelEmptyState } from "@/components/canva/utils/panel-empty-state";
 import { PanelPortal } from "@/components/canva/utils/panel-portal";
+import { TableColumnHeader } from "@/components/canva/utils/utc-date";
 import AgentFormPanel from "./components/edit";
 import { table_columns, truncateTableCell, useAgentsPanel } from "./components/logic";
 
 const AgentsPanel = () => {
+  const { t } = useTranslation();
   const {
     agents,
     loading,
@@ -52,7 +55,7 @@ const AgentsPanel = () => {
                   onClick={handleCancelLoading}
                   className="mt-2 text-[13.5px] text-[#3a3a3a] cursor-pointer select-none hover:text-[#4a4a4a]"
                 >
-                  Cancel
+                  {t("agents.cancel")}
                 </span>
               </div>
             ) : (
@@ -62,10 +65,10 @@ const AgentsPanel = () => {
                     <tr>
                       {table_columns.map((col) => (
                         <th
-                          key={col}
+                          key={col.key}
                           className="sticky top-0 z-10 bg-[#171717] text-left px-4 py-2 text-[12px] text-[#888888] font-medium uppercase tracking-widest whitespace-nowrap border-b border-[#252525]"
                         >
-                          {col}
+                          <TableColumnHeader column={col} />
                         </th>
                       ))}
                     </tr>
@@ -101,7 +104,7 @@ const AgentsPanel = () => {
                     </tbody>
                   )}
                 </table>
-                {agents.length === 0 && <PanelEmptyState>No agents configured</PanelEmptyState>}
+                {agents.length === 0 && <PanelEmptyState>{t("agents.empty")}</PanelEmptyState>}
               </>
             )}
           </div>
@@ -113,7 +116,7 @@ const AgentsPanel = () => {
               className="button-default flex h-[29px] shrink-0 items-center gap-1.5 rounded border border-[#333] bg-[#232323] px-3 text-[13px] text-[#cecece] hover:bg-[#2b2b2b] hover:text-[#d4d4d4] cursor-pointer"
             >
               <Plus size={11} />
-              New
+              {t("agents.actions.new")}
             </button>
             <button
               type="button"
@@ -122,7 +125,7 @@ const AgentsPanel = () => {
               className="button-default flex h-[29px] shrink-0 items-center gap-1.5 rounded border border-[#333] bg-[#232323] px-3 text-[13px] text-[#cecece] hover:bg-[#2b2b2b] hover:text-[#d4d4d4] cursor-pointer disabled:cursor-not-allowed disabled:opacity-25"
             >
               <Edit size={11} />
-              Edit
+              {t("agents.actions.edit")}
             </button>
             <button
               type="button"
@@ -131,7 +134,7 @@ const AgentsPanel = () => {
               className="button-default flex h-[29px] shrink-0 items-center gap-1.5 rounded border border-[#333] bg-[#232323] px-3 text-[13px] text-[#cecece] hover:bg-[#2b2b2b] hover:text-[#c97070] cursor-pointer disabled:cursor-not-allowed disabled:opacity-25"
             >
               <Trash2 size={11} />
-              Delete
+              {t("agents.actions.delete")}
             </button>
             <div className="min-w-2 flex-1 shrink" aria-hidden />
             <button
@@ -140,7 +143,7 @@ const AgentsPanel = () => {
               className="button-default flex h-[29px] shrink-0 items-center gap-1.5 rounded border border-[#333] bg-[#232323] px-3 text-[13px] text-[#cecece] hover:bg-[#2b2b2b] hover:text-[#d4d4d4] cursor-pointer"
             >
               <RefreshCw size={11} />
-              Update
+              {t("agents.actions.update")}
             </button>
           </div>
         </div>
@@ -181,17 +184,17 @@ const AgentsPanel = () => {
           <div style={{ borderRadius: "8px" }} className="bg-[#191919] border border-[#2f2f2f] p-5 max-w-sm w-[90%] shadow-2xl">
             <div className="flex items-center gap-2 mb-3">
               <Trash2 size={13} className="text-[#c97070]" />
-              <span className="text-[13.5px] font-semibold text-[#d4d4d4]">Delete agent</span>
+              <span className="text-[13.5px] font-semibold text-[#d4d4d4]">{t("agents.removeConfirm.title")}</span>
             </div>
             <p className="text-[13.5px] text-[#9b9b9b] mb-5 leading-relaxed">
-              Remove <span className="text-[#d4d4d4] font-semibold">"{selected?.name}"</span>? This cannot be undone.
+              {t("agents.removeConfirm.prefix")}<span className="text-[#d4d4d4] font-semibold">"{selected?.name}"</span>{t("agents.removeConfirm.suffix")}
             </p>
             <div className="flex items-center justify-end gap-2">
               <button
                 onClick={() => setShowRemoveConfirm(false)}
                 className="button-default px-3 py-1 rounded text-[13px] text-[#9b9b9b] hover:text-[#d4d4d4] hover:bg-[#252525] transition-colors border border-[#333] cursor-pointer"
               >
-                Cancel
+                {t("common.cancel")}
               </button>
               <button
                 onClick={handleConfirmRemove}
@@ -199,7 +202,7 @@ const AgentsPanel = () => {
                 className="button-default flex items-center gap-1.5 px-3 py-1 rounded text-[13px] text-white bg-[#852b2b] hover:bg-[#a83232] transition-colors disabled:opacity-50 cursor-pointer"
               >
                 {submitting && <RefreshCw size={10} className="animate-spin" />}
-                Delete
+                {t("agents.removeConfirm.remove")}
               </button>
             </div>
           </div>

@@ -1,6 +1,7 @@
 import { toast } from "sonner";
 import type { PanelCustomMenuItem, PanelEditMenuBridge, TerminalMenuRuntime } from "./types.ts";
 import { html, pathInput } from "./util.ts";
+import { translate } from "@/i18n";
 
 export const terminalMenuRuntimeRef: { current: TerminalMenuRuntime | null } = { current: null };
 
@@ -15,7 +16,7 @@ export function copyTerminalContext() {
   void navigator.clipboard.writeText(
     JSON.stringify({ terminal: ["terminal", ...rt.getOutput()] }),
   );
-  toast.success("Terminal context copied");
+  toast.success(translate("clickMenu.terminalContextCopied"));
 }
 
 export function buildTerminalStyleMenuItems(): PanelCustomMenuItem[] {
@@ -25,27 +26,27 @@ export function buildTerminalStyleMenuItems(): PanelCustomMenuItem[] {
   return [
     {
       kind: "action",
-      label: "Style",
+      label: translate("clickMenu.style"),
       items: [
         {
           kind: "action",
-          label: "Font",
+          label: translate("clickMenu.font"),
           items: [
             {
               kind: "header",
-              label: `${rt.getFontSize()}px`,
+              label: translate("clickMenu.fontSize", { size: rt.getFontSize() }),
             },
             { kind: "separator" },
             {
               kind: "action",
-              label: "Increase",
+              label: translate("clickMenu.increase"),
               shortcutId: "terminal_font_increase",
               onClick: () => rt.increaseFont(),
               disabled: () => !rt.canIncreaseFont(),
             },
             {
               kind: "action",
-              label: "Decrease",
+              label: translate("clickMenu.decrease"),
               shortcutId: "terminal_font_decrease",
               onClick: () => rt.decreaseFont(),
               disabled: () => !rt.canDecreaseFont(),
@@ -53,7 +54,7 @@ export function buildTerminalStyleMenuItems(): PanelCustomMenuItem[] {
             { kind: "separator" },
             {
               kind: "action",
-              label: "Reset",
+              label: translate("clickMenu.reset"),
               shortcutId: "terminal_font_reset",
               onClick: () => rt.resetFont(),
               disabled: () => !rt.canResetFont(),

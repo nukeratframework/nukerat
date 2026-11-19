@@ -1,5 +1,6 @@
 import { X } from "lucide-react";
 import { yn, type QueueEntry } from "./logic";
+import { translate } from "@/i18n";
 
 const formatParametersDisplay = (raw: string): string => {
   const trimmed = raw?.trim() ?? "";
@@ -17,7 +18,7 @@ export default function SplitPanel({ entry, onClose }: { entry: QueueEntry; onCl
   return (
     <div className="flex flex-col h-full min-h-0 min-w-[32rem]">
       <div className="flex items-center justify-between px-4 py-3 border-b border-[#2a2a2a] shrink-0">
-        <span className="text-[13.5px] font-semibold text-[#cecece] tracking-wide">Queue</span>
+        <span className="text-[13.5px] font-semibold text-[#cecece] tracking-wide">{translate("queue.split.title")}</span>
         <button type="button" onClick={onClose} className="p-1 rounded text-[#6b6b6b] hover:text-[#d4d4d4] hover:bg-[#2a2a2a] transition-colors cursor-pointer">
           <X size={13} />
         </button>

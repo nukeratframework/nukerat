@@ -14,6 +14,7 @@ import {
 } from "@/components/canva/topbar/listeners/components/logic";
 import { nsDebuggerMenuRuntimeRef } from "@/components/ui/rigth-click-menu.tsx";
 import type { FetchToastResponse } from "@/components/canva/utils/toast_rules";
+import { translate } from "@/i18n";
 
 export type NsDebuggerLine = { key: string; time: string; content: string };
 
@@ -126,7 +127,7 @@ export function useNsDebuggerPanel() {
           dead.current.add(key);
           setResponse({
             status: "failure",
-            message: err instanceof Error ? err.message.slice(0, 80) : "Request failed",
+            message: err instanceof Error ? err.message.slice(0, 80) : translate("common.requestFailed"),
           });
           return;
         }

@@ -22,6 +22,7 @@ import {
 import { topbarFloatEscapeBlockRef } from "@/components/canva/shortcuts";
 import { tryConfirmDialogEnter } from "@/components/canva/utils/confirm-dialog-keydown";
 import { formatUtcDateOnly, utcTableColumnTitle } from "@/components/canva/utils/utc-date";
+import { translate } from "@/i18n";
 
 export const table_columns = ["Name", "File", "Type", "Server", "Hosts", utcTableColumnTitle("Created")] as const;
 
@@ -34,14 +35,18 @@ export const getReportRowId = (r: ReportEntry) => `${r.server ?? ""}-${r.tag}`;
 
 export const reportFileTypeLabel = (entry: ReportEntry) => resolveReportFileType(entry);
 
-export const report_type_options: { value: ReportType; label: string }[] = [
-  { value: "activity", label: "Activity Report" },
-  { value: "hosts", label: "Hosts Report" },
-  { value: "ioc", label: "Indicators of Compromise" },
-];
+/// Labels are i18n keys resolved at render time, so the list survives a
+/// language switch instead of freezing the language it was built in.
+export const report_type_options = [
+  { value: "activity", labelKey: "reports.reportTypes.activity" },
+  { value: "hosts", labelKey: "reports.reportTypes.hosts" },
+  { value: "ioc", labelKey: "reports.reportTypes.ioc" },
+] as const satisfies { value: ReportType; labelKey: string }[];
 
-export const reportTypeLabel = (value?: string) =>
-  report_type_options.find((o) => o.value === value)?.label ?? value ?? "-";
+export const reportTypeLabel = (value?: string) => {
+  const option = report_type_options.find((o) => o.value === value);
+  return option ? translate(option.labelKey) : (value ?? "-");
+};
 
 export const report_file_type_options: { value: ReportFileType; label: string }[] = [
   { value: "pdf", label: "pdf" },
@@ -108,7 +113,7 @@ export function useReportsPanel() {
       setReports(Array.isArray(res.reports) ? res.reports : []);
     } else {
       setReports([]);
-      toast.error(res?.message ?? "Failed to fetch reports");
+      toast.error(res?.message ?? translate("reports.toast.fetchFailed"));
     }
   }, []);
 
@@ -224,10 +229,10 @@ export function useReportsPanel() {
     );
     setSubmitting(false);
     if (res?.status !== "success") {
-      toast.error(res?.message ?? "Failed to create report");
+      toast.error(res?.message ?? translate("reports.toast.createFailed"));
       return;
     }
-    toast.success(res?.message ?? "Report created");
+    toast.success(res?.message ?? translate("reports.toast.created"));
     setPanelMode(null);
     await refreshReports();
   };
@@ -245,7 +250,7 @@ export function useReportsPanel() {
     const res = await downloadReportRequest(selected.tag, selected.server);
     setSubmitting(false);
     if (res?.status !== "success" || !res.content) {
-      toast.error(res?.message ?? "Failed to download report");
+      toast.error(res?.message ?? translate("reports.toast.downloadFailed"));
       return;
     }
     const fileType = resolveReportFileType(selected, res);
@@ -254,7 +259,7 @@ export function useReportsPanel() {
       res.file || `${selected.name}.${fileType}`,
       fileType,
     );
-    toast.success("Report downloaded");
+    toast.success(translate("reports.toast.downloaded"));
   };
 
   const openReportView = useCallback(
@@ -267,7 +272,7 @@ export function useReportsPanel() {
       const res = await viewReportRequest(report.tag, report.server);
       setViewLoading(false);
       if (res?.status !== "success" || !res.html) {
-        toast.error(res?.message ?? "Failed to load report");
+        toast.error(res?.message ?? translate("reports.toast.loadFailed"));
         handleCloseView();
         return;
       }
@@ -294,11 +299,11 @@ export function useReportsPanel() {
     setSubmitting(false);
     setShowRemoveConfirm(false);
     if (res?.status !== "success") {
-      toast.error(res?.message ?? "Failed to remove report");
+      toast.error(res?.message ?? translate("reports.toast.removeFailed"));
       return;
     }
     setSelectedRowId(null);
-    toast.success(res?.message ?? "Report removed");
+    toast.success(res?.message ?? translate("reports.toast.removed"));
     await refreshReports();
   };
   confirmRemoveRef.current = () => {

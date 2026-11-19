@@ -1,4 +1,5 @@
 import { CheckIcon, ChevronsUpDownIcon, RefreshCw, RotateCw, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import type { Session } from "@/api/sessions";
 import { Button } from "@/components/ui/button";
 import {
@@ -32,6 +33,7 @@ export default function KeyloggerHostFilter({
   onSelect: (host: Session) => void;
   onClear: () => void;
 }) {
+  const { t } = useTranslation();
   const filtered = Boolean(hostId);
 
   return (
@@ -45,14 +47,14 @@ export default function KeyloggerHostFilter({
             aria-expanded={open}
             className={`button-default h-[29px] min-w-[9rem] max-w-[12rem] shrink-0 justify-between gap-1 border-[#363636] bg-[#212121] py-0 text-[13.5px] font-normal text-[#cecece] outline-none hover:bg-[#212121] focus-visible:ring-0 ${filtered ? "pl-2.5 pr-7" : "px-2.5"}`}
           >
-            <span className="truncate">{selected?.tag || selected?.ip || "Host"}</span>
+            <span className="truncate">{selected?.tag || selected?.ip || t("keylogger.hostFilter.label")}</span>
             <ChevronsUpDownIcon className="text-[#666] shrink-0" size={14} />
           </Button>
         </PopoverTrigger>
         {filtered && (
           <button
             type="button"
-            aria-label="Clear host filter"
+            aria-label={t("keylogger.hostFilter.clear")}
             onMouseDown={(e) => e.preventDefault()}
             onClick={(e) => {
               e.stopPropagation();
@@ -80,13 +82,13 @@ export default function KeyloggerHostFilter({
             >
               <RotateCw className={`h-3.5 w-3.5 ${loading ? "animate-spin" : ""}`} />
             </Button>
-            <CommandInputNoIcon className="w-[9.7rem] placeholder:text-[#ffffff0b]" placeholder="Search host..." />
+            <CommandInputNoIcon className="w-[9.7rem] placeholder:text-[#ffffff0b]" placeholder={t("keylogger.hostFilter.search")} />
           </div>
           <CommandList>
             {loading ? (
               <div className="flex items-center justify-center h-10 text-[#666] text-[13.5px]">
                 <RefreshCw size={14} className="animate-spin mr-2" />
-                Loading...
+                {t("common.loading")}
               </div>
             ) : (
               <>
@@ -96,13 +98,13 @@ export default function KeyloggerHostFilter({
                     value="all-hosts"
                     onSelect={() => onClear()}
                   >
-                    All hosts
+                    {t("keylogger.hostFilter.all")}
                     {!filtered && (
                       <CheckIcon size={16} className="ml-auto" style={{ stroke: "#858585" }} />
                     )}
                   </CommandItem>
                 </CommandGroup>
-                <CommandEmpty>No host found.</CommandEmpty>
+                <CommandEmpty>{t("keylogger.hostFilter.empty")}</CommandEmpty>
                 {Object.entries(groups).map(([server, list]) => (
                   <CommandGroup key={server} heading={server}>
                     {list.map((host) => (

@@ -15,6 +15,7 @@ import {
   splitPanelMinWidth,
 } from "@/components/canva/utils/split-panel";
 import { listRowMouseDown } from "@/components/canva/utils/list-row-selection";
+import { translate } from "@/i18n";
 
 // Types ----------------------------------------------------------
 
@@ -334,11 +335,11 @@ export function useListenersPanel() {
     );
     if (res?.status !== "success") {
       setSubmitting(false);
-      toast.error(res?.message ?? "Failed to restart listener");
+      toast.error(res?.message ?? translate("listeners.toast.restartFailed"));
       return;
     }
     setSubmitting(false);
-    toast.success(res?.message ?? "Listener restarted");
+    toast.success(res?.message ?? translate("listeners.toast.restarted"));
     await refreshListeners();
   };
 
@@ -374,10 +375,10 @@ export function useListenersPanel() {
     );
     setSubmitting(false);
     if (res?.status !== "success") {
-      toast.error(res?.message ?? "Failed to create listener");
+      toast.error(res?.message ?? translate("listeners.toast.createFailed"));
       return;
     }
-    toast.success(res?.message ?? "Listener created");
+    toast.success(res?.message ?? translate("listeners.toast.created"));
     await refreshListeners();
     setPanelMode(null);
   };
@@ -392,7 +393,7 @@ export function useListenersPanel() {
     );
     if (res?.status !== "success") {
       setSubmitting(false);
-      toast.error(res?.message ?? "Failed to remove listener");
+      toast.error(res?.message ?? translate("listeners.toast.removeFailed"));
       return;
     }
     setListeners((prev) =>
@@ -401,7 +402,7 @@ export function useListenersPanel() {
     setSelectedRowId(null);
     setSubmitting(false);
     setShowRemoveConfirm(false);
-    toast.success(res?.message ?? "Listener removed");
+    toast.success(res?.message ?? translate("listeners.toast.removed"));
     await refreshListeners();
   };
   confirmRemoveRef.current = () => {

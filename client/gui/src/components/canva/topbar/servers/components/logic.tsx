@@ -17,7 +17,7 @@ import {
   splitPanelMinWidth,
 } from "@/components/canva/utils/split-panel";
 import { listRowMouseDown } from "@/components/canva/utils/list-row-selection";
-
+import { translate } from "@/i18n";
 
 export type PanelMode = "add" | "edit" | null;
 
@@ -57,17 +57,17 @@ export function parseServerForm(
   const host = form.host.trim();
   const port = form.port.trim();
 
-  if (!key) return { ok: false, error: "Key is empty." };
+  if (!key) return { ok: false, error: translate("servers.errors.keyEmpty") };
   if (scheme !== "http" && scheme !== "https") {
-    return { ok: false, error: 'Protocol must be "http" or "https".' };
+    return { ok: false, error: translate("servers.errors.protocol") };
   }
   if (!host || host.includes("/")) {
-    return { ok: false, error: "Host must be non-empty and must not contain '/'." };
+    return { ok: false, error: translate("servers.errors.host") };
   }
-  if (!/^\d+$/.test(port)) return { ok: false, error: "Port must be numeric." };
+  if (!/^\d+$/.test(port)) return { ok: false, error: translate("servers.errors.portNumeric") };
   const portNum = Number(port);
   if (portNum < 1 || portNum > 65535) {
-    return { ok: false, error: "Port must be between 1 and 65535." };
+    return { ok: false, error: translate("servers.errors.portRange") };
   }
 
   try {
@@ -84,7 +84,7 @@ export function parseServerForm(
     };
     return { ok: true, parsed: entry };
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Invalid key format";
+    const message = error instanceof Error ? error.message : translate("servers.errors.invalidKey");
     return { ok: false, error: message };
   }
 }
@@ -297,9 +297,9 @@ export function useServerPanel() {
       await putServer(entry);
       setServers((prev) => prev.map((s) => (s.id === entry.id ? entry : s)));
       checkStatus(entry);
-      toast.success("Session cleared");
+      toast.success(translate("servers.toast.sessionCleared"));
     } catch (e) {
-      toast.error(formatToastMessage(e instanceof Error ? e.message : "Failed to clear JWT"));
+      toast.error(formatToastMessage(e instanceof Error ? e.message : translate("servers.toast.clearJwtFailed")));
     } finally {
       setSubmitting(false);
     }
@@ -317,7 +317,7 @@ export function useServerPanel() {
     const skipId = panelMode === "edit" ? selected?.id : null;
     const dup = servers.find((s) => s.id !== skipId && entryFingerprint(s) === fp);
     if (dup) {
-      toast.error(formatToastMessage(`${name}:Key already exists`));
+      toast.error(formatToastMessage(translate("servers.errors.keyAlreadyExists", { name })));
       return;
     }
 
@@ -341,10 +341,10 @@ export function useServerPanel() {
           : prev.map((s) => (s.id === entry.id ? entry : s))
       );
       checkStatus(entry);
-      toast.success("Authenticated");
+      toast.success(translate("servers.toast.authenticated"));
       setPanelMode(null);
     } catch (e) {
-      toast.error(formatToastMessage(e instanceof Error ? e.message : "Authentication failed"));
+      toast.error(formatToastMessage(e instanceof Error ? e.message : translate("servers.toast.authFailed")));
     } finally {
       setSubmitting(false);
     }

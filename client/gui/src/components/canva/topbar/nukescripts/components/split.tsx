@@ -1,3 +1,4 @@
+import { translate } from "@/i18n";
 import { RefreshCw, Upload, X } from "lucide-react";
 import { useRef } from "react";
 import { ServerDropdown } from "@/components/canva/topbar/listeners/components/form";
@@ -54,18 +55,18 @@ export default function SplitPanel({
         {mode === "add" && (
           <>
             <div className="mb-3">
-              <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">Name</label>
+              <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">{translate("nukescripts.form.name")}</label>
               <input className="w-full bg-[#212121] border border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 outline-none focus:border-[#555] placeholder:text-[#444]" value={formData.name} onChange={(e) => onChange("name", e.target.value)} autoComplete="off" spellCheck={false} />
             </div>
             <ServerDropdown host={serverHost} port={serverPort} onSelect={onServerChange} />
             <div className="mb-3">
-              <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">Description</label>
+              <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">{translate("nukescripts.form.description")}</label>
               <input maxLength={100} className="w-full bg-[#212121] border border-[#363636] text-[#cecece] text-[13.5px] rounded px-3 py-1.5 outline-none focus:border-[#555] placeholder:text-[#444]" value={formData.description} onChange={(e) => onChange("description", e.target.value)} autoComplete="off" spellCheck={false} />
             </div>
           </>
         )}
         <div className="mb-3">
-          <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">NukeScript</label>
+          <label className="block text-[12px] text-[#6e6e6e] mb-1.5 uppercase tracking-widest">{translate("nukescripts.form.nukescript")}</label>
           <div className="border border-[#363636] rounded overflow-hidden bg-[#0e0e0e] focus-within:border-[#555]">
             <ScriptEditor
               value={formData.content}
@@ -77,7 +78,7 @@ export default function SplitPanel({
         <div className="flex items-center gap-2">
           <button type="button" onClick={() => fileRef.current?.click()} className="button-default flex items-center gap-1.5 px-3 py-1 rounded bg-[#232323] text-[#cecece] text-[13px] hover:bg-[#2b2b2b] hover:text-[#d4d4d4] transition-colors border border-[#333] cursor-pointer">
             <Upload size={10} />
-            Upload
+            {translate("nukescripts.form.upload")}
           </button>
           <button
             type="button"
